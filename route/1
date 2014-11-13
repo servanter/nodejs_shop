@@ -5,8 +5,10 @@ function index(req, res) {
     if(shopId) {
         Shop.find({where: {
             id:shopId
-        }}).success(function(result) {
-            res.render('index', {data:{'shop':result.dataValues}});
+        }}).complete(function(result) {
+                 console.log(result.dataValues);                 
+                 res.render('index', {data:{'shop':result.dataValues}});
+            }
         });
 
     }
