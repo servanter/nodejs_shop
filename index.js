@@ -1,7 +1,6 @@
 var express = require('express');
 var app = express();
-
-var index = require('./route/index');
+var route = require('./lib/route');
 
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
@@ -9,7 +8,7 @@ app.use(express.static('public'));
 
 
 
-app.get('/', index);
+app.get('/', route.exec('index'));
 
 
 
