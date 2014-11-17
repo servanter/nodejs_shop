@@ -1,4 +1,4 @@
-var Article = require('../lib/article');
+var Article = require('../../lib/article');
 
 function addArticleComplete(req, res) {
     console.log(req.body);

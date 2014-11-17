@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <title>欢迎来到的小店</title>
+	    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+        <meta name="keywords" content=" 微信小店" />
+        <meta name="description" content="" />
+    </head>
+    <body>
+        <h1>欢迎来到的小店</h1>
+
+        <%
+            if(data.shops.length > 0){
+        %>
+        <table border="1">
+            <tr>
+                <th>序号</th>
+                <th>店铺名称</th>
+            </tr>
+            <%
+                for(var i = 0; i < data.shops.length; i++){
+            %>
+            <tr>
+                <td><a href="/admin/shop/<%=data.shops[i].id%>/"><%=data.shops[i].id%></a></td>
+                <td><%=data.shops[i].short_name%></td>
+            </tr>
+            <%
+                }
+            %>
+        </table>
+        <%
+            } else {
+        %>
+            <h2>您还没有创建店铺<a href="/admin/createshop/"></h2>
+        <%
+            }
+        %>
+    </body>
+</html>
