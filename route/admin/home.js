@@ -5,7 +5,7 @@ var UserShop = require('../../lib/usershop');
 function home(req, res) {
     var user_name = req.body.user_name;
     var user_pass = req.body.user_pass;
-    var aaa = User.find({where:{user_name:user_name, user_pass:user_pass}}).success(function(result) {
+    User.find({where:{user_name:user_name, user_pass:user_pass}}).success(function(result) {
         if(result) {
             var u = result.dataValues;
             var userId = result.dataValues.id;

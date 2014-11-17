@@ -19,6 +19,8 @@ app.post('/admin/home', route.adminexec('home'));
 app.get('/admin/addArticle', filter.authorize, route.adminexec('add_article'));
 app.post('/admin/addArticleComplete', route.adminexec('add_article_complete'));
 app.get('/admin/shop/:id', filter.authorize, route.adminexec('shop'));
+app.get('/admin/createshop/', filter.authorize, route.redirect('admin/create_shop'));
+app.post('/admin/createshopcomplete/', filter.authorize, route.adminexec('create_shop_complete'));
 
 app.listen(8888);
 console.log('server start at port 8888');
