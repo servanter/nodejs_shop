@@ -7,7 +7,10 @@
     </head>
     <body>
         <h1>欢迎来到的小店</h1>
-
+        <% if (data.sign) { %>  
+            <h2><%=data.sign%></h2>
+        <%}%>
+        
         <%
             if(data.shops.length > 0){
         %>

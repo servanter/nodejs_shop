@@ -6,6 +6,12 @@
         <meta name="description" content="" />
     </head>
     <body>
+        <%if(sign) {%>
+            <h1><%=sign%></h1>
+        <%}%>
+        <h1>
         <h1><%=data.short_name%></h1>
+
+        <a href="/admin/shop/<%=data.id%>/addarticle/">添加介绍</a>
     </body>
 </html>

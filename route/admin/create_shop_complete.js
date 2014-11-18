@@ -12,12 +12,12 @@ function createshop(req, res) {
         shop.save().success(function(result) {
             var shopId = result.null;
             UserShop.create({user_id : req.session.userId, shop_id : shopId}).complete(function(err, result){
+                var sign = '操作成功';
                 if(err) {
-                    res.write('Insert fail');
-                } else {
-                    res.write('success');
-                    res.end();
+                    sign = '操作失败';
                 }
+                req.flash('sign', sign);
+                return res.redirect('/admin/home/');
             })
         });
 
