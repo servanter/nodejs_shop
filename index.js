@@ -30,5 +30,8 @@ app.get('/admin/addshop/', filter.authorize, route.adminexec('shop').addShop);
 app.get('/admin/cities/', filter.authorize, route.adminexec('shop').getCities);
 app.post('/admin/createshopcomplete/', filter.authorize, route.adminexec('shop').addShopComplete);
 
+app.get('/admin/shop/:id/additem/', filter.authorize, route.adminexec('item').addItem);
+app.post('/admin/additemcomplete/', filter.authorize, route.adminexec('item').addItemComplete);
+
 app.listen(8888);
 console.log('server start at port 8888');

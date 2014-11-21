@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <title>微信小店_添加商品</title>
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+        <meta name="keywords" content="微信小店" />
+        <meta name="description" content="" />
+    </head>
+    <body>
+        <form action="/admin/additemcomplete" method="post">
+            商品名称:<input name="short_name" type="text"><br>
+            商品描述:<input name="description" type="text"><br>
+            商品价格:<input name="price" type="text"><br>
+            商品图片:<input name="pic_url" type="text"><br>
+            商品类别:
+            <select id="class_id" name="class_id">
+                <option value="-1" selected=selected>----</option>
+                <%
+                    if(data.classes) {
+                        for(var i = 0; i < data.classes.length; i++) {
+                %>
+                            <option value="<%=data.classes[i].id%>"><%=data.classes[i].alias%></option>
+                <%            
+                        }
+                    }
+                %>
+            </select><br>
+            <input name="shop_id" type="hidden" value="<%=data.shop_id%>">
+            <input type="submit" value="添加">
+        </form>       
+    </body>
+</html>
