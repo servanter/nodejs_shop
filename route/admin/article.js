@@ -1,4 +1,4 @@
-var Article = require('../../lib/article');
+var Article = require('../../model/article');
 
 exports.addArticle = function(req, res) {
     res.render('admin/add_article', {data:{id:req.params.shopId}});

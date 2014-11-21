@@ -1,5 +1,5 @@
 var Sequelize = require('sequelize');
-var sequelize = require('./sequelize');
+var sequelize = require('../lib/sequelize');
 
 var Shop = sequelize.define('Shop', {
 	id:Sequelize.BIGINT,
@@ -9,7 +9,7 @@ var Shop = sequelize.define('Shop', {
     province:Sequelize.BIGINT,
     is_vertify:Sequelize.BOOLEAN,
 }, {
-	tableName:'shop',
+	tableName:'weshop_shop',
 	updatedAt:'update_time',
 	createdAt:'create_time'
 });

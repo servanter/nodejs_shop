@@ -1,5 +1,5 @@
 var Sequelize = require('sequelize');
-var sequelize = require('./sequelize');
+var sequelize = require('../lib/sequelize');
 
 var UserShop = sequelize.define('UserShop', {
     id:Sequelize.BIGINT,
@@ -7,7 +7,7 @@ var UserShop = sequelize.define('UserShop', {
     shop_id: Sequelize.BIGINT,
     create_time:Sequelize.NOW
 }, {
-    tableName:'user_shop',
+    tableName:'weshop_user_shop',
     timestamps: false
 });
 

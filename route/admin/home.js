@@ -1,6 +1,6 @@
-var Shop = require('../../lib/shop');
-var User = require('../../lib/user');
-var UserShop = require('../../lib/usershop');
+var Shop = require('../../model/shop');
+var User = require('../../model/user');
+var UserShop = require('../../model/usershop');
 
 function home(req, res) {
     if(!req.session.userId) {

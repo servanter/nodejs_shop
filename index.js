@@ -17,12 +17,12 @@ app.use(session({secret: 'keyboard cat'}))
 app.use(flash()); // error success message
 
 
-/* home controller*/
+/* home controller */
 app.get('/admin', route.adminexec('index'));
 app.post('/admin/home', route.adminexec('home'));
 app.get('/admin/home', filter.authorize, route.adminexec('home'));
 
-/* shop controller*/
+/* shop controller */
 app.get('/admin/shop/:shopId/addarticle', filter.authorize, route.adminexec('article').addArticle);
 app.post('/admin/shop/:shopId/addarticlecomplete', filter.authorize, route.adminexec('article').addArticleComplete);
 app.get('/admin/shop/:id', filter.authorize, route.adminexec('shop').detail);

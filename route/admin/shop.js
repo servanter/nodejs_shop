@@ -1,8 +1,8 @@
-var Shop = require('../../lib/shop');
-var Area = require('../../lib/area');
+var Shop = require('../../model/shop');
+var Area = require('../../model/area');
 var areaService = require('../../service/areaservice');
 var async = require('async');
-var UserShop = require('../../lib/usershop');
+var UserShop = require('../../model/usershop');
 
 exports.detail = function(req, res) {
     if(req.params.id) {

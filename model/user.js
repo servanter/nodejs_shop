@@ -1,5 +1,5 @@
 var Sequelize = require('sequelize');
-var sequelize = require('./sequelize');
+var sequelize = require('../lib/sequelize');
 
 var User = sequelize.define('User', {
     id:Sequelize.BIGINT,
@@ -7,7 +7,7 @@ var User = sequelize.define('User', {
     user_pass: Sequelize.STRING,
     is_vertify:Sequelize.BOOLEAN
 }, {
-    tableName:'user',
+    tableName:'weshop_user',
     createdAt:'create_time',
     updatedAt:'update_time'
 });
