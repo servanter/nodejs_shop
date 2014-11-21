@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x
 app.use(session({secret: 'keyboard cat'}))
 app.use(flash()); // error success message
 
-
+/* admin management */
 /* home controller */
 app.get('/admin', route.adminexec('index'));
 app.post('/admin/home', route.adminexec('home'));
@@ -32,6 +32,10 @@ app.post('/admin/createshopcomplete/', filter.authorize, route.adminexec('shop')
 
 app.get('/admin/shop/:id/additem/', filter.authorize, route.adminexec('item').addItem);
 app.post('/admin/additemcomplete/', filter.authorize, route.adminexec('item').addItemComplete);
+
+
+/* user display */
+app.get('/shop/:id/', route.exec('shop').detail);
 
 app.listen(8888);
 console.log('server start at port 8888');

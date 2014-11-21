@@ -3,15 +3,15 @@ var ItemClass = require('../model/itemclass');
 var Paging = require('../util/paging');
 
 exports.findItemsByShopId = function(shopId, paging, callback) {
-    Item.findAll({where:{shop_id:shopId}, offset:paging.getSinceCount(), limit:paing.getPageSize()}).success(function(data){
+    Item.findAll({where:{shop_id:shopId}, offset:paging.getSinceCount(), limit:paging.getPageSize()}).success(function(data){
         var arr = [];
         for(var i = 0; i < data.length; i++) {
             arr.push(data[i].dataValues);
         }
 
         Item.count({where:{shop_id:shopId}}).success(function(count) {
-            var paging = new Paging(count, paging.getPage(), page.getPageSize(), arr);
-            callback(paging);
+            var pag = new Paging.resultPage(count, paging.getPage(), paging.getPageSize(), arr);
+            callback(pag);
         })
         
     });

@@ -1,0 +1,16 @@
+﻿img {
+	width:100%;height:100%;
+}
+.circle { 
+width: 200px; 
+height: 200px; 
+background-color: #a72525; 
+-webkit-border-radius: 100px; 
+}
+.t20b10 {
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
+.img95 {
+	width:90%;height:90%;
+}

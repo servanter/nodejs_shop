@@ -1,9 +1,10 @@
-exports.Paging = function(page, pageSize) {
+exports.rowPage = function(page, pageSize) {
     this.page = page;
     this.pageSize = pageSize;
     this.sinceCount = 0;
     this.totalRecord = 0;
     this.totalPage = 0;
+    this.result = null;
     if(page >= 1) {
         sinceCount = (page - 1) * pageSize;
     }
@@ -23,17 +24,19 @@ exports.Paging = function(page, pageSize) {
     this.getPageSize = function() {
         return this.pageSize;
     }
-    this.getSinceCount() = function() {
+    this.getSinceCount = function() {
         return this.sinceCount;
     }
+    return this;
 }
 
-exports.Paging = function(totalRecord, page, pageSize, list) {
+exports.resultPage = function(totalRecord, page, pageSize, list) {
     this.page = page;
     this.pageSize = pageSize;
     this.sinceCount = 0;
     this.totalRecord = totalRecord;
     this.totalPage = 0;
+    this.result = list;
     if(totalRecord > 0) {
         totalPage = (totalRecord - 1) / page + 1;
     }
@@ -54,7 +57,8 @@ exports.Paging = function(totalRecord, page, pageSize, list) {
     this.getPageSize = function() {
         return this.pageSize;
     }
-    this.getSinceCount() = function() {
+    this.getSinceCount = function() {
         return this.sinceCount;
     }
+    return this;
 }

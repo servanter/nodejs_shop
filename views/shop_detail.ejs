@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- 新 Bootstrap 核心 CSS 文件 -->
+        <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/style/main.css">
+        <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+        <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js">
+        </script>
+        <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+        <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js">
+        </script>
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="row">
+                <img src="http://m1.auto.itc.cn/car/theme/2sc/chengxin/images/13691012613419.jpg">
+            </div>
+           
+              <%
+                  if(data.items.result.length > 0) {
+                    for(var i = 0; i < data.items.result.length; i++) {
+                      if(i % 3 == 0) {
+              %>
+                          <div class="row t20b10">
+              <%
+                      }
+              %>
+                      <div class="col-xs-4 col-sm-4 col-md-4">
+                          <img class="img95" src="/<%=data.items.result[i].pic_url%>"><br>
+                          <label><%=data.items.result[i].short_name%></label>
+                      </div>
+              <%
+                      if((i != 0 && (i + 1) % 3 == 0) || (i + 1 == data.items.result.length)) {
+              %>
+                        </div>
+              <%
+                      }
+                    }
+                  }
+              %>
+
+            
+
+            <!-- 
+            <div class="row t20b10">
+              <div class="col-xs-4 col-sm-4 col-md-4">
+                  <img class="img95" src="images/icon_1.jpg"><br>
+                  <label>asdsadasd</label>
+              </div>
+              <div class="col-xs-4 col-sm-4 col-md-4">
+                  <img class="img95" src="images/icon_1.jpg"><br>
+                  <label>asdsadasd</label>
+              </div>
+            
+              <div class="col-xs-4 col-sm-4 col-md-4">
+                  <img class="img95" src="images/icon_1.jpg"><br>
+                  <label>asdsadasd</label>
+              </div>
+            </div>
+            
+            
+            <div class="row t20b10">
+              <div class="col-xs-4 col-sm-4 col-md-4">
+                  <img class="img95" src="images/icon_1.jpg"><br>
+                  <label>asdsadasd</label>
+              </div>
+              <div class="col-xs-4 col-sm-4 col-md-4">
+                  <img class="img95" src="images/icon_1.jpg"><br>
+                  <label>asdsadasd</label>
+              </div>
+            
+              <div class="col-xs-4 col-sm-4 col-md-4">
+                  <img class="img95" src="images/icon_1.jpg"><br>
+                  <label>asdsadasd</label>
+              </div>
+            </div> -->
+           
+        </div>
+    </body>
+
+</html>
