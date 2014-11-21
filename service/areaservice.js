@@ -14,5 +14,14 @@ exports.findProvinces = function(callback) {
         callback(arr);
     });
     
-    
 };
+
+exports.findCitiesByProvinces = function(provinceId, callback) {
+    Area.findAndCountAll({where:{parent_id:provinceId}}).success(function(results) {
+        var arr = [];
+        for(var i = 0; i < results.count; i++) {
+            arr.push(results.rows[i].dataValues);
+        }
+        callback(arr);
+    })
+}

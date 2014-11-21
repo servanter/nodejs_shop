@@ -4,23 +4,44 @@
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
         <meta name="keywords" content="微信小店" />
         <meta name="description" content="" />
+        <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+        <script type="text/javascript">
+            $(function() {
+                 $('#province').change(function(){
+                    $.get('/admin/cities/?province_id=' + $('#province').val(), function(data){
+                        var msg = '';
+                        var every = '';
+                        if(data) {
+                            $.each(data, function(index, item) {
+                                every += '<option value='+ item.id+'>'+item.area_name+'</option>';
+                            })
+                        }
+                        msg = '<select name=\'city\'>'+every+'</select>';
+                        $('#city').html(msg);
+                    });
+                })
+            })
+        </script>
     </head>
     <body>
         <form action="/admin/createshopcomplete/" method="post">
             店铺名称: <input id="short_name" type="text" name="short_name"><br>
             店铺描述: <input id="description" type="text" name="description"><br>
-            所属省份: 
-            <select name="shop_province">
+            所属省市: 
+            <select id="province" name="province">
+                <option value="-1" selected=selected>----</option>
                 <%
                     if(data.provinces) {
                         for(var i = 0; i < data.provinces.length; i++) {
                 %>
-                            <option value="<%=data.provinces[i].area_name%>"><%=data.provinces[i].area_name%></option>
+                            <option value="<%=data.provinces[i].id%>"><%=data.provinces[i].area_name%></option>
                 <%            
                         }
                     }
                 %>
-            </select><br>
+            </select><span id="city"></span><br>
+            
+
             <input type="submit" value="创建店铺">
         </form>
     </body>

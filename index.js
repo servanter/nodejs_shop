@@ -26,8 +26,9 @@ app.get('/admin/shop/:shopId/addarticle', filter.authorize, route.adminexec('add
 app.post('/admin/shop/:shopId/addarticlecomplete', filter.authorize, route.adminexec('add_article_complete'));
 // app.post('/admin/addarticlecomplete', filter.authorize, route.adminexec('add_article_complete'));
 app.get('/admin/shop/:id', filter.authorize, route.adminexec('shop'));
-app.get('/admin/addshop/', filter.authorize, route.adminexec('add_shop'));
-app.post('/admin/createshopcomplete/', filter.authorize, route.adminexec('create_shop_complete'));
+app.get('/admin/addshop/', filter.authorize, route.adminexec('add_shop').addShop);
+app.get('/admin/cities/', filter.authorize, route.adminexec('add_shop').getCities);
+app.post('/admin/createshopcomplete/', filter.authorize, route.adminexec('add_shop').addShopComplete);
 
 app.listen(8888);
 console.log('server start at port 8888');
