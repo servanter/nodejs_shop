@@ -1,6 +1,10 @@
 var Article = require('../../lib/article');
 
-function addArticleComplete(req, res) {
+exports.addArticle = function(req, res) {
+    res.render('admin/add_article', {data:{id:req.params.shopId}});
+}
+
+exports.addArticleComplete = function(req, res) {
     var title = req.body.title;
     var content = req.body.content;
     var shopId = req.params.shopId;
@@ -21,5 +25,3 @@ function addArticleComplete(req, res) {
         });
     }
 }
-
-module.exports = addArticleComplete

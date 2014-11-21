@@ -17,18 +17,18 @@ app.use(session({secret: 'keyboard cat'}))
 app.use(flash()); // error success message
 
 
+/* home controller*/
 app.get('/admin', route.adminexec('index'));
 app.post('/admin/home', route.adminexec('home'));
 app.get('/admin/home', filter.authorize, route.adminexec('home'));
-// app.get('/admin/addarticle', filter.authorize, route.adminexec('admin/add_article'));
-app.get('/admin/shop/:shopId/addarticle', filter.authorize, route.adminexec('add_article'));
 
-app.post('/admin/shop/:shopId/addarticlecomplete', filter.authorize, route.adminexec('add_article_complete'));
-// app.post('/admin/addarticlecomplete', filter.authorize, route.adminexec('add_article_complete'));
-app.get('/admin/shop/:id', filter.authorize, route.adminexec('shop'));
-app.get('/admin/addshop/', filter.authorize, route.adminexec('add_shop').addShop);
-app.get('/admin/cities/', filter.authorize, route.adminexec('add_shop').getCities);
-app.post('/admin/createshopcomplete/', filter.authorize, route.adminexec('add_shop').addShopComplete);
+/* shop controller*/
+app.get('/admin/shop/:shopId/addarticle', filter.authorize, route.adminexec('article').addArticle);
+app.post('/admin/shop/:shopId/addarticlecomplete', filter.authorize, route.adminexec('article').addArticleComplete);
+app.get('/admin/shop/:id', filter.authorize, route.adminexec('shop').detail);
+app.get('/admin/addshop/', filter.authorize, route.adminexec('shop').addShop);
+app.get('/admin/cities/', filter.authorize, route.adminexec('shop').getCities);
+app.post('/admin/createshopcomplete/', filter.authorize, route.adminexec('shop').addShopComplete);
 
 app.listen(8888);
 console.log('server start at port 8888');
