@@ -5,25 +5,14 @@ var Paging = require('../util/paging');
 
 exports.detail = function(req, res) {
     var shopId = req.params.id;
-    var p = new Paging(1, 6);
-    console.log(p);
+    var p = new Paging(1, 9);
     if(shopId) {
-        async.waterfall([
-            function(cb) {
-                shopService.findById(shopId, function(result) {
-                    cb(null, result);
-                })
-            }, function(data, cb) {
-                itemService.findItemsByShopId(data.id, p, function(result) {
-                    cb(null, {shop:data, items:result});
-                })
-            }
-        ], function(err, result) {
-            if(err) {
-                throw err;
-            } else {
+        shopService.findShopAndIndexItems(shopId, p, function(result) {
+            if(res) {
                 res.render('shop_detail', {data:result});
+            } else {
+                res.redirect('/');
             }
-        });
+        })
     }
 }

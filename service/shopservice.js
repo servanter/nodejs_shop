@@ -2,9 +2,10 @@ var Shop = require('../model/shop');
 var async = require('async');
 var Paging = require('../util/paging');
 var Convert = require('../util/convert');
+var itemService = require('./itemService');
 
-exports.findById=function(shopId, callback) {
-    Shop.find({where:{id:shopId}}).success(function(data) {
+function findById(shopId, callback) {
+    Shop.findOne({where:{id:shopId}}).success(function(data) {
         callback(data.dataValues);
     })
 }
@@ -27,3 +28,31 @@ exports.findShopsByUserId = function(userId, paging, callback) {
 
 }
 
+exports.add = function(shop, callback) {
+    console.log(shop);
+    Shop.create(shop).complete(function(err, result) {
+        if(err) {
+            callback(false);
+        } else {
+            callback(true);
+        }
+    })
+}
+
+exports.findShopAndIndexItems = function(shopId, p, callback) {
+    async.waterfall([
+            function(cb) {
+                findById(shopId, function(result) {
+                    cb(null, result);
+                })
+            }, function(data, cb) {
+                itemService.findItemsByShopId(data.id, p, function(result) {
+                    cb(null, {shop:data, items:result});
+                })
+            }
+        ], function(err, result) {
+            callback(result);
+        });
+}
+
+exports.findById = findById

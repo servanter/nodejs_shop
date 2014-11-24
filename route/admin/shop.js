@@ -2,17 +2,16 @@ var Shop = require('../../model/shop');
 var Area = require('../../model/area');
 var areaService = require('../../service/areaservice');
 var async = require('async');
+var shopservice = require('../../service/shopservice');
 
 exports.detail = function(req, res) {
-    if(req.params.id) {
-        Shop.find({where:{id:req.params.id}}).success(function(result) {
-            if(result) {
-                res.render('admin/shop', {data:result.dataValues, sign:req.flash('sign')});
-            }
-        })
-    } else {
-        return res.redirect('/admin/home/');
-    }
+    shopservice.findById(req.params.id, function(result) {
+        if(result) {
+            res.render('admin/shop', {data:result, sign:req.flash('sign')});
+        } else {
+            return res.redirect('/admin/home/');
+        }
+    })
 }
 
 exports.addShop = function(req, res) {
@@ -35,21 +34,21 @@ exports.addShopComplete = function(req, res) {
     var province = req.body.province;
     var city = req.body.city;
     if(shortName && description && city && province) {
-        var shop = Shop.build({
+        var shop = {
             user_id:req.session.userId,
             short_name:shortName,
             description:description,
             province:province,
             city:city
-        });
-        shop.save().complete(function(err, result) {
-            var sign = '操作成功';
-            if(err) {
-                sign = '操作失败';
+        };
+        shopservice.add(shop, function(result) {
+            var sign = '操作失败';
+            if(result) {
+                sign = '操作成功';
             }
             req.flash('sign', sign);
             return res.redirect('/admin/home/');
-        });
+        })
 
     }
 }

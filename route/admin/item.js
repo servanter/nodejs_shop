@@ -18,7 +18,6 @@ exports.addItemComplete = function(req, res) {
             price:req.body.price
         }
         itemService.addItem(item, function(result) {
-            console.log('------------' + result);
             var sign = '操作成功';
             if(!result) {
                 sign = '操作失败';
