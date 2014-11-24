@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50519
 File Encoding         : 65001
 
-Date: 2014-11-21 15:44:15
+Date: 2014-11-24 11:03:32
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -737,12 +737,20 @@ CREATE TABLE `weshop_item` (
   `create_time` timestamp NOT NULL DEFAULT '1990-01-01 00:00:00',
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of weshop_item
 -- ----------------------------
-INSERT INTO `weshop_item` VALUES ('1', '锅包肉', '14', '1', '2', '肉肉', 'http://www.baidu.com/img/bdlogo.png', '110.32', '0', '2014-11-21 15:41:48', '2014-11-21 15:41:48');
+INSERT INTO `weshop_item` VALUES ('1', '锅包肉', '14', '1', '2', '肉肉', 'images/icon_2.jpg', '110.32', '0', '2014-11-21 15:41:48', '2014-11-21 17:07:19');
+INSERT INTO `weshop_item` VALUES ('2', 'asdasdas', '14', '1', '1', '123123e', 'images/icon_2.jpg', '563.10', '0', '2014-11-21 15:54:29', '2014-11-21 17:07:19');
+INSERT INTO `weshop_item` VALUES ('3', 'asd123', '14', '1', '1', '123ead', 'images/icon_2.jpg', '165.03', '0', '2014-11-21 15:54:37', '2014-11-21 17:07:19');
+INSERT INTO `weshop_item` VALUES ('4', '123asdasd', '14', '1', '1', 'qdasdasd', 'images/icon_2.jpg', '653.65', '0', '2014-11-21 15:54:45', '2014-11-21 17:07:19');
+INSERT INTO `weshop_item` VALUES ('5', 'asdasd123easd', '14', '1', '1', '123asda', 'images/icon_2.jpg', '3.65', '0', '2014-11-21 15:54:53', '2014-11-21 17:07:19');
+INSERT INTO `weshop_item` VALUES ('6', 'adad132', '14', '1', '2', 'adqweq', 'images/icon_2.jpg', '36.65', '0', '2014-11-21 15:55:01', '2014-11-21 17:07:19');
+INSERT INTO `weshop_item` VALUES ('7', '啊实打实大', '14', '1', '2', '请问企鹅', 'images/icon_2.jpg', '5656.30', '0', '2014-11-24 11:00:47', '2014-11-24 11:01:16');
+INSERT INTO `weshop_item` VALUES ('8', 'asdaqweqwe', '14', '1', '1', 'qweqwe', 'images/icon_2.jpg', '565.00', '0', '2014-11-24 11:00:55', '2014-11-24 11:01:16');
+INSERT INTO `weshop_item` VALUES ('9', 'adsad', '14', '1', '1', 'qweqweq', 'images/icon_2.jpg', '565.00', '0', '2014-11-24 11:01:02', '2014-11-24 11:01:16');
 
 -- ----------------------------
 -- Table structure for `weshop_item_class`
@@ -760,6 +768,35 @@ CREATE TABLE `weshop_item_class` (
 -- ----------------------------
 INSERT INTO `weshop_item_class` VALUES ('1', '服装', '2014-11-21 15:25:58');
 INSERT INTO `weshop_item_class` VALUES ('2', '美食', '2014-11-21 15:26:03');
+
+-- ----------------------------
+-- Table structure for `weshop_item_position`
+-- ----------------------------
+DROP TABLE IF EXISTS `weshop_item_position`;
+CREATE TABLE `weshop_item_position` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `shop_id` bigint(20) NOT NULL,
+  `item_id` bigint(20) NOT NULL,
+  `user_id` bigint(20) NOT NULL,
+  `position` int(5) NOT NULL,
+  `is_del` tinyint(1) NOT NULL DEFAULT '0',
+  `create_time` timestamp NOT NULL DEFAULT '1990-01-01 00:00:00',
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of weshop_item_position
+-- ----------------------------
+INSERT INTO `weshop_item_position` VALUES ('1', '14', '1', '1', '1', '0', '1990-01-01 00:00:00', '2014-11-24 10:57:37');
+INSERT INTO `weshop_item_position` VALUES ('2', '14', '2', '1', '1', '0', '1990-01-01 00:00:00', '2014-11-24 10:59:08');
+INSERT INTO `weshop_item_position` VALUES ('3', '14', '3', '1', '1', '0', '1990-01-01 00:00:00', '2014-11-24 10:59:39');
+INSERT INTO `weshop_item_position` VALUES ('4', '14', '4', '1', '1', '0', '1990-01-01 00:00:00', '2014-11-24 10:59:47');
+INSERT INTO `weshop_item_position` VALUES ('5', '14', '5', '1', '1', '0', '1990-01-01 00:00:00', '2014-11-24 10:59:56');
+INSERT INTO `weshop_item_position` VALUES ('6', '14', '6', '1', '1', '0', '1990-01-01 00:00:00', '2014-11-24 11:00:00');
+INSERT INTO `weshop_item_position` VALUES ('7', '14', '7', '1', '1', '0', '1990-01-01 00:00:00', '2014-11-24 11:01:38');
+INSERT INTO `weshop_item_position` VALUES ('8', '14', '8', '1', '1', '0', '1990-01-01 00:00:00', '2014-11-24 11:01:44');
+INSERT INTO `weshop_item_position` VALUES ('9', '14', '9', '1', '1', '0', '1990-01-01 00:00:00', '2014-11-24 11:01:47');
 
 -- ----------------------------
 -- Table structure for `weshop_shop`

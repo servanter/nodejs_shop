@@ -10,7 +10,7 @@ exports.detail = function(req, res) {
         async.waterfall([
             function(cb) {
                 shopService.findById(shopId, function(result) {
-                    cb(null, result)
+                    cb(null, result);
                 })
             }, function(data, cb) {
                 itemService.findItemsByShopId(data.id, p, function(result) {

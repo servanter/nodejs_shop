@@ -1,9 +1,13 @@
 var Item = require('../model/item');
 var ItemClass = require('../model/itemclass');
 var Paging = require('../util/paging');
+var Position = require('../model/itemposition');
+
+Position.belongsTo(Item, {foreignKey:'id'});
+Item.hasMany(Position, {foreignKey:'item_id'});
 
 exports.findItemsByShopId = function(shopId, paging, callback) {
-    Item.findAll({where:{shop_id:shopId}, offset:paging.getSinceCount(), limit:paging.getPageSize()}).success(function(data){
+    Item.findAll({include:[{model:Position, required:true}], where:{shop_id:shopId}, offset:paging.getSinceCount(), limit:paging.getPageSize()}).success(function(data){
         var arr = [];
         for(var i = 0; i < data.length; i++) {
             arr.push(data[i].dataValues);
