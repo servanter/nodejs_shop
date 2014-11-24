@@ -1,47 +1,46 @@
+var async = require('async');
 var Item = require('../model/item');
 var ItemClass = require('../model/itemclass');
 var Paging = require('../util/paging');
+var Convert = require('../util/convert');
 var Position = require('../model/itemposition');
 
 Position.belongsTo(Item, {foreignKey:'id'});
 Item.hasMany(Position, {foreignKey:'item_id'});
 
 exports.findItemsByShopId = function(shopId, paging, callback) {
-    Item.findAll({include:[{model:Position, required:true}], where:{shop_id:shopId}, offset:paging.getSinceCount(), limit:paging.getPageSize()}).success(function(data){
-        var arr = [];
-        for(var i = 0; i < data.length; i++) {
-            arr.push(data[i].dataValues);
+    async.waterfall([
+        function(cb) {
+            Item.findAll({include:[{model:Position, required:true}], where:{shop_id:shopId}, offset:paging.getSinceCount(), limit:paging.getPageSize()}, {subQuery:false}).success(function(data){
+                var arr = Convert.values2Arr(data);
+                cb(null, arr);
+            });
+        }, function(data, cb) {
+            Item.count({include:[{model:Position, required:true}], where:{shop_id:shopId}}).success(function(count) {
+                var pag = new Paging(count, paging.getPage(), paging.getPageSize(), data);
+                cb(null, pag)
+            })
         }
-
-        Item.count({where:{shop_id:shopId}}).success(function(count) {
-            var pag = new Paging(count, paging.getPage(), paging.getPageSize(), arr);
-            callback(pag);
-        })
-        
-    });
+        ], function(err, results) {
+            if(err) {
+                throw err;
+            } else {
+                callback(results);
+            }
+        }
+    )
 }
 
 exports.findClasses = function(callback) {
     ItemClass.findAll().success(function(data) {
-        var arr = [];
-        for(var i = 0; i < data.length; i++) {
-            arr.push(data[i].dataValues);
-        }
+        var arr = Convert.values2Arr(data);
         callback(arr);
     })
 }
 
 
-exports.addItemComplete = function(item, callback) {
-    Item.create({
-        create_user_id:item.create_user_id,
-        shop_id:item.shop_id,
-        class_id:item.class_id,
-        short_name:item.short_name,
-        description:item.description,
-        price:item.price,
-        pic_url:item.pic_url
-    }).complete(function(err, data) {
+exports.addItem = function(item, callback) {
+    Item.create(item).complete(function(err, data) {
         if(err) {
             callback(false);
         } else {

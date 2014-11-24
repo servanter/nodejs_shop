@@ -17,7 +17,7 @@ exports.addItemComplete = function(req, res) {
             pic_url:req.body.pic_url, 
             price:req.body.price
         }
-        itemService.addItemComplete(item, function(result) {
+        itemService.addItem(item, function(result) {
             console.log('------------' + result);
             var sign = '操作成功';
             if(!result) {

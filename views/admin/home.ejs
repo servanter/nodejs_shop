@@ -12,7 +12,7 @@
         <%}%>
         
         <%
-            if(data.shops.length > 0){
+            if(data.shops.result.length > 0){
         %>
         <table border="1">
             <tr>
@@ -20,11 +20,11 @@
                 <th>店铺名称</th>
             </tr>
             <%
-                for(var i = 0; i < data.shops.length; i++){
+                for(var i = 0; i < data.shops.result.length; i++){
             %>
             <tr>
-                <td><a href="/admin/shop/<%=data.shops[i].id%>/"><%=data.shops[i].id%></a></td>
-                <td><%=data.shops[i].short_name%></td>
+                <td><a href="/admin/shop/<%=data.shops.result[i].id%>/"><%=data.shops.result[i].id%></a></td>
+                <td><%=data.shops.result[i].short_name%></td>
             </tr>
             <%
                 }

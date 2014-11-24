@@ -2,7 +2,6 @@ var Shop = require('../../model/shop');
 var Area = require('../../model/area');
 var areaService = require('../../service/areaservice');
 var async = require('async');
-var UserShop = require('../../model/usershop');
 
 exports.detail = function(req, res) {
     if(req.params.id) {
@@ -37,21 +36,19 @@ exports.addShopComplete = function(req, res) {
     var city = req.body.city;
     if(shortName && description && city && province) {
         var shop = Shop.build({
+            user_id:req.session.userId,
             short_name:shortName,
             description:description,
             province:province,
             city:city
         });
-        shop.save().success(function(result) {
-            var shopId = result.null;
-            UserShop.create({user_id : req.session.userId, shop_id : shopId}).complete(function(err, result){
-                var sign = '操作成功';
-                if(err) {
-                    sign = '操作失败';
-                }
-                req.flash('sign', sign);
-                return res.redirect('/admin/home/');
-            })
+        shop.save().complete(function(err, result) {
+            var sign = '操作成功';
+            if(err) {
+                sign = '操作失败';
+            }
+            req.flash('sign', sign);
+            return res.redirect('/admin/home/');
         });
 
     }
