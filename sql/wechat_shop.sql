@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50519
 File Encoding         : 65001
 
-Date: 2014-11-24 11:03:32
+Date: 2014-11-24 17:31:41
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -708,7 +708,7 @@ CREATE TABLE `weshop_article` (
   `create_time` timestamp NOT NULL DEFAULT '1990-01-01 00:00:00',
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of weshop_article
@@ -719,6 +719,10 @@ INSERT INTO `weshop_article` VALUES ('3', '12', '1', 'sadsada', 'asdqwe', '0', '
 INSERT INTO `weshop_article` VALUES ('4', '1', '1', '啊实打实大', '按时打算打算', '0', '1', '2014-11-21 11:28:09', '2014-11-21 11:28:09');
 INSERT INTO `weshop_article` VALUES ('5', '21', '1', '自行车自行车a', '四大四大', '0', '1', '2014-11-21 11:34:48', '2014-11-21 11:34:48');
 INSERT INTO `weshop_article` VALUES ('6', '1', '1', '啊实打实大', '请问', '0', '1', '2014-11-21 11:38:07', '2014-11-21 11:38:07');
+INSERT INTO `weshop_article` VALUES ('7', '1', '1', 'adadadad', 'ad1231231231', '0', '1', '2014-11-24 11:24:59', '2014-11-24 11:24:59');
+INSERT INTO `weshop_article` VALUES ('8', '1', '1', 'zxczaaa', 'asdasd', '0', '1', '2014-11-24 11:26:28', '2014-11-24 11:26:28');
+INSERT INTO `weshop_article` VALUES ('9', '1', '1', 'qwe', 'asdsa', '0', '1', '2014-11-24 11:27:09', '2014-11-24 11:27:09');
+INSERT INTO `weshop_article` VALUES ('10', '1', '1', '大大声道', 'qwe', '0', '1', '2014-11-24 11:27:54', '2014-11-24 11:27:54');
 
 -- ----------------------------
 -- Table structure for `weshop_item`
@@ -737,7 +741,7 @@ CREATE TABLE `weshop_item` (
   `create_time` timestamp NOT NULL DEFAULT '1990-01-01 00:00:00',
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of weshop_item
@@ -751,6 +755,8 @@ INSERT INTO `weshop_item` VALUES ('6', 'adad132', '14', '1', '2', 'adqweq', 'ima
 INSERT INTO `weshop_item` VALUES ('7', '啊实打实大', '14', '1', '2', '请问企鹅', 'images/icon_2.jpg', '5656.30', '0', '2014-11-24 11:00:47', '2014-11-24 11:01:16');
 INSERT INTO `weshop_item` VALUES ('8', 'asdaqweqwe', '14', '1', '1', 'qweqwe', 'images/icon_2.jpg', '565.00', '0', '2014-11-24 11:00:55', '2014-11-24 11:01:16');
 INSERT INTO `weshop_item` VALUES ('9', 'adsad', '14', '1', '1', 'qweqweq', 'images/icon_2.jpg', '565.00', '0', '2014-11-24 11:01:02', '2014-11-24 11:01:16');
+INSERT INTO `weshop_item` VALUES ('10', 'asdasd', '1', '1', '2', '1231sqwe', 'easdada', '12.00', '0', '2014-11-24 11:29:01', '2014-11-24 11:29:01');
+INSERT INTO `weshop_item` VALUES ('11', 'aaaaa', '1', '1', '1', '1111', 'asdadsada', '666.00', '0', '2014-11-24 17:16:56', '2014-11-24 17:16:56');
 
 -- ----------------------------
 -- Table structure for `weshop_item_class`
@@ -804,6 +810,7 @@ INSERT INTO `weshop_item_position` VALUES ('9', '14', '9', '1', '1', '0', '1990-
 DROP TABLE IF EXISTS `weshop_shop`;
 CREATE TABLE `weshop_shop` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `user_id` bigint(20) NOT NULL,
   `short_name` varchar(50) NOT NULL,
   `description` varchar(200) DEFAULT NULL,
   `province` bigint(20) NOT NULL,
@@ -812,30 +819,33 @@ CREATE TABLE `weshop_shop` (
   `create_time` timestamp NOT NULL DEFAULT '1990-01-01 00:00:00',
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of weshop_shop
 -- ----------------------------
-INSERT INTO `weshop_shop` VALUES ('1', '新品会', 'a阿斯顿大飒飒的按时按时', '0', '0', '0', '2014-11-13 16:27:07', '2014-11-13 16:27:07');
-INSERT INTO `weshop_shop` VALUES ('2', '京东', '阿斯顿记录卡见识到了卡机顺路快递将阿里卡', '0', '0', '0', '1990-01-01 00:00:00', '2014-11-17 11:42:39');
-INSERT INTO `weshop_shop` VALUES ('6', 'ad按时打算', '请问我企鹅', '0', '0', '0', '2014-11-17 16:13:28', '2014-11-17 16:13:28');
-INSERT INTO `weshop_shop` VALUES ('7', 'asdasda3', '123123', '0', '0', '0', '2014-11-17 16:17:16', '2014-11-17 16:17:16');
-INSERT INTO `weshop_shop` VALUES ('8', '按时打算', '123123', '0', '0', '0', '2014-11-17 16:18:21', '2014-11-17 16:18:21');
-INSERT INTO `weshop_shop` VALUES ('9', '三等奖咖啡加水电费', '阿斯达啊三大', '0', '0', '0', '2014-11-18 13:50:05', '2014-11-18 13:50:05');
-INSERT INTO `weshop_shop` VALUES ('10', '阿斯达', '请问请问', '0', '0', '0', '2014-11-18 14:47:46', '2014-11-18 14:47:46');
-INSERT INTO `weshop_shop` VALUES ('11', '阿斯达', '爱上大声地', '0', '0', '0', '2014-11-18 14:48:22', '2014-11-18 14:48:22');
-INSERT INTO `weshop_shop` VALUES ('12', '阿斯达到权威', '企鹅王全文', '0', '0', '0', '2014-11-18 14:48:26', '2014-11-18 14:48:26');
-INSERT INTO `weshop_shop` VALUES ('13', '第三方的', '沃尔', '0', '0', '0', '2014-11-18 14:54:10', '2014-11-18 14:54:10');
-INSERT INTO `weshop_shop` VALUES ('14', '按时打算', '按时打算打算打算的', '0', '0', '0', '2014-11-18 14:56:25', '2014-11-18 14:56:25');
-INSERT INTO `weshop_shop` VALUES ('15', '下次V型规范', '按时打算', '0', '0', '0', '2014-11-18 15:02:09', '2014-11-18 15:02:09');
-INSERT INTO `weshop_shop` VALUES ('16', '死到改革', '沃尔我日', '0', '0', '0', '2014-11-18 15:07:27', '2014-11-18 15:07:27');
-INSERT INTO `weshop_shop` VALUES ('17', '胜多负少', '134124 ', '0', '0', '0', '2014-11-18 15:27:34', '2014-11-18 15:27:34');
-INSERT INTO `weshop_shop` VALUES ('18', 'a按时打算', '阿斯达善颂善祷奥迪', '345', '345', '0', '2014-11-21 11:17:05', '2014-11-21 11:17:05');
-INSERT INTO `weshop_shop` VALUES ('19', '啊实打实大', '奥迪32额', '6', '215', '0', '2014-11-21 11:19:53', '2014-11-21 11:19:53');
-INSERT INTO `weshop_shop` VALUES ('20', 'aasdqweqw', 'qeqweqweqweq', '7', '222', '0', '2014-11-21 11:24:03', '2014-11-21 11:24:03');
-INSERT INTO `weshop_shop` VALUES ('21', 'asdasd', 'aasdasd', '5', '197', '0', '2014-11-21 11:34:39', '2014-11-21 11:34:39');
-INSERT INTO `weshop_shop` VALUES ('22', 'asdqweq123123', 'qw123123', '4', '233', '0', '2014-11-21 11:38:24', '2014-11-21 11:38:24');
+INSERT INTO `weshop_shop` VALUES ('1', '1', '新品会', 'a阿斯顿大飒飒的按时按时', '0', '0', '0', '2014-11-13 16:27:07', '2014-11-24 16:31:27');
+INSERT INTO `weshop_shop` VALUES ('2', '1', '京东', '阿斯顿记录卡见识到了卡机顺路快递将阿里卡', '0', '0', '0', '1990-01-01 00:00:00', '2014-11-24 16:31:27');
+INSERT INTO `weshop_shop` VALUES ('6', '1', 'ad按时打算', '请问我企鹅', '0', '0', '0', '2014-11-17 16:13:28', '2014-11-24 16:31:27');
+INSERT INTO `weshop_shop` VALUES ('7', '1', 'asdasda3', '123123', '0', '0', '0', '2014-11-17 16:17:16', '2014-11-24 16:31:27');
+INSERT INTO `weshop_shop` VALUES ('8', '1', '按时打算', '123123', '0', '0', '0', '2014-11-17 16:18:21', '2014-11-24 16:31:27');
+INSERT INTO `weshop_shop` VALUES ('9', '1', '三等奖咖啡加水电费', '阿斯达啊三大', '0', '0', '0', '2014-11-18 13:50:05', '2014-11-24 16:31:27');
+INSERT INTO `weshop_shop` VALUES ('10', '1', '阿斯达', '请问请问', '0', '0', '0', '2014-11-18 14:47:46', '2014-11-24 16:31:27');
+INSERT INTO `weshop_shop` VALUES ('11', '1', '阿斯达', '爱上大声地', '0', '0', '0', '2014-11-18 14:48:22', '2014-11-24 16:31:27');
+INSERT INTO `weshop_shop` VALUES ('12', '1', '阿斯达到权威', '企鹅王全文', '0', '0', '0', '2014-11-18 14:48:26', '2014-11-24 16:31:27');
+INSERT INTO `weshop_shop` VALUES ('13', '1', '第三方的', '沃尔', '0', '0', '0', '2014-11-18 14:54:10', '2014-11-24 16:31:27');
+INSERT INTO `weshop_shop` VALUES ('14', '1', '按时打算', '按时打算打算打算的', '0', '0', '0', '2014-11-18 14:56:25', '2014-11-24 16:31:27');
+INSERT INTO `weshop_shop` VALUES ('15', '1', '下次V型规范', '按时打算', '0', '0', '0', '2014-11-18 15:02:09', '2014-11-24 16:31:27');
+INSERT INTO `weshop_shop` VALUES ('16', '1', '死到改革', '沃尔我日', '0', '0', '0', '2014-11-18 15:07:27', '2014-11-24 16:31:27');
+INSERT INTO `weshop_shop` VALUES ('17', '1', '胜多负少', '134124 ', '0', '0', '0', '2014-11-18 15:27:34', '2014-11-24 16:31:27');
+INSERT INTO `weshop_shop` VALUES ('18', '1', 'a按时打算', '阿斯达善颂善祷奥迪', '345', '345', '0', '2014-11-21 11:17:05', '2014-11-24 16:31:27');
+INSERT INTO `weshop_shop` VALUES ('19', '1', '啊实打实大', '奥迪32额', '6', '215', '0', '2014-11-21 11:19:53', '2014-11-24 16:31:27');
+INSERT INTO `weshop_shop` VALUES ('20', '1', 'aasdqweqw', 'qeqweqweqweq', '7', '222', '0', '2014-11-21 11:24:03', '2014-11-24 16:31:27');
+INSERT INTO `weshop_shop` VALUES ('21', '1', 'asdasd', 'aasdasd', '5', '197', '0', '2014-11-21 11:34:39', '2014-11-24 16:31:27');
+INSERT INTO `weshop_shop` VALUES ('22', '1', 'asdqweq123123', 'qw123123', '4', '233', '0', '2014-11-21 11:38:24', '2014-11-24 16:31:27');
+INSERT INTO `weshop_shop` VALUES ('23', '1', '啊实打实大', '阿打算打撒打算打算打算的', '2', '314', '0', '2014-11-24 17:02:47', '2014-11-24 17:02:47');
+INSERT INTO `weshop_shop` VALUES ('24', '1', 'asdad', '按时打算打算', '4', '233', '0', '2014-11-24 17:03:56', '2014-11-24 17:03:56');
+INSERT INTO `weshop_shop` VALUES ('25', '1', 'adasd', '12313', '3', '194', '0', '2014-11-24 17:16:14', '2014-11-24 17:16:14');
 
 -- ----------------------------
 -- Table structure for `weshop_user`
@@ -855,36 +865,3 @@ CREATE TABLE `weshop_user` (
 -- Records of weshop_user
 -- ----------------------------
 INSERT INTO `weshop_user` VALUES ('1', 'aaa', '123', '1990-01-01 00:00:00', '2014-11-17 10:59:10', '1');
-
--- ----------------------------
--- Table structure for `weshop_user_shop`
--- ----------------------------
-DROP TABLE IF EXISTS `weshop_user_shop`;
-CREATE TABLE `weshop_user_shop` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `user_id` bigint(20) NOT NULL,
-  `shop_id` bigint(20) NOT NULL,
-  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of weshop_user_shop
--- ----------------------------
-INSERT INTO `weshop_user_shop` VALUES ('1', '1', '1', '2014-11-17 11:29:31');
-INSERT INTO `weshop_user_shop` VALUES ('2', '1', '2', '2014-11-17 11:43:16');
-INSERT INTO `weshop_user_shop` VALUES ('3', '1', '8', '2014-11-17 16:18:21');
-INSERT INTO `weshop_user_shop` VALUES ('4', '1', '9', '2014-11-18 13:50:05');
-INSERT INTO `weshop_user_shop` VALUES ('5', '1', '10', '2014-11-18 14:47:46');
-INSERT INTO `weshop_user_shop` VALUES ('6', '1', '11', '2014-11-18 14:48:22');
-INSERT INTO `weshop_user_shop` VALUES ('7', '1', '12', '2014-11-18 14:48:26');
-INSERT INTO `weshop_user_shop` VALUES ('8', '1', '13', '2014-11-18 14:54:10');
-INSERT INTO `weshop_user_shop` VALUES ('9', '1', '14', '2014-11-18 14:56:26');
-INSERT INTO `weshop_user_shop` VALUES ('10', '1', '15', '2014-11-18 15:02:09');
-INSERT INTO `weshop_user_shop` VALUES ('11', '1', '16', '2014-11-18 15:07:27');
-INSERT INTO `weshop_user_shop` VALUES ('12', '1', '17', '2014-11-18 15:27:34');
-INSERT INTO `weshop_user_shop` VALUES ('13', '1', '18', '2014-11-21 11:17:05');
-INSERT INTO `weshop_user_shop` VALUES ('14', '1', '19', '2014-11-21 11:19:53');
-INSERT INTO `weshop_user_shop` VALUES ('15', '1', '20', '2014-11-21 11:24:03');
-INSERT INTO `weshop_user_shop` VALUES ('16', '1', '21', '2014-11-21 11:34:39');
-INSERT INTO `weshop_user_shop` VALUES ('17', '1', '22', '2014-11-21 11:38:24');
