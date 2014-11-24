@@ -10,7 +10,7 @@ exports.findItemsByShopId = function(shopId, paging, callback) {
         }
 
         Item.count({where:{shop_id:shopId}}).success(function(count) {
-            var pag = new Paging.resultPage(count, paging.getPage(), paging.getPageSize(), arr);
+            var pag = new Paging(count, paging.getPage(), paging.getPageSize(), arr);
             callback(pag);
         })
         

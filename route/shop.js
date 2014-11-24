@@ -5,7 +5,7 @@ var Paging = require('../util/paging');
 
 exports.detail = function(req, res) {
     var shopId = req.params.id;
-    var p = Paging.rowPage(1, 6);
+    var p = new Paging(1, 6);
     if(shopId) {
         async.waterfall([
             function(cb) {

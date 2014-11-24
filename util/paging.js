@@ -1,4 +1,4 @@
-exports.rowPage = function(page, pageSize) {
+module.exports = function(page, pageSize) {
     this.page = page;
     this.pageSize = pageSize;
     this.sinceCount = 0;
@@ -30,7 +30,7 @@ exports.rowPage = function(page, pageSize) {
     return this;
 }
 
-exports.resultPage = function(totalRecord, page, pageSize, list) {
+module.exports = function(totalRecord, page, pageSize, list) {
     this.page = page;
     this.pageSize = pageSize;
     this.sinceCount = 0;
