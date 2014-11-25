@@ -1,5 +1,6 @@
 var Sequelize = require('sequelize');
 var sequelize = require('../lib/sequelize');
+var ItemPic = require('./itempic');
 
 var Item = sequelize.define('Item', {
     id:Sequelize.BIGINT,
@@ -10,7 +11,8 @@ var Item = sequelize.define('Item', {
     description:Sequelize.STRING,
     pic_url:Sequelize.STRING,
     price:Sequelize.FLOAT,
-    is_valid:Sequelize.BOOLEAN
+    on_sell:Sequelize.BOOLEAN,
+    is_vertify:Sequelize.BOOLEAN,
 }, {
     tableName:'weshop_item',
     createdAt:'create_time',
