@@ -1,8 +1,13 @@
 var Shop = require('../model/shop');
+var ShopPromise = require('../model/dictshoppromise');
 var async = require('async');
 var Paging = require('../util/paging');
 var Convert = require('../util/convert');
 var itemService = require('./itemService');
+
+
+Shop.hasMany(ShopPromise, {foreignKey:'shop_id', as:'promises', through:'weshop_shop_promise_rel'});
+ShopPromise.hasMany(Shop, {foreignKey:'promise_id', through:'weshop_shop_promise_rel'});
 
 function findById(shopId, callback) {
     Shop.findOne({where:{id:shopId}}).success(function(data) {
@@ -53,6 +58,13 @@ exports.findShopAndIndexItems = function(shopId, p, callback) {
         ], function(err, result) {
             callback(result);
         });
+}
+
+exports.findShopFullInfoById = function(shopId, callback) {
+    Shop.findAll({include:[{model:ShopPromise, as:'promises', required:true}],where:{id:shopId}}, {subQuery:false}).success(function(data) {
+        console.log(data);
+        callback(data[0].dataValues);
+    })
 }
 
 exports.findById = findById
