@@ -6,10 +6,10 @@ var Position = require('../model/itemposition');
 var ShoeSize = require('../model/dictshoesize');
 var Shoe = require('../model/shoe');
 var RelShoeSize = require('../model/shoesizerel');
+var ShoeBrand = require('../model/shoebrand');
 var Paging = require('../util/paging');
 var Convert = require('../util/convert');
 var ItemSubFactory = require('./itemsubfactory');
-
 
 Position.belongsTo(Item, {foreignKey:'id'});
 Item.hasMany(Position, {foreignKey:'item_id'});
@@ -17,15 +17,14 @@ Item.hasMany(Position, {foreignKey:'item_id'});
 ItemPic.belongsTo(Item, {foreignKey:'id'});
 Item.hasMany(ItemPic, {foreignKey:'item_id', as:'pics'});
 
-
 Shoe.hasMany(ShoeSize, {foreignKey:'shoe_id', as:'sizes', through:'weshop_shoe_size_rel'});
 ShoeSize.hasMany(Shoe, {foreignKey:'size_id', through:'weshop_shoe_size_rel'});
-
 
 RelShoeSize.belongsTo(ShoeSize, {foreignKey:'id'});
 ShoeSize.hasMany(RelShoeSize, {foreignKey:'size_id'});
 
-
+Shoe.belongsTo(ShoeBrand, {foreignKey:'brand_id', as:'brand'});
+ShoeBrand.hasMany(Shoe, {foreignKey:'id'});
 
 exports.findItemsByShopId = function(shopId, paging, callback) {
     async.waterfall([
@@ -77,7 +76,7 @@ exports.findById = function(id, callback) {
         }, function(data, cb) {
             var itemSubFactory = new ItemSubFactory(data.dataValues.class_id);
             if(itemSubFactory) {
-                itemSubFactory.findAll({include:[{model:ShoeSize, as:'sizes', required:true, order:[[ShoeSize, 'id', 'DESC']], include:[{model:RelShoeSize, where:{is_valid:1}}]}], where:{item_id:data.dataValues.id}}, {subQuery:false}).success(function(result) {
+                itemSubFactory.findAll({include:[{model:ShoeSize, as:'sizes', required:true, order:[[ShoeSize, 'id', 'DESC']], include:[{model:RelShoeSize, where:{is_valid:1}}]}, {model:ShoeBrand, as:'brand', required:true}],where:{item_id:data.dataValues.id}}, {subQuery:false}).success(function(result) {
                     cb(null, {item:data.dataValues, detail:result[0].dataValues});
                 })
             }
