@@ -2,15 +2,30 @@ var async = require('async');
 var Item = require('../model/item');
 var ItemClass = require('../model/itemclass');
 var ItemPic = require('../model/itempic');
+var Position = require('../model/itemposition');
+var ShoeSize = require('../model/dictshoesize');
+var Shoe = require('../model/shoe');
+var RelShoeSize = require('../model/shoesizerel');
 var Paging = require('../util/paging');
 var Convert = require('../util/convert');
-var Position = require('../model/itemposition');
 var ItemSubFactory = require('./itemsubfactory');
 
+
 Position.belongsTo(Item, {foreignKey:'id'});
-ItemPic.belongsTo(Item, {foreignKey:'id'});
 Item.hasMany(Position, {foreignKey:'item_id'});
+
+ItemPic.belongsTo(Item, {foreignKey:'id'});
 Item.hasMany(ItemPic, {foreignKey:'item_id', as:'pics'});
+
+
+Shoe.hasMany(ShoeSize, {foreignKey:'shoe_id', as:'sizes', through:'weshop_shoe_size_rel'});
+ShoeSize.hasMany(Shoe, {foreignKey:'size_id', through:'weshop_shoe_size_rel'});
+
+
+RelShoeSize.belongsTo(ShoeSize, {foreignKey:'id'});
+ShoeSize.hasMany(RelShoeSize, {foreignKey:'size_id'});
+
+
 
 exports.findItemsByShopId = function(shopId, paging, callback) {
     async.waterfall([
@@ -56,14 +71,16 @@ exports.addItem = function(item, callback) {
 exports.findById = function(id, callback) {
     async.waterfall([
         function(cb) {
-            Item.findOne({include:[{model:ItemPic, as:'pics', require:true}], where:{id:id}}, {subQuery:false}).success(function(data) {
+            Item.findOne({include:[{model:ItemPic, as:'pics', required:true}], where:{id:id}}, {subQuery:false}).success(function(data) {
                 cb(null, data);
             })
         }, function(data, cb) {
             var itemSubFactory = new ItemSubFactory(data.dataValues.class_id);
-            itemSubFactory.findOne({where:{item_id:data.dataValues.id}}).success(function(result) {
-                cb(null, {item:data.dataValues, detail:result.dataValues});
-            })
+            if(itemSubFactory) {
+                itemSubFactory.findAll({include:[{model:ShoeSize, as:'sizes', required:true, order:[[ShoeSize, 'id', 'DESC']], include:[{model:RelShoeSize, where:{is_valid:1}}]}], where:{item_id:data.dataValues.id}}, {subQuery:false}).success(function(result) {
+                    cb(null, {item:data.dataValues, detail:result[0].dataValues});
+                })
+            }
         }
         ], function(err, results) {
             callback(results);

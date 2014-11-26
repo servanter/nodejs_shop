@@ -1,0 +1,13 @@
+var Sequelize = require('sequelize');
+var sequelize = require('../lib/sequelize');
+
+var Brand = sequelize.define('Brand', {
+    id:Sequelize.BIGINT,
+    brand:Sequelize.STRING,
+    description:Sequelize.STRING
+}, {
+    tableName:'weshop_shoe_size_rel',
+    timestamps:false
+});
+
+module.exports = Brand;

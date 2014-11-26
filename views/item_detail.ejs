@@ -61,11 +61,15 @@
       <div class="good_salesize clearfix"> 
        <p class="clearfix"> <span class="tit">尺码：</span> </p> 
        <ul class="good_sizechioce clearfix" data-mersale="true"> 
-        <li data-size="99833289" class="choose" data-maxamount="" data-minamount="">35</li> 
-        <li data-size="99833290" class="choose" data-maxamount="" data-minamount="">36</li> 
-        <li data-size="99833291" class="choose" data-maxamount="" data-minamount="">37</li> 
-        <li data-size="99833292" class="choose" data-maxamount="" data-minamount="">38</li> 
-        <li data-size="99833293" class="choose" data-maxamount="" data-minamount="">39</li> 
+        <%
+        if(data.detail.sizes.length > 0) {
+          for(var i = 0; i < data.detail.sizes.length; i++) {
+        %>
+            <li class="choose" data-maxamount="" data-minamount=""><%=data.detail.sizes[i].description%></li> 
+        <%
+            }
+          }
+        %>
        </ul> 
        <a href="" class="link_ruler">查看尺码表 &gt;</a> 
       </div> 
