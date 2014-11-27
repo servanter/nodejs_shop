@@ -10,23 +10,10 @@ var ShoeBrand = require('../model/shoebrand');
 var Paging = require('../util/paging');
 var Convert = require('../util/convert');
 var ItemSubFactory = require('./itemsubfactory');
-
-Position.belongsTo(Item, {foreignKey:'id'});
-Item.hasMany(Position, {foreignKey:'item_id'});
-
-ItemPic.belongsTo(Item, {foreignKey:'id'});
-Item.hasMany(ItemPic, {foreignKey:'item_id', as:'pics'});
-
-Shoe.hasMany(ShoeSize, {foreignKey:'shoe_id', as:'sizes', through:'weshop_shoe_size_rel'});
-ShoeSize.hasMany(Shoe, {foreignKey:'size_id', through:'weshop_shoe_size_rel'});
-
-RelShoeSize.belongsTo(ShoeSize, {foreignKey:'id'});
-ShoeSize.hasMany(RelShoeSize, {foreignKey:'size_id'});
-
-Shoe.belongsTo(ShoeBrand, {foreignKey:'brand_id', as:'brand'});
-ShoeBrand.hasMany(Shoe, {foreignKey:'id'});
+var relationModel = require('../model/modelrelation');
 
 exports.findItemsByShopId = function(shopId, paging, callback) {
+    console.log(this.context);
     async.waterfall([
         function(cb) {
             Item.findAll({include:[{model:Position, required:true}], where:{shop_id:shopId, is_vertify:1, on_sell:1}, offset:paging.getSinceCount(), limit:paging.getPageSize(), order:[[Position, 'update_time', 'DESC']]}, {subQuery:false}).success(function(data){

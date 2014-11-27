@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50519
 File Encoding         : 65001
 
-Date: 2014-11-25 17:23:24
+Date: 2014-11-27 11:40:52
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -725,6 +725,45 @@ INSERT INTO `weshop_article` VALUES ('9', '1', '1', 'qwe', 'asdsa', '0', '1', '2
 INSERT INTO `weshop_article` VALUES ('10', '1', '1', '大大声道', 'qwe', '0', '1', '2014-11-24 11:27:54', '2014-11-24 11:27:54');
 
 -- ----------------------------
+-- Table structure for `weshop_dict_shoe_size`
+-- ----------------------------
+DROP TABLE IF EXISTS `weshop_dict_shoe_size`;
+CREATE TABLE `weshop_dict_shoe_size` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `size` float(5,2) NOT NULL,
+  `description` varchar(50) NOT NULL,
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of weshop_dict_shoe_size
+-- ----------------------------
+INSERT INTO `weshop_dict_shoe_size` VALUES ('1', '1.00', '37码', '2014-11-26 11:13:00');
+INSERT INTO `weshop_dict_shoe_size` VALUES ('2', '2.00', '38码', '2014-11-26 11:13:09');
+
+-- ----------------------------
+-- Table structure for `weshop_dict_shop_promise`
+-- ----------------------------
+DROP TABLE IF EXISTS `weshop_dict_shop_promise`;
+CREATE TABLE `weshop_dict_shop_promise` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `promise_name` varchar(20) NOT NULL,
+  `description` varchar(200) NOT NULL,
+  `pic_url` varchar(200) NOT NULL DEFAULT '',
+  `is_valid` tinyint(1) NOT NULL DEFAULT '0',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of weshop_dict_shop_promise
+-- ----------------------------
+INSERT INTO `weshop_dict_shop_promise` VALUES ('1', '100%正品保证', '100%正品保证', '1111', '1', '2014-11-26 17:02:09');
+INSERT INTO `weshop_dict_shop_promise` VALUES ('2', '下单3小时发货', '下单3小时发货', '', '1', '2014-11-26 17:02:32');
+INSERT INTO `weshop_dict_shop_promise` VALUES ('3', '七天无理由退货', '七天无理由退货', '', '1', '2014-11-26 17:02:45');
+
+-- ----------------------------
 -- Table structure for `weshop_item`
 -- ----------------------------
 DROP TABLE IF EXISTS `weshop_item`;
@@ -747,17 +786,17 @@ CREATE TABLE `weshop_item` (
 -- ----------------------------
 -- Records of weshop_item
 -- ----------------------------
-INSERT INTO `weshop_item` VALUES ('1', '锅包肉', '14', '1', '2', '肉肉', 'images/icon_2.jpg', '110.32', '2014-11-21 15:41:48', '2014-11-25 15:22:18', '1', '1');
-INSERT INTO `weshop_item` VALUES ('2', 'asdasdas', '14', '1', '1', '123123e', 'images/icon_2.jpg', '563.10', '2014-11-21 15:54:29', '2014-11-25 15:22:18', '1', '1');
-INSERT INTO `weshop_item` VALUES ('3', 'asd123', '14', '1', '1', '123ead', 'images/icon_2.jpg', '165.03', '2014-11-21 15:54:37', '2014-11-25 15:22:18', '1', '1');
-INSERT INTO `weshop_item` VALUES ('4', '123asdasd', '14', '1', '1', 'qdasdasd', 'images/icon_2.jpg', '653.65', '2014-11-21 15:54:45', '2014-11-25 15:22:18', '1', '1');
-INSERT INTO `weshop_item` VALUES ('5', 'asdasd123easd', '14', '1', '1', '123asda', 'images/icon_2.jpg', '3.65', '2014-11-21 15:54:53', '2014-11-25 15:22:18', '1', '1');
-INSERT INTO `weshop_item` VALUES ('6', 'adad132', '14', '1', '2', 'adqweq', 'images/icon_2.jpg', '36.65', '2014-11-21 15:55:01', '2014-11-25 15:22:18', '1', '1');
-INSERT INTO `weshop_item` VALUES ('7', '啊实打实大', '14', '1', '2', '请问企鹅', 'images/icon_2.jpg', '5656.30', '2014-11-24 11:00:47', '2014-11-25 15:22:18', '1', '1');
-INSERT INTO `weshop_item` VALUES ('8', 'asdaqweqwe', '14', '1', '1', 'qweqwe', 'images/icon_2.jpg', '565.00', '2014-11-24 11:00:55', '2014-11-25 15:22:18', '1', '1');
-INSERT INTO `weshop_item` VALUES ('9', 'adsad', '14', '1', '1', 'qweqweq', 'images/icon_2.jpg', '565.00', '2014-11-24 11:01:02', '2014-11-25 15:22:18', '1', '1');
-INSERT INTO `weshop_item` VALUES ('10', 'asdasd', '14', '1', '3', '1231sqwe', 'easdada', '12.00', '2014-11-24 11:29:01', '2014-11-25 15:22:18', '1', '1');
-INSERT INTO `weshop_item` VALUES ('11', 'aaaaa', '1', '1', '1', '1111', 'asdadsada', '666.00', '2014-11-24 17:16:56', '2014-11-25 15:22:18', '1', '1');
+INSERT INTO `weshop_item` VALUES ('1', '锅包肉', '14', '1', '2', '肉肉', 'item/aaa.jpg', '110.32', '2014-11-21 15:41:48', '2014-11-26 10:43:57', '1', '1');
+INSERT INTO `weshop_item` VALUES ('2', 'asdasdas', '14', '1', '1', '123123e', 'item/bbb.jpg', '563.10', '2014-11-21 15:54:29', '2014-11-26 10:44:18', '1', '1');
+INSERT INTO `weshop_item` VALUES ('3', 'asd123', '14', '1', '1', '123ead', 'item/bbb.jpg', '165.03', '2014-11-21 15:54:37', '2014-11-26 10:44:18', '1', '1');
+INSERT INTO `weshop_item` VALUES ('4', '123asdasd', '14', '1', '1', 'qdasdasd', 'item/aaa.jpg', '653.65', '2014-11-21 15:54:45', '2014-11-26 10:43:57', '1', '1');
+INSERT INTO `weshop_item` VALUES ('5', 'asdasd123easd', '14', '1', '1', '123asda', 'item/bbb.jpg', '3.65', '2014-11-21 15:54:53', '2014-11-26 10:44:18', '1', '1');
+INSERT INTO `weshop_item` VALUES ('6', 'adad132', '14', '1', '2', 'adqweq', 'item/bbb.jpg', '36.65', '2014-11-21 15:55:01', '2014-11-26 10:44:18', '1', '1');
+INSERT INTO `weshop_item` VALUES ('7', '啊实打实大', '14', '1', '2', '请问企鹅', 'item/bbb.jpg', '5656.30', '2014-11-24 11:00:47', '2014-11-26 10:44:18', '1', '1');
+INSERT INTO `weshop_item` VALUES ('8', 'asdaqweqwe', '14', '1', '1', 'qweqwe', 'item/aaa.jpg', '565.00', '2014-11-24 11:00:55', '2014-11-26 10:43:57', '1', '1');
+INSERT INTO `weshop_item` VALUES ('9', 'adsad', '14', '1', '1', 'qweqweq', 'item/aaa.jpg', '565.00', '2014-11-24 11:01:02', '2014-11-26 10:43:57', '1', '1');
+INSERT INTO `weshop_item` VALUES ('10', 'asdasd', '14', '1', '3', '1231sqwe', 'item/aaa.jpg', '12.00', '2014-11-24 11:29:01', '2014-11-26 10:43:57', '1', '1');
+INSERT INTO `weshop_item` VALUES ('11', 'aaaaa', '1', '1', '1', '1111', 'item/aaa.jpg', '666.00', '2014-11-24 17:16:56', '2014-11-26 10:43:57', '1', '1');
 
 -- ----------------------------
 -- Table structure for `weshop_item_class`
@@ -845,12 +884,12 @@ CREATE TABLE `weshop_shoe` (
   `note` varchar(50) NOT NULL,
   `serial_number` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of weshop_shoe
 -- ----------------------------
-INSERT INTO `weshop_shoe` VALUES ('1', '10', '14', '1', '1', '1990-01-01 00:00:00', '2014-11-25 15:40:35', 'nike air max 90 跑步鞋', null, '越南', '1', '跑步专用', '5656865656');
+INSERT INTO `weshop_shoe` VALUES ('2', '10', '14', '1', '1', '1990-01-01 00:00:00', '2014-11-26 16:54:09', 'nike air max 90 跑步鞋', null, '越南', '1', '跑步专用', '5656865656');
 
 -- ----------------------------
 -- Table structure for `weshop_shoe_brand`
@@ -858,14 +897,36 @@ INSERT INTO `weshop_shoe` VALUES ('1', '10', '14', '1', '1', '1990-01-01 00:00:0
 DROP TABLE IF EXISTS `weshop_shoe_brand`;
 CREATE TABLE `weshop_shoe_brand` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `brand` varchar(20) NOT NULL,
+  `brand_name` varchar(20) NOT NULL,
   `description` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of weshop_shoe_brand
 -- ----------------------------
+INSERT INTO `weshop_shoe_brand` VALUES ('1', 'NIKE', 'NIKE是全球著名的体育运动品牌，英文原意指希腊胜利女神，中文译为耐克');
+
+-- ----------------------------
+-- Table structure for `weshop_shoe_size_rel`
+-- ----------------------------
+DROP TABLE IF EXISTS `weshop_shoe_size_rel`;
+CREATE TABLE `weshop_shoe_size_rel` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `item_id` bigint(20) NOT NULL,
+  `shoe_id` bigint(20) NOT NULL,
+  `size_id` bigint(20) NOT NULL,
+  `create_time` timestamp NOT NULL DEFAULT '1990-01-01 00:00:00',
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `is_valid` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of weshop_shoe_size_rel
+-- ----------------------------
+INSERT INTO `weshop_shoe_size_rel` VALUES ('1', '10', '2', '1', '1990-01-01 00:00:00', '2014-11-26 16:54:33', '1');
+INSERT INTO `weshop_shoe_size_rel` VALUES ('2', '10', '2', '2', '1990-01-01 00:00:00', '2014-11-26 16:54:34', '1');
 
 -- ----------------------------
 -- Table structure for `weshop_shop`
@@ -909,6 +970,24 @@ INSERT INTO `weshop_shop` VALUES ('22', '1', 'asdqweq123123', 'qw123123', '4', '
 INSERT INTO `weshop_shop` VALUES ('23', '1', '啊实打实大', '阿打算打撒打算打算打算的', '2', '314', '0', '2014-11-24 17:02:47', '2014-11-24 17:02:47');
 INSERT INTO `weshop_shop` VALUES ('24', '1', 'asdad', '按时打算打算', '4', '233', '0', '2014-11-24 17:03:56', '2014-11-24 17:03:56');
 INSERT INTO `weshop_shop` VALUES ('25', '1', 'adasd', '12313', '3', '194', '0', '2014-11-24 17:16:14', '2014-11-24 17:16:14');
+
+-- ----------------------------
+-- Table structure for `weshop_shop_promise_rel`
+-- ----------------------------
+DROP TABLE IF EXISTS `weshop_shop_promise_rel`;
+CREATE TABLE `weshop_shop_promise_rel` (
+  `id` bigint(20) NOT NULL,
+  `shop_id` bigint(20) NOT NULL,
+  `promise_id` bigint(20) NOT NULL,
+  `create_time` timestamp NOT NULL DEFAULT '1990-01-01 00:00:00',
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `is_valid` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of weshop_shop_promise_rel
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for `weshop_user`

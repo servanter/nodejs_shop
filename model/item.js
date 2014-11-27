@@ -1,6 +1,5 @@
 var Sequelize = require('sequelize');
 var sequelize = require('../lib/sequelize');
-var ItemPic = require('./itempic');
 
 var Item = sequelize.define('Item', {
     id:Sequelize.BIGINT,
