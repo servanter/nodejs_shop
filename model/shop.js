@@ -8,6 +8,7 @@ var Shop = sequelize.define('Shop', {
 	description:Sequelize.STRING,
     city:Sequelize.BIGINT,
     province:Sequelize.BIGINT,
+    publicity_photo:Sequelize.STRING,
     is_vertify:Sequelize.BOOLEAN,
 }, {
 	tableName:'weshop_shop',

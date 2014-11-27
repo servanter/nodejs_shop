@@ -167,11 +167,16 @@
           }
         %>
 
-        <!--商户宣传图-->
-        <div class="dc_img_detail"> 
-         <p><img alt="" src="http://a.vimage1.com/upload/merchandise/273412/Geox-D44Y1B00022C1006-6.jpg" width="320" /></p> 
-        </div> 
-
+        <%
+            if(data.shop.publicity_photo != null) {
+        %>
+                <!--商户宣传图-->
+                <div class="dc_img_detail"> 
+                 <p><img alt="" src="/<%=data.shop.publicity_photo%>" width="320" /></p> 
+                </div> 
+        <%
+            }
+        %>
        </div> 
       </div> 
      </div> 
