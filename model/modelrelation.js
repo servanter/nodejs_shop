@@ -8,6 +8,7 @@ var RelShoeSize = require('./shoesizerel');
 var ShoeBrand = require('./shoebrand');
 var Shop = require('./shop');
 var ShopPromise = require('./dictshoppromise');
+var ShoeMaterial = require('./dictshoematerial');
 
 Position.belongsTo(Item, {foreignKey:'id'});
 Item.hasMany(Position, {foreignKey:'item_id'});
@@ -26,3 +27,6 @@ ShoeBrand.hasMany(Shoe, {foreignKey:'id'});
 
 Shop.hasMany(ShopPromise, {foreignKey:'shop_id', through:'weshop_shop_promise_rell'});
 ShopPromise.hasMany(Shop, {foreignKey:'promise_id', through:'weshop_shop_promise_rell'});
+
+Shoe.belongsTo(ShoeMaterial, {foreignKey:'material_id',as:'material'});
+ShoeMaterial.hasMany(Shoe, {foreignKey:'id'});

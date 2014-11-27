@@ -9,8 +9,7 @@
   <title>GEO</title> 
   <meta name="keywords" content="" /> 
   <meta name="description" content="" /> 
-  <link rel="stylesheet" href="http://ms2-m.vipstatic.com/css/a0892ec820.layout.min.css" /> 
-  <link rel="stylesheet" href="http://ms2-m.vipstatic.com/css/86fe49ca90.common.min.css" /> 
+  <link rel="stylesheet" href="/style/item_detail.css" /> 
  </head> 
  <body> 
   <script src="http://ms2-m.vipstatic.com/js/lib/562a4c0e89.jquery-2.1.0.min.js"></script> 
@@ -53,9 +52,21 @@
     <div class="goods_info"> 
      <form name="cartForm" action="" method=""> 
       <h1><%=data.detail.short_name%></h1> 
-      <p class="new_pricediv clearfix"> <span class="g_d_price">&yen;1245</span> <span class="fontstyle prf05">&yen;2490</span> <span class="discount">5折</span> <span class="fr new_re_time bglight" data-saleproduct="true" data-saletime="381401"><span class="i-icon-clock"></span><span class="J-time">00天00时00分00秒</span></span> </p> 
-      <p class="space5"></p> 
-      <p class="clear"></p> 
+      <p class="new_pricediv clearfix">
+        <span class="g_d_price">&yen;<%=data.item.price%></span>
+        <%
+          if(data.item.raw_price > data.item.price && data.item.price > 0) {
+            var rawPrice = (data.item.price/data.item.raw_price*10).toFixed(2);
+            if(rawPrice % 1 == 0) {
+                rawPrice = parseInt(rawPrice);
+            }
+        %>
+              <span class="fontstyle prf05">&yen;<%=data.item.raw_price%></span><span class="discount"><%=rawPrice%>折</span>
+        <%
+          }
+        %>
+        
+      </p> 
       <!-- 海淘商品展示特定方案 --> 
       <p class="price pb5">服务：由唯品会发货 支持货到付款</p> 
       <div class="good_salesize clearfix"> 
@@ -88,18 +99,26 @@
       <%
           }
       %>
-      <div class="dashline3"></div> 
+      <div class="dashline3"></div>
       <!-- 专场品牌推荐 --> 
-      <div class="recommend"> 
-       <a href="brand-287261-0-0-0-1-0-1-20.html" mars_sead="brand-recommend_btn"> 
-        <div class="picture"> 
-         <img src="http://pic1.vip.com/upload/brand/201411/20141121225929948912_304x384_80.jpg" alt="" /> 
-        </div> 
-        <div class="content"> 
-         <p class="name">GEOX精品专场</p> 
-         <p class="discount"><span class="salebg2">4</span>折起</p> 
-        </div> </a> 
-      </div> 
+      <%
+          if(data.shop.logo != null) {
+      %>
+              <div class="recommend"> 
+               <a href="" mars_sead="brand-recommend_btn"> 
+                <div class="picture"> 
+                 <img src="/<%=data.shop.logo%>" alt="" /> 
+                </div> 
+                <div class="content"> 
+                 <p class="name"><%=data.shop.short_name%></p> 
+                 <p class="discount">查看更多</p> 
+                </div>
+                 </a> 
+              </div> 
+      <%
+          }
+      %>
+
       <!-- 正品保证 --> 
       <div class="p_detail_hd"> 
        <div class="Origin"> 
@@ -136,7 +155,7 @@
           </tr> 
           <tr> 
            <td class="dc_table_tit">材 质：</td> 
-           <td><%=data.detail.material%></td> 
+           <td><%=data.detail.material.material_name%></td> 
           </tr> 
           <tr> 
            <td class="dc_table_tit">备 注：</td> 
@@ -186,11 +205,8 @@
   <!--固定在页面底部浮动的购买按钮--> 
   <div class="navbar navbar-default navbar-fixed-bottom"> 
    <div class="container nav-current-box detail-box"> 
-    <div class="navbar-header"> 
-     <a href="cart.html?rbc=service"> <i class="num-cart hide"></i> <i class="i-icon-cart-black"></i> <i class="num-cunt" data-carttime="-1" data-ctime="true"></i> </a> 
-    </div> 
     <div class="navbar-brand"> 
-     <a class="btn btn-large btn-purple" data-shopcarthide="true" mars_sead="product_add_cart_btn" data_mars="prd_id:38199647" data-animate="true" data-addjump="1" data-addcart="true">加入购物车</a> 
+     <a class="btn btn-large btn-purple" data-shopcarthide="true" mars_sead="product_add_cart_btn" data_mars="prd_id:38199647" data-animate="true" data-addjump="1" data-addcart="true">去购买</a> 
     </div> 
    </div> 
   </div> 
@@ -235,14 +251,12 @@
   <!--以下是底部样式--> 
   <div class="footer clearfix"> 
    <div class="footnav clearfix"> 
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
-    <a href="index.html" mars_sead="footer-index_btn">首页</a> 
-    <a href="cart.html" mars_sead="footer-cart_btn">购物车</a> 
-    <a href="service-download.html" mars_sead="footer-loading_btn">客户端</a> 
-    <a href="" mars_sead="footer-mlogin_btn">登录</a> 
-    <a href="user-register.html" mars_sead="footer-mregister_btn">注册</a> 
+    <a href="#">首页</a> 
+    <a href="#">淘宝地址</a> 
+    <a href="#">联系商家</a> 
+    <a href="#">商家地址</a> 
    </div> 
-   <p class="copright">Copyright &copy; 2008-2014 m.vip.com，All Rights Reserved 粤ICP备08114786号</p> 
+   <p class="copright">Copyright &copy; 2008-2014 xxx.xxx.com，All Rights Reserved 京ICP备xxxxxxx号</p> 
   </div> 
   <a href="#top" class="backtop" mars_sead="home_foot_top_btn"></a> 
   <script src="http://ms2-m.vipstatic.com/js/0dc090f04a.all.min.js"></script> 

@@ -11,6 +11,7 @@ var Paging = require('../util/paging');
 var Convert = require('../util/convert');
 var ItemSubFactory = require('./itemsubfactory');
 var relationModel = require('../model/modelrelation');
+var ShoeMaterial = require('../model/dictshoematerial');
 
 exports.findItemsByShopId = function(shopId, paging, callback) {
     console.log(this.context);
@@ -63,7 +64,7 @@ exports.findById = function(id, callback) {
         }, function(data, cb) {
             var itemSubFactory = new ItemSubFactory(data.dataValues.class_id);
             if(itemSubFactory) {
-                itemSubFactory.findAll({include:[{model:ShoeSize, as:'sizes', required:true, order:[[ShoeSize, 'id', 'DESC']], include:[{model:RelShoeSize, where:{is_valid:1}}]}, {model:ShoeBrand, as:'brand', required:true}],where:{item_id:data.dataValues.id}}, {subQuery:false}).success(function(result) {
+                itemSubFactory.findAll({include:[{model:ShoeSize, as:'sizes', required:true, order:[[ShoeSize, 'id', 'DESC']], include:[{model:RelShoeSize, where:{is_valid:1}}]}, {model:ShoeBrand, as:'brand', required:true}, {model:ShoeMaterial, as:'material', required:true}],where:{item_id:data.dataValues.id}}, {subQuery:false}).success(function(result) {
                     cb(null, {item:data.dataValues, detail:result[0].dataValues});
                 })
             }

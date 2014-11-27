@@ -10,7 +10,7 @@ var Shoe = sequelize.define('Shoe', {
     short_name:Sequelize.STRING,
     description:Sequelize.STRING,
     come_from:Sequelize.STRING,
-    material:Sequelize.BIGINT,
+    material_id:Sequelize.BIGINT,
     note:Sequelize.STRING,
     serial_number:Sequelize.STRING,
 }, {
