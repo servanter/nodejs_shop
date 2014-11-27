@@ -10,7 +10,6 @@ var Item = sequelize.define('Item', {
     description:Sequelize.STRING,
     pic_url:Sequelize.STRING,
     price:Sequelize.FLOAT,
-    raw_price:Sequelize.FLOAT,
     on_sell:Sequelize.BOOLEAN,
     is_vertify:Sequelize.BOOLEAN,
 }, {

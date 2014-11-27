@@ -53,15 +53,15 @@
      <form name="cartForm" action="" method=""> 
       <h1><%=data.detail.short_name%></h1> 
       <p class="new_pricediv clearfix">
-        <span class="g_d_price">&yen;<%=data.item.price%></span>
+        <span class="g_d_price">&yen;<%=data.detail.price%></span>
         <%
-          if(data.item.raw_price > data.item.price && data.item.price > 0) {
-            var rawPrice = (data.item.price/data.item.raw_price*10).toFixed(2);
+          if(data.detail.raw_price > data.detail.price && data.detail.price > 0) {
+            var rawPrice = (data.detail.price/data.detail.raw_price*10).toFixed(2);
             if(rawPrice % 1 == 0) {
                 rawPrice = parseInt(rawPrice);
             }
         %>
-              <span class="fontstyle prf05">&yen;<%=data.item.raw_price%></span><span class="discount"><%=rawPrice%>折</span>
+              <span class="fontstyle prf05">&yen;<%=data.detail.raw_price%></span><span class="discount"><%=rawPrice%>折</span>
         <%
           }
         %>
