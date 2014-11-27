@@ -3,18 +3,12 @@ var Item = require('../model/item');
 var ItemClass = require('../model/itemclass');
 var ItemPic = require('../model/itempic');
 var Position = require('../model/itemposition');
-var ShoeSize = require('../model/dictshoesize');
-var Shoe = require('../model/shoe');
-var RelShoeSize = require('../model/shoesizerel');
-var ShoeBrand = require('../model/shoebrand');
 var Paging = require('../util/paging');
 var Convert = require('../util/convert');
 var ItemSubFactory = require('./itemsubfactory');
 var relationModel = require('../model/modelrelation');
-var ShoeMaterial = require('../model/dictshoematerial');
 
 exports.findItemsByShopId = function(shopId, paging, callback) {
-    console.log(this.context);
     async.waterfall([
         function(cb) {
             Item.findAll({include:[{model:Position, required:true}], where:{shop_id:shopId, is_vertify:1, on_sell:1}, offset:paging.getSinceCount(), limit:paging.getPageSize(), order:[[Position, 'update_time', 'DESC']]}, {subQuery:false}).success(function(data){
@@ -64,9 +58,13 @@ exports.findById = function(id, callback) {
         }, function(data, cb) {
             var itemSubFactory = new ItemSubFactory(data.dataValues.class_id);
             if(itemSubFactory) {
-                itemSubFactory.findAll({include:[{model:ShoeSize, as:'sizes', required:true, order:[[ShoeSize, 'id', 'DESC']], include:[{model:RelShoeSize, where:{is_valid:1}}]}, {model:ShoeBrand, as:'brand', required:true}, {model:ShoeMaterial, as:'material', required:true}],where:{item_id:data.dataValues.id}}, {subQuery:false}).success(function(result) {
-                    cb(null, {item:data.dataValues, detail:result[0].dataValues});
-                })
+                itemSubFactory.findDetail(data.dataValues.id, function(result) {
+                    cb(null, {item:data.dataValues, detail:result});
+                });
+
+                // itemSubFactory.findAll({include:[{model:ShoeSize, as:'sizes', required:true, order:[[ShoeSize, 'id', 'DESC']], include:[{model:RelShoeSize, where:{is_valid:1}}]}, {model:ShoeBrand, as:'brand', required:true}, {model:ShoeMaterial, as:'material', required:true}],where:{item_id:data.dataValues.id}}, {subQuery:false}).success(function(result) {
+                //     cb(null, {item:data.dataValues, detail:result[0].dataValues});
+                // })
             }
         }
         ], function(err, results) {
