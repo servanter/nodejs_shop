@@ -1884,7 +1884,7 @@ span.sz_seleted{
 }
 .good_sizechioce li.select{
     border:1px solid #f02387;
-    background:url(../images/common/f51a73be53.selected_new.png) no-repeat right bottom #fff;
+    background:url(../images/selected.png) no-repeat right bottom #fff;
     background-size:15px;
     color:#f02387;
     cursor:text 
@@ -1910,7 +1910,7 @@ span.sz_seleted{
     height:15px;
     right:0;
     bottom:0;
-    background:url(../images/common/f51a73be53.selected_new.png) no-repeat;
+    background:url(../images/selected.png) no-repeat;
     background-size:15px;
     z-index:7 
 }

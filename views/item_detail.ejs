@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="/style/item_detail.css" /> 
  </head> 
  <body> 
-  <script src="http://ms2-m.vipstatic.com/js/lib/562a4c0e89.jquery-2.1.0.min.js"></script> 
+  <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
   <header id="header" class="header clearfix"> 
    <div class="head_left fl"> 
     <a href="javascript:void(0)" mars_sead="brand-detail-back_btn" class="J_backToPrev"><span class="h_back"></span></a> 
@@ -30,7 +30,7 @@
         if(data.item.pics.length > 0) {
           for(var i = 0; i < data.item.pics.length; i++) {
       %>
-          <li><span><img src="http://ms2-m.vipstatic.com/images/common/7c17123173.loading_goods.gif" data-original="/<%=data.item.pics[i].pic_url%>" alt="<%=data.detail.short_name%>" class="smallImg" mars_sead="product_big_pic" /></span></li> 
+          <li><span><img src="/images/loading.gif" data-original="/<%=data.item.pics[i].pic_url%>" alt="<%=data.detail.short_name%>" class="smallImg" mars_sead="product_big_pic" /></span></li> 
       <%
           }
         }
@@ -223,7 +223,7 @@
   <%
           for(var i = 0; i < data.item.pics.length; i++) {
   %>
-            <li><img src="http://ms2-m.vipstatic.com/images/common/7c17123173.loading_goods.gif" data-original="/<%=data.item.pics[i].pic_url%>" alt="<%=data.detail.short_name%>" class="Touch_mer_biglImg" /></li> 
+            <li><img src="/images/loading.gif" data-original="/<%=data.item.pics[i].pic_url%>" alt="<%=data.detail.short_name%>" class="Touch_mer_biglImg" /></li> 
   <%
           }
   %>
@@ -259,7 +259,7 @@
    <p class="copright">Copyright &copy; 2008-2014 xxx.xxx.com，All Rights Reserved 京ICP备xxxxxxx号</p> 
   </div> 
   <a href="#top" class="backtop" mars_sead="home_foot_top_btn"></a> 
-  <script src="http://ms2-m.vipstatic.com/js/0dc090f04a.all.min.js"></script> 
+  <script src="/javascript/all.js"></script> 
   <script type="text/javascript">
 var cartSource = '';
 var isSoldout = parseInt('0'), isStockUpdate = true;
@@ -267,11 +267,8 @@ function saveProValue(){
     return {}
 };
 </script> 
-  <script src="http://ms2-m.vipstatic.com/js/7fae035d74.swipe.min.js"></script> 
-  <script src="http://ms2-m.vipstatic.com/js/touch/80f87b044d.page.item.index.min.js"></script> 
-  <noscript> 
-   <p><img src="http://tk.optaim.com/p?sid=zyz_283_1" width="0" height="0" border="0" alt="" /></p> 
-  </noscript> 
+  <script src="/javascript/swipe.js"></script> 
+  <script src="/javascript/item_detail.js"></script> 
   <!-- End ZYZ Code --> 
   <div class="space30"></div> 
   <div class="space30"></div> 
