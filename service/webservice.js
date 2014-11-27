@@ -12,7 +12,7 @@ exports.getItemDetail = function(id, callback) {
             });
         }, function(data, cb) {
             if(data) {
-                shopService.findById(data.item.shop_id, function(result) {
+                shopService.findShopFullInfoById(data.item.shop_id, function(result) {
                     cb(null, {shop:result, item:data.item, detail:data.detail});
                 });
             }

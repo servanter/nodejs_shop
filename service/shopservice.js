@@ -62,7 +62,6 @@ exports.findShopAndIndexItems = function(shopId, p, callback) {
 
 exports.findShopFullInfoById = function(shopId, callback) {
     Shop.findAll({include:[{model:ShopPromise, as:'promises', required:true}],where:{id:shopId}}, {subQuery:false}).success(function(data) {
-        console.log(data);
         callback(data[0].dataValues);
     })
 }

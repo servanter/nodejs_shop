@@ -31,7 +31,7 @@
         if(data.item.pics.length > 0) {
           for(var i = 0; i < data.item.pics.length; i++) {
       %>
-          <li><span><img src="http://ms2-m.vipstatic.com/images/common/7c17123173.loading_goods.gif" data-original="/<%=data.item.pics[i].dataValues.pic_url%>" alt="<%=data.detail.short_name%>" class="smallImg" mars_sead="product_big_pic" /></span></li> 
+          <li><span><img src="http://ms2-m.vipstatic.com/images/common/7c17123173.loading_goods.gif" data-original="/<%=data.item.pics[i].pic_url%>" alt="<%=data.detail.short_name%>" class="smallImg" mars_sead="product_big_pic" /></span></li> 
       <%
           }
         }
@@ -73,11 +73,21 @@
        </ul> 
        <a href="" class="link_ruler">查看尺码表 &gt;</a> 
       </div> 
-      <ul class="introduce clearfix"> 
-       <li><span class="promise_zp"></span> <p>100%正品保证</p> </li> 
-       <li><span class="quily_fh"></span> <p>下单3小时发货</p> </li> 
-       <li><span class="seven_return"></span> <p>七天无理由退货</p> </li> 
-      </ul> 
+      <%
+          if(data.shop.promises.length > 0) {
+      %>
+          <ul class="introduce clearfix"> 
+      <%
+              for(var i = 0; i < data.shop.promises.length; i++) {
+      %>
+                  <li><span class="<%=data.shop.promises[i].pic_url%>"></span> <p><%=data.shop.promises[i].promise_name%></p> </li> 
+      <%
+              }
+      %>
+          </ul> 
+      <%
+          }
+      %>
       <div class="dashline3"></div> 
       <!-- 专场品牌推荐 --> 
       <div class="recommend"> 
@@ -148,7 +158,7 @@
         <%
             for(var i = 0; i < data.item.pics.length; i++) {
         %>
-            <img src="/<%=data.item.pics[i].dataValues.pic_url%>" alt="<%=data.detail.short_name%>" width="320" /> 
+            <img src="/<%=data.item.pics[i].pic_url%>" alt="<%=data.detail.short_name%>" width="320" /> 
         <%
             }
         %>
@@ -192,7 +202,7 @@
   <%
           for(var i = 0; i < data.item.pics.length; i++) {
   %>
-            <li><img src="http://ms2-m.vipstatic.com/images/common/7c17123173.loading_goods.gif" data-original="/<%=data.item.pics[i].dataValues.pic_url%>" alt="<%=data.detail.short_name%>" class="Touch_mer_biglImg" /></li> 
+            <li><img src="http://ms2-m.vipstatic.com/images/common/7c17123173.loading_goods.gif" data-original="/<%=data.item.pics[i].pic_url%>" alt="<%=data.detail.short_name%>" class="Touch_mer_biglImg" /></li> 
   <%
           }
   %>

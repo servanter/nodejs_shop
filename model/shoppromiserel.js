@@ -4,12 +4,10 @@ var sequelize = require('../lib/sequelize');
 var ShopPromiseRel = sequelize.define('ShopPromiseRel', {
     id:Sequelize.BIGINT,
     shop_id:Sequelize.BIGINT,
-    promise_id:Sequelize.BIGINT,
-    is_valid:Sequelize.BOOLEAN
+    promise_id:Sequelize.BIGINT
 }, {
     tableName:'weshop_shop_promise_rel',
-    createdAt:'create_time',
-    updatedAt:'update_time'
+    timestamps:flase;
 });
 
 module.exports = ShopPromiseRel;

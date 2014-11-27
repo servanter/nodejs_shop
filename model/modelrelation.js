@@ -24,4 +24,5 @@ ShoeSize.hasMany(RelShoeSize, {foreignKey:'size_id'});
 Shoe.belongsTo(ShoeBrand, {foreignKey:'brand_id', as:'brand'});
 ShoeBrand.hasMany(Shoe, {foreignKey:'id'});
 
-// Shop.hasMany(ShopPromise, {});
+Shop.hasMany(ShopPromise, {foreignKey:'shop_id', through:'weshop_shop_promise_rell'});
+ShopPromise.hasMany(Shop, {foreignKey:'promise_id', through:'weshop_shop_promise_rell'});
