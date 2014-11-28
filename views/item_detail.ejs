@@ -138,36 +138,28 @@
      <div class="M_detail" style="width:1000px"> 
       <div class="M_detailCon"> 
        <p class="dc_tit" id="J_proParam_scroll">商品参数<i class="far">Detail</i></p> 
-       <div class="dc_info clearfix"> 
-        <table class="dc_table fst"> 
-         <tbody> 
-          <tr> 
-           <td class="dc_table_tit">品牌名称：</td> 
-           <td><%=data.detail.brand.brand_name%></td> 
-          </tr> 
-          <tr> 
-           <td class="dc_table_tit">商品名称：</td> 
-           <td><%=data.detail.short_name%></td> 
-          </tr> 
-          <tr> 
-           <td class="dc_table_tit">产 地：</td> 
-           <td><%=data.detail.come_from%></td> 
-          </tr> 
-          <tr> 
-           <td class="dc_table_tit">材 质：</td> 
-           <td><%=data.detail.material.material_name%></td> 
-          </tr> 
-          <tr> 
-           <td class="dc_table_tit">备 注：</td> 
-           <td><%=data.detail.note%></td> 
-          </tr> 
-          <tr> 
-           <td class="dc_table_tit">货品编号：</td> 
-           <td><%=data.detail.serial_number%></td> 
-          </tr> 
-         </tbody> 
-        </table> 
-       </div> 
+       <%
+          if(data.detail.attr && data.detail.attr.length > 0) {
+       %>
+              <div class="dc_info clearfix"> 
+              <table class="dc_table fst"> 
+               <tbody> 
+       <%
+              for(var i = 0; i < data.detail.attr.length; i++) {
+        %>
+                  <tr> 
+                   <td class="dc_table_tit"><%=data.detail.attr[i].key%>：</td> 
+                   <td><%=data.detail.attr[i].value%></td> 
+                  </tr> 
+        <%        
+              }
+        %>
+                  </tbody> 
+                </table> 
+               </div>           
+        <%
+          }
+        %>
         <%
           if(data.item.pics.length > 0) {
         %>

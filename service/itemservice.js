@@ -62,9 +62,6 @@ exports.findById = function(id, callback) {
                     cb(null, {item:data.dataValues, detail:result});
                 });
 
-                // itemSubFactory.findAll({include:[{model:ShoeSize, as:'sizes', required:true, order:[[ShoeSize, 'id', 'DESC']], include:[{model:RelShoeSize, where:{is_valid:1}}]}, {model:ShoeBrand, as:'brand', required:true}, {model:ShoeMaterial, as:'material', required:true}],where:{item_id:data.dataValues.id}}, {subQuery:false}).success(function(result) {
-                //     cb(null, {item:data.dataValues, detail:result[0].dataValues});
-                // })
             }
         }
         ], function(err, results) {
