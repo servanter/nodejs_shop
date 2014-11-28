@@ -18,7 +18,7 @@ exports.findItemsByShopId = function(shopId, paging, callback) {
         }, function(data, cb) {
             Item.count({include:[{model:Position, required:true}], where:{shop_id:shopId}}).success(function(count) {
                 var pag = new Paging(count, paging.getPage(), paging.getPageSize(), data);
-                cb(null, pag)
+                cb(null, pag);
             })
         }
         ], function(err, results) {
