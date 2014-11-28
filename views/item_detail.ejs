@@ -19,7 +19,7 @@
    </div> 
    <span class="headtit"><%=data.detail.short_name%></span> 
    <div class="head_right fr"> 
-    <a href="" mars_sead="nav_home_btn"><span class="h_home"></span></a> 
+    <a href="/shop/<%=data.shop.id%>/" mars_sead="nav_home_btn"><span class="h_home"></span></a> 
    </div> 
   </header> 
   <div class="container goods_detail_wrapper"> 
@@ -105,7 +105,7 @@
           if(data.shop.logo != null) {
       %>
               <div class="recommend"> 
-               <a href="" mars_sead="brand-recommend_btn"> 
+               <a href="/shop/<%=data.shop.id%>/list/" mars_sead="brand-recommend_btn"> 
                 <div class="picture"> 
                  <img src="/<%=data.shop.logo%>" alt="" /> 
                 </div> 
@@ -183,7 +183,7 @@
         %>
                 <!--商户宣传图-->
                 <div class="dc_img_detail"> 
-                 <p><img alt="" src="/<%=data.shop.publicity_photo%>" width="320" /></p> 
+                 <p><a href="/shop/<%=data.shop.id%>/list/"><img alt="<%=data.shop.description%>" src="/<%=data.shop.publicity_photo%>" width="320" /></a></p> 
                 </div> 
         <%
             }
@@ -198,7 +198,7 @@
   <div class="navbar navbar-default navbar-fixed-bottom"> 
    <div class="container nav-current-box detail-box"> 
     <div class="navbar-brand"> 
-     <a class="btn btn-large btn-purple" data-shopcarthide="true" mars_sead="product_add_cart_btn" data_mars="prd_id:38199647" data-animate="true" data-addjump="1" data-addcart="true">去购买</a> 
+     <a href="<%=data.detail.rel_link%>" class="btn btn-large btn-purple" data-animate="true" data-addjump="1" data-addcart="true">去购买</a> 
     </div> 
    </div> 
   </div> 
@@ -243,8 +243,8 @@
   <!--以下是底部样式--> 
   <div class="footer clearfix"> 
    <div class="footnav clearfix"> 
-    <a href="#">首页</a> 
-    <a href="#">淘宝地址</a> 
+    <a href="/shop/<%=data.shop.id%>/">首页</a> 
+    <a href="<%=data.shop.taobao_link%>">淘宝地址</a> 
     <a href="#">联系商家</a> 
     <a href="#">商家地址</a> 
    </div> 

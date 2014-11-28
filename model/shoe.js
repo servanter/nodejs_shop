@@ -15,6 +15,7 @@ var Shoe = sequelize.define('Shoe', {
     material_id:Sequelize.BIGINT,
     note:Sequelize.STRING,
     serial_number:Sequelize.STRING,
+    rel_link:Sequelize.STRING
 }, {
     tableName:'weshop_shoe',
     createdAt:'create_time',

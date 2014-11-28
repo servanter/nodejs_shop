@@ -10,6 +10,7 @@ var Shop = sequelize.define('Shop', {
     province:Sequelize.BIGINT,
     logo:Sequelize.STRING,
     publicity_photo:Sequelize.STRING,
+    taobao_link:Sequelize.STRING,
     is_vertify:Sequelize.BOOLEAN,
 }, {
 	tableName:'weshop_shop',
