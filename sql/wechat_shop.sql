@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50519
 File Encoding         : 65001
 
-Date: 2014-11-28 14:03:53
+Date: 2014-11-28 16:22:51
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -725,6 +725,25 @@ INSERT INTO `weshop_article` VALUES ('9', '1', '1', 'qwe', 'asdsa', '0', '1', '2
 INSERT INTO `weshop_article` VALUES ('10', '1', '1', '大大声道', 'qwe', '0', '1', '2014-11-24 11:27:54', '2014-11-24 11:27:54');
 
 -- ----------------------------
+-- Table structure for `weshop_dict_shoe_brand`
+-- ----------------------------
+DROP TABLE IF EXISTS `weshop_dict_shoe_brand`;
+CREATE TABLE `weshop_dict_shoe_brand` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `brand_name` varchar(20) NOT NULL,
+  `description` varchar(50) NOT NULL,
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `is_valid` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of weshop_dict_shoe_brand
+-- ----------------------------
+INSERT INTO `weshop_dict_shoe_brand` VALUES ('1', 'NIKE', 'NIKE是全球著名的体育运动品牌，英文原意指希腊胜利女神，中文译为耐克', '2014-11-28 16:16:16', '0');
+INSERT INTO `weshop_dict_shoe_brand` VALUES ('2', 'ADIDAS', '流行品牌', '2014-11-28 16:16:16', '0');
+
+-- ----------------------------
 -- Table structure for `weshop_dict_shoe_material`
 -- ----------------------------
 DROP TABLE IF EXISTS `weshop_dict_shoe_material`;
@@ -905,28 +924,14 @@ CREATE TABLE `weshop_shoe` (
   `serial_number` varchar(50) NOT NULL,
   `rel_link` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of weshop_shoe
 -- ----------------------------
 INSERT INTO `weshop_shoe` VALUES ('2', '10', '14', '1', '1', '1198.00', '11980.00', '1990-01-01 00:00:00', '2014-11-28 14:01:45', 'nike air max 90 跑步鞋', '1', '越南', '1', '跑步专用', '5656865656', 'http://g.click.taobao.com/q?ak=12651499&pid=mm_31576222_4292510_14504533&rd=1&ct=itemid%3D37982188391%26url%3Dhttp%253A%252F%252Fitem.taobao.com%252Fitem.htm%253Fid%253D37982188391&rf=http%3A%2F%2Fgo.hupu.com%2Fu%3Furl%3Dhttp%253A%252F%252Fitem.taobao.com%252Fitem.htm%253Fspm%253Da1z10.1.w4004-8841047853.30.S0NRFI%2526id%253D37982188391&et=95076814&pgid=ec8ca7f38f862e892858c9548e99eacb&v=1.1');
-
--- ----------------------------
--- Table structure for `weshop_shoe_brand`
--- ----------------------------
-DROP TABLE IF EXISTS `weshop_shoe_brand`;
-CREATE TABLE `weshop_shoe_brand` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `brand_name` varchar(20) NOT NULL,
-  `description` varchar(50) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of weshop_shoe_brand
--- ----------------------------
-INSERT INTO `weshop_shoe_brand` VALUES ('1', 'NIKE', 'NIKE是全球著名的体育运动品牌，英文原意指希腊胜利女神，中文译为耐克');
+INSERT INTO `weshop_shoe` VALUES ('3', '1', '14', '1', '2', '2356.00', '656566.00', '1990-01-01 00:00:00', '2014-11-28 16:13:06', 'asdasdasd', 'asdasd', '中国', '1', '甲亢是就到啦', '4454644446', 'asdasd');
+INSERT INTO `weshop_shoe` VALUES ('4', '2', '14', '1', '1', '154646.00', '56456.00', '1990-01-01 00:00:00', '2014-11-28 16:17:18', 'asdasdad', 'asdasd', '1321', '1', 'asdasd', '1231', 'qweqwe');
 
 -- ----------------------------
 -- Table structure for `weshop_shoe_size_rel`

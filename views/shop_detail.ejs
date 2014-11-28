@@ -5,6 +5,7 @@
         <!-- 新 Bootstrap 核心 CSS 文件 -->
         <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="/style/main.css">
+        <link rel="stylesheet" href="/style/item_detail.css" />
         <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
         <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js">
         </script>
@@ -13,11 +14,13 @@
         </script>
     </head>
     <body>
+        <header id="header" class="header clearfix"> 
+         <span class="headtit"><%=data.shop.short_name%></span> 
+        </header>
         <div class="container-fluid">
             <div class="row">
                 <img src="http://m1.auto.itc.cn/car/theme/2sc/chengxin/images/13691012613419.jpg">
             </div>
-           
               <%
                   if(data.items.result.length > 0) {
                     for(var i = 0; i < data.items.result.length; i++) {
@@ -50,6 +53,7 @@
          </div> 
          <p class="copright">Copyright © 2008-2014 xxx.xxx.com，All Rights Reserved 京ICP备xxxxxxx号</p> 
         </div>
+
     </body>
 
 </html>

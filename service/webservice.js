@@ -21,3 +21,18 @@ exports.getItemDetail = function(id, callback) {
         }
     )
 }
+
+exports.itemList = function(shopId, page, callback) {
+    async.waterfall([
+        function(cb) {
+            itemService.findItemsByShopId(shopId, page, function(result) {
+                cb(null, result);
+            });
+        }, function(data, cb) {
+            shopService.findById(shopId, function(result) {
+                cb(null, {shop:result, items:data});
+            });
+        }], function(err, result) {
+            callback(result);
+        })
+}

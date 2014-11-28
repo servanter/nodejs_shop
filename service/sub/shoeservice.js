@@ -1,7 +1,7 @@
 var Shoe = require('../../model/shoe');
 var ShoeSize = require('../../model/dictshoesize');
 var RelShoeSize = require('../../model/shoesizerel');
-var ShoeBrand = require('../../model/shoebrand');
+var ShoeBrand = require('../../model/dictshoebrand');
 var ModelRelation = require('../../model/modelrelation');
 var ShoeMaterial = require('../../model/dictshoematerial');
 

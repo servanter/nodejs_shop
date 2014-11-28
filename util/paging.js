@@ -33,7 +33,7 @@ module.exports = function(totalRecord, page, pageSize, list) {
         this.totalPage = 0;
         this.result = arguments[3];
         if(this.totalRecord > 0) {
-            this.totalPage = (this.totalRecord - 1) / this.page + 1;
+            this.totalPage = (this.totalRecord - 1) / this.pageSize + 1;
         }
     }
 

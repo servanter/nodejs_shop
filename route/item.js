@@ -1,4 +1,3 @@
-var itemService = require('../service/itemservice');
 var webService = require('../service/webservice');
 
 exports.detail = function (req, res) {

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- 新 Bootstrap 核心 CSS 文件 -->
+        <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/style/main.css">
+        <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+        <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js">
+        </script>
+        <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+        <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js">
+        </script>
+    </head>
+    <body>
+         <header id="header" class="header clearfix"> 
+         <!-- <div class="head_left fl"> 
+          <a href="javascript:void(0)" mars_sead="brand-detail-back_btn" class="J_backToPrev"><span class="h_back"></span></a> 
+         </div>  -->
+         <span class="headtit"><%=data.shop.short_name%></span> 
+        <!--  <div class="head_right fr"> 
+          <a href="/shop/14/" mars_sead="nav_home_btn"><span class="h_home"></span></a> 
+         </div>  -->
+        </header>
+        <div class="container-fluid">
+              <ul id="selectList">
+                  <!-- 车型级别过滤开始 -->
+                    <li id="carType" class="selectItem">
+                        <div class="selectHead">
+                            <div class="mainHead">
+                                <a href="/buycar/a1b0c0d0e0f0g0h0j0k0m0n0/" class="mainItem">两厢</a>
+                                <a href="/buycar/a6b0c0d0e0f0g0h0j0k0m0n0/" class="mainItem">豪车</a>
+                            </div>
+                            <a href="javascript:void(0);" class="readmore"></a>
+                        </div>
+                        
+                        <!-- 引入级别车型弹出碎片开始 -->
+                        
+              <div class="selectBody">
+                            <div class="items">
+                                <a href="/buycar/a7b0c0d0e0f0g0h0j0k0m0n0/" class="item">MPV</a>
+                            </div>
+                            <div class="bottomAd">
+                                <a href="http://2sc.sohu.com/s2014/audi/index.shtml" class="ad"> 奥迪送iPad了！8月2日到场有礼</a>
+                                <a href="/buycar/" class="allItems">全部车源</a>
+                            </div>
+
+                        </div> 
+            
+                        <!-- 引入级别车型弹出碎片结束 -->
+                    </li>
+                    <!-- 车型级别过滤结束 -->
+                    
+                    <!-- 品牌过滤开始 -->
+                    <li id="carBrand" class="selectItem">
+                         <!-- 引入品牌弹出碎片开始 -->
+                        
+            <div class="selectHead">
+                                <div class="mainHead">
+                                    <a href="/auto-bmw/#hotCar" class="mainItem" name="search-brand">宝马</a>
+                                    <a href="/auto-audi/#hotCar" class="mainItem" name="search-brand">奥迪</a>
+                                    <a href="/auto-buick/#hotCar" class="mainItem" name="search-brand">别克</a>
+                                    <a href="/auto-toyota/#hotCar" class="mainItem" name="search-brand">丰田</a>
+                                    <a href="/auto-benz/#hotCar" class="mainItem" name="search-brand">奔驰</a>
+                                </div>
+                                <a href="javascript:void(0);" class="readmore"></a>
+                            </div>
+                            <div class="selectBody">
+                                <div class="items">
+                                    <a href="/auto-volkswagen/#hotCar" class="mainItem" name="search-brand">大众</a>
+                                    <a href="/auto-landrover/#hotCar" class="mainItem" name="search-brand">路虎</a>
+                                    <a href="/auto-porsche/#hotCar" class="mainItem" name="search-brand">保时捷</a>
+                                    <a href="/auto-ford/#hotCar" class="mainItem" name="search-brand">福特</a>
+                                    <a href="/auto-chevrolet/#hotCar" class="mainItem" name="search-brand">雪佛兰</a>
+                                    <a href="/auto-cadillac/#hotCar" class="mainItem" name="search-brand">凯迪拉克</a>
+                                    <a href="/auto-buick/#hotCar" class="mainItem" name="search-brand">别克</a>
+                                    <a href="/auto-jeep/#hotCar" class="mainItem" name="search-brand">JEEP</a>
+                                    <a href="/auto-honda/#hotCar" class="mainItem" name="search-brand">本田</a>
+                                    <a href="/auto-hyundai/#hotCar" class="mainItem" name="search-brand">现代</a>
+                                    <a href="/auto-lexus/#hotCar" class="mainItem" name="search-brand">雷克萨斯</a>
+                                    <a href="/auto-ferrari/#hotCar" class="mainItem" name="search-brand">法拉利</a>
+                                    <a href="/auto-kia/#hotCar" class="mainItem" name="search-brand">起亚</a>
+                                    <a href="/auto-byd/#hotCar" class="mainItem" name="search-brand">比亚迪</a>
+                                    <a href="/auto-nissan/#hotCar" class="mainItem" name="search-brand">日产</a>
+                                    <a href="/auto-volvo/#hotCar" class="mainItem" name="search-brand">沃尔沃</a>
+                                    <a href="/auto-subaru/#hotCar" class="mainItem" name="search-brand">斯巴鲁</a>
+                                    <a href="/auto-infiniti/#hotCar" class="mainItem" name="search-brand">英菲尼迪</a>
+                                    <a href="/auto-peugeot/#hotCar" class="mainItem" name="search-brand">标致</a>
+                                    <a href="/auto-mazda/#hotCar" class="mainItem" name="search-brand">马自达</a>
+                                </div>
+                            <div class="bottomAd">
+                                <a href="/jsp/wap/brand_select.jsp" class="ad"> 全部品牌</a>
+
+                            </div>
+
+                            </div> 
+            
+                        <!-- 引入品牌弹出碎片结束 -->
+                    </li>
+                    
+                    <li id="carPrice" class="selectItem">
+                        <div class="selectHead">
+                            <div class="mainHead">
+                                <a href="/buycar/a0b1c0d0e0f0g0h0j0k0m0n0/" class="mainItem">3万以下</a>
+                                <a href="/buycar/a0b2c0d0e0f0g0h0j0k0m0n0/" class="mainItem">3-5万</a>
+                                <a href="/buycar/a0b3c0d0e0f0g0h0j0k0m0n0/" class="mainItem">5-10万</a>
+                                <a href="/buycar/a0b4c0d0e0f0g0h0j0k0m0n0/" class="mainItem">10-15万</a>
+                            </div>
+                            <a href="javascript:void(0);" class="readmore"></a>
+                       </div>     
+                            <!-- 引入品牌弹出碎片开始 -->
+                        
+               <div class="selectBody">
+                               <div class="items">
+                                <a href="/buycar/a0b5c0d0e0f0g0h0j0k0m0n0/#hotCar" class="item" name="search-price">15-20万</a>
+                                <a href="/buycar/a0b8c0d0e0f0g0h0j0k0m0n0/#hotCar" class="item" name="search-price">20-30万</a>
+                                <a href="/buycar/a0b9c0d0e0f0g0h0j0k0m0n0/#hotCar" class="item" name="search-price">30-50万</a>
+                                <a href="/buycar/a0b7c0d0e0f0g0h0j0k0m0n0/#hotCar" class="item" name="search-price">50万上</a>
+                            </div>
+                            <div class="bottomAd">
+                                <a href="/buycar/#hotCar" class="ad"> 全部车源</a>
+                            </div>
+                        </div> 
+            
+                        <!-- 引入品牌弹出碎片开始 -->
+                    </li>
+                    
+                    <li id="carModel" class="selectItem">
+                         <!-- 引入品牌弹出碎片开始 -->
+                        
+              <div class="selectHead">
+                                <div class="mainHead">
+                                    <a href="/auto1-bmwx3/#hotCar" class="mainItem" name="search-model">宝马X3</a>
+                                    <a href="/auto1-audia6l/#hotCar" class="mainItem" name="search-model">奥迪A6L</a>
+                                    <a href="/auto1-newpassat/#hotCar" class="mainItem" name="search-model">帕萨特</a>
+                                    <a href="/auto1-optima/#hotCar" class="mainItem" name="search-model">起亚K5</a>
+                                </div>
+                                <a href="javascript:void(0);" class="readmore"></a>
+                            </div>
+                            <div class="selectBody">
+                                <div class="items">
+                                    <a href="/auto1-crv1/#hotCar" class="mainItem" name="search-model">本田CR-V</a>
+                                    <a href="/auto1-golf/#hotCar" class="mainItem" name="search-model">高尔夫</a>
+                                    <a href="/auto1-cayenne/#hotCar" class="mainItem" name="search-model">卡宴</a>
+                                    <a href="/auto1-guangqicamry/#hotCar" class="mainItem" name="search-model">凯美瑞</a>
+                                    <a href="/auto1-evoque/#hotCar" class="mainItem" name="search-model">揽胜极光</a>
+                                    <a href="/auto1-tiguan/#hotCar" class="mainItem" name="search-model">大众途观</a>
+                                    <a href="/auto1-highlander/#hotCar" class="mainItem" name="search-model">汉兰达</a>
+                                    <a href="/auto1-q5/#hotCar" class="mainItem" name="search-model">奥迪Q5</a>
+                                    <a href="/auto1-wranglersm/#hotCar" class="mainItem" name="search-model">牧马人</a>
+                                    <a href="/auto1-bmw3xi/#hotCar" class="mainItem" name="search-model">宝马3系</a>
+                                    <a href="/auto1-regal/#hotCar" class="mainItem" name="search-model">别克君威</a>
+                                    <a href="/auto1-tianlai/#hotCar" class="mainItem" name="search-model">日产天籁</a>
+                                    <a href="/auto1-audiq7/#hotCar" class="mainItem" name="search-model">奥迪Q7</a>
+                                    <a href="/auto1-cclass1/#hotCar" class="mainItem" name="search-model">奔驰C级</a>
+                                    <a href="/auto1-bora1/#hotCar" class="mainItem" name="search-model">大众宝来</a>
+                                    <a href="/auto1-accord/#hotCar" class="mainItem" name="search-model">本田雅阁</a>
+                                    <a href="/auto1-x1/#hotCar" class="mainItem" name="search-model">宝马X1</a>
+                                    <a href="/auto1-passatcc/#hotCar" class="mainItem" name="search-model">大众CC</a>
+                                    <a href="/auto1-fiesta/#hotCar" class="mainItem" name="search-model">嘉年华</a>
+                                    <a href="http://m.2sc.sohu.com/buycar/#hotCar" class="mainItem" name="search-model">现代ix35</a>
+                                </div>
+                            <div class="bottomAd">
+                                <a href="/buycar/#hotCar" class="ad"> 全部车源</a>
+                            </div>
+
+                            </div> 
+            
+                        <!-- 引入品牌弹出碎片开始 -->
+                    </li>
+    
+                    <li id="hotCar" class="selectItem">
+                     <!-- 引入自定义查询关键词碎片开始 -->
+                        
+                                    <div class="selectHead">
+                            <div class="mainHead">
+                                <a href="/buycar/a0b0c1d1e0f0g0h0j0k0m0n0/" class="mainItem">准新车</a>
+                                <a href="/buycar/a0b3_7c0d2e0f0g0h0j0k0m0n0/" class="mainItem">代步车</a>
+                                <a href="/buycar/a0b0c0d0e0f0g0h0j0k0m0n2/" class="mainItem">特价车</a>
+                                <a href="/buycar/a0b2c0d3e0f0g0h0j0k0m0n0/" class="mainItem">占号车</a>
+                                <a href="/buycar/a8b0c0d0e0f0g0h0j0k0m0n0/" class="mainItem">热门车</a>
+                            </div>
+                            <a href="javascript:void(0);" class="readmore"></a>
+                        </div>
+                        <div class="selectBody">
+                            <div class="items">
+                                <a href="/buycar/a0b3_10c0d0e0f0g0h0j0k6m0n0/" class="item">省油车</a>
+                                <a href="/buycar/a0b4c0d3e0f0g0h0j0k0m0n0/" class="item">保值车</a>
+                                <a href="/buycar/a7b0c0d0e0f0g0h0j0k0m0n0/" class="item">旅行车</a>
+                                </div>
+                           <div class="bottomAd">
+                                <a href="/buycar/#hotCar" class="ad"> 全部车源</a>
+                            </div>
+
+                        </div>
+ 
+            
+             <!-- 引入自定义查询关键词碎片结束 -->
+                    </li>
+                </ul>
+
+
+
+                
+
+              <%
+                  if(data.items.totalRecord > 0) {
+                    for(var i = 0; i < data.items.result.length; i++) {
+                      if(i % 3 == 0) {
+              %>
+                          <div class="row t20b10">
+              <%
+                      }
+              %>
+                      <div class="col-xs-4 col-sm-4 col-md-4">
+                          <a href="/item/<%=data.items.result[i].id%>.html"><img class="img95" src="/<%=data.items.result[i].pic_url%>"></a><br>
+                          <a href=""><label><%=data.items.result[i].short_name%></label></a>
+                      </div>
+              <%
+                      if((i != 0 && (i + 1) % 3 == 0) || (i + 1 == data.items.result.length)) {
+              %>
+                        </div>
+              <%
+                      }
+                    }
+                  }
+              %>
+        </div>
+        <div class="footer clearfix"> 
+         <div class="footnav clearfix"> 
+          <a href="#">首页</a> 
+          <a href="#">淘宝地址</a> 
+          <a href="#">联系商家</a> 
+          <a href="#">商家地址</a> 
+         </div> 
+         <p class="copright">Copyright © 2008-2014 xxx.xxx.com，All Rights Reserved 京ICP备xxxxxxx号</p> 
+        </div>
+    </body>
+
+</html>
