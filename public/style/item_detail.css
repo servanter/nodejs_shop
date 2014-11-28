@@ -1043,8 +1043,7 @@ textarea#msg{
 }
 .footnav{
     padding:6px 0;
-    text-align:left;
-    font-size:14px 
+    text-align:center;
 }
 .banner_down{
     display:block;
