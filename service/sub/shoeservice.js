@@ -27,6 +27,8 @@ exports.searchConditions = function(shopId, callback) {
                  })
             }, function(data, cb) {
                 Shoe.findAll({attributes:[], include:[{model:ShoeMaterial, as:'material', required:true,attributes:[['material_name', 'material_name']], where:{is_valid:1}}], where:{shop_id:shopId}, group:['material_id'], order:[[Sequelize.fn('COUNT', 'material_id'), 'DESC']]},{subQuery:false}).success(function(result) {
+                    
+                    
                     cb({brands:data, materials:result})
                  })
             }
