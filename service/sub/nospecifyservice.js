@@ -11,11 +11,13 @@ exports.findSearchConditions = function(shopId, param, callback) {
 			itemService.findItemClassesByShopId(shopId, function(result) {
 				cb(null, result);
 			})
-		}, function(data, cb) {
-			itemService.findColorsByShopId(shopId, function(result) {
-				cb(null, [data, result]);
-			})
-		}], function(err, result) {
-			callback(result);
+		}
+		// , function(data, cb) {
+		// 	itemService.findColorsByShopId(shopId, function(result) {
+		// 		cb(null, [data, result]);
+		// 	})
+		// }
+		], function(err, result) {
+			callback([result]);
 		});
 }
