@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 60003
 File Encoding         : 65001
 
-Date: 2014-11-29 15:43:51
+Date: 2014-11-29 16:36:47
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -739,8 +739,8 @@ CREATE TABLE `weshop_dict_color` (
 -- ----------------------------
 -- Records of weshop_dict_color
 -- ----------------------------
-INSERT INTO weshop_dict_color VALUES ('1', '100', '红色', '2014-11-29 15:19:27', '0');
-INSERT INTO weshop_dict_color VALUES ('2', '200', '白色', '2014-11-29 15:19:40', '0');
+INSERT INTO weshop_dict_color VALUES ('1', '100', '红色', '2014-11-29 15:19:27', '1');
+INSERT INTO weshop_dict_color VALUES ('2', '200', '白色', '2014-11-29 15:19:40', '1');
 
 -- ----------------------------
 -- Table structure for `weshop_dict_shoe_brand`
@@ -829,6 +829,7 @@ CREATE TABLE `weshop_item` (
   `create_user_id` bigint(20) NOT NULL,
   `class_id` bigint(20) NOT NULL,
   `description` varchar(200) DEFAULT NULL,
+  `color_id` bigint(20) NOT NULL,
   `pic_url` varchar(200) NOT NULL,
   `price` float(10,2) NOT NULL,
   `create_time` timestamp NOT NULL DEFAULT '1990-01-01 00:00:00',
@@ -841,17 +842,17 @@ CREATE TABLE `weshop_item` (
 -- ----------------------------
 -- Records of weshop_item
 -- ----------------------------
-INSERT INTO weshop_item VALUES ('1', '锅包肉', '14', '1', '2', '肉肉', 'item/aaa.jpg', '110.32', '2014-11-21 15:41:48', '2014-11-26 10:43:57', '1', '1');
-INSERT INTO weshop_item VALUES ('2', 'asdasdas', '14', '1', '1', '123123e', 'item/bbb.jpg', '563.10', '2014-11-21 15:54:29', '2014-11-26 10:44:18', '1', '1');
-INSERT INTO weshop_item VALUES ('3', 'asd123', '14', '1', '1', '123ead', 'item/bbb.jpg', '165.03', '2014-11-21 15:54:37', '2014-11-26 10:44:18', '1', '1');
-INSERT INTO weshop_item VALUES ('4', '123asdasd', '14', '1', '1', 'qdasdasd', 'item/aaa.jpg', '653.65', '2014-11-21 15:54:45', '2014-11-26 10:43:57', '1', '1');
-INSERT INTO weshop_item VALUES ('5', 'asdasd12', '14', '1', '1', '123asda', 'item/bbb.jpg', '3.65', '2014-11-21 15:54:53', '2014-11-27 14:49:55', '1', '1');
-INSERT INTO weshop_item VALUES ('6', 'adad132', '14', '1', '2', 'adqweq', 'item/bbb.jpg', '36.65', '2014-11-21 15:55:01', '2014-11-26 10:44:18', '1', '1');
-INSERT INTO weshop_item VALUES ('7', '啊实打实大', '14', '1', '2', '请问企鹅', 'item/bbb.jpg', '5656.30', '2014-11-24 11:00:47', '2014-11-26 10:44:18', '1', '1');
-INSERT INTO weshop_item VALUES ('8', 'asdaqweqwe', '14', '1', '1', 'qweqwe', 'item/aaa.jpg', '565.00', '2014-11-24 11:00:55', '2014-11-26 10:43:57', '1', '1');
-INSERT INTO weshop_item VALUES ('9', 'adsad', '14', '1', '1', 'qweqweq', 'item/aaa.jpg', '565.00', '2014-11-24 11:01:02', '2014-11-26 10:43:57', '1', '1');
-INSERT INTO weshop_item VALUES ('10', 'asdasd', '14', '1', '3', '1231sqwe', 'item/aaa.jpg', '1198.00', '2014-11-24 11:29:01', '2014-11-27 15:10:37', '1', '1');
-INSERT INTO weshop_item VALUES ('11', 'aaaaa', '1', '1', '1', '1111', 'item/aaa.jpg', '666.00', '2014-11-24 17:16:56', '2014-11-26 10:43:57', '1', '1');
+INSERT INTO weshop_item VALUES ('1', '锅包肉', '14', '1', '2', '肉肉', '1', 'item/aaa.jpg', '110.32', '2014-11-21 15:41:48', '2014-11-29 15:46:29', '1', '1');
+INSERT INTO weshop_item VALUES ('2', 'asdasdas', '14', '1', '1', '123123e', '2', 'item/bbb.jpg', '563.10', '2014-11-21 15:54:29', '2014-11-29 15:46:30', '1', '1');
+INSERT INTO weshop_item VALUES ('3', 'asd123', '14', '1', '1', '123ead', '1', 'item/bbb.jpg', '165.03', '2014-11-21 15:54:37', '2014-11-29 15:46:31', '1', '1');
+INSERT INTO weshop_item VALUES ('4', '123asdasd', '14', '1', '1', 'qdasdasd', '1', 'item/aaa.jpg', '653.65', '2014-11-21 15:54:45', '2014-11-29 15:46:32', '1', '1');
+INSERT INTO weshop_item VALUES ('5', 'asdasd12', '14', '1', '1', '123asda', '1', 'item/bbb.jpg', '3.65', '2014-11-21 15:54:53', '2014-11-29 15:46:33', '1', '1');
+INSERT INTO weshop_item VALUES ('6', 'adad132', '14', '1', '2', 'adqweq', '2', 'item/bbb.jpg', '36.65', '2014-11-21 15:55:01', '2014-11-29 15:46:34', '1', '1');
+INSERT INTO weshop_item VALUES ('7', '啊实打实大', '14', '1', '2', '请问企鹅', '2', 'item/bbb.jpg', '5656.30', '2014-11-24 11:00:47', '2014-11-29 15:46:36', '1', '1');
+INSERT INTO weshop_item VALUES ('8', 'asdaqweqwe', '14', '1', '1', 'qweqwe', '1', 'item/aaa.jpg', '565.00', '2014-11-24 11:00:55', '2014-11-29 15:46:36', '1', '1');
+INSERT INTO weshop_item VALUES ('9', 'adsad', '14', '1', '1', 'qweqweq', '2', 'item/aaa.jpg', '565.00', '2014-11-24 11:01:02', '2014-11-29 15:46:39', '1', '1');
+INSERT INTO weshop_item VALUES ('10', 'asdasd', '14', '1', '3', '1231sqwe', '1', 'item/aaa.jpg', '1198.00', '2014-11-24 11:29:01', '2014-11-29 15:46:40', '1', '1');
+INSERT INTO weshop_item VALUES ('11', 'aaaaa', '1', '1', '1', '1111', '0', 'item/aaa.jpg', '666.00', '2014-11-24 17:16:56', '2014-11-26 10:43:57', '1', '1');
 
 -- ----------------------------
 -- Table structure for `weshop_item_class`

@@ -1,10 +1,21 @@
-
+var async = require('async');
+var itemService = require('../itemservice');
 
 exports.findDetail = function(id, callback) {
     callback(undefined);
 }
 
 exports.findSearchConditions = function(shopId, param, callback) {
-	var data = [[{name:'白色', href:'a0b1'},{name:'红色', href:'a0b1'}, {name:'蓝色', href:'a0b1'}, {name:'黄色', href:'a0b1'}], [{name:'50-100', href:'a0b1'}, {name:'100-200', href:'a0b1'}]];
-	callback(data);
+	async.waterfall([
+		function(cb) {
+			itemService.findItemClassesByShopId(shopId, function(result) {
+				cb(null, result);
+			})
+		}, function(data, cb) {
+			itemService.findColorsByShopId(shopId, function(result) {
+				cb(null, [data, result]);
+			})
+		}], function(err, result) {
+			callback(result);
+		});
 }

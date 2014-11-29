@@ -17,6 +17,13 @@ Item.hasMany(Position, {foreignKey:'item_id'});
 ItemPic.belongsTo(Item, {foreignKey:'id'});
 Item.hasMany(ItemPic, {foreignKey:'item_id', as:'pics'});
 
+Item.belongsTo(Color, {foreignKey:'color_id', as:'color'});
+Color.hasMany(Item, {foreignKey:'id'});
+
+Item.belongsTo(ItemClass, {foreignKey:'class_id', as:'category'});
+ItemClass.hasMany(Item, {foreignKey:'id'});
+
+
 Shoe.hasMany(ShoeSize, {foreignKey:'shoe_id', as:'sizes', through:'weshop_shoe_size_rel'});
 ShoeSize.hasMany(Shoe, {foreignKey:'size_id', through:'weshop_shoe_size_rel'});
 

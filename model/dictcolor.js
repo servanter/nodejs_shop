@@ -8,7 +8,7 @@ var Color = sequelize.define('Color', {
     create_time:Sequelize.NOW,
     is_valid:Sequelize.BOOLEAN
 }, {
-    tableName:'weshop_area',
+    tableName:'weshop_dict_color',
     timestamps:false
 });
 
