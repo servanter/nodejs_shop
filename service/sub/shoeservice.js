@@ -6,6 +6,7 @@ var RelShoeSize = require('../../model/shoesizerel');
 var ShoeBrand = require('../../model/dictshoebrand');
 var ModelRelation = require('../../model/modelrelation');
 var ShoeMaterial = require('../../model/dictshoematerial');
+var Color = require('../../model/dictcolor');
 
 exports.findDetail = function(id, callback) {
     Shoe.findAll({include:[{model:ShoeSize, as:'sizes', required:true, order:[[ShoeSize, 'id', 'DESC']], include:[{model:RelShoeSize, where:{is_valid:1}}]}, {model:ShoeBrand, as:'brand', required:true}, {model:ShoeMaterial, as:'material', required:true}],where:{item_id:id}}, {subQuery:false}).success(function(result) {
@@ -27,10 +28,12 @@ exports.searchConditions = function(shopId, callback) {
                  })
             }, function(data, cb) {
                 Shoe.findAll({attributes:[], include:[{model:ShoeMaterial, as:'material', required:true,attributes:[['material_name', 'material_name']], where:{is_valid:1}}], where:{shop_id:shopId}, group:['material_id'], order:[[Sequelize.fn('COUNT', 'material_id'), 'DESC']]},{subQuery:false}).success(function(result) {
-                    
-                    
                     cb({brands:data, materials:result})
                  })
+            }, function(data, cb) {
+                Shoe.findAll({attributes:[], include:[{model:Color, as:'color', required:true,attributes:[['color_name', 'color_name']], where:{is_valid:1}}], where:{shop_id:shopId}, group:['color_id'], order:[[Sequelize.fn('COUNT', 'color_id'), 'DESC']]},{subQuery:false}).success(function(result) {
+                    cb({brands:data.brands, materials:data.materials, colors:result});
+                })
             }
             ], function(err, result) {
                 callback({searchConditions:result});
