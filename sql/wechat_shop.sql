@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 60003
 File Encoding         : 65001
 
-Date: 2014-11-29 16:36:47
+Date: 2014-11-29 17:43:53
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -734,13 +734,14 @@ CREATE TABLE `weshop_dict_color` (
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `is_valid` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of weshop_dict_color
 -- ----------------------------
 INSERT INTO weshop_dict_color VALUES ('1', '100', '红色', '2014-11-29 15:19:27', '1');
 INSERT INTO weshop_dict_color VALUES ('2', '200', '白色', '2014-11-29 15:19:40', '1');
+INSERT INTO weshop_dict_color VALUES ('3', '300', '黑色', '2014-11-29 17:30:35', '1');
 
 -- ----------------------------
 -- Table structure for `weshop_dict_shoe_brand`
@@ -753,13 +754,14 @@ CREATE TABLE `weshop_dict_shoe_brand` (
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `is_valid` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of weshop_dict_shoe_brand
 -- ----------------------------
-INSERT INTO weshop_dict_shoe_brand VALUES ('1', 'NIKE', 'NIKE是全球著名的体育运动品牌，英文原意指希腊胜利女神，中文译为耐克', '2014-11-28 16:16:16', '0');
-INSERT INTO weshop_dict_shoe_brand VALUES ('2', 'ADIDAS', '流行品牌', '2014-11-28 16:16:16', '0');
+INSERT INTO weshop_dict_shoe_brand VALUES ('1', 'NIKE', 'NIKE是全球著名的体育运动品牌，英文原意指希腊胜利女神，中文译为耐克', '2014-11-28 16:16:16', '1');
+INSERT INTO weshop_dict_shoe_brand VALUES ('2', 'ADIDAS', '流行品牌', '2014-11-28 16:16:16', '1');
+INSERT INTO weshop_dict_shoe_brand VALUES ('3', 'LiNing', '李宁', '2014-11-29 17:31:12', '1');
 
 -- ----------------------------
 -- Table structure for `weshop_dict_shoe_material`
@@ -843,8 +845,8 @@ CREATE TABLE `weshop_item` (
 -- Records of weshop_item
 -- ----------------------------
 INSERT INTO weshop_item VALUES ('1', '锅包肉', '14', '1', '2', '肉肉', '1', 'item/aaa.jpg', '110.32', '2014-11-21 15:41:48', '2014-11-29 15:46:29', '1', '1');
-INSERT INTO weshop_item VALUES ('2', 'asdasdas', '14', '1', '1', '123123e', '2', 'item/bbb.jpg', '563.10', '2014-11-21 15:54:29', '2014-11-29 15:46:30', '1', '1');
-INSERT INTO weshop_item VALUES ('3', 'asd123', '14', '1', '1', '123ead', '1', 'item/bbb.jpg', '165.03', '2014-11-21 15:54:37', '2014-11-29 15:46:31', '1', '1');
+INSERT INTO weshop_item VALUES ('2', 'asdasdas', '14', '1', '3', '123123e', '2', 'item/bbb.jpg', '563.10', '2014-11-21 15:54:29', '2014-11-29 17:29:40', '1', '1');
+INSERT INTO weshop_item VALUES ('3', 'asd123', '14', '1', '3', '123ead', '1', 'item/bbb.jpg', '165.03', '2014-11-21 15:54:37', '2014-11-29 17:29:42', '1', '1');
 INSERT INTO weshop_item VALUES ('4', '123asdasd', '14', '1', '1', 'qdasdasd', '1', 'item/aaa.jpg', '653.65', '2014-11-21 15:54:45', '2014-11-29 15:46:32', '1', '1');
 INSERT INTO weshop_item VALUES ('5', 'asdasd12', '14', '1', '1', '123asda', '1', 'item/bbb.jpg', '3.65', '2014-11-21 15:54:53', '2014-11-29 15:46:33', '1', '1');
 INSERT INTO weshop_item VALUES ('6', 'adad132', '14', '1', '2', 'adqweq', '2', 'item/bbb.jpg', '36.65', '2014-11-21 15:55:01', '2014-11-29 15:46:34', '1', '1');
@@ -949,9 +951,9 @@ CREATE TABLE `weshop_shoe` (
 -- ----------------------------
 -- Records of weshop_shoe
 -- ----------------------------
-INSERT INTO weshop_shoe VALUES ('2', '10', '14', '1', '1', '1198.00', '11980.00', '1990-01-01 00:00:00', '2014-11-29 15:30:10', 'nike air max 90 跑步鞋', '1', '越南', '1', '1', '跑步专用', '5656865656', 'http://g.click.taobao.com/q?ak=12651499&pid=mm_31576222_4292510_14504533&rd=1&ct=itemid%3D37982188391%26url%3Dhttp%253A%252F%252Fitem.taobao.com%252Fitem.htm%253Fid%253D37982188391&rf=http%3A%2F%2Fgo.hupu.com%2Fu%3Furl%3Dhttp%253A%252F%252Fitem.taobao.com%252Fitem.htm%253Fspm%253Da1z10.1.w4004-8841047853.30.S0NRFI%2526id%253D37982188391&et=95076814&pgid=ec8ca7f38f862e892858c9548e99eacb&v=1.1');
-INSERT INTO weshop_shoe VALUES ('3', '1', '14', '1', '2', '2356.00', '656566.00', '1990-01-01 00:00:00', '2014-11-29 15:30:11', 'asdasdasd', 'asdasd', '中国', '1', '2', '甲亢是就到啦', '4454644446', 'asdasd');
-INSERT INTO weshop_shoe VALUES ('4', '2', '14', '1', '1', '154646.00', '56456.00', '1990-01-01 00:00:00', '2014-11-29 15:30:12', 'asdasdad', 'asdasd', '1321', '1', '1', 'asdasd', '1231', 'qweqwe');
+INSERT INTO weshop_shoe VALUES ('2', '3', '14', '1', '1', '1198.00', '11980.00', '1990-01-01 00:00:00', '2014-11-29 17:29:49', 'nike air max 90 跑步鞋', '1', '越南', '1', '1', '跑步专用', '5656865656', 'http://g.click.taobao.com/q?ak=12651499&pid=mm_31576222_4292510_14504533&rd=1&ct=itemid%3D37982188391%26url%3Dhttp%253A%252F%252Fitem.taobao.com%252Fitem.htm%253Fid%253D37982188391&rf=http%3A%2F%2Fgo.hupu.com%2Fu%3Furl%3Dhttp%253A%252F%252Fitem.taobao.com%252Fitem.htm%253Fspm%253Da1z10.1.w4004-8841047853.30.S0NRFI%2526id%253D37982188391&et=95076814&pgid=ec8ca7f38f862e892858c9548e99eacb&v=1.1');
+INSERT INTO weshop_shoe VALUES ('3', '10', '14', '1', '2', '2356.00', '656566.00', '1990-01-01 00:00:00', '2014-11-29 17:29:59', 'asdasdasd', 'asdasd', '中国', '1', '2', '甲亢是就到啦', '4454644446', 'asdasd');
+INSERT INTO weshop_shoe VALUES ('4', '2', '14', '1', '3', '154646.00', '56456.00', '1990-01-01 00:00:00', '2014-11-29 17:31:25', 'asdasdad', 'asdasd', '1321', '1', '3', 'asdasd', '1231', 'qweqwe');
 
 -- ----------------------------
 -- Table structure for `weshop_shoe_size_rel`
