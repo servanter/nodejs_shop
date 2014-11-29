@@ -33,6 +33,33 @@ exports.findItemsByShopId = function(shopId, paging, callback) {
     )
 }
 
+exports.search = function(shopId, params, paging, callback) {
+    var whereConditions = {shop_id:shopId, is_vertify:1, on_sell:1};
+    if(params.a && params.a != '0') {
+        whereConditions.class_id=parseInt(params.a);
+    }
+    async.waterfall([
+        function(cb) {
+            Item.findAll({where:whereConditions, offset:paging.getSinceCount(), limit:paging.getPageSize()}).success(function(data){
+                var arr = Convert.values2Arr(data);
+                cb(null, arr);
+            });
+        }, function(data, cb) {
+            Item.count({where:whereConditions}).success(function(count) {
+                var pag = new Paging(count, paging.getPage(), paging.getPageSize(), data);
+                cb(null, pag);
+            })
+        }
+        ], function(err, results) {
+            if(err) {
+                throw err;
+            } else {
+                callback(results);
+            }
+        }
+    )
+}
+
 exports.findClasses = function(callback) {
     ItemClass.findAll().success(function(data) {
         var arr = Convert.values2Arr(data);

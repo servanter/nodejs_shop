@@ -26,7 +26,7 @@ exports.getItemDetail = function(id, callback) {
 exports.itemList = function(shopId, param, page, callback) {
     async.waterfall([
         function(cb) {
-            itemService.findItemsByShopId(shopId, page, function(result) {
+            itemService.search(shopId, param, page, function(result) {
                 cb(null, result);
             });
         }, function(data, cb) {
@@ -34,17 +34,11 @@ exports.itemList = function(shopId, param, page, callback) {
                 cb(null, {shop:result, items:data});
             });
         }, function(data, cb) {
-            if(param) {
-                var category = param.category;
-                if(category) {
-                    var subFactory = new itemSubFactory(category);
-                    subFactory.findSearchConditions(shopId, param, function(result) {
-                        cb(null, {shop:data.shop, items:data.items, searchConditions:result});
-                    })
-                }
-            } else {
-                cb(null, data);
-            }
+            var category = param.a;
+            var subFactory = new itemSubFactory(parseInt(category));
+            subFactory.findSearchConditions(shopId, param, function(result) {
+                cb(null, {shop:data.shop, items:data.items, searchConditions:result});
+            })
         }], function(err, result) {
             callback(result);
         })
