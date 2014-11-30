@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 60003
 File Encoding         : 65001
 
-Date: 2014-11-29 17:43:53
+Date: 2014-11-30 19:43:46
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -973,8 +973,8 @@ CREATE TABLE `weshop_shoe_size_rel` (
 -- ----------------------------
 -- Records of weshop_shoe_size_rel
 -- ----------------------------
-INSERT INTO weshop_shoe_size_rel VALUES ('1', '10', '2', '1', '1990-01-01 00:00:00', '2014-11-26 16:54:33', '1');
-INSERT INTO weshop_shoe_size_rel VALUES ('2', '10', '2', '2', '1990-01-01 00:00:00', '2014-11-26 16:54:34', '1');
+INSERT INTO weshop_shoe_size_rel VALUES ('1', '10', '3', '1', '1990-01-01 00:00:00', '2014-11-30 19:30:32', '1');
+INSERT INTO weshop_shoe_size_rel VALUES ('2', '10', '3', '2', '1990-01-01 00:00:00', '2014-11-30 19:30:30', '1');
 
 -- ----------------------------
 -- Table structure for `weshop_shop`
