@@ -41,3 +41,6 @@ ShoeMaterial.hasMany(Shoe, {foreignKey:'id'});
 
 Shoe.belongsTo(Color, {foreignKey:'color_id', as:'color'});
 Color.hasMany(Shoe, {foreignKey:'id'});
+
+Shoe.hasMany(ItemPic, {foreignKey:'detail_id', as:'pics'});
+ItemPic.belongsTo(Shoe, {foreignKey:'id'})

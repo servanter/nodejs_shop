@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50519
 File Encoding         : 65001
 
-Date: 2014-12-01 15:35:09
+Date: 2014-12-01 16:37:02
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -882,17 +882,22 @@ DROP TABLE IF EXISTS `weshop_item_pic`;
 CREATE TABLE `weshop_item_pic` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `item_id` bigint(20) NOT NULL,
+  `detail_id` bigint(20) NOT NULL,
   `pic_url` varchar(200) NOT NULL,
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `is_major` tinyint(1) NOT NULL DEFAULT '0',
   `is_valid` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of weshop_item_pic
 -- ----------------------------
-INSERT INTO `weshop_item_pic` VALUES ('1', '10', 'item/aaa.jpg', '2014-11-25 16:03:04', '0');
-INSERT INTO `weshop_item_pic` VALUES ('2', '10', 'item/bbb.jpg', '2014-11-25 16:03:01', '0');
+INSERT INTO `weshop_item_pic` VALUES ('1', '10', '3', 'item/aaa.jpg', '2014-12-01 15:43:23', '1', '1');
+INSERT INTO `weshop_item_pic` VALUES ('2', '10', '3', 'item/bbb.jpg', '2014-12-01 15:47:12', '1', '1');
+INSERT INTO `weshop_item_pic` VALUES ('3', '3', '2', 'item/aaa.jpg', '2014-12-01 15:47:29', '1', '1');
+INSERT INTO `weshop_item_pic` VALUES ('4', '2', '4', 'item/aaa.jpg', '2014-12-01 15:47:29', '1', '1');
+INSERT INTO `weshop_item_pic` VALUES ('5', '4', '5', 'item/bbb.jpg', '2014-12-01 16:36:48', '1', '1');
 
 -- ----------------------------
 -- Table structure for `weshop_item_position`

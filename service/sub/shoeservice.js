@@ -6,6 +6,7 @@ var RelShoeSize = require('../../model/shoesizerel');
 var ShoeBrand = require('../../model/dictshoebrand');
 var ModelRelation = require('../../model/modelrelation');
 var ShoeMaterial = require('../../model/dictshoematerial');
+var Pic = require('../../model/itempic');
 var Color = require('../../model/dictcolor');
 var Convert = require('../../util/convert');
 var Paging = require('../../util/paging');
@@ -59,6 +60,7 @@ exports.findList = function(shopId, params, paging, callback) {
     var color = {model:Color, as:'color', required:true, attributes:[['color_name', 'color_name']]};
     var material = {model:ShoeMaterial, as:'material', required:true, attributes:[['material_name', 'material_name']]};
     var size = {model:ShoeSize, as:'sizes', required:true, attributes:[], order:[[ShoeSize, 'id', 'DESC']], include:[{model:RelShoeSize, where:{is_valid:1}, attributes:[]}]};
+    var pic = {model:Pic, as:'pics', required:true, attributes:[['pic_url', 'pic_url']], where:{is_major:1, is_valid:1}};
 
     if(params) {
         if(params.b != '0') {
@@ -73,12 +75,12 @@ exports.findList = function(shopId, params, paging, callback) {
     }
     async.waterfall([
         function(cb) {
-            Shoe.findAll({attribute:[['short_name', 'short_name'], ['pic_url', 'pic_url']], include:[size, brand, color, material],where:{shop_id:shopId}, offset:paging.getSinceCount(), limit:paging.getPageSize()}, {subQuery:false}).success(function(result) {
+            Shoe.findAll({attributes:[['short_name', 'short_name']], include:[size, brand, color, material, pic],where:{shop_id:shopId}, offset:paging.getSinceCount(), limit:paging.getPageSize(), group:'id'}, {subQuery:false}).success(function(result) {
                 var arr = Convert.values2Arr(result);
                 cb(null, arr);
             })
         }, function(data, cb) {
-            Shoe.count({include:[size, brand, color, material],where:{shop_id:shopId}}).success(function(count) {
+            Shoe.count({include:[size, brand, color, material, pic], where:{shop_id:shopId}}).success(function(count) {
                 var pag = new Paging(count, paging.getPage(), paging.getPageSize(), data);
                 cb(null, pag);
             })

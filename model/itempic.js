@@ -6,6 +6,7 @@ var Pic = sequelize.define('ItemPic', {
     item_id:Sequelize.BIGINT,
     pic_url:Sequelize.STRING,
     create_time:Sequelize.DATE,
+    is_major:Sequelize.BOOLEAN,
     is_valid:Sequelize.BOOLEAN
 }, {
     tableName:'weshop_item_pic',
