@@ -90,15 +90,20 @@ exports.findList = function(shopId, params, paging, callback) {
 
     if(params) {
         if(params.b != '0') {
-            brand.id = params.b;
+            brand.where = {};
+            brand.where.id = params.b;
         }
         if(params.c != '0') {
-            color.id = params.c;
+            material.where = {};
+            material.where.id = params.c;
         }
         if(params.d != '0') {
-            material.id = params.d;
+            console.log('-------------------------');
+            color.where = {};
+            color.where.id = params.d;
         }
     }
+    console.log(color);
     async.waterfall([
         function(cb) {
             Shoe.findAll({attributes:[['short_name', 'short_name']], include:[size, brand, color, material, pic],where:{shop_id:shopId}, offset:paging.getSinceCount(), limit:paging.getPageSize(), group:'id'}, {subQuery:false}).success(function(result) {
