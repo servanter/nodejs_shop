@@ -6,22 +6,15 @@
         <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="/style/main.css">
         <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
-        <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js">
-        </script>
+        <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
         <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-        <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js">
+        <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+        <script type="text/javascript">
+          var navIndex = 1;
         </script>
     </head>
     <body>
-         <header id="header" class="header clearfix"> 
-         <!-- <div class="head_left fl"> 
-          <a href="javascript:void(0)" mars_sead="brand-detail-back_btn" class="J_backToPrev"><span class="h_back"></span></a> 
-         </div>  -->
-         <span class="headtit"><%=data.shop.short_name%></span> 
-        <!--  <div class="head_right fr"> 
-          <a href="/shop/14/" mars_sead="nav_home_btn"><span class="h_home"></span></a> 
-         </div>  -->
-        </header>
+        <%- include header %>
         <div class="container-fluid">
                 <%
                   if(data.searchConditions && data.searchConditions.length > 0) {

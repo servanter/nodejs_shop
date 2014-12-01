@@ -531,7 +531,7 @@ textarea#msg{
     font-size:9px;
     font-style:normal 
 }
-.h_back,.h_cart,.h_history,.h_home,.h_logn{
+.h_back,.h_cart,.h_history,.h_home,.h_logn,.h_empty{
     display:block;
     width:24px;
     height:21px 
@@ -9219,4 +9219,23 @@ a.add-collect.reduce{
     margin:2px 0;
     line-height:12px;
     color:#fff 
+}
+
+.navigation {
+    text-align: center;
+    background: #ffffff;
+    padding: 0px 5% 0px 5%;
+    position: relative;
+    width: 100%;
+    height: 44px;
+    line-height: 44px;
+    font-size: 14px;
+    color: black;
+    z-index: 110;
+}
+.navigation.clearfix span {
+    padding:1% 1% 1% 1%;
+}
+.navigation.clearfix a.active {
+    background-color: #FF0000;
 }
