@@ -51,3 +51,4 @@ exports.findSearchConditions = function(shopId, param, callback) {
             })
      
 }
+
