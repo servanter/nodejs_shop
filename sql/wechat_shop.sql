@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50519
 File Encoding         : 65001
 
-Date: 2014-12-01 15:32:10
+Date: 2014-12-01 15:35:09
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -730,7 +730,6 @@ INSERT INTO `weshop_article` VALUES ('10', '1', '1', '大大声道', 'qwe', '0',
 DROP TABLE IF EXISTS `weshop_dict_color`;
 CREATE TABLE `weshop_dict_color` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `alias` int(4) NOT NULL,
   `color_name` varchar(20) NOT NULL,
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `is_valid` tinyint(1) NOT NULL DEFAULT '0',
@@ -740,10 +739,10 @@ CREATE TABLE `weshop_dict_color` (
 -- ----------------------------
 -- Records of weshop_dict_color
 -- ----------------------------
-INSERT INTO `weshop_dict_color` VALUES ('1', '100', '红色', '2014-11-29 15:19:27', '1');
-INSERT INTO `weshop_dict_color` VALUES ('2', '200', '白色', '2014-11-29 15:19:40', '1');
-INSERT INTO `weshop_dict_color` VALUES ('3', '300', '黑色', '2014-11-29 17:30:35', '1');
-INSERT INTO `weshop_dict_color` VALUES ('4', '300', '蓝色', '2014-12-01 14:34:50', '1');
+INSERT INTO `weshop_dict_color` VALUES ('1', '红色', '2014-11-29 15:19:27', '1');
+INSERT INTO `weshop_dict_color` VALUES ('2', '白色', '2014-11-29 15:19:40', '1');
+INSERT INTO `weshop_dict_color` VALUES ('3', '黑色', '2014-11-29 17:30:35', '1');
+INSERT INTO `weshop_dict_color` VALUES ('4', '蓝色', '2014-12-01 14:34:50', '1');
 
 -- ----------------------------
 -- Table structure for `weshop_dict_shoe_brand`

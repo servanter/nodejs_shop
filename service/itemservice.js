@@ -52,8 +52,7 @@ exports.search = function(shopId, params, paging, callback) {
                     var pag = new Paging(count, paging.getPage(), paging.getPageSize(), data);
                     cb(null, pag);
                 })
-            }
-            ], function(err, results) {
+            }], function(err, results) {
                 if(err) {
                     throw err;
                 } else {

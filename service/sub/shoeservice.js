@@ -41,7 +41,7 @@ exports.findSearchConditions = function(shopId, param, callback) {
                     cb(null, {brands:data, materials:arr})
                  })
             }, function(data, cb) {
-                Shoe.findAll({attributes:[[Sequelize.fn('COUNT', 'color_id'), 'total']], include:[{model:Color, as:'color', required:true,attributes:[['color_name', 'color_name'],['alias', 'alias']], where:{is_valid:1}}], where:{shop_id:shopId}, group:['color_id'], order:[[Sequelize.fn('COUNT', 'color_id'), 'DESC']]},{subQuery:false}).success(function(result) {
+                Shoe.findAll({attributes:[[Sequelize.fn('COUNT', 'color_id'), 'total']], include:[{model:Color, as:'color', required:true,attributes:[['color_name', 'color_name']], where:{is_valid:1}}], where:{shop_id:shopId}, group:['color_id'], order:[[Sequelize.fn('COUNT', 'color_id'), 'DESC']]},{subQuery:false}).success(function(result) {
                     var arr = [];
                     for (var i = 0; i < result.length; i++) {
                         arr.push({name:result[i].color.color_name, href:result[i].color.alias, total:result[i].dataValues.total});
