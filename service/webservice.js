@@ -40,7 +40,11 @@ exports.itemList = function(shopId, param, page, callback) {
                 cb(null, {shop:data.shop, items:data.items, searchConditions:result});
             })
         }], function(err, result) {
-            result.category = param.a;
+            var category = param.a;
+            if(!category) {
+                category = '0';
+            }
+            result.category = category;
             callback(result);
         })
 }

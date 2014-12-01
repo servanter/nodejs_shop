@@ -116,7 +116,7 @@ exports.findItemClassesByShopId = function (shopId, callback) {
     Item.findAll({attributes:[[Sequelize.fn('COUNT', 'class_id'), 'total']], include:[{model:ItemClass, required:true, as:'category', attributes:[['alias', 'alias'],['id', 'id'] ]}], where:{shop_id:shopId}, group:['class_id'], order:[[Sequelize.fn('COUNT', 'class_id'), 'DESC']]}, {subQuery:false}).success(function(result) {
         var arr = [];
         for (var i = 0; i < result.length; i++) {
-            arr.push({name:result[i].category.alias, href:'a' + result[i].category.id + 'b0', total:result[i].dataValues.total});
+            arr.push({name:result[i].category.alias, link:'a' + result[i].category.id + 'b0c0d0', total:result[i].dataValues.total});
         }
         callback(arr);
     })

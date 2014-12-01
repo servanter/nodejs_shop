@@ -29,7 +29,7 @@ exports.findSearchConditions = function(shopId, param, callback) {
                 Shoe.findAll({attributes:[[Sequelize.fn('COUNT', 'brand_id'), 'total']], include:[{model:ShoeBrand, as:'brand', required:true,attributes:[['brand_name', 'brand_name'], ['id', 'id']], where:{is_valid:1}}], where:{shop_id:shopId}, group:['brand_id'], order:[[Sequelize.fn('COUNT', 'brand_id'), 'DESC']]},{subQuery:false}).success(function(result) {
                     var arr = [];
                     for (var i = 0; i < result.length; i++) {
-                        arr.push({name:result[i].brand.brand_name, href:result[i].brand.id, total:result[i].dataValues.total});
+                        arr.push({name:result[i].brand.brand_name, id:result[i].brand.id, total:result[i].dataValues.total});
                     }
                     cb(null, arr)
                  })
@@ -37,19 +37,45 @@ exports.findSearchConditions = function(shopId, param, callback) {
                 Shoe.findAll({attributes:[[Sequelize.fn('COUNT', 'material_id'), 'total']], include:[{model:ShoeMaterial, as:'material', required:true,attributes:[['material_name', 'material_name'],['id', 'id']], where:{is_valid:1}}], where:{shop_id:shopId}, group:['material_id'], order:[[Sequelize.fn('COUNT', 'material_id'), 'DESC']]},{subQuery:false}).success(function(result) {
                     var arr = [];
                     for (var i = 0; i < result.length; i++) {
-                        arr.push({name:result[i].material.material_name, href:result[i].material.id, total:result[i].dataValues.total});
+                        arr.push({name:result[i].material.material_name, id:result[i].material.id, total:result[i].dataValues.total});
                     }
                     cb(null, {brands:data, materials:arr})
                  })
             }, function(data, cb) {
-                Shoe.findAll({attributes:[[Sequelize.fn('COUNT', 'color_id'), 'total']], include:[{model:Color, as:'color', required:true,attributes:[['color_name', 'color_name']], where:{is_valid:1}}], where:{shop_id:shopId}, group:['color_id'], order:[[Sequelize.fn('COUNT', 'color_id'), 'DESC']]},{subQuery:false}).success(function(result) {
+                Shoe.findAll({attributes:[[Sequelize.fn('COUNT', 'color_id'), 'total']], include:[{model:Color, as:'color', required:true,attributes:[['color_name', 'color_name'], ['id', 'id']], where:{is_valid:1}}], where:{shop_id:shopId}, group:['color_id'], order:[[Sequelize.fn('COUNT', 'color_id'), 'DESC']]},{subQuery:false}).success(function(result) {
                     var arr = [];
                     for (var i = 0; i < result.length; i++) {
-                        arr.push({name:result[i].color.color_name, href:result[i].color.alias, total:result[i].dataValues.total});
+                        arr.push({name:result[i].color.color_name, id:result[i].color.id, total:result[i].dataValues.total});
                     }
                     cb(null, [data.brands, data.materials, arr]);
                 })
             }], function(err, result) {
+                var baseLink = 'a' + param.a;
+                var curBrand = param.b;
+                var curMaterial = param.c;
+                var curColor = param.d;
+                if(!curBrand) {
+                    curBrand = '0';
+                }
+                if(!curMaterial) {
+                    curMaterial = '0';
+                }
+                if(!curColor) {
+                    curColor = '0';
+                }
+                curBrand = 'b' + curBrand;
+                curMaterial = 'c' + curMaterial;
+                curColor = 'd' + curColor;
+                
+                for (var i = 0; i < result[0].length; i++) {
+                    result[0][i].link = baseLink + 'b' + result[0][i].id + curMaterial + curColor;
+                }
+                for (var i = 0; i < result[1].length; i++) {
+                    result[1][i].link = baseLink + curBrand + 'c' + result[1][i].id + curColor;
+                }
+                for (var i = 0; i < result[2].length; i++) {
+                    result[2][i].link = baseLink + curBrand + curMaterial + 'd' + result[2][i].id;
+                }
                 callback(result);
             })
      
