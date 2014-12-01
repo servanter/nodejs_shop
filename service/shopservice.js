@@ -34,7 +34,6 @@ exports.findShopsByUserId = function(userId, paging, callback) {
 }
 
 exports.add = function(shop, callback) {
-    console.log(shop);
     Shop.create(shop).complete(function(err, result) {
         if(err) {
             callback(false);

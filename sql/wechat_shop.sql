@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50519
 File Encoding         : 65001
 
-Date: 2014-12-01 14:49:19
+Date: 2014-12-01 15:32:10
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -743,7 +743,7 @@ CREATE TABLE `weshop_dict_color` (
 INSERT INTO `weshop_dict_color` VALUES ('1', '100', '红色', '2014-11-29 15:19:27', '1');
 INSERT INTO `weshop_dict_color` VALUES ('2', '200', '白色', '2014-11-29 15:19:40', '1');
 INSERT INTO `weshop_dict_color` VALUES ('3', '300', '黑色', '2014-11-29 17:30:35', '1');
-INSERT INTO `weshop_dict_color` VALUES ('4', '300', '蓝色', '2014-12-01 14:34:50', '0');
+INSERT INTO `weshop_dict_color` VALUES ('4', '300', '蓝色', '2014-12-01 14:34:50', '1');
 
 -- ----------------------------
 -- Table structure for `weshop_dict_shoe_brand`
@@ -971,13 +971,16 @@ CREATE TABLE `weshop_shoe_size_rel` (
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `is_valid` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of weshop_shoe_size_rel
 -- ----------------------------
 INSERT INTO `weshop_shoe_size_rel` VALUES ('1', '10', '3', '1', '1990-01-01 00:00:00', '2014-11-30 19:30:32', '1');
 INSERT INTO `weshop_shoe_size_rel` VALUES ('2', '10', '3', '2', '1990-01-01 00:00:00', '2014-11-30 19:30:30', '1');
+INSERT INTO `weshop_shoe_size_rel` VALUES ('3', '3', '2', '1', '1990-01-01 00:00:00', '2014-12-01 15:29:11', '1');
+INSERT INTO `weshop_shoe_size_rel` VALUES ('4', '2', '4', '2', '1990-01-01 00:00:00', '2014-12-01 15:29:23', '1');
+INSERT INTO `weshop_shoe_size_rel` VALUES ('5', '4', '5', '2', '1990-01-01 00:00:00', '2014-12-01 15:29:34', '1');
 
 -- ----------------------------
 -- Table structure for `weshop_shop`

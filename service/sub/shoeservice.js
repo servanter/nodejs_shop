@@ -7,6 +7,8 @@ var ShoeBrand = require('../../model/dictshoebrand');
 var ModelRelation = require('../../model/modelrelation');
 var ShoeMaterial = require('../../model/dictshoematerial');
 var Color = require('../../model/dictcolor');
+var Convert = require('../../util/convert');
+var Paging = require('../../util/paging');
 
 exports.findDetail = function(id, callback) {
     Shoe.findAll({include:[{model:ShoeSize, as:'sizes', required:true, order:[[ShoeSize, 'id', 'DESC']], include:[{model:RelShoeSize, where:{is_valid:1}}]}, {model:ShoeBrand, as:'brand', required:true}, {model:ShoeMaterial, as:'material', required:true}],where:{item_id:id}}, {subQuery:false}).success(function(result) {
@@ -52,3 +54,36 @@ exports.findSearchConditions = function(shopId, param, callback) {
      
 }
 
+exports.findList = function(shopId, params, paging, callback) {
+    var brand = {model:ShoeBrand, as:'brand', required:true, attributes:[['brand_name', 'brand_name']]};
+    var color = {model:Color, as:'color', required:true, attributes:[['color_name', 'color_name']]};
+    var material = {model:ShoeMaterial, as:'material', required:true, attributes:[['material_name', 'material_name']]};
+    var size = {model:ShoeSize, as:'sizes', required:true, attributes:[], order:[[ShoeSize, 'id', 'DESC']], include:[{model:RelShoeSize, where:{is_valid:1}, attributes:[]}]};
+
+    if(params) {
+        if(params.b != '0') {
+            brand.id = params.b;
+        }
+        if(params.c != '0') {
+            color.id = params.c;
+        }
+        if(params.d != '0') {
+            material.id = params.d;
+        }
+    }
+    async.waterfall([
+        function(cb) {
+            Shoe.findAll({attribute:[['short_name', 'short_name'], ['pic_url', 'pic_url']], include:[size, brand, color, material],where:{shop_id:shopId}, offset:paging.getSinceCount(), limit:paging.getPageSize()}, {subQuery:false}).success(function(result) {
+                var arr = Convert.values2Arr(result);
+                cb(null, arr);
+            })
+        }, function(data, cb) {
+            Shoe.count({include:[size, brand, color, material],where:{shop_id:shopId}}).success(function(count) {
+                var pag = new Paging(count, paging.getPage(), paging.getPageSize(), data);
+                cb(null, pag);
+            })
+        }], function(err, result) {
+            callback(result);
+        })
+    
+}
