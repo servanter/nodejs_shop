@@ -87,10 +87,12 @@
                               <span><%=item.name%><a href="javascript:window.location.href='/shop/<%=data.shop.id%>/list/<%=item.link%>'"><i class="">X</i></a></span>
               <%
                       })
+              %>
+                   <a class="btn" href="/shop/<%=data.shop.id%>/list/">重置</a>
+                  </div>
+              <%
                   }
               %>
-                  <a class="btn" href="/shop/<%=data.shop.id%>/list/">重置</a>
-              </div>
               <%
                   if(data.items.totalRecord > 0) {
                     for(var i = 0; i < data.items.result.length; i++) {

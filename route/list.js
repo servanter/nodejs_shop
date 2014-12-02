@@ -12,7 +12,6 @@ exports.list = function (req, res) {
     		p = new Paging(1, 9);
     	}
         webService.itemList(shopId, req.params, p, function(result) {
-            console.log(result);
             res.render('list', {data:result});
         });
     }
