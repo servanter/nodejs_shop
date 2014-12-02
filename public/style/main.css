@@ -316,3 +316,11 @@
     background-color: #f40;
     font-family: tahoma;
 }
+.noresult{
+    text-align: center;
+    font-weight: bold;
+}
+.noresult span {
+    display: block;
+    line-height: 80px;
+}
