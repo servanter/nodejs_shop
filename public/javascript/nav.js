@@ -12,6 +12,10 @@ $(function() {
     if(referer && referer.indexOf('localhost') != -1) {
         $($('.head_left.fl').find('span')).removeClass('h_empty').addClass('h_back');
     }
-
+    $('.readmore').click(function() {
+        $(this).parent().next().toggleClass('dn');
+        $(this).toggleClass('readmore').toggleClass('ismore');
+    })
+    
 });
 

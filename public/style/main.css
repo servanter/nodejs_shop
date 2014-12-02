@@ -160,7 +160,9 @@
  .selectBody {
      overflow: hidden;
      border: 5px #666 solid;
-     display: none;
+}
+.dn {
+    display: none;
 }
  .items {
      border-bottom: 1px #d6d6d6 solid;
@@ -199,12 +201,22 @@
 .readmore {
     background: url(../images/item_detail_indexincon.png) no-repeat;
     background-size: 225px;
+    background-position: -75px -58px;
+    width: 20px;
+    height: 23px;
+    position: absolute;
+    right: 0;
+    top: 8px;
+}
+.ismore {
+    background: url(../images/item_detail_indexincon.png) no-repeat;
+    background-size: 225px;
     background-position: -92px -58px;
     width: 20px;
     height: 23px;
     position: absolute;
     right: 0;
-    top: 0;
+    top: 8px;
 }
 
 .navigation {
@@ -239,6 +251,11 @@
     background-color: #FF0000;
     color:white;
 }
+.selectBody .items a.active{
+    background-color: #FF0000;
+    color:white;
+}
+
 
 .filtrate-seleced {
     position: relative;
