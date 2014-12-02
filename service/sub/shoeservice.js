@@ -50,6 +50,8 @@ exports.findSearchConditions = function(shopId, param, callback) {
                     cb(null, [data.brands, data.materials, arr]);
                 })
             }], function(err, result) {
+
+                // generate the conditions links
                 var baseLink = 'a' + param.a;
                 var curBrand = param.b;
                 var curMaterial = param.c;
@@ -63,18 +65,26 @@ exports.findSearchConditions = function(shopId, param, callback) {
                 if(!curColor) {
                     curColor = '0';
                 }
-                curBrand = 'b' + curBrand;
-                curMaterial = 'c' + curMaterial;
-                curColor = 'd' + curColor;
                 
                 for (var i = 0; i < result[0].length; i++) {
-                    result[0][i].link = baseLink + 'b' + result[0][i].id + curMaterial + curColor;
+                    result[0][i].link = baseLink + 'b' + result[0][i].id + 'c' + curMaterial + 'd' + curColor;
+                    // add high light
+                    if(result[0][i].id == parseInt(curBrand)) {
+                        result[0][i].highlight = true;
+                    }
                 }
                 for (var i = 0; i < result[1].length; i++) {
-                    result[1][i].link = baseLink + curBrand + 'c' + result[1][i].id + curColor;
+                    result[1][i].link = baseLink + 'b' + curBrand + 'c' + result[1][i].id + 'd' + curColor;
+                    if(result[1][i].id == parseInt(curMaterial)) {
+                        result[1][i].highlight = true;
+                    }
                 }
                 for (var i = 0; i < result[2].length; i++) {
-                    result[2][i].link = baseLink + curBrand + curMaterial + 'd' + result[2][i].id;
+                    result[2][i].link = baseLink + 'b' + curBrand + 'c' + curMaterial + 'd' + result[2][i].id;
+                    if(result[2][i].id == parseInt(curColor)) {
+                        result[2][i].highlight = true;
+                    }
+
                 }
                 callback(result);
             })
@@ -98,12 +108,10 @@ exports.findList = function(shopId, params, paging, callback) {
             material.where.id = params.c;
         }
         if(params.d != '0') {
-            console.log('-------------------------');
             color.where = {};
             color.where.id = params.d;
         }
     }
-    console.log(color);
     async.waterfall([
         function(cb) {
             Shoe.findAll({attributes:[['short_name', 'short_name']], include:[size, brand, color, material, pic],where:{shop_id:shopId}, offset:paging.getSinceCount(), limit:paging.getPageSize(), group:'id'}, {subQuery:false}).success(function(result) {

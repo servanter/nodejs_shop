@@ -31,8 +31,12 @@
                                   if(j == 3) {
                                     break;
                                   }
+                                  var defaultClass = "mainItem";
+                                  if(data.searchConditions[i][j].highlight) {
+                                      defaultClass = "mainItem active";
+                                  }
                               %>
-                                  <a href="/shop/14/list/<%=data.searchConditions[i][j].link%>/" class="mainItem" name="search-brand"><%=data.searchConditions[i][j].name%></a>
+                                  <a href="/shop/14/list/<%=data.searchConditions[i][j].link%>/" class="<%=defaultClass%>" name="search-brand"><%=data.searchConditions[i][j].name%></a>
                               <%
                                 }
                               %>
