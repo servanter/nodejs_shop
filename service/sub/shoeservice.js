@@ -66,27 +66,31 @@ exports.findSearchConditions = function(shopId, param, callback) {
                     curColor = '0';
                 }
                 
+                // user select the situations
+                var currentSelected = [];
                 for (var i = 0; i < result[0].length; i++) {
                     result[0][i].link = baseLink + 'b' + result[0][i].id + 'c' + curMaterial + 'd' + curColor;
                     // add high light
                     if(result[0][i].id == parseInt(curBrand)) {
                         result[0][i].highlight = true;
+                        currentSelected.push({name:result[0][i].name, link:'a' + param.a + 'b0' + 'c' + curMaterial + 'd' + curColor});
                     }
                 }
                 for (var i = 0; i < result[1].length; i++) {
                     result[1][i].link = baseLink + 'b' + curBrand + 'c' + result[1][i].id + 'd' + curColor;
                     if(result[1][i].id == parseInt(curMaterial)) {
                         result[1][i].highlight = true;
+                        currentSelected.push({name:result[1][i].name, link:'a' + param.a + 'b' + curBrand + 'c0' + 'd' + curColor});
                     }
                 }
                 for (var i = 0; i < result[2].length; i++) {
                     result[2][i].link = baseLink + 'b' + curBrand + 'c' + curMaterial + 'd' + result[2][i].id;
                     if(result[2][i].id == parseInt(curColor)) {
                         result[2][i].highlight = true;
+                        currentSelected.push({name:result[2][i].name, link:'a' + param.a + 'b' + curBrand + 'c' + curMaterial + 'd0'});
                     }
-
                 }
-                callback(result);
+                callback({searchConditions:result, currentSelected:currentSelected});
             })
      
 }

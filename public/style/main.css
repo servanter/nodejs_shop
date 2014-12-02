@@ -239,3 +239,63 @@
     background-color: #FF0000;
     color:white;
 }
+
+.filtrate-seleced {
+    position: relative;
+    min-height: 36px;
+    background-color: #f4f4f4;
+    border-bottom: 1px solid #dbdbdb;
+    padding: 6px 45px 6px 100px;
+    overflow: hidden;
+}
+.filtrate-seleced strong {
+    position: absolute;
+    top: 6px;
+    left: 10px;
+    color: #878787;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+}
+.filtrate-seleced span {
+    float: left;
+    color: #505050;
+    font-size: 16px;
+    line-height: 24px;
+    padding: 0 5px;
+}
+.filtrate-seleced .btn {
+    position: absolute;
+    right: 5px;
+    top: 6px;
+    color: #67b700;
+    font-size: 16px;
+    line-height: 24px;
+    padding: 0 5px;
+}
+.clear {
+    clear: both
+}
+
+.filtrate-seleced span {
+    display: block;
+    float: left;
+    margin: 1px;
+    padding: 0 3px;
+    background-color: #fff2ed;
+    color: #ff4400;
+    border: 1px solid #ff4400;
+    line-height: 24px;
+}
+
+.filtrate-seleced span a i {
+    margin-left: 5px;
+    width: 16px;
+    height: 14px;
+    line-height: 14px;
+    text-align: center;
+    font-style: normal;
+    color: #fff;
+    background-color: #f40;
+    font-family: tahoma;
+}

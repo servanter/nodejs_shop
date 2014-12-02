@@ -37,7 +37,7 @@ exports.itemList = function(shopId, param, page, callback) {
             var category = param.a;
             var subFactory = new itemSubFactory.getService(parseInt(category));
             subFactory.findSearchConditions(shopId, param, function(result) {
-                cb(null, {shop:data.shop, items:data.items, searchConditions:result});
+                cb(null, {shop:data.shop, items:data.items, searchConditions:result.searchConditions, currentSelected:result.currentSelected});
             })
         }], function(err, result) {
             var category = param.a;

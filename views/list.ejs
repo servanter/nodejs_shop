@@ -16,6 +16,7 @@
     <body>
         <%- include header %>
         <div class="container-fluid">
+              <div>
                 <%
                   if(data.searchConditions && data.searchConditions.length > 0) {
                 %>
@@ -36,7 +37,7 @@
                                       defaultClass = "mainItem active";
                                   }
                               %>
-                                  <a href="/shop/14/list/<%=data.searchConditions[i][j].link%>/" class="<%=defaultClass%>" name="search-brand"><%=data.searchConditions[i][j].name%></a>
+                                  <a href="/shop/<%=data.shop.id%>/list/<%=data.searchConditions[i][j].link%>/" class="<%=defaultClass%>" name="search-brand"><%=data.searchConditions[i][j].name%></a>
                               <%
                                 }
                               %>
@@ -72,6 +73,24 @@
                 %>
                 
               </ul>
+              </div>
+              
+
+              <%
+                  if(data.currentSelected && data.currentSelected.length > 0) { 
+              %>
+                  <div id="filter_params" class="filtrate-seleced clear">
+                    <strong>您正在筛选:</strong>
+                  <%
+                          data.currentSelected.forEach(function(item, index) {
+                  %>
+                              <span><%=item.name%><a href="javascript:window.location.href='/shop/<%=data.shop.id%>/list/<%=item.link%>'"><i class="">X</i></a></span>
+              <%
+                      })
+                  }
+              %>
+                  <a class="btn" href="/shop/<%=data.shop.id%>/list/">重置</a>
+              </div>
               <%
                   if(data.items.totalRecord > 0) {
                     for(var i = 0; i < data.items.result.length; i++) {

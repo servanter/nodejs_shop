@@ -12,6 +12,6 @@ exports.findSearchConditions = function(shopId, param, callback) {
 				cb(null, result);
 			})
 		}], function(err, result) {
-			callback([result]);
+			callback({searchConditions:[result]});
 		});
 }
