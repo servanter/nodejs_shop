@@ -9,7 +9,6 @@
   <title>GEO</title> 
   <meta name="keywords" content="" /> 
   <meta name="description" content="" /> 
-  <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="/style/item_detail.css" />
   <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
   <script type="text/javascript">
@@ -24,10 +23,10 @@
     <div id="goods_images" class="carousel"> 
      <ul data-cartimg="img">
       <%
-        if(data.item.pics.length > 0) {
-          for(var i = 0; i < data.item.pics.length; i++) {
+        if(data.detail.pics.length > 0) {
+          for(var i = 0; i < data.detail.pics.length; i++) {
       %>
-          <li><span><img src="/images/loading.gif" data-original="/<%=data.item.pics[i].pic_url%>" alt="<%=data.detail.short_name%>" class="smallImg" mars_sead="product_big_pic" /></span></li> 
+          <li><span><img src="/images/loading.gif" data-original="/<%=data.detail.pics[i].pic_url%>" alt="<%=data.detail.short_name%>" class="smallImg" mars_sead="product_big_pic" /></span></li> 
       <%
           }
         }
@@ -38,7 +37,7 @@
      <div id="pro_pagination">
       <em class="on"></em>
       <%
-        for(var i = 1; i < data.item.pics.length; i++) {
+        for(var i = 1; i < data.detail.pics.length; i++) {
       %>
           <em><%=i+1%></em>
       <%
@@ -158,15 +157,15 @@
           }
         %>
         <%
-          if(data.item.pics.length > 0) {
+          if(data.detail.pics.length > 0) {
         %>
             <p class="dc_tit" id="J_proImg_scroll">商品图片<i class="far">Image</i></p> 
             <div class="dc_img"> 
             <div class="dc_img_con"> 
         <%
-            for(var i = 0; i < data.item.pics.length; i++) {
+            for(var i = 0; i < data.detail.pics.length; i++) {
         %>
-            <img src="/<%=data.item.pics[i].pic_url%>" alt="<%=data.detail.short_name%>" width="320" /> 
+            <img src="/<%=data.detail.pics[i].pic_url%>" alt="<%=data.detail.short_name%>" width="320" /> 
         <%
             }
         %>
@@ -201,7 +200,7 @@
   </div> 
   <!-- 以上为产品详细小图内容层--> 
   <%
-        if(data.item.pics.length > 0) {
+        if(data.detail.pics.length > 0) {
   %>
           <div class="modal hide" id="Photo-modal" data-moadl="photobox"> 
            <div class="modal-body"> 
@@ -210,9 +209,9 @@
              <div id="Photo-slide"> 
               <ul> 
   <%
-          for(var i = 0; i < data.item.pics.length; i++) {
+          for(var i = 0; i < data.detail.pics.length; i++) {
   %>
-            <li><img src="/images/loading.gif" data-original="/<%=data.item.pics[i].pic_url%>" alt="<%=data.detail.short_name%>" class="Touch_mer_biglImg" /></li> 
+            <li><img src="/images/loading.gif" data-original="/<%=data.detail.pics[i].pic_url%>" alt="<%=data.detail.short_name%>" class="Touch_mer_biglImg" /></li> 
   <%
           }
   %>
@@ -220,7 +219,7 @@
             <nav> 
              <ul id="Photo-pagination">
               <%
-                for(var i = 0; i < data.item.pics.length; i++) {
+                for(var i = 0; i < data.detail.pics.length; i++) {
               %>
                   <em id="sel<%=i + 1%>" class="on" mars_sead="product_big_pic"><%=i + 1%></em> 
               <%

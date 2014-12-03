@@ -85,7 +85,7 @@ exports.addItem = function(item, callback) {
 exports.findById = function(id, callback) {
     async.waterfall([
         function(cb) {
-            Item.findOne({include:[{model:ItemPic, as:'pics', required:true}], where:{id:id}}, {subQuery:false}).success(function(data) {
+            Item.findOne({where:{id:id}}, {subQuery:false}).success(function(data) {
                 cb(null, data);
             })
         }, function(data, cb) {

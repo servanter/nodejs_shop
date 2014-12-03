@@ -225,6 +225,7 @@
     background: #e7e7e7;
     overflow: hidden;
     line-height: 36px;
+    box-sizing: border-box;
 }
 .navigation {
     text-align: center;

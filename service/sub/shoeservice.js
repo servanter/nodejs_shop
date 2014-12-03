@@ -12,7 +12,8 @@ var Convert = require('../../util/convert');
 var Paging = require('../../util/paging');
 
 exports.findDetail = function(id, callback) {
-    Shoe.findAll({include:[{model:ShoeSize, as:'sizes', required:true, order:[[ShoeSize, 'id', 'DESC']], include:[{model:RelShoeSize, where:{is_valid:1}}]}, {model:ShoeBrand, as:'brand', required:true}, {model:ShoeMaterial, as:'material', required:true}],where:{item_id:id}}, {subQuery:false}).success(function(result) {
+    Shoe.findAll({include:[{model:ShoeSize, as:'sizes', required:true, attributes:[['description', 'description']], order:[[ShoeSize, 'id', 'DESC']], include:[{model:RelShoeSize, where:{is_valid:1}, attributes:[['shoe_id', 'shoe_id'],['size_id', 'size_id']]}]}, {model:ShoeBrand, as:'brand', required:true, attributes:[['brand_name', 'brand_name']]}, {model:ShoeMaterial, as:'material', required:true, attributes:[['material_name', 'material_name']]}, {model:Pic, as : 'pics', required:true, attributes:[['pic_url', 'pic_url']]}],where:{id:id}}, {subQuery:false}).success(function(result) {
+        console.log('---------------',result[0].pics.length);
         var attr = packageAttr(result[0].dataValues);
         result[0].dataValues.attr = attr;
         callback(result[0].dataValues);
