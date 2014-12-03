@@ -1,13 +1,13 @@
 var Shop = require('../model/shop');
 var ShopPromise = require('../model/dictshoppromise');
-var ShopAd = require('../model/shopad');
 var async = require('async');
 var Paging = require('../util/paging');
 var Convert = require('../util/convert');
 var itemService = require('./itemService');
+var shopAdService = require('./shopadservice');
 
 function findById(shopId, callback) {
-    Shop.findOne({include:[{model:ShopAd, as : 'ads', attributes:[['pic_url', 'pic_url'], ['link', 'link']],  limit:5}], where:{id:shopId}}).success(function(data) {
+    Shop.findOne({where:{id:shopId}}).success(function(data) {
         callback(data.dataValues);
     })
 }
@@ -45,6 +45,11 @@ exports.findShopAndIndexItems = function(shopId, p, callback) {
             function(cb) {
                 findById(shopId, function(result) {
                     cb(null, result);
+                })
+            }, function(data, cb) {
+                shopAdService.findByShopId(data.id, function(result) {
+                    data.ads = result;
+                    cb(null, data);
                 })
             }, function(data, cb) {
                 itemService.findItemsByShopId(data.id, p, function(result) {
