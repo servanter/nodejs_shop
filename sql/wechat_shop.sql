@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50519
 File Encoding         : 65001
 
-Date: 2014-12-02 15:45:10
+Date: 2014-12-03 10:47:28
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -850,8 +850,8 @@ INSERT INTO `weshop_item` VALUES ('1', '锅包肉', '14', '1', '2', '肉肉', '1
 INSERT INTO `weshop_item` VALUES ('2', 'nike air max 90', '14', '1', '3', 'nike air max 90', '2', 'item/bbb.jpg', '563.10', '2014-11-21 15:54:29', '2014-12-01 14:27:54', '1', '1');
 INSERT INTO `weshop_item` VALUES ('3', '李宁休闲鞋', '14', '1', '3', '李宁休闲鞋', '1', 'item/bbb.jpg', '165.03', '2014-11-21 15:54:37', '2014-12-01 14:29:45', '1', '1');
 INSERT INTO `weshop_item` VALUES ('4', 'nike 詹姆斯篮球鞋', '14', '1', '3', 'nike 詹姆斯篮球鞋', '1', 'item/aaa.jpg', '653.65', '2014-11-21 15:54:45', '2014-12-01 14:31:42', '1', '1');
-INSERT INTO `weshop_item` VALUES ('5', 'asdasd12', '14', '1', '1', '123asda', '1', 'item/bbb.jpg', '3.65', '2014-11-21 15:54:53', '2014-11-29 15:46:33', '1', '1');
-INSERT INTO `weshop_item` VALUES ('6', 'adad132', '14', '1', '2', 'adqweq', '2', 'item/bbb.jpg', '36.65', '2014-11-21 15:55:01', '2014-11-29 15:46:34', '1', '1');
+INSERT INTO `weshop_item` VALUES ('5', 'asdasd12', '14', '1', '3', '123asda', '1', 'item/bbb.jpg', '3.65', '2014-11-21 15:54:53', '2014-12-03 10:42:57', '1', '1');
+INSERT INTO `weshop_item` VALUES ('6', 'adad132', '14', '1', '3', 'adqweq', '2', 'item/bbb.jpg', '36.65', '2014-11-21 15:55:01', '2014-12-03 10:33:49', '1', '1');
 INSERT INTO `weshop_item` VALUES ('7', '啊实打实大', '14', '1', '2', '请问企鹅', '2', 'item/bbb.jpg', '5656.30', '2014-11-24 11:00:47', '2014-11-29 15:46:36', '1', '1');
 INSERT INTO `weshop_item` VALUES ('8', 'asdaqweqwe', '14', '1', '1', 'qweqwe', '1', 'item/aaa.jpg', '565.00', '2014-11-24 11:00:55', '2014-11-29 15:46:36', '1', '1');
 INSERT INTO `weshop_item` VALUES ('9', 'adsad', '14', '1', '1', 'qweqweq', '2', 'item/aaa.jpg', '565.00', '2014-11-24 11:01:02', '2014-11-29 15:46:39', '1', '1');
@@ -889,7 +889,7 @@ CREATE TABLE `weshop_item_pic` (
   `is_major` tinyint(1) NOT NULL DEFAULT '0',
   `is_valid` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of weshop_item_pic
@@ -899,6 +899,7 @@ INSERT INTO `weshop_item_pic` VALUES ('2', '10', '3', 'item/bbb.jpg', '2014-12-0
 INSERT INTO `weshop_item_pic` VALUES ('3', '3', '2', 'item/aaa.jpg', '2014-12-01 15:47:29', '1', '1');
 INSERT INTO `weshop_item_pic` VALUES ('4', '2', '4', 'item/aaa.jpg', '2014-12-01 15:47:29', '1', '1');
 INSERT INTO `weshop_item_pic` VALUES ('5', '4', '5', 'item/bbb.jpg', '2014-12-01 16:36:48', '1', '1');
+INSERT INTO `weshop_item_pic` VALUES ('6', '5', '6', 'item/bbb.jpg', '2014-12-02 17:33:01', '1', '1');
 
 -- ----------------------------
 -- Table structure for `weshop_item_position`
@@ -953,7 +954,7 @@ CREATE TABLE `weshop_shoe` (
   `serial_number` varchar(50) NOT NULL,
   `rel_link` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of weshop_shoe
@@ -962,6 +963,7 @@ INSERT INTO `weshop_shoe` VALUES ('2', '3', '14', '1', '1', '1198.00', '11980.00
 INSERT INTO `weshop_shoe` VALUES ('3', '10', '14', '1', '2', '2356.00', '656566.00', '1990-01-01 00:00:00', '2014-12-01 17:35:19', 'ADIDAS  篮球鞋', 'ADIDAS  篮球鞋', '中国', '2', '2', '甲亢是就到啦', '4454644446', 'asdasd');
 INSERT INTO `weshop_shoe` VALUES ('4', '2', '14', '1', '3', '154646.00', '56456.00', '1990-01-01 00:00:00', '2014-12-01 17:31:44', '李宁休闲', '李宁休闲', '1321', '1', '3', 'asdasd', '1231', 'qweqwe');
 INSERT INTO `weshop_shoe` VALUES ('5', '4', '14', '1', '1', '1180.00', '1680.00', '1990-01-01 00:00:00', '2014-12-01 14:34:34', 'nike 詹姆斯篮球鞋', 'nike 詹姆斯篮球鞋', '越南', '1', '4', '阿斯达', '12311ad', '1231weq');
+INSERT INTO `weshop_shoe` VALUES ('6', '5', '14', '1', '1', '5698.00', '56899.00', '1990-01-01 00:00:00', '2014-12-02 17:31:49', 'nike 足球鞋', 'nike 足球鞋', '中国', '1', '1', '驱蚊器', 'asdjkljlk', 'adasd');
 
 -- ----------------------------
 -- Table structure for `weshop_shoe_size_rel`
@@ -976,7 +978,7 @@ CREATE TABLE `weshop_shoe_size_rel` (
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `is_valid` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of weshop_shoe_size_rel
@@ -986,6 +988,7 @@ INSERT INTO `weshop_shoe_size_rel` VALUES ('2', '10', '3', '2', '1990-01-01 00:0
 INSERT INTO `weshop_shoe_size_rel` VALUES ('3', '3', '2', '1', '1990-01-01 00:00:00', '2014-12-01 15:29:11', '1');
 INSERT INTO `weshop_shoe_size_rel` VALUES ('4', '2', '4', '2', '1990-01-01 00:00:00', '2014-12-01 15:29:23', '1');
 INSERT INTO `weshop_shoe_size_rel` VALUES ('5', '4', '5', '2', '1990-01-01 00:00:00', '2014-12-01 15:29:34', '1');
+INSERT INTO `weshop_shoe_size_rel` VALUES ('6', '5', '6', '1', '1990-01-01 00:00:00', '2014-12-03 10:44:36', '1');
 
 -- ----------------------------
 -- Table structure for `weshop_shop`

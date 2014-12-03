@@ -89,7 +89,7 @@ exports.findById = function(id, callback) {
                 cb(null, data);
             })
         }, function(data, cb) {
-            var subFactory = new itemSubFactory.getService(data.class_id);
+            var subFactory = new itemSubFactory.getService(parseInt(data.class_id));
             if(subFactory) {
                 subFactory.findDetail(data.dataValues.id, function(result) {
                     cb(null, {item:data.dataValues, detail:result});

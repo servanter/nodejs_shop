@@ -112,7 +112,6 @@
                               if(data.category != '0') {
                                   picData = data.items.result[i].pics[0].pic_url;
                               }
-                              console.log(data.items.result[i]);
                           %>
                           <a href="/item/<%=data.items.result[i].id%>.html"><img class="img95" src="/<%=picData%>"></a><br>
                           <a href="/item/<%=data.items.result[i].id%>.html"><label><%=data.items.result[i].short_name%></label></a>
