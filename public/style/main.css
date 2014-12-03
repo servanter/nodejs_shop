@@ -334,3 +334,10 @@
     line-height: 80px;
 }
 
+.carousel-inner .item {
+    padding: 0;
+}
+
+.carousel-inner .item img {
+    height:200px;
+}
