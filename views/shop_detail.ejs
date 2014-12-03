@@ -17,6 +17,10 @@
     <body>
         <%- include header %>
         <div class="container-fluid">
+            
+            <%
+                if(data.shop.ads && data.shop.ads.length > 0) {
+            %>
             <div class="row">
                 <div id="myCarousel" class="carousel slide">
                  <ol class="carousel-indicators">
@@ -39,9 +43,11 @@
                     data-slide="prev">&lsaquo;</a>
                  <a class="carousel-control right" href="#myCarousel" 
                     data-slide="next">&rsaquo;</a> -->
-              </div> 
-
+                </div> 
             </div>
+            <%
+                }
+            %>
               <%
                   if(data.items.result.length > 0) {
                     for(var i = 0; i < data.items.result.length; i++) {

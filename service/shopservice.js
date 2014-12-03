@@ -1,16 +1,13 @@
 var Shop = require('../model/shop');
 var ShopPromise = require('../model/dictshoppromise');
+var ShopAd = require('../model/shopad');
 var async = require('async');
 var Paging = require('../util/paging');
 var Convert = require('../util/convert');
 var itemService = require('./itemService');
 
-
-Shop.hasMany(ShopPromise, {foreignKey:'shop_id', as:'promises', through:'weshop_shop_promise_rel'});
-ShopPromise.hasMany(Shop, {foreignKey:'promise_id', through:'weshop_shop_promise_rel'});
-
 function findById(shopId, callback) {
-    Shop.findOne({where:{id:shopId}}).success(function(data) {
+    Shop.findOne({include:[{model:ShopAd, as : 'ads', attributes:[['pic_url', 'pic_url'], ['link', 'link']],  limit:5}], where:{id:shopId}}).success(function(data) {
         callback(data.dataValues);
     })
 }

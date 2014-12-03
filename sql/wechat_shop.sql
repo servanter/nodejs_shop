@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50519
 File Encoding         : 65001
 
-Date: 2014-12-03 14:55:19
+Date: 2014-12-03 17:30:03
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -1035,6 +1035,26 @@ INSERT INTO `weshop_shop` VALUES ('22', '1', 'asdqweq123123', 'qw123123', '4', '
 INSERT INTO `weshop_shop` VALUES ('23', '1', '啊实打实大', '阿打算打撒打算打算打算的', '2', '314', '', '', '', '0', '2014-11-24 17:02:47', '2014-11-24 17:02:47');
 INSERT INTO `weshop_shop` VALUES ('24', '1', 'asdad', '按时打算打算', '4', '233', '', '', '', '0', '2014-11-24 17:03:56', '2014-11-24 17:03:56');
 INSERT INTO `weshop_shop` VALUES ('25', '1', 'adasd', '12313', '3', '194', '', '', '', '0', '2014-11-24 17:16:14', '2014-11-24 17:16:14');
+
+-- ----------------------------
+-- Table structure for `weshop_shop_advertsing`
+-- ----------------------------
+DROP TABLE IF EXISTS `weshop_shop_advertsing`;
+CREATE TABLE `weshop_shop_advertsing` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `shop_id` bigint(20) NOT NULL,
+  `pic_url` varchar(200) NOT NULL,
+  `link` varchar(200) NOT NULL,
+  `create_time` timestamp NOT NULL DEFAULT '1990-01-01 00:00:00',
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `is_valid` tinyint(1) NOT NULL DEFAULT '0',
+  `is_vertify` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of weshop_shop_advertsing
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for `weshop_shop_promise_rel`
