@@ -643,13 +643,7 @@ textarea#msg{
     color:#f03791;
     background-color:rgba(255,255,255,.9) 
 }
-#nav{
-    height:36px;
-    border-bottom:1px solid #bfbfbf;
-    background:#e7e7e7;
-    overflow:hidden;
-    line-height:36px 
-}
+
 #nav ul{
     width:100%;
     font-size:0;
@@ -9221,6 +9215,14 @@ a.add-collect.reduce{
     color:#fff 
 }
 
+
+#nav {
+    height: 36px;
+    border-bottom: 1px solid #bfbfbf;
+    background: #e7e7e7;
+    overflow: hidden;
+    line-height: 36px;
+}
 .navigation {
     text-align: center;
     background: #ffffff;
@@ -9233,9 +9235,19 @@ a.add-collect.reduce{
     color: black;
     z-index: 110;
 }
+
 .navigation.clearfix span {
-    padding:1% 1% 1% 1%;
+     width:56px;
+     height:98%;
+     display:inline-block;
+     zoom:1
 }
-.navigation.clearfix a.active {
-    background-color: #FF0000;
+
+.navigation.clearfix a {
+    color:black;
+}
+
+.navigation.clearfix span.active {
+     background-color: #FF0000;
+     color:white;
 }
