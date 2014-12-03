@@ -6,9 +6,15 @@
   <meta content="yes" name="apple-mobile-web-app-capable" /> 
   <meta content="black" name="apple-mobile-web-app-status-bar-style" /> 
   <meta content="telephone=no" name="format-detection" /> 
-  <title>GEO</title> 
-  <meta name="keywords" content="" /> 
-  <meta name="description" content="" /> 
+  <title><%=data.detail.short_name%>_<%=data.shop.short_name%> - 微信小店</title>
+  <meta name="keywords" content="<%=data.detail.short_name%>, <%=data.detail.description%>, 微信小店" />
+  <%
+      var desc = '';
+      data.detail.attr.forEach(function(item, index) {
+          desc += item.key + ":" + item.value + ';';
+      })
+  %>
+  <meta name="description" content="<%=data.detail.short_name%>, <%=data.detail.description%>, <%=desc%>, 微信小店" /> 
   <link rel="stylesheet" href="/style/item_detail.css" />
   <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
   <script type="text/javascript">

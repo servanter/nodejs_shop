@@ -13,7 +13,6 @@ var Paging = require('../../util/paging');
 
 exports.findDetail = function(id, callback) {
     Shoe.findAll({include:[{model:ShoeSize, as:'sizes', required:true, attributes:[['description', 'description']], order:[[ShoeSize, 'id', 'DESC']], include:[{model:RelShoeSize, where:{is_valid:1}, attributes:[['shoe_id', 'shoe_id'],['size_id', 'size_id']]}]}, {model:ShoeBrand, as:'brand', required:true, attributes:[['brand_name', 'brand_name']]}, {model:ShoeMaterial, as:'material', required:true, attributes:[['material_name', 'material_name']]}, {model:Pic, as : 'pics', required:true, attributes:[['pic_url', 'pic_url']]}],where:{id:id}}, {subQuery:false}).success(function(result) {
-        console.log('---------------',result[0].pics.length);
         var attr = packageAttr(result[0].dataValues);
         result[0].dataValues.attr = attr;
         callback(result[0].dataValues);
@@ -77,6 +76,7 @@ exports.findSearchConditions = function(shopId, param, callback) {
                         currentSelected.push({name:result[0][i].name, link:'a' + param.a + 'b0' + 'c' + curMaterial + 'd' + curColor});
                     }
                 }
+
                 for (var i = 0; i < result[1].length; i++) {
                     result[1][i].link = baseLink + 'b' + curBrand + 'c' + result[1][i].id + 'd' + curColor;
                     if(result[1][i].id == parseInt(curMaterial)) {
