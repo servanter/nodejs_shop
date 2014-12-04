@@ -243,24 +243,17 @@
   <!-- 以上为弹出大图层--> 
   <div class="space20"></div> 
   <!--以下是底部样式--> 
-  <div class="footer clearfix"> 
-   <div class="footnav clearfix"> 
-    <a href="/shop/<%=data.shop.id%>/">首页</a> 
-    <a href="<%=data.shop.taobao_link%>">淘宝地址</a> 
-    <a href="#">联系商家</a> 
-    <a href="#">商家地址</a> 
-   </div> 
-   <p class="copright">Copyright &copy; 2008-2014 xxx.xxx.com，All Rights Reserved 京ICP备xxxxxxx号</p> 
-  </div> 
+  <%- include footer%>
+  
   <a href="#top" class="backtop" mars_sead="home_foot_top_btn"></a> 
   <script src="/javascript/all.js"></script> 
   <script type="text/javascript">
-var cartSource = '';
-var isSoldout = parseInt('0'), isStockUpdate = true;
-function saveProValue(){
-    return {}
-};
-</script> 
+  var cartSource = '';
+  var isSoldout = parseInt('0'), isStockUpdate = true;
+  function saveProValue(){
+      return {}
+  };
+  </script> 
   <script src="/javascript/swipe.js"></script> 
   <script src="/javascript/item_detail.js"></script> 
   <!-- End ZYZ Code --> 
