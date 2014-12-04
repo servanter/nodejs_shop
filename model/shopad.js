@@ -5,6 +5,7 @@ var ShopAd = sequelize.define('ShopAd', {
     id:Sequelize.BIGINT,
     shop_id:Sequelize.BIGINT,
     pic_url:Sequelize.STRING,
+    description:Sequelize.STRING,
     link:Sequelize.STRING,
     is_valid:Sequelize.BOOLEAN,
     is_vertify:Sequelize.BOOLEAN,
