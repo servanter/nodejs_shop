@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50519
 File Encoding         : 65001
 
-Date: 2014-12-03 17:30:03
+Date: 2014-12-04 14:05:43
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -1044,17 +1044,21 @@ CREATE TABLE `weshop_shop_advertsing` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `shop_id` bigint(20) NOT NULL,
   `pic_url` varchar(200) NOT NULL,
+  `description` varchar(200) NOT NULL,
   `link` varchar(200) NOT NULL,
   `create_time` timestamp NOT NULL DEFAULT '1990-01-01 00:00:00',
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `is_valid` tinyint(1) NOT NULL DEFAULT '0',
   `is_vertify` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of weshop_shop_advertsing
 -- ----------------------------
+INSERT INTO `weshop_shop_advertsing` VALUES ('1', '14', 'shop/ads/ad_1.jpg', '1', 'http://www.baidu.com', '1990-01-01 00:00:00', '2014-12-04 11:05:31', '1', '1');
+INSERT INTO `weshop_shop_advertsing` VALUES ('2', '14', 'shop/ads/ad_2.jpg', '2', 'shop/ad_1.jpg', '1990-01-01 00:00:00', '2014-12-04 11:05:33', '1', '1');
+INSERT INTO `weshop_shop_advertsing` VALUES ('3', '14', 'shop/ads/ad_3.jpg', '3', 'shop/ad_1.jpg', '1990-01-01 00:00:00', '2014-12-04 11:05:34', '1', '1');
 
 -- ----------------------------
 -- Table structure for `weshop_shop_promise_rel`
