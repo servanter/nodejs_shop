@@ -16,3 +16,17 @@ exports.detail = function(req, res) {
         })
     }
 }
+
+exports.introduce = function(req, res) {
+    var shopId = req.params.id;
+    var p = new Paging(1, 9);
+    if(shopId) {
+        shopService.findShopAndIndexItems(shopId, p, function(result) {
+            if(res) {
+                res.render('shop_introduce', {data:result});
+            } else {
+                res.redirect('/');
+            }
+        })
+    }
+}

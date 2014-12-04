@@ -21,6 +21,10 @@
      margin-top: 20px;
      margin-bottom: 10px;
 }
+ .t10b10 {
+     margin-top: 10px;
+     margin-bottom: 10px;
+}
  .img95 {
      width:90%;
     height:90%;
@@ -338,6 +342,40 @@
     padding: 0;
 }
 
-.carousel-inner .item img {
-    height:200px;
+.introduce-title {
+    position: absolute;
+    left: 10px;
+    color:black;
+    border:0;
+    font-size: 20px;
+    line-height: 34px;
+    font-weight: bold;
+}
+.introduce-banner {
+    position: relative;
+    min-height: 36px;
+    background-color: #f4f4f4;
+    border-bottom: 1px solid #dbdbdb;
+    overflow: hidden;
+}
+.introduce-div {
+    position: relative;
+    min-height: 150px;
+    padding: 10px 20px 10px 10px;
+    margin:0;
+    overflow: hidden;
+}
+.introduce-left {
+    position: absolute;
+    width:100px;
+    height: 134px;
+}
+.introduce-content {
+    margin-left: 120px;
+}
+.introduce-content p span {
+    font-weight: bold;
+}
+.introduce-tc {
+    text-align: center;
 }

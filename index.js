@@ -38,14 +38,16 @@ app.post('/admin/additemcomplete/', filter.authorize, route.adminexec('item').ad
 
 /* user display */
 app.get('/shop/:id/', route.exec('shop').detail);
+
 app.get('/item/:id.html', route.exec('item').detail);
+
 app.get('/shop/:id/list/', route.exec('list').list);
 app.get('/shop/:id/list/pg:page.html', route.exec('list').list);
-
 app.get('/shop/:id/list/a:a?b:b?c:c?d:d?/', route.exec('list').list);
 app.get('/shop/:id/list/a:a?b:b?c:c?d:d/pg:page.html', route.exec('list').list);
 app.get('/shop/:id/list/a:a?b:b?c:c?d:d?e:e/', route.exec('list').list);
 app.get('/shop/:id/list/a:a?b:b?c:c?d:d?e:e/pg:page.html', route.exec('list').list);
 
+app.get('/shop/:id/introduce/', route.exec('shop').introduce);
 app.listen(8888);
 console.log('server start at port 8888');

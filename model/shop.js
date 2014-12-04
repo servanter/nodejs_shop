@@ -8,6 +8,7 @@ var Shop = sequelize.define('Shop', {
 	description:Sequelize.STRING,
     city:Sequelize.BIGINT,
     province:Sequelize.BIGINT,
+    address:Sequelize.STRING,
     logo:Sequelize.STRING,
     publicity_photo:Sequelize.STRING,
     taobao_link:Sequelize.STRING,
