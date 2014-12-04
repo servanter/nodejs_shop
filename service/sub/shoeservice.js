@@ -119,7 +119,7 @@ exports.findList = function(shopId, params, paging, callback) {
     }
     async.waterfall([
         function(cb) {
-            Shoe.findAll({attributes:[['short_name', 'short_name'], ['id', 'id']], include:[size, brand, color, material, pic],where:{shop_id:shopId}, offset:paging.getSinceCount(), limit:paging.getPageSize(), group:'id'}, {subQuery:false}).success(function(result) {
+            Shoe.findAll({attributes:[['short_name', 'short_name'], ['id', 'id'], ['update_time', 'opt_time']], include:[size, brand, color, material, pic], where:{shop_id:shopId}, offset:paging.getSinceCount(), limit:paging.getPageSize(), group:'id', order:[['opt_time']]}, {subQuery:false}).success(function(result) {
                 var arr = Convert.values2Arr(result);
                 cb(null, arr);
             })
