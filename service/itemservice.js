@@ -13,13 +13,13 @@ var relationModel = require('../model/modelrelation');
 exports.findItemsByShopId = function(shopId, paging, callback) {
     async.waterfall([
         function(cb) {
-            Item.findAll({include:[{model:Position, required:true}], where:{shop_id:shopId, is_vertify:1, on_sell:1}, offset:paging.getSinceCount(), limit:paging.getPageSize(), order:[[Position, 'update_time', 'DESC']]}, {subQuery:false}).success(function(data){
+            Item.findAll({include:[{model:Position, required:true}], where:{shop_id:shopId, is_vertify:1, on_sell:1}, offset:paging.sinceCount, limit:paging.pageSize, order:[[Position, 'update_time', 'DESC']]}, {subQuery:false}).success(function(data){
                 var arr = Convert.values2Arr(data);
                 cb(null, arr);
             });
         }, function(data, cb) {
             Item.count({include:[{model:Position, required:true}], where:{shop_id:shopId}}).success(function(count) {
-                var pag = new Paging(count, paging.getPage(), paging.getPageSize(), data);
+                var pag = new Paging(count, paging.page, paging.pageSize, data);
                 cb(null, pag);
             })
         }
@@ -43,13 +43,13 @@ exports.search = function(shopId, params, paging, callback) {
     } else {
         async.waterfall([
             function(cb) {
-                Item.findAll({where:whereConditions, offset:paging.getSinceCount(), limit:paging.getPageSize()}).success(function(data){
+                Item.findAll({where:whereConditions, offset:paging.sinceCount, limit:paging.pageSize}).success(function(data){
                     var arr = Convert.values2Arr(data);
                     cb(null, arr);
                 });
             }, function(data, cb) {
                 Item.count({where:whereConditions}).success(function(count) {
-                    var pag = new Paging(count, paging.getPage(), paging.getPageSize(), data);
+                    var pag = new Paging(count, paging.page, paging.pageSize, data);
                     cb(null, pag);
                 })
             }], function(err, results) {

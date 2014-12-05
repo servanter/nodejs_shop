@@ -135,6 +135,79 @@
               <%
                   }
               %>
+              <div class="row t10b10">
+                  <ul class="pagination l15">
+                        <%
+                          if(data.items.page == 1) {
+                        %>
+                            <li class="disabled"><a href="#">上一页</a></li>
+                        <%
+                          } else {
+                        %>
+                            <li><a class="page" href="javascript:void(0)" page="<%=data.items.page - 1%>">上一页</a></li>
+                        <%
+                          }
+                        %>
+
+                        <%
+                            if(data.items.startPage > 1) {
+                        %>
+                                <li><a class="page" href="javascript:void(0)" page="1">1</a></li>
+                        <%
+                            }
+                        %>
+                        <%
+                            if(data.items.startPage > 3) {
+                        %>
+                                <li><a class="page" href="javascript:void(0)" page="<%=data.items.page - 3%>">...</a></li>
+                        <%
+                            }
+                        %>
+
+                        <%
+                            for(var i = data.items.startPage; i <= data.items.endPage; i++) {
+                                if(data.items.page == i) {
+                        %>
+                                    <li class="active"><a href="javascript:void(0)"><%=i%></a></li>
+                        <%
+                                } else {
+                        %>
+                                    <li><a class="page" href="javascript:void(0)" page="<%=i%>"><%=i%></a></li>
+                        <%
+                                }
+                            }
+                        %>
+
+                        <%
+                            if(data.items.totalPage - data.items.startPage > 3) {
+                        %>
+                                <li><a class="page" href="javascript:void(0)" page="<%=data.items.page + 3%>">...</a></li>
+                        <%
+                            }
+                        %>
+
+                        <%
+                            if(data.items.endPage < data.items.totalPage) {
+                        %>
+                                <li><a class="page" href="javascript:void(0)" page="<%=data.items.totalPage%>"><%=data.items.totalPage%></a></li>
+                        <%
+                            }
+                        %>
+                        <%
+                            if(data.items.page == data.items.totalPage) {
+                        %>
+                                <li class="disabled"><a class="page" href="javascript:void(0)" page="<%=data.items.totalPage%>">下一页</a></li>
+                        <%
+                            } else {
+                        %>
+                                <li><a class="page" href="javascript:void(0)" page="<%=data.items.totalPage%>">下一页</a></li>
+                        <%
+                            }
+                        %>
+
+
+                  </ul>
+              </div>
         </div>
         <%- include footer%>
     </body>

@@ -30,7 +30,8 @@
     height:90%;
 }
  .footer {
-     margin: 0 8px;
+     text-align: center;
+     margin: 0;
      background: #e8e8e8;
 }
  .footnav {
@@ -42,9 +43,10 @@
      clear: both;
 }
  .footnav a {
-     padding-right: 30px;
      line-height: 27px;
      color: #36C;
+     display: inline-block;
+     width: 20%;
 }
  .copright {
      font-size: 10px;
@@ -378,4 +380,11 @@
 }
 .introduce-tc {
     text-align: center;
+}
+.pagination {
+    margin: 0px 0px 0px 15px;
+}
+.pagination li {
+    margin: 0;
+    float: left;
 }

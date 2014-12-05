@@ -15,12 +15,12 @@ function findById(shopId, callback) {
 exports.findShopsByUserId = function(userId, paging, callback) {
     async.waterfall([
         function(cb) {
-            Shop.findAll({where:{user_id:userId}, offset:paging.getSinceCount(), limit:paging.getPageSize()}).success(function(data){
+            Shop.findAll({where:{user_id:userId}, offset:paging.sinceCount, limit:paging.pageSize}).success(function(data){
                 cb(null, Convert.values2Arr(data));
             });
         }, function(data, cb) {
              Shop.count({where:{user_id:userId}}).success(function(count){
-                var pResult = new Paging(count, paging.getPage(), paging.getPageSize(), data);
+                var pResult = new Paging(count, paging.page, paging.pageSize, data);
                 cb(null, pResult);
             });
         }

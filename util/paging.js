@@ -33,8 +33,31 @@ module.exports = function(totalRecord, page, pageSize, list) {
         this.totalPage = 0;
         this.result = arguments[3];
         if(this.totalRecord > 0) {
-            this.totalPage = (this.totalRecord - 1) / this.pageSize + 1;
+            this.totalPage = parseInt((this.totalRecord - 1) / this.pageSize + 1);
         }
+
+        var startPage = 0;
+        var endPage = 0;
+        if (this.page < 4) {
+            startPage = 1;
+        } else {
+            startPage = this.page - 3;
+        }
+
+        if (this.totalPage >= 8) {
+            if (this.page + 3 >= this.totalPage) {
+                endPage = this.totalPage;
+            } else {
+                endPage = this.totalPage + 3;
+            }
+
+        } else if (this.totalPage < 8) {
+            endPage = this.totalPage;
+        } else {
+            endPage = this.page + this.totalPage - 1;
+        }
+        this.startPage = startPage;
+        this.endPage = endPage;
     }
 
     this.setPageSize = function(pSize) {
@@ -46,15 +69,6 @@ module.exports = function(totalRecord, page, pageSize, list) {
         if(this.page >= 1) {
             this.sinceCount = (this.page - 1) * this.pageSize;
         }
-    }
-    this.getPage = function() {
-        return this.page;
-    }
-    this.getPageSize = function() {
-        return this.pageSize;
-    }
-    this.getSinceCount = function() {
-        return this.sinceCount;
     }
     return this;
 }
