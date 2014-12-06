@@ -100,31 +100,43 @@ exports.findList = function(shopId, params, paging, callback) {
     var brand = {model:ShoeBrand, as:'brand', required:true, attributes:[['brand_name', 'brand_name']]};
     var color = {model:Color, as:'color', required:true, attributes:[['color_name', 'color_name']]};
     var material = {model:ShoeMaterial, as:'material', required:true, attributes:[['material_name', 'material_name']]};
-    var size = {model:ShoeSize, as:'sizes', required:true, attributes:[], order:[[ShoeSize, 'id', 'DESC']], include:[{model:RelShoeSize, where:{is_valid:1}, attributes:[]}]};
-    var pic = {model:Pic, as:'pics', required:true, attributes:[['pic_url', 'pic_url']], where:{is_major:1, is_valid:1}};
+    var size = {model:RelShoeSize, as:'relShoeSizes', required:true, attributes:[]};
+    var pic = {model:Pic, as:'pics', required:true, attributes:[['pic_url', 'pic_url']]}
 
+    var queryArr = [];
     if(params) {
-        if(params.b != '0') {
+        if(params.b && params.b != '0') {
             brand.where = {};
             brand.where.id = params.b;
         }
-        if(params.c != '0') {
+        if(params.c && params.c != '0') {
             material.where = {};
             material.where.id = params.c;
         }
-        if(params.d != '0') {
+        if(params.d && params.d != '0') {
             color.where = {};
             color.where.id = params.d;
+        }
+        queryArr.push(brand);
+        queryArr.push(material);
+        queryArr.push(color);
+        queryArr.push(pic);
+        if(params.e && params.e != '0') {
+
+            // query shoe size rel s
+            size.where = {};
+            size.where.size_id = params.e;
+            queryArr.push(size);
         }
     }
     async.waterfall([
         function(cb) {
-            Shoe.findAll({attributes:[['short_name', 'short_name'], ['id', 'id'], ['update_time', 'opt_time']], include:[size, brand, color, material, pic], where:{shop_id:shopId}, offset:paging.sinceCount, limit:paging.pageSize, group:'id', order:[['opt_time']]}, {subQuery:false}).success(function(result) {
+            Shoe.findAll({attributes:[['short_name', 'short_name'], ['id', 'id'], ['update_time', 'opt_time']], include:queryArr, where:{shop_id:shopId}, offset:paging.sinceCount, limit:paging.pageSize, group:'id', order:[['opt_time']]}, {subQuery:false}).success(function(result) {
                 var arr = Convert.values2Arr(result);
                 cb(null, arr);
             })
         }, function(data, cb) {
-            Shoe.count({attributes:[['id', 'id']], include:[size, brand, color, material, pic], where:{shop_id:shopId}, group:'id'}).success(function(count) {
+            Shoe.count({distinct:true, include:queryArr, where:{shop_id:shopId}}).success(function(count) {
                 var pag = new Paging(count, paging.page, paging.pageSize, data);
                 cb(null, pag);
             })

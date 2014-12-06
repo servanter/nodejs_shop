@@ -31,6 +31,9 @@ ShoeSize.hasMany(Shoe, {foreignKey:'size_id', through:'weshop_shoe_size_rel'});
 RelShoeSize.belongsTo(ShoeSize, {foreignKey:'id'});
 ShoeSize.hasMany(RelShoeSize, {foreignKey:'size_id'});
 
+Shoe.hasMany(RelShoeSize, {foreignKey:'id', as:'relShoeSizes'});
+RelShoeSize.belongsTo(Shoe, {foreignKey:'shoe_id'});
+
 Shoe.belongsTo(ShoeBrand, {foreignKey:'brand_id', as:'brand'});
 ShoeBrand.hasMany(Shoe, {foreignKey:'id'});
 

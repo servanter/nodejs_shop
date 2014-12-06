@@ -102,7 +102,7 @@
                   }
               %>
               <%
-                  if(data.items.totalRecord > 0) {
+                  if(data.items.result.length > 0) {
                     for(var i = 0; i < data.items.result.length; i++) {
                       if(i % 3 == 0) {
               %>
@@ -135,6 +135,9 @@
               <%
                   }
               %>
+              <%
+                  if(data.items.result.length > 0) {
+              %>
               <div class="row t10b10">
                   <ul class="pagination l15">
                         <%
@@ -144,7 +147,7 @@
                         <%
                           } else {
                         %>
-                            <li><a class="page" href="javascript:void(0)" page="<%=data.items.page - 1%>">上一页</a></li>
+                            <li><a class="page" href="./pg<%=data.items.page - 1%>.html">上一页</a></li>
                         <%
                           }
                         %>
@@ -152,14 +155,14 @@
                         <%
                             if(data.items.startPage > 1) {
                         %>
-                                <li><a class="page" href="javascript:void(0)" page="1">1</a></li>
+                                <li><a class="page" href="pg1.html">1</a></li>
                         <%
                             }
                         %>
                         <%
-                            if(data.items.startPage > 3) {
+                            if(data.items.startPage > 2) {
                         %>
-                                <li><a class="page" href="javascript:void(0)" page="<%=data.items.page - 3%>">...</a></li>
+                                <li><a class="page" href="./pg<%=data.items.page - 4%>.html">...</a></li>
                         <%
                             }
                         %>
@@ -168,20 +171,20 @@
                             for(var i = data.items.startPage; i <= data.items.endPage; i++) {
                                 if(data.items.page == i) {
                         %>
-                                    <li class="active"><a href="javascript:void(0)"><%=i%></a></li>
+                                    <li class="active"><a href="./pg<%=i%>.html"><%=i%></a></li>
                         <%
                                 } else {
                         %>
-                                    <li><a class="page" href="javascript:void(0)" page="<%=i%>"><%=i%></a></li>
+                                    <li><a class="page" href="./pg<%=i%>.html"><%=i%></a></li>
                         <%
                                 }
                             }
                         %>
 
                         <%
-                            if(data.items.totalPage - data.items.startPage > 3) {
+                            if(data.items.totalPage - data.items.startPage > 3 && data.items.endPage < data.items.totalPage && (data.items.endPage + 1) != data.items.totalPage) {
                         %>
-                                <li><a class="page" href="javascript:void(0)" page="<%=data.items.page + 3%>">...</a></li>
+                                <li><a class="page" href="./pg<%=parseInt(data.items.page) + 4%>.html">...</a></li>
                         <%
                             }
                         %>
@@ -189,18 +192,18 @@
                         <%
                             if(data.items.endPage < data.items.totalPage) {
                         %>
-                                <li><a class="page" href="javascript:void(0)" page="<%=data.items.totalPage%>"><%=data.items.totalPage%></a></li>
+                                <li><a class="page" href="./pg<%=data.items.totalPage%>.html"><%=data.items.totalPage%></a></li>
                         <%
                             }
                         %>
                         <%
                             if(data.items.page == data.items.totalPage) {
                         %>
-                                <li class="disabled"><a class="page" href="javascript:void(0)" page="<%=data.items.totalPage%>">下一页</a></li>
+                                <li class="disabled"><a class="page" href="./pg<%=data.items.totalPage%>.html">下一页</a></li>
                         <%
                             } else {
                         %>
-                                <li><a class="page" href="javascript:void(0)" page="<%=data.items.totalPage%>">下一页</a></li>
+                                <li><a class="page" href="./pg<%=parseInt(data.items.page) + 1%>.html">下一页</a></li>
                         <%
                             }
                         %>
@@ -208,6 +211,10 @@
 
                   </ul>
               </div>
+              <%
+                  }
+              %>
+
         </div>
         <%- include footer%>
     </body>

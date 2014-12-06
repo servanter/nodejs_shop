@@ -41,20 +41,20 @@ module.exports = function(totalRecord, page, pageSize, list) {
         if (this.page < 4) {
             startPage = 1;
         } else {
-            startPage = this.page - 3;
+            startPage = parseInt(this.page - 3);
         }
 
         if (this.totalPage >= 8) {
-            if (this.page + 3 >= this.totalPage) {
+            if ((parseInt(this.page) + 3) >= this.totalPage) {
                 endPage = this.totalPage;
             } else {
-                endPage = this.totalPage + 3;
+                endPage = parseInt(this.page) + 3;
             }
 
-        } else if (this.totalPage < 8) {
+        } else if (parseInt(this.totalPage) < 8) {
             endPage = this.totalPage;
         } else {
-            endPage = this.page + this.totalPage - 1;
+            endPage = this.page + parseInt(this.totalPage) - 1;
         }
         this.startPage = startPage;
         this.endPage = endPage;
