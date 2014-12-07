@@ -8,7 +8,6 @@ var Item = sequelize.define('Item', {
     class_id:Sequelize.BIGINT,
     short_name:Sequelize.STRING,
     description:Sequelize.STRING,
-    color_id:Sequelize.BIGINT,
     pic_url:Sequelize.STRING,
     price:Sequelize.FLOAT
 }, {

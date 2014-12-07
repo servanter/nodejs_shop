@@ -3,7 +3,6 @@ var sequelize = require('../lib/sequelize');
 
 var ShoeSizeRel = sequelize.define('ShoeSizeRel', {
     id:Sequelize.BIGINT,
-    item_id:Sequelize.BIGINT,
     shoe_id:Sequelize.BIGINT,
     size_id:Sequelize.BIGINT,
     is_valid:Sequelize.BOOLEAN

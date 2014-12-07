@@ -1,15 +1,14 @@
 var Sequelize = require('sequelize');
 var sequelize = require('../lib/sequelize');
 
-var Pic = sequelize.define('ItemPic', {
+var Pic = sequelize.define('Pic', {
     id:Sequelize.BIGINT,
-    item_id:Sequelize.BIGINT,
     pic_url:Sequelize.STRING,
     create_time:Sequelize.DATE,
     is_major:Sequelize.BOOLEAN,
     is_valid:Sequelize.BOOLEAN
 }, {
-    tableName:'weshop_item_pic',
+    tableName:'weshop_detail_pic',
     timestamps:false
 })
 

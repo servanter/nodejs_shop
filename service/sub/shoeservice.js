@@ -6,13 +6,13 @@ var RelShoeSize = require('../../model/shoesizerel');
 var ShoeBrand = require('../../model/dictshoebrand');
 var ModelRelation = require('../../model/modelrelation');
 var ShoeMaterial = require('../../model/dictshoematerial');
-var Pic = require('../../model/itempic');
+var Pic = require('../../model/detailpic');
 var Color = require('../../model/dictcolor');
 var Convert = require('../../util/convert');
 var Paging = require('../../util/paging');
 
 exports.findDetail = function(id, callback) {
-    Shoe.findAll({include:[{model:ShoeSize, as:'sizes', required:true, attributes:[['description', 'description']], order:[[ShoeSize, 'id', 'DESC']], include:[{model:RelShoeSize, where:{is_valid:1}, attributes:[['shoe_id', 'shoe_id'],['size_id', 'size_id']]}]}, {model:ShoeBrand, as:'brand', required:true, attributes:[['brand_name', 'brand_name']]}, {model:ShoeMaterial, as:'material', required:true, attributes:[['material_name', 'material_name']]}, {model:Pic, as : 'pics', required:true, attributes:[['pic_url', 'pic_url']]}],where:{id:id}}, {subQuery:false}).success(function(result) {
+    Shoe.findAll({include:[{model:ShoeSize, as:'sizes', required:true, attributes:[['description', 'description']], order:[[ShoeSize, 'id', 'DESC']], include:[{model:RelShoeSize, where:{is_valid:1}, attributes:[['shoe_id', 'shoe_id'],['size_id', 'size_id']]}]}, {model:ShoeBrand, as:'brand', required:true, attributes:[['brand_name', 'brand_name']]}, {model:ShoeMaterial, as:'material', required:true, attributes:[['material_name', 'material_name']]}, {model:Pic, as : 'pics', required:true, attributes:[['pic_url', 'pic_url']]}],where:{id:id, is_vertify:1, on_sell:1}}, {subQuery:false}).success(function(result) {
         var attr = packageAttr(result[0].dataValues);
         result[0].dataValues.attr = attr;
         callback(result[0].dataValues);
@@ -131,12 +131,12 @@ exports.findList = function(shopId, params, paging, callback) {
     }
     async.waterfall([
         function(cb) {
-            Shoe.findAll({attributes:[['short_name', 'short_name'], ['id', 'id'], ['update_time', 'opt_time']], include:queryArr, where:{shop_id:shopId}, offset:paging.sinceCount, limit:paging.pageSize, group:'id', order:[['opt_time']]}, {subQuery:false}).success(function(result) {
+            Shoe.findAll({attributes:[['short_name', 'short_name'], ['id', 'id'], ['update_time', 'opt_time']], include:queryArr, where:{shop_id:shopId, is_vertify:1, on_sell:1}, offset:paging.sinceCount, limit:paging.pageSize, group:'id', order:[['opt_time']]}, {subQuery:false}).success(function(result) {
                 var arr = Convert.values2Arr(result);
                 cb(null, arr);
             })
         }, function(data, cb) {
-            Shoe.count({distinct:true, include:queryArr, where:{shop_id:shopId}}).success(function(count) {
+            Shoe.count({distinct:true, include:queryArr, where:{shop_id:shopId, is_vertify:1, on_sell:1}}).success(function(count) {
                 var pag = new Paging(count, paging.page, paging.pageSize, data);
                 cb(null, pag);
             })
