@@ -10,9 +10,7 @@ var Item = sequelize.define('Item', {
     description:Sequelize.STRING,
     color_id:Sequelize.BIGINT,
     pic_url:Sequelize.STRING,
-    price:Sequelize.FLOAT,
-    on_sell:Sequelize.BOOLEAN,
-    is_vertify:Sequelize.BOOLEAN,
+    price:Sequelize.FLOAT
 }, {
     tableName:'weshop_item',
     createdAt:'create_time',

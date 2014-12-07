@@ -16,7 +16,9 @@ var Shoe = sequelize.define('Shoe', {
     color_id:Sequelize.BIGINT,
     note:Sequelize.STRING,
     serial_number:Sequelize.STRING,
-    rel_link:Sequelize.STRING
+    rel_link:Sequelize.STRING,
+    on_sell:Sequelize.BOOLEAN,
+    is_vertify:Sequelize.BOOLEAN
 }, {
     tableName:'weshop_shoe',
     createdAt:'create_time',

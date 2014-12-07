@@ -13,7 +13,7 @@ var relationModel = require('../model/modelrelation');
 exports.findItemsByShopId = function(shopId, paging, callback) {
     async.waterfall([
         function(cb) {
-            Item.findAll({include:[{model:Position, required:true}], where:{shop_id:shopId, is_vertify:1, on_sell:1}, offset:paging.sinceCount, limit:paging.pageSize, order:[[Position, 'update_time', 'DESC']]}, {subQuery:false}).success(function(data){
+            Item.findAll({include:[{model:Position, required:true}], where:{shop_id:shopId}, offset:paging.sinceCount, limit:paging.pageSize, order:[[Position, 'update_time', 'DESC']]}, {subQuery:false}).success(function(data){
                 var arr = Convert.values2Arr(data);
                 cb(null, arr);
             });
@@ -34,7 +34,7 @@ exports.findItemsByShopId = function(shopId, paging, callback) {
 }
 
 exports.search = function(shopId, params, paging, callback) {
-    var whereConditions = {shop_id:shopId, is_vertify:1, on_sell:1};
+    var whereConditions = {shop_id:shopId};
     if(params.a && params.a != '0') {
         var subService = new itemSubFactory.getService(parseInt(params.a));
         subService.findList(shopId, params, paging, function(result) {

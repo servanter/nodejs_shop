@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 60003
 File Encoding         : 65001
 
-Date: 2014-12-07 15:56:21
+Date: 2014-12-07 16:18:44
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -837,25 +837,23 @@ CREATE TABLE `weshop_item` (
   `price` float(10,2) NOT NULL,
   `create_time` timestamp NOT NULL DEFAULT '1990-01-01 00:00:00',
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `is_vertify` tinyint(1) NOT NULL DEFAULT '0',
-  `on_sell` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of weshop_item
 -- ----------------------------
-INSERT INTO weshop_item VALUES ('1', '锅包肉', '14', '1', '2', '肉肉', '1', 'item/aaa.jpg', '110.32', '2014-11-21 15:41:48', '2014-11-29 15:46:29', '1', '1');
-INSERT INTO weshop_item VALUES ('2', 'nike air max 90', '14', '1', '3', 'nike air max 90', '2', 'item/bbb.jpg', '563.10', '2014-11-21 15:54:29', '2014-12-01 14:27:54', '1', '1');
-INSERT INTO weshop_item VALUES ('3', '李宁休闲鞋', '14', '1', '3', '李宁休闲鞋', '1', 'item/bbb.jpg', '165.03', '2014-11-21 15:54:37', '2014-12-01 14:29:45', '1', '1');
-INSERT INTO weshop_item VALUES ('4', 'nike 詹姆斯篮球鞋', '14', '1', '3', 'nike 詹姆斯篮球鞋', '1', 'item/aaa.jpg', '653.65', '2014-11-21 15:54:45', '2014-12-01 14:31:42', '1', '1');
-INSERT INTO weshop_item VALUES ('5', 'asdasd12', '14', '1', '3', '123asda', '1', 'item/bbb.jpg', '3.65', '2014-11-21 15:54:53', '2014-12-03 10:42:57', '1', '1');
-INSERT INTO weshop_item VALUES ('6', 'adad132', '14', '1', '3', 'adqweq', '2', 'item/bbb.jpg', '36.65', '2014-11-21 15:55:01', '2014-12-03 10:33:49', '1', '1');
-INSERT INTO weshop_item VALUES ('7', '啊实打实大', '14', '1', '2', '请问企鹅', '2', 'item/bbb.jpg', '5656.30', '2014-11-24 11:00:47', '2014-11-29 15:46:36', '1', '1');
-INSERT INTO weshop_item VALUES ('8', 'asdaqweqwe', '14', '1', '1', 'qweqwe', '1', 'item/aaa.jpg', '565.00', '2014-11-24 11:00:55', '2014-11-29 15:46:36', '1', '1');
-INSERT INTO weshop_item VALUES ('9', 'adsad', '14', '1', '1', 'qweqweq', '2', 'item/aaa.jpg', '565.00', '2014-11-24 11:01:02', '2014-11-29 15:46:39', '1', '1');
-INSERT INTO weshop_item VALUES ('10', 'ADIDAS  篮球鞋', '14', '1', '3', 'ADIDAS  篮球鞋', '1', 'item/aaa.jpg', '1198.00', '2014-11-24 11:29:01', '2014-12-01 14:29:28', '1', '1');
-INSERT INTO weshop_item VALUES ('11', 'aaaaa', '1', '1', '1', '1111', '0', 'item/aaa.jpg', '666.00', '2014-11-24 17:16:56', '2014-11-26 10:43:57', '1', '1');
+INSERT INTO weshop_item VALUES ('1', '锅包肉', '14', '1', '2', '肉肉', '1', 'item/aaa.jpg', '110.32', '2014-11-21 15:41:48', '2014-11-29 15:46:29');
+INSERT INTO weshop_item VALUES ('2', 'nike air max 90', '14', '1', '3', 'nike air max 90', '2', 'item/bbb.jpg', '563.10', '2014-11-21 15:54:29', '2014-12-01 14:27:54');
+INSERT INTO weshop_item VALUES ('3', '李宁休闲鞋', '14', '1', '3', '李宁休闲鞋', '1', 'item/bbb.jpg', '165.03', '2014-11-21 15:54:37', '2014-12-01 14:29:45');
+INSERT INTO weshop_item VALUES ('4', 'nike 詹姆斯篮球鞋', '14', '1', '3', 'nike 詹姆斯篮球鞋', '1', 'item/aaa.jpg', '653.65', '2014-11-21 15:54:45', '2014-12-01 14:31:42');
+INSERT INTO weshop_item VALUES ('5', 'asdasd12', '14', '1', '3', '123asda', '1', 'item/bbb.jpg', '3.65', '2014-11-21 15:54:53', '2014-12-03 10:42:57');
+INSERT INTO weshop_item VALUES ('6', 'adad132', '14', '1', '3', 'adqweq', '2', 'item/bbb.jpg', '36.65', '2014-11-21 15:55:01', '2014-12-03 10:33:49');
+INSERT INTO weshop_item VALUES ('7', '啊实打实大', '14', '1', '2', '请问企鹅', '2', 'item/bbb.jpg', '5656.30', '2014-11-24 11:00:47', '2014-11-29 15:46:36');
+INSERT INTO weshop_item VALUES ('8', 'asdaqweqwe', '14', '1', '1', 'qweqwe', '1', 'item/aaa.jpg', '565.00', '2014-11-24 11:00:55', '2014-11-29 15:46:36');
+INSERT INTO weshop_item VALUES ('9', 'adsad', '14', '1', '1', 'qweqweq', '2', 'item/aaa.jpg', '565.00', '2014-11-24 11:01:02', '2014-11-29 15:46:39');
+INSERT INTO weshop_item VALUES ('10', 'ADIDAS  篮球鞋', '14', '1', '3', 'ADIDAS  篮球鞋', '1', 'item/aaa.jpg', '1198.00', '2014-11-24 11:29:01', '2014-12-01 14:29:28');
+INSERT INTO weshop_item VALUES ('11', 'aaaaa', '1', '1', '1', '1111', '0', 'item/aaa.jpg', '666.00', '2014-11-24 17:16:56', '2014-11-26 10:43:57');
 
 -- ----------------------------
 -- Table structure for `weshop_item_class`
@@ -952,17 +950,19 @@ CREATE TABLE `weshop_shoe` (
   `note` varchar(50) NOT NULL,
   `serial_number` varchar(50) NOT NULL,
   `rel_link` text NOT NULL,
+  `is_vertify` tinyint(1) NOT NULL DEFAULT '0',
+  `on_sell` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of weshop_shoe
 -- ----------------------------
-INSERT INTO weshop_shoe VALUES ('2', '3', '14', '1', '1', '1198.00', '11980.00', '1990-01-01 00:00:00', '2014-12-01 14:28:52', 'nike air max 90 跑步鞋', 'nike air max 90 跑步鞋', '越南', '1', '1', '跑步专用', '5656865656', 'http://g.click.taobao.com/q?ak=12651499&pid=mm_31576222_4292510_14504533&rd=1&ct=itemid%3D37982188391%26url%3Dhttp%253A%252F%252Fitem.taobao.com%252Fitem.htm%253Fid%253D37982188391&rf=http%3A%2F%2Fgo.hupu.com%2Fu%3Furl%3Dhttp%253A%252F%252Fitem.taobao.com%252Fitem.htm%253Fspm%253Da1z10.1.w4004-8841047853.30.S0NRFI%2526id%253D37982188391&et=95076814&pgid=ec8ca7f38f862e892858c9548e99eacb&v=1.1');
-INSERT INTO weshop_shoe VALUES ('3', '10', '14', '1', '2', '2356.00', '656566.00', '1990-01-01 00:00:00', '2014-12-01 17:35:19', 'ADIDAS  篮球鞋', 'ADIDAS  篮球鞋', '中国', '2', '2', '甲亢是就到啦', '4454644446', 'asdasd');
-INSERT INTO weshop_shoe VALUES ('4', '2', '14', '1', '3', '154646.00', '56456.00', '1990-01-01 00:00:00', '2014-12-01 17:31:44', '李宁休闲', '李宁休闲', '1321', '1', '3', 'asdasd', '1231', 'qweqwe');
-INSERT INTO weshop_shoe VALUES ('5', '4', '14', '1', '1', '1180.00', '1680.00', '1990-01-01 00:00:00', '2014-12-01 14:34:34', 'nike 詹姆斯篮球鞋', 'nike 詹姆斯篮球鞋', '越南', '1', '4', '阿斯达', '12311ad', '1231weq');
-INSERT INTO weshop_shoe VALUES ('6', '5', '14', '1', '1', '5698.00', '56899.00', '1990-01-01 00:00:00', '2014-12-02 17:31:49', 'nike 足球鞋', 'nike 足球鞋', '中国', '1', '1', '驱蚊器', 'asdjkljlk', 'adasd');
+INSERT INTO weshop_shoe VALUES ('2', '3', '14', '1', '1', '1198.00', '11980.00', '1990-01-01 00:00:00', '2014-12-07 16:17:34', 'nike air max 90 跑步鞋', 'nike air max 90 跑步鞋', '越南', '1', '1', '跑步专用', '5656865656', 'http://g.click.taobao.com/q?ak=12651499&pid=mm_31576222_4292510_14504533&rd=1&ct=itemid%3D37982188391%26url%3Dhttp%253A%252F%252Fitem.taobao.com%252Fitem.htm%253Fid%253D37982188391&rf=http%3A%2F%2Fgo.hupu.com%2Fu%3Furl%3Dhttp%253A%252F%252Fitem.taobao.com%252Fitem.htm%253Fspm%253Da1z10.1.w4004-8841047853.30.S0NRFI%2526id%253D37982188391&et=95076814&pgid=ec8ca7f38f862e892858c9548e99eacb&v=1.1', '1', '1');
+INSERT INTO weshop_shoe VALUES ('3', '10', '14', '1', '2', '2356.00', '656566.00', '1990-01-01 00:00:00', '2014-12-07 16:17:34', 'ADIDAS  篮球鞋', 'ADIDAS  篮球鞋', '中国', '2', '2', '甲亢是就到啦', '4454644446', 'asdasd', '1', '1');
+INSERT INTO weshop_shoe VALUES ('4', '2', '14', '1', '3', '154646.00', '56456.00', '1990-01-01 00:00:00', '2014-12-07 16:17:34', '李宁休闲', '李宁休闲', '1321', '1', '3', 'asdasd', '1231', 'qweqwe', '1', '1');
+INSERT INTO weshop_shoe VALUES ('5', '4', '14', '1', '1', '1180.00', '1680.00', '1990-01-01 00:00:00', '2014-12-07 16:17:34', 'nike 詹姆斯篮球鞋', 'nike 詹姆斯篮球鞋', '越南', '1', '4', '阿斯达', '12311ad', '1231weq', '1', '1');
+INSERT INTO weshop_shoe VALUES ('6', '5', '14', '1', '1', '5698.00', '56899.00', '1990-01-01 00:00:00', '2014-12-07 16:17:34', 'nike 足球鞋', 'nike 足球鞋', '中国', '1', '1', '驱蚊器', 'asdjkljlk', 'adasd', '1', '1');
 
 -- ----------------------------
 -- Table structure for `weshop_shoe_size_rel`
