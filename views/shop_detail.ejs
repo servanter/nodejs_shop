@@ -58,10 +58,6 @@
                         })
                     %>
                  </div>
-                 <!-- <a class="carousel-control left" href="#myCarousel" 
-                    data-slide="prev">&lsaquo;</a>
-                 <a class="carousel-control right" href="#myCarousel" 
-                    data-slide="next">&rsaquo;</a> -->
                 </div> 
             </div>
             <%
@@ -77,8 +73,8 @@
                       }
               %>
                       <div class="col-xs-4 col-sm-4 col-md-4">
-                          <a href="/item/<%=data.items.result[i].id%>.html"><img class="img95" src="/<%=data.items.result[i].pic_url%>"></a><br>
-                          <a href="/item/<%=data.items.result[i].id%>.html"><label><%=data.items.result[i].short_name%></label></a>
+                          <a href="/item/<%=data.items.result[i].encrypt%>.html"><img class="img95" src="/<%=data.items.result[i].pic_url%>"></a><br>
+                          <a href="/item/<%=data.items.result[i].encrypt%>.html"><label><%=data.items.result[i].short_name%></label></a>
                       </div>
               <%
                       if((i != 0 && (i + 1) % 3 == 0) || (i + 1 == data.items.result.length)) {

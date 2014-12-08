@@ -6,15 +6,18 @@ var Position = require('../model/itemposition');
 var Color = require('../model/dictcolor');
 var Paging = require('../util/paging');
 var Convert = require('../util/convert');
+var Crypto = require('../util/crypto_util');
+var Constants = require('../util/constants');
 var itemSubFactory = require('./itemsubfactory');
 var relationModel = require('../model/modelrelation');
-
 exports.findItemsByShopId = function(shopId, paging, callback) {
     async.waterfall([
         function(cb) {
-            Item.findAll({include:[{model:Position, required:true}], where:{shop_id:shopId}, offset:paging.sinceCount, limit:paging.pageSize, order:[[Position, 'update_time', 'DESC']]}, {subQuery:false}).success(function(data){
-                var arr = Convert.values2Arr(data);
-                cb(null, arr);
+            Item.findAll({include:[{model:Position, required:true, where:{position:1, is_del:0}}], where:{shop_id:shopId}, offset:paging.sinceCount, limit:paging.pageSize, order:[[Position, 'update_time', 'DESC']]}, {subQuery:false}).success(function(data){
+                data.forEach(function(item, index) {
+                    item.encrypt = Crypto.encryptAes(item.detail_id + Constants.cryptoSplit + item.class_id);
+                })
+                cb(null, data);
             });
         }, function(data, cb) {
             Item.count({include:[{model:Position, required:true}], where:{shop_id:shopId}}).success(function(count) {
@@ -35,8 +38,12 @@ exports.findItemsByShopId = function(shopId, paging, callback) {
 exports.search = function(shopId, params, paging, callback) {
     var whereConditions = {shop_id:shopId};
     if(params.a && params.a != '0') {
-        var subService = new itemSubFactory.getService(parseInt(params.a));
+        var category = parseInt(params.a);
+        var subService = new itemSubFactory.getService(category);
         subService.findList(shopId, params, paging, function(result) {
+            result.result.forEach(function(item, index) {
+                item.encrypt = Crypto.encryptAes(item.id + Constants.cryptoSplit + category);
+            })
             callback(result);
         });
     } else {
@@ -51,11 +58,14 @@ exports.search = function(shopId, params, paging, callback) {
                     var pag = new Paging(count, paging.page, paging.pageSize, data);
                     cb(null, pag);
                 })
-            }], function(err, results) {
+            }], function(err, result) {
                 if(err) {
                     throw err;
                 } else {
-                    callback(results);
+                    result.result.forEach(function(item, index) {
+                        item.encrypt = Crypto.encryptAes(item.detail_id + Constants.cryptoSplit + item.class_id);
+                    })
+                    callback(result);
                 }
             }
         )

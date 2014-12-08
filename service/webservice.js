@@ -1,20 +1,27 @@
 var async = require('async');
 var Paging = require('../util/paging');
+var Crypto = require('../util/crypto_util');
+var Constants = require('../util/constants');
 var relationModel = require('../model/modelrelation');
 var itemService = require('./itemservice');
 var shopService = require('./shopservice');
 var itemSubFactory = require('./itemsubfactory');
 
-exports.getItemDetail = function(id, callback) {
+exports.getItemDetail = function(digest, callback) {
+    var message = Crypto.decryptAes(digest);
+    var arr = message.split(Constants.cryptoSplit);
     async.waterfall([
         function(cb) {
-            itemService.findById(id, function(result) {
-                cb(null, result);
-            });
+            var subFactory = itemSubFactory.getService(parseInt(arr[1]));
+            if(subFactory) {
+                subFactory.findDetail(arr[0], function(result) {
+                    cb(null, {detail:result});
+                });
+            }
         }, function(data, cb) {
-            if(data) {
-                shopService.findShopFullInfoById(data.item.shop_id, function(result) {
-                    cb(null, {shop:result, item:data.item, detail:data.detail});
+            if(data && data.detail) {
+                shopService.findShopFullInfoById(data.detail.shop_id, function(result) {
+                    cb(null, {shop:result, detail:data.detail});
                 });
             }
         }], function(err, data) {

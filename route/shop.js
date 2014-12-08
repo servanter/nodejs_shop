@@ -2,7 +2,6 @@ var shopService = require('../service/shopservice');
 var itemService = require('../service/itemservice');
 var Paging = require('../util/paging');
 
-
 exports.detail = function(req, res) {
     var shopId = req.params.id;
     var p = new Paging(1, 9);

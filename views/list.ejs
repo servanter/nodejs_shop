@@ -114,8 +114,8 @@
                                   picData = data.items.result[i].pics[0].pic_url;
                               }
                           %>
-                          <a href="/item/<%=data.items.result[i].id%>.html"><img class="img95" src="/<%=picData%>"></a><br>
-                          <a href="/item/<%=data.items.result[i].id%>.html"><label><%=data.items.result[i].short_name%></label></a>
+                          <a href="/item/<%=data.items.result[i].encrypt%>.html"><img class="img95" src="/<%=picData%>"></a><br>
+                          <a href="/item/<%=data.items.result[i].encrypt%>.html"><label><%=data.items.result[i].short_name%></label></a>
                       </div>
               <%
                       if((i != 0 && (i + 1) % 3 == 0) || (i + 1 == data.items.result.length)) {
