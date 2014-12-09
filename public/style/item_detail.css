@@ -1033,7 +1033,8 @@ textarea#msg{
 }
 .footer{
     margin:0;
-    padding-bottom:45px 
+    padding-bottom:45px;
+    background-color: #FFFFFF;
 }
 .footnav{
     padding:6px 0;

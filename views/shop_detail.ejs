@@ -63,26 +63,32 @@
             <%
                 }
             %>
+              <div class="row">
+                <p class="hd_intro"><%=data.shop.tips%></p>
+                <h3 class="i_title abs"><span class="i_title_sign">&nbsp;</span>店长推荐</h3>
+              </div>
+
               <%
                   if(data.items.result.length > 0) {
+              %>
+                      <div class="index_list row">
+                      <ul class="i_ul rel" id="top_ul">
+              <%
                     for(var i = 0; i < data.items.result.length; i++) {
-                      if(i % 3 == 0) {
               %>
-                          <div class="row t20b10">
+                      <li class="i_li left">
+                        <a href="/item/<%=data.items.result[i].encrypt%>.html">
+                          <img src="/<%=data.items.result[i].pic_url%>">
+                          <p class="i_txt"><%=data.items.result[i].short_name%></p>
+                          <p class="i_pri">￥158.00</p>
+                        </a>
+                      </li>
               <%
-                      }
-              %>
-                      <div class="col-xs-4 col-sm-4 col-md-4">
-                          <a href="/item/<%=data.items.result[i].encrypt%>.html"><img class="img95" src="/<%=data.items.result[i].pic_url%>"></a><br>
-                          <a href="/item/<%=data.items.result[i].encrypt%>.html"><label><%=data.items.result[i].short_name%></label></a>
-                      </div>
-              <%
-                      if((i != 0 && (i + 1) % 3 == 0) || (i + 1 == data.items.result.length)) {
-              %>
-                        </div>
-              <%
-                      }
                     }
+              %>
+                      </ul>
+                    </div>
+              <%
                   }
               %>
         </div>

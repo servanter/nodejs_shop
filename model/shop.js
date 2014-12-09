@@ -6,6 +6,7 @@ var Shop = sequelize.define('Shop', {
     user_id:Sequelize.BIGINT,
 	short_name:Sequelize.STRING,
 	description:Sequelize.STRING,
+    tips:Sequelize.STRING,
     city:Sequelize.BIGINT,
     province:Sequelize.BIGINT,
     address:Sequelize.STRING,
