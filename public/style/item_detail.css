@@ -1855,7 +1855,6 @@ span.sz_seleted{
     list-style-type:none;
     float:left;
     margin:0 1.6666% 8px;
-    box-sizing:border-box;
     color:#858585;
     text-align:center;
     width:30%;

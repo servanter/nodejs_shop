@@ -15,6 +15,7 @@ window.Swipe = function(element, options) {
     this.element.style.margin = 0;
     this.setup();
     this.begin();
+
     if (this.element.addEventListener) {
         this.element.addEventListener('touchstart', this, false);
         this.element.addEventListener('touchmove', this, false);
@@ -46,6 +47,7 @@ Swipe.prototype = {
         this.container.style.visibility = 'visible'
     },
     slide: function(index, duration) {
+        console.log('333');
         var style = this.element.style;
         if (duration == undefined) {
             duration = this.speed
