@@ -7,9 +7,9 @@ exports.list = function (req, res) {
     if(shopId) {
     	var p;
     	if(page) {
-        	p = new Paging(page, 9);
+        	p = new Paging(page, 8);
     	} else {
-    		p = new Paging(1, 9);
+    		p = new Paging(1, 8);
     	}
         webService.itemList(shopId, req.params, p, function(result) {
             res.render('list', {data:result});

@@ -18,7 +18,7 @@ exports.detail = function(req, res) {
 
 exports.introduce = function(req, res) {
     var shopId = req.params.id;
-    var p = new Paging(1, 9);
+    var p = new Paging(1, 8);
     if(shopId) {
         shopService.findShopAndIndexItems(shopId, p, function(result) {
             if(res) {

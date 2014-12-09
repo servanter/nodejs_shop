@@ -333,36 +333,22 @@
  .carousel-inner .item {
      padding: 0;
 }
- .introduce-title {
-     position: absolute;
-     left: 10px;
-     color:black;
-     border:0;
-     font-size: 20px;
-     line-height: 34px;
-     font-weight: bold;
-}
- .introduce-banner {
-     position: relative;
-     min-height: 36px;
-     background-color: #f4f4f4;
-     border-bottom: 1px solid #dbdbdb;
-     overflow: hidden;
+.bgcolor {
+     background-color: #e3e2e2;
 }
  .introduce-div {
-     position: relative;
-     min-height: 150px;
-     padding: 10px 20px 10px 10px;
-     margin:0;
-     overflow: hidden;
+     background-color: #FFFFFF;
+     padding:5px;
+     margin: 10px;
 }
  .introduce-left {
-     position: absolute;
      width:100px;
      height: 134px;
+     float: left;
+     margin-right:10px; 
 }
  .introduce-content {
-     margin-left: 120px;
+     padding-left:10px;
 }
  .introduce-content p span {
      font-weight: bold;
@@ -370,6 +356,7 @@
  .introduce-tc {
      text-align: center;
 }
+
  .pagination {
      margin: 0px 0px 0px 15px;
 }

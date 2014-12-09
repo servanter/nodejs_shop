@@ -63,20 +63,19 @@
             <%
                 }
             %>
-            <div class="row t10b10">
-                <div class="introduce-banner clear">
-                    <label class="introduce-title">商家店铺介绍</label>
-                </div>
+            <div class="row">
+                <h3 class="i_title abs"><span class="i_title_sign">&nbsp;</span>店长推荐</h3>
+            </div>
+            <div class="row bgcolor">
                 <div class="row introduce-div">
                     <img class="introduce-left" src="<%=locals.settings.img_path%>/<%=data.shop.logo%>">
-                    <div class="row introduce-content">
+                    <div class="introduce-content">
                         <p class="introduce-tc"><%=data.shop.short_name%></p>
                         <p><span>商家描述：</span><%=data.shop.description%></p>
                         <p><span>公司地址：</span><%=data.shop.address%></p>
                         <p><span>淘宝地址：</span><a href="<%=data.shop.taobao_link%>"><%=data.shop.taobao_link%></a></p>
                     </div>
                 </div>
-                
             </div>
         </div>
         <%- include footer%>
