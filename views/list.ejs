@@ -111,13 +111,14 @@
                           if(data.category != '0') {
                               picData = data.items.result[i].pics[0].pic_url;
                           }
-                      
+                          
+
               %>
                       <li class="i_li left">
                         <a href="/item/<%=data.items.result[i].encrypt%>.html">
                           <img src="/<%=picData%>">
                           <p class="i_txt"><%=data.items.result[i].short_name%></p>
-                          <p class="i_pri">￥158.00</p>
+                          <p class="i_pri">￥<%=data.items.result[i].price%></p>
                         </a>
                       </li>
               <%
