@@ -109,7 +109,7 @@
               <div class="recommend"> 
                <a href="/shop/<%=data.shop.id%>/list/" mars_sead="brand-recommend_btn"> 
                 <div class="picture"> 
-                 <img src="/<%=data.shop.logo%>" alt="" /> 
+                 <img src="<%=locals.settings.img_path%>/<%=data.shop.logo%>" alt="" /> 
                 </div> 
                 <div class="content"> 
                  <p class="name"><%=data.shop.short_name%></p> 
@@ -185,7 +185,7 @@
         %>
                 <!--商户宣传图-->
                 <div class="dc_img_detail"> 
-                 <p><a href="/shop/<%=data.shop.id%>/list/"><img alt="<%=data.shop.description%>" src="/<%=data.shop.publicity_photo%>" width="320" /></a></p> 
+                 <p><a href="/shop/<%=data.shop.id%>/list/"><img alt="<%=data.shop.description%>" src="<%=locals.settings.img_path%>/<%=data.shop.publicity_photo%>" width="320" /></a></p> 
                 </div> 
         <%
             }
