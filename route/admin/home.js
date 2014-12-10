@@ -3,6 +3,7 @@ var User = require('../../model/user');
 var userService = require('../../service/userservice');
 var shopService = require('../../service/shopservice');
 var Paging = require('../../util/paging');
+var Constants = require('../../util/constants');
 
 function home(req, res) {
     if(!req.session.userId) {
@@ -12,6 +13,8 @@ function home(req, res) {
             if(result) {
                 req.session.userId = result.userId;
                 res.render('admin/home', {data:{'shops':result.shops, 'sign':req.flash('sign')}});
+            } else {
+                res.render('admin/index', {sign:Constants.ErrorCode.LOGIN_FAIL});
             }
         });
         

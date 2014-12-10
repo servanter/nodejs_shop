@@ -38,6 +38,16 @@
                     <input type="checkbox" value="">记住我
                   </label>
                 </div>
+                <%
+                    if(locals.sign) {
+                %>
+                        <div class="alert alert-danger" role="alert">用户名或密码不存在.</div>
+                        <script type="text/javascript">
+                            $('.alert.alert-danger').fadeOut(2000);
+                        </script>
+                <%
+                    }
+                %>
                 <div class="form-group">
                     <button type="submit" class="btn btn-lg btn-primary">登录</button>
                 </div>

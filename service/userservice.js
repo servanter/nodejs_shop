@@ -8,7 +8,11 @@ exports.login = function(user, callback) {
         async.waterfall([
             function(cb) {
                 findByNameAndPass(user.userName, user.userPass, function(result) {
-                    cb(null, result);
+                    if(!result) {
+                        callback(null);
+                    } else {
+                        cb(null, result);
+                    }
                 })
             }, function(data, cb) {
                 shopService.findShopsByUserId(data.id, new Paging(1, 6), function(result) {
@@ -26,7 +30,7 @@ exports.login = function(user, callback) {
 
 function findByNameAndPass (userName, password, callback) {
     User.findOne({where:{user_name:userName, user_pass:password}}).success(function(result) {
-        callback(result.dataValues);
+        callback(result);
     })
 }
 
