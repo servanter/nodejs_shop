@@ -15,11 +15,17 @@ body {
 .navbar-default .nav.navbar-nav li a:hover {
     color:#FFFFFF;   
 }
+.navbar-default .nav.navbar-nav .dropdown-menu>li>a {
+    color:#333;
+}
 
 .navbar-default .navbar-nav>li>.active,
-.navbar-default .navbar-nav>li>a:hover{
-    background-color: #303641
+.navbar-default .navbar-nav>li>a:hover,
+.navbar.navbar-default .navbar-nav>.open>a{
+    background-color: #303641;
+    color:#FFFFFF;
 }
+
 
 .all-container {
     border:1px solid transparent;
@@ -69,3 +75,7 @@ body {
     color:#18bc9c;
 }
 
+.dropdown>a>img {
+    width:24px;
+    height: 24px;
+}
