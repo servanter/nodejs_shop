@@ -1,0 +1,68 @@
+body {
+    font-family:微软雅黑;
+}
+
+.nav.navbar-nav.navbar-right li>a {
+    font-size:20px;
+    max-height:50px;
+}
+
+.navbar.navbar-default {
+    background-color: #18bc9c;
+}
+.navbar-default .nav.navbar-nav li>a,
+.navbar-default .navbar-header .navbar-brand, 
+.navbar-default .nav.navbar-nav li a:hover {
+    color:#FFFFFF;   
+}
+
+.navbar-default .navbar-nav>li>.active,
+.navbar-default .navbar-nav>li>a:hover{
+    background-color: #303641
+}
+
+.status-img {
+    max-height:100px;
+}
+.status-img>img {
+    width:100%;
+    height:100%;
+    max-width: 65px;
+    max-height: 65px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+}
+.left-status {
+    color:#FFFFFF;
+}
+#user_info {
+    background-color: #303641;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+.welcome-tip {
+    padding-left: 0;
+}
+.welcome-username {
+    padding-top: 5px;
+}
+.status-online-sign {
+    display: inline-block;
+    background-color: #18bc9c;
+    border-radius: 10%;
+}
+.base-info {
+    padding:15px;
+    background-color: #262b34;
+}
+.base-info-icon {
+    font-size: 20px;
+    
+}
+.base-info>div>div>a {
+    color:#FFFFFF;
+}
+.base-info>div>div>a:hover {
+    color:#18bc9c;
+}
+
