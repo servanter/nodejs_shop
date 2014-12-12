@@ -102,3 +102,6 @@ body {
     background-color: #18bc9c;
     color: #FFFFFF
 }
+.pagination li a:hover {
+    color:#18bc9c;
+}
