@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50519
 File Encoding         : 65001
 
-Date: 2014-12-10 16:58:53
+Date: 2014-12-12 17:06:33
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -1028,7 +1028,7 @@ CREATE TABLE `weshop_shop` (
   `create_time` timestamp NOT NULL DEFAULT '1990-01-01 00:00:00',
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of weshop_shop
@@ -1055,6 +1055,14 @@ INSERT INTO `weshop_shop` VALUES ('22', '1', 'asdqweq123123', 'qw123123', '', '4
 INSERT INTO `weshop_shop` VALUES ('23', '1', '啊实打实大', '阿打算打撒打算打算打算的', '', '2', '314', '北七家镇东三旗村村北北辰亚运村汽车交易市场北六区1号', '', '', '', '0', '2014-11-24 17:02:47', '2014-12-04 15:12:48');
 INSERT INTO `weshop_shop` VALUES ('24', '1', 'asdad', '按时打算打算', '', '4', '233', '北七家镇东三旗村村北北辰亚运村汽车交易市场北六区1号', '', '', '', '0', '2014-11-24 17:03:56', '2014-12-04 15:12:48');
 INSERT INTO `weshop_shop` VALUES ('25', '1', 'adasd', '12313', '', '3', '194', '北七家镇东三旗村村北北辰亚运村汽车交易市场北六区1号', '', '', '', '0', '2014-11-24 17:16:14', '2014-12-04 15:12:48');
+INSERT INTO `weshop_shop` VALUES ('26', '1', 'asdasd', 'qweqwe', 'qeqwe', '4', '233', 'qweqwe', 'asdasdasdas', 'dqweq', 'eqeqeqweqee', '0', '2014-12-12 16:24:59', '2014-12-12 16:24:59');
+INSERT INTO `weshop_shop` VALUES ('27', '1', 'dfgdfgfdg', 'rwerwer', '2erwr234234', '3', '282', 'wrwer', 'wsdasdasd', 'asdasdqwe', 'qweqweqwe', '0', '2014-12-12 16:37:29', '2014-12-12 16:37:29');
+INSERT INTO `weshop_shop` VALUES ('28', '1', 'adasd', 'qwe12', '3123', '5', '197', '131', 'weqw', 'eqwe', 'qeqeqwe', '0', '2014-12-12 16:39:43', '2014-12-12 16:39:43');
+INSERT INTO `weshop_shop` VALUES ('29', '1', 'asdasd', '13123', '1312', '5', '197', 'asdasd', 'asdqe', 'qeq', 'eqeqeqeq', '0', '2014-12-12 16:40:58', '2014-12-12 16:40:58');
+INSERT INTO `weshop_shop` VALUES ('30', '1', 'asd', 'qwe', '123123', '3', '194', 'sdad', 'wq', 'zsd', 'asdasd', '0', '2014-12-12 16:43:40', '2014-12-12 16:43:40');
+INSERT INTO `weshop_shop` VALUES ('31', '1', 'asdasd', 'qweqeqw', 'eqweqweqwe', '3', '194', 'qe1312', 'qdqe', 'qwe', 'qdasdasd', '0', '2014-12-12 17:00:35', '2014-12-12 17:00:35');
+INSERT INTO `weshop_shop` VALUES ('32', '1', 'asdasdad', 'qweqw', 'e123123', '4', '233', 'qweq', 'asd', 'adqw', 'eqweqweqeqw', '0', '2014-12-12 17:03:50', '2014-12-12 17:03:50');
+INSERT INTO `weshop_shop` VALUES ('33', '1', 'dqweq1231', '12', '312312qw', '4', '233', 'sdadadq', 'weqe', 'qeqe', 'asdasdasdasd', '0', '2014-12-12 17:06:12', '2014-12-12 17:06:12');
 
 -- ----------------------------
 -- Table structure for `weshop_shop_advertsing`

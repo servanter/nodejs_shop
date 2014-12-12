@@ -47,7 +47,6 @@ Swipe.prototype = {
         this.container.style.visibility = 'visible'
     },
     slide: function(index, duration) {
-        console.log('333');
         var style = this.element.style;
         if (duration == undefined) {
             duration = this.speed

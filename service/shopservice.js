@@ -7,7 +7,11 @@ var itemService = require('./itemService');
 var shopAdService = require('./shopadservice');
 
 function findById(shopId, callback) {
-    Shop.findOne({where:{id:shopId}}).success(function(data) {
+    Shop.findOne({
+        where: {
+            id: shopId
+        }
+    }).success(function(data) {
         callback(data.dataValues);
     })
 }
@@ -15,24 +19,35 @@ function findById(shopId, callback) {
 exports.findShopsByUserId = function(userId, paging, callback) {
     async.waterfall([
         function(cb) {
-            Shop.findAll({where:{user_id:userId}, offset:paging.sinceCount, limit:paging.pageSize}).success(function(data){
+            Shop.findAll({
+                where: {
+                    user_id: userId
+                },
+                offset: paging.sinceCount,
+                limit: paging.pageSize
+            }).success(function(data) {
                 cb(null, Convert.values2Arr(data));
             });
-        }, function(data, cb) {
-             Shop.count({where:{user_id:userId}}).success(function(count){
+        },
+        function(data, cb) {
+            Shop.count({
+                where: {
+                    user_id: userId
+                }
+            }).success(function(count) {
                 var pResult = new Paging(count, paging.page, paging.pageSize, data);
                 cb(null, pResult);
             });
         }
-        ], function(err, result) {
-            callback(result);
-        });
+    ], function(err, result) {
+        callback(result);
+    });
 
 }
 
 exports.add = function(shop, callback) {
     Shop.create(shop).complete(function(err, result) {
-        if(err) {
+        if (err) {
             callback(false);
         } else {
             callback(true);
@@ -42,27 +57,46 @@ exports.add = function(shop, callback) {
 
 exports.findShopAndIndexItems = function(shopId, p, callback) {
     async.waterfall([
-            function(cb) {
-                findById(shopId, function(result) {
-                    cb(null, result);
-                })
-            }, function(data, cb) {
-                shopAdService.findByShopId(data.id, function(result) {
-                    data.ads = result;
-                    cb(null, data);
-                })
-            }, function(data, cb) {
-                itemService.findItemsByShopId(data.id, p, function(result) {
-                    cb(null, {shop:data, items:result});
-                })
-            }
-        ], function(err, result) {
-            callback(result);
-        });
+        function(cb) {
+            findById(shopId, function(result) {
+                cb(null, result);
+            })
+        },
+        function(data, cb) {
+            shopAdService.findByShopId(data.id, function(result) {
+                data.ads = result;
+                cb(null, data);
+            })
+        },
+        function(data, cb) {
+            itemService.findItemsByShopId(data.id, p, function(result) {
+                cb(null, {
+                    shop: data,
+                    items: result
+                });
+            })
+        }
+    ], function(err, result) {
+        callback(result);
+    });
 }
 
 exports.findShopFullInfoById = function(shopId, callback) {
-    Shop.findAll({include:[{model:ShopPromise, as:'promises', required:true, where:{is_valid:1}}],where:{id:shopId}}, {subQuery:false}).success(function(data) {
+    Shop.findAll({
+        include: [{
+            model: ShopPromise,
+            as: 'promises',
+            required: true,
+            where: {
+                is_valid: 1
+            }
+        }],
+        where: {
+            id: shopId
+        }
+    }, {
+        subQuery: false
+    }).success(function(data) {
         callback(data[0].dataValues);
     })
 }

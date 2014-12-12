@@ -14,7 +14,7 @@ exports.list = function(req, res) {
         p = new Paging(1, 10);
     }
     shopservice.findShopsByUserId(req.session.userId, p, function(result) {
-        res.render('admin/shop', {data:{shops:result}});
+        res.render('admin/shop', {data:{shops:result}, sign:req.flash('sign')});
     });
 }
 
@@ -48,20 +48,15 @@ exports.addShopComplete = function(req, res) {
     var province = req.body.province;
     var city = req.body.city;
     if(shortName && description && city && province) {
-        var shop = {
-            user_id:req.session.userId,
-            short_name:shortName,
-            description:description,
-            province:province,
-            city:city
-        };
+        var shop = req.body;
+        shop.user_id = req.session.userId;
         shopservice.add(shop, function(result) {
             var sign = '操作失败';
             if(result) {
                 sign = '操作成功';
             }
             req.flash('sign', sign);
-            return res.redirect('/admin/home/');
+            return res.redirect('/admin/shop/');
         })
 
     }

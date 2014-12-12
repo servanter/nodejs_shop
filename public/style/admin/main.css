@@ -59,6 +59,7 @@ body {
     display: inline-block;
     background-color: #18bc9c;
     border-radius: 10%;
+    font-size: 12px;
 }
 .base-info {
     padding:15px;
