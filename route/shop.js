@@ -3,10 +3,6 @@ var itemService = require('../service/itemservice');
 var Paging = require('../util/paging');
 
 exports.detail = function(req, res) {
-    console.log('--------------', req.params);
-    for(var p in req.params) {
-        console.log(p + ':' + req.params[p]);
-    }
     var shopId = req.params.id;
     var p = new Paging(1, 9);
     if(shopId) {

@@ -23,6 +23,8 @@ app.use(flash()); // error success message
 app.get('/admin', route.adminexec('index'));
 app.post('/admin/home', route.adminexec('home'));
 app.get('/admin/home', filter.authorize, route.adminexec('home'));
+app.get('/admin/shop', filter.authorize, route.adminexec('shop').list);
+app.get('/admin/shop/pg:page.html', filter.authorize, route.adminexec('shop').list);
 
 /* shop controller */
 app.get('/admin/shop/:shopId/addarticle', filter.authorize, route.adminexec('article').addArticle);

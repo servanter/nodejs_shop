@@ -1,18 +1,155 @@
-<html>
+<!DOCTYPE html>
+<html lang="zh-CN">
     <head>
-        <title>微信小店_<%=data.short_name%></title>
-        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-        <meta name="keywords" content="微信小店" />
-        <meta name="description" content="" />
+        <title>微信小店</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="keywords" content="" /> 
+        <meta name="description" content="" /> 
+        <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/style/admin/main.css">
+        <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+        <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     </head>
     <body>
-        <%if(sign) {%>
-            <h1><%=sign%></h1>
-        <%}%>
-        <h1>
-        <h1><%=data.short_name%></h1>
-        
-        <a href="/admin/shop/<%=data.id%>/addarticle/">添加介绍</a>
-        <a href="/admin/shop/<%=data.id%>/additem/">添加商品</a>
+        <%- include common/header %>
+        <div class="all-container container-fluid">
+            <div class="row">
+                <%- include common/user_status %>
+  
+                <div id="right-content" class="col-xs-7 col-sm-7 col-md-7 col-xs-offset-1 col-sm-offset-1 col-md-offset-1">
+                    <div class="row mb20">
+                        <div class="pull-left">
+                            <form class="form-inline" role="form">
+                                <div class="form-group">
+                                    <input class="form-control" type="text" placeholder="店铺名称">
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-default">搜索</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="table-tools text-right">
+                          <a title="添加店铺" href="#"><span class="glyphicon glyphicon-plus"></span>添加店铺</a>
+                        </div>
+                    </div>
+                    <%
+                        if(data.shops.result.length > 0){
+                    %>
+                    <div class="row table-responsive">
+                        <table class="default-ttable table table-bordered table-hover">
+                          <colgroup>
+                              <col class="col-xs-1"></col>
+                              <col class="col-xs-2"></col>
+                              <col class="col-xs-4"></col>
+                              <col class="col-xs-3"></col>
+                          </colgroup>
+                          <thead>
+                            <tr>
+                              <th>#</th>
+                              <th>店铺名称</th>
+                              <th>欢迎语</th>
+                              <th>操作</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <%
+                                data.shops.result.forEach(function(item, index) {
+                            %>
+                                    <tr>
+                                        <td><%=index + 1%></td>
+                                        <td><a href="/admin/shop/<%=item.id%>/"><%=item.short_name%></a></td>
+                                        <td><%=item.tips%></td>
+                                        <td>
+                                            <a title="编辑" href="#"><span class="glyphicon glyphicon-pencil"></span>编辑</a>
+                                            <a title="添加商品" href="#"><span class="glyphicon glyphicon-plus"></span>添加商品</a>
+                                        </td>
+                                    </tr>
+                            <%
+                                })
+                            %>
+                          </tbody>
+                        </table>
+                    </div>
+                    <nav class="text-right">
+                      <ul class="pagination">
+                        <%
+                          if(data.shops.page == 1) {
+                        %>
+                            <li class="disabled"><a href="javascript:void(0)">上一页</a></li>
+                        <%
+                          } else {
+                        %>
+                            <li><a class="page" href="./pg<%=data.shops.page - 1%>.html">上一页</a></li>
+                        <%
+                          }
+                        %>
+
+                        <%
+                            if(data.shops.startPage > 1) {
+                        %>
+                                <li><a class="page" href="pg1.html">1</a></li>
+                        <%
+                            }
+                        %>
+                        <%
+                            if(data.shops.startPage > 2) {
+                        %>
+                                <li><a class="page" href="./pg<%=data.shops.page - 4%>.html">...</a></li>
+                        <%
+                            }
+                        %>
+
+                        <%
+                            for(var i = data.shops.startPage; i <= data.shops.endPage; i++) {
+                                if(data.shops.page == i) {
+                        %>
+                                    <li class="active"><a href="./pg<%=i%>.html"><%=i%></a></li>
+                        <%
+                                } else {
+                        %>
+                                    <li><a class="page" href="./pg<%=i%>.html"><%=i%></a></li>
+                        <%
+                                }
+                            }
+                        %>
+
+                        <%
+                            if(data.shops.totalPage - data.shops.startPage > 3 && data.shops.endPage < data.shops.totalPage && (data.shops.endPage + 1) != data.shops.totalPage) {
+                        %>
+                                <li><a class="page" href="./pg<%=parseInt(data.shops.page) + 4%>.html">...</a></li>
+                        <%
+                            }
+                        %>
+
+                        <%
+                            if(data.shops.endPage < data.shops.totalPage) {
+                        %>
+                                <li><a class="page" href="./pg<%=data.shops.totalPage%>.html"><%=data.shops.totalPage%></a></li>
+                        <%
+                            }
+                        %>
+                        <%
+                            if(data.shops.page == data.shops.totalPage) {
+                        %>
+                                <li class="disabled"><a class="page" href="javascript:void(0)">下一页</a></li>
+                        <%
+                            } else {
+                        %>
+                                <li><a class="page" href="./pg<%=parseInt(data.shops.page) + 1%>.html">下一页</a></li>
+                        <%
+                            }
+                        %>
+                      </ul>
+                    </nav>
+
+
+                    <%
+                        } else {
+
+                        }
+                    %>
+                </div>
+            </div>
+        </div>
     </body>
 </html>

@@ -1,8 +1,22 @@
+var async = require('async');
 var Shop = require('../../model/shop');
 var Area = require('../../model/area');
 var areaService = require('../../service/areaservice');
-var async = require('async');
 var shopservice = require('../../service/shopservice');
+var Paging = require('../../util/paging');
+
+exports.list = function(req, res) {
+    var page = req.params.page;
+    var p;
+    if(page) {
+        p = new Paging(page, 10);
+    } else {
+        p = new Paging(1, 10);
+    }
+    shopservice.findShopsByUserId(req.session.userId, p, function(result) {
+        res.render('admin/shop', {data:{shops:result}});
+    });
+}
 
 exports.detail = function(req, res) {
     shopservice.findById(req.params.id, function(result) {

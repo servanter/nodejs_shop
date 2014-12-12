@@ -79,3 +79,26 @@ body {
     width:24px;
     height: 24px;
 }
+.default-ttable tr td a:hover{
+    color: #18bc9c;
+}
+.default-ttable tr td a {
+    text-decoration: none;
+}
+.default-ttable tr td a {
+    padding-left: 2px;
+}
+.table-tools a {
+    text-decoration: none;
+}
+.table-tools a:hover {
+    color: #18bc9c;
+}
+.mb20 {
+    margin-bottom: 20px;
+}
+
+.pull-left form div button:hover {
+    background-color: #18bc9c;
+    color: #FFFFFF
+}
