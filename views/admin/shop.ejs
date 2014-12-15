@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="/style/admin/main.css">
         <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
         <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-        <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+        <script src="/javascript/ejs.js"></script>
         <script type="text/javascript">
             var navIndex=1;
         </script>
@@ -31,19 +31,31 @@
                         <%
                             }
                         %>
+                        <%
+                            if(data.shops.result.length > 0){
+                        %>
                         <div class="pull-left">
-                            <form class="form-inline" role="form">
+                            <form class="form-inline" role="form" method="get" action="/admin/shop/">
                                 <div class="form-group">
-                                    <input class="form-control" type="text" placeholder="店铺名称">
+                                    <%
+                                        var searchVal = '';
+                                        if(locals.search_value) {
+                                            searchVal = locals.search_value;
+                                        }
+                                    %>
+                                    <input name="short_name" class="form-control" type="text" value="<%=searchVal%>" placeholder="店铺名称">
                                 </div>
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-default">搜索</button>
+                                    <button id="search_btn" type="submit" class="btn btn-default">搜索</button>
                                 </div>
                             </form>
                         </div>
                         <div class="table-tools text-right">
                           <a title="添加店铺" href="/admin/addshop/"><span class="glyphicon glyphicon-plus"></span>添加店铺</a>
                         </div>
+                        <%
+                            }
+                        %>
                     </div>
                     <%
                         if(data.shops.result.length > 0){
@@ -86,13 +98,19 @@
                     <nav class="text-right">
                       <ul class="pagination">
                         <%
+                            var pageQuery = '';
+                            if(searchVal.length > 0) {
+                                pageQuery = '?short_name=' + searchVal;
+                            }
+                        %>
+                        <%
                           if(data.shops.page == 1) {
                         %>
                             <li class="disabled"><a href="javascript:void(0)">上一页</a></li>
                         <%
                           } else {
                         %>
-                            <li><a class="page" href="./pg<%=data.shops.page - 1%>.html">上一页</a></li>
+                            <li><a class="page" href="./pg<%=data.shops.page - 1%>.html<%=pageQuery%>">上一页</a></li>
                         <%
                           }
                         %>
@@ -107,7 +125,7 @@
                         <%
                             if(data.shops.startPage > 2) {
                         %>
-                                <li><a class="page" href="./pg<%=data.shops.page - 4%>.html">...</a></li>
+                                <li><a class="page" href="./pg<%=data.shops.page - 4%>.html<%=pageQuery%>">...</a></li>
                         <%
                             }
                         %>
@@ -116,11 +134,11 @@
                             for(var i = data.shops.startPage; i <= data.shops.endPage; i++) {
                                 if(data.shops.page == i) {
                         %>
-                                    <li class="active"><a href="./pg<%=i%>.html"><%=i%></a></li>
+                                    <li class="active"><a href="./pg<%=i%>.html<%=pageQuery%>"><%=i%></a></li>
                         <%
                                 } else {
                         %>
-                                    <li><a class="page" href="./pg<%=i%>.html"><%=i%></a></li>
+                                    <li><a class="page" href="./pg<%=i%>.html<%=pageQuery%>"><%=i%></a></li>
                         <%
                                 }
                             }
@@ -129,7 +147,7 @@
                         <%
                             if(data.shops.totalPage - data.shops.startPage > 3 && data.shops.endPage < data.shops.totalPage && (data.shops.endPage + 1) != data.shops.totalPage) {
                         %>
-                                <li><a class="page" href="./pg<%=parseInt(data.shops.page) + 4%>.html">...</a></li>
+                                <li><a class="page" href="./pg<%=parseInt(data.shops.page) + 4%>.html<%=pageQuery%>">...</a></li>
                         <%
                             }
                         %>
@@ -137,7 +155,7 @@
                         <%
                             if(data.shops.endPage < data.shops.totalPage) {
                         %>
-                                <li><a class="page" href="./pg<%=data.shops.totalPage%>.html"><%=data.shops.totalPage%></a></li>
+                                <li><a class="page" href="./pg<%=data.shops.totalPage%>.html<%=pageQuery%>"><%=data.shops.totalPage%></a></li>
                         <%
                             }
                         %>
@@ -148,7 +166,7 @@
                         <%
                             } else {
                         %>
-                                <li><a class="page" href="./pg<%=parseInt(data.shops.page) + 1%>.html">下一页</a></li>
+                                <li><a class="page" href="./pg<%=parseInt(data.shops.page) + 1%>.html<%=pageQuery%>">下一页</a></li>
                         <%
                             }
                         %>
@@ -157,7 +175,11 @@
 
                     <%
                         } else {
-
+                    %>
+                            <div class="alert alert-warning" role="alert">
+                                  您还没有创建店铺，<a href="/admin/addshop/" class="alert-link">点击</a>&nbsp;创建一个店铺
+                            </div>
+                    <%
                         }
                     %>
                 </div>

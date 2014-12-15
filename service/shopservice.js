@@ -16,13 +16,15 @@ function findById(shopId, callback) {
     })
 }
 
-exports.findShopsByUserId = function(userId, paging, callback) {
+exports.findShopsByUserId = function(userId, paging, shortName, callback) {
+    var conditions = {user_id:userId};
+    if(shortName) {
+        conditions.short_name = {like: '%' + shortName + '%'};
+    }
     async.waterfall([
         function(cb) {
             Shop.findAll({
-                where: {
-                    user_id: userId
-                },
+                where: conditions,
                 offset: paging.sinceCount,
                 limit: paging.pageSize
             }).success(function(data) {
@@ -31,9 +33,7 @@ exports.findShopsByUserId = function(userId, paging, callback) {
         },
         function(data, cb) {
             Shop.count({
-                where: {
-                    user_id: userId
-                }
+                where: conditions
             }).success(function(count) {
                 var pResult = new Paging(count, paging.page, paging.pageSize, data);
                 cb(null, pResult);

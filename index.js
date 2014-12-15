@@ -20,16 +20,17 @@ app.use(flash()); // error success message
 
 /* admin management */
 /* home controller */
-app.get('/admin', route.adminexec('index'));
-app.post('/admin/home', route.adminexec('home'));
-app.get('/admin/home', filter.authorize, route.adminexec('home'));
-app.get('/admin/shop', filter.authorize, route.adminexec('shop').list);
+app.get('/admin/', route.adminexec('index'));
+app.post('/admin/home/', route.adminexec('home'));
+app.get('/admin/home/', filter.authorize, route.adminexec('home'));
+app.get('/admin/shop/', filter.authorize, route.adminexec('shop').list);
+
 app.get('/admin/shop/pg:page.html', filter.authorize, route.adminexec('shop').list);
 
 /* shop controller */
-app.get('/admin/shop/:shopId/addarticle', filter.authorize, route.adminexec('article').addArticle);
-app.post('/admin/shop/:shopId/addarticlecomplete', filter.authorize, route.adminexec('article').addArticleComplete);
-app.get('/admin/shop/:id', filter.authorize, route.adminexec('shop').detail);
+app.get('/admin/shop/:shopId/addarticle/', filter.authorize, route.adminexec('article').addArticle);
+app.post('/admin/shop/:shopId/addarticlecomplete/', filter.authorize, route.adminexec('article').addArticleComplete);
+//app.get('/admin/shop/:id/', filter.authorize, route.adminexec('shop').detail);
 app.get('/admin/addshop/', filter.authorize, route.adminexec('shop').addShop);
 app.get('/admin/cities/', filter.authorize, route.adminexec('shop').getCities);
 app.post('/admin/createshopcomplete/', filter.authorize, route.adminexec('shop').addShopComplete);

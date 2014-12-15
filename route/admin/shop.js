@@ -13,8 +13,9 @@ exports.list = function(req, res) {
     } else {
         p = new Paging(1, 10);
     }
-    shopservice.findShopsByUserId(req.session.userId, p, function(result) {
-        res.render('admin/shop', {data:{shops:result}, sign:req.flash('sign')});
+    var shortName = req.query.short_name;
+    shopservice.findShopsByUserId(req.session.userId, p, shortName, function(result) {
+        res.render('admin/shop', {data:{shops:result}, search_value:shortName, sign:req.flash('sign')});
     });
 }
 

@@ -5,26 +5,9 @@ var Paging = require('../util/paging');
 
 exports.login = function(user, callback) {
     if(user.userName && user.userPass) {
-        async.waterfall([
-            function(cb) {
-                findByNameAndPass(user.userName, user.userPass, function(result) {
-                    if(!result) {
-                        callback(null);
-                    } else {
-                        cb(null, result);
-                    }
-                })
-            }, function(data, cb) {
-                shopService.findShopsByUserId(data.id, new Paging(1, 6), function(result) {
-                    cb(null, {userId:data.id, shops:result});
-                });
-            }],
-            function(err, result) {
-                if(err, result) {
-                    callback(result);
-                }
-            }
-        )
+        findByNameAndPass(user.userName, user.userPass, function(result) {
+            callback(result);
+        });
     }
 }
 
