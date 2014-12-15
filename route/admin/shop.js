@@ -35,6 +35,28 @@ exports.addShop = function(req, res) {
     })
 }
 
+exports.enterEditShop = function(req, res) {
+    var id = req.params.id;
+    if(id) {
+        shopservice.findShopInfoAndAreas(id, function(result) {
+            res.render('admin/edit_shop', {data:result});
+        });
+    }
+}
+
+exports.editShop = function(req, res) {
+    var params = req.body;
+    shopservice.update(req.params.id, params, function(result) {
+        var sign = '更新失败';
+        if(result) {
+            sign = '更新成功';
+        }
+        req.flash('sign', sign);
+        return res.redirect('/admin/shop/');
+    })
+}
+
+
 exports.getCities = function(req, res) {
     var provinceId = req.query.province_id;
     areaService.findCitiesByProvinces(provinceId, function(result) {

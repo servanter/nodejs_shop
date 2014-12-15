@@ -5,6 +5,7 @@ var Paging = require('../util/paging');
 var Convert = require('../util/convert');
 var itemService = require('./itemService');
 var shopAdService = require('./shopadservice');
+var areaService = require('./areaservice');
 
 function findById(shopId, callback) {
     Shop.findOne({
@@ -55,6 +56,7 @@ exports.add = function(shop, callback) {
     })
 }
 
+
 exports.findShopAndIndexItems = function(shopId, p, callback) {
     async.waterfall([
         function(cb) {
@@ -101,4 +103,33 @@ exports.findShopFullInfoById = function(shopId, callback) {
     })
 }
 
+exports.findShopInfoAndAreas = function(shopId, callback) {
+    async.waterfall([
+        function(cb) {
+            findById(shopId, function(result) {
+                cb(null, result);
+            })
+        }, function(data,cb) {
+            areaService.findProvinces(function(result) {
+                cb(null, {shop:data, provinces:result});
+            })
+        }, function(data, cb) {
+            areaService.findCitiesByProvinces(data.shop.province, function(result) {
+                cb(null, {shop:data.shop, provinces:data.provinces, cities:result});
+            }) 
+        }], function(err, result) {
+            callback(result);
+    })
+}
+
+exports.update = function(id, params, callback) {
+    Shop.update(params, {where:{id: id}}).complete(function(err, result) {
+        console.log(result);
+        if(err) {
+            callback(false);
+        } else {
+            callback(true);
+        }
+    });
+}
 exports.findById = findById

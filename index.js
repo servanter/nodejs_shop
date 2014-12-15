@@ -31,9 +31,11 @@ app.get('/admin/shop/pg:page.html', filter.authorize, route.adminexec('shop').li
 app.get('/admin/shop/:shopId/addarticle/', filter.authorize, route.adminexec('article').addArticle);
 app.post('/admin/shop/:shopId/addarticlecomplete/', filter.authorize, route.adminexec('article').addArticleComplete);
 //app.get('/admin/shop/:id/', filter.authorize, route.adminexec('shop').detail);
-app.get('/admin/addshop/', filter.authorize, route.adminexec('shop').addShop);
+app.get('/admin/shop/addshop/', filter.authorize, route.adminexec('shop').addShop);
+app.get('/admin/shop/entereditshop/:id/', filter.authorize, route.adminexec('shop').enterEditShop);
+app.post('/admin/shop/editshop/:id/', filter.authorize, route.adminexec('shop').editShop);
 app.get('/admin/cities/', filter.authorize, route.adminexec('shop').getCities);
-app.post('/admin/createshopcomplete/', filter.authorize, route.adminexec('shop').addShopComplete);
+app.post('/admin/shop/createshopcomplete/', filter.authorize, route.adminexec('shop').addShopComplete);
 
 app.get('/admin/shop/:id/additem/', filter.authorize, route.adminexec('item').addItem);
 app.post('/admin/additemcomplete/', filter.authorize, route.adminexec('item').addItemComplete);

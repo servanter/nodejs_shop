@@ -51,7 +51,7 @@
                             </form>
                         </div>
                         <div class="table-tools text-right">
-                          <a title="添加店铺" href="/admin/addshop/"><span class="glyphicon glyphicon-plus"></span>添加店铺</a>
+                          <a title="添加店铺" href="/admin/shop/addshop/"><span class="glyphicon glyphicon-plus"></span>添加店铺</a>
                         </div>
                         <%
                             }
@@ -63,14 +63,12 @@
                     <div class="row table-responsive">
                         <table class="default-ttable table table-bordered table-hover">
                           <colgroup>
-                              <col class="col-xs-1"></col>
                               <col class="col-xs-2"></col>
-                              <col class="col-xs-4"></col>
+                              <col class="col-xs-5"></col>
                               <col class="col-xs-3"></col>
                           </colgroup>
                           <thead>
                             <tr>
-                              <th>#</th>
                               <th>店铺名称</th>
                               <th>欢迎语</th>
                               <th>操作</th>
@@ -81,11 +79,10 @@
                                 data.shops.result.forEach(function(item, index) {
                             %>
                                     <tr>
-                                        <td><%=index + 1%></td>
                                         <td><a href="/admin/shop/<%=item.id%>/"><%=item.short_name%></a></td>
                                         <td><%=item.tips%></td>
                                         <td>
-                                            <a title="编辑" href="#"><span class="glyphicon glyphicon-pencil"></span>编辑</a>
+                                            <a title="编辑" href="/admin/shop/entereditshop/<%=item.id%>/"><span class="glyphicon glyphicon-pencil"></span>编辑</a>
                                             <a title="添加商品" href="#"><span class="glyphicon glyphicon-plus"></span>添加商品</a>
                                         </td>
                                     </tr>

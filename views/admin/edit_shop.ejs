@@ -37,23 +37,23 @@
 
                 <div id="right-content" class="col-xs-7 col-sm-7 col-md-7 col-xs-offset-1 col-sm-offset-1 col-md-offset-1">
                     <div class="row shop-add-div">
-                        <form class="shop-add-form form-horizontal" role="form" method="post" action="/admin/shop/createshopcomplete/">
+                        <form class="shop-add-form form-horizontal" role="form" method="post" action="/admin/shop/editshop/<%=data.shop.id%>/">
                               <div class="form-group">
                                 <label for="short_name" class="col-sm-2 control-label">店铺名称</label>
                                 <div class="col-sm-7">
-                                  <input type="text" class="form-control" id="short_name" name="short_name" placeholder="请输入大于2个汉字的店铺名称">
+                                  <input type="text" class="form-control" id="short_name" name="short_name" value="<%=data.shop.short_name%>" placeholder="请输入大于2个汉字的店铺名称">
                                 </div>
                               </div>
                               <div class="form-group">
                                 <label for="description" class="col-sm-2 control-label">描述</label>
                                 <div class="col-sm-7">
-                                  <input type="text" class="form-control" id="description" name="description" placeholder="店铺描述">
+                                  <input type="text" class="form-control" id="description" name="description" value="<%=data.shop.description%>" placeholder="店铺描述">
                                 </div>
                               </div>
                               <div class="form-group">
                                 <label for="tips" class="col-sm-2 control-label">首页提示语</label>
                                 <div class="col-sm-7">
-                                  <input type="text" class="form-control" id="tips" name="tips" placeholder="请输入不超过100个字符的提示语">
+                                  <input type="text" class="form-control" id="tips" name="tips" value="<%=data.shop.tips%>" placeholder="请输入不超过100个字符的提示语">
                                 </div>
                               </div>
                               <div class="form-group">
@@ -63,12 +63,18 @@
                                         <option value="-1" selected=selected>----</option>
                                         <%
                                             if(data.provinces) {
-                                                for(var i = 0; i < data.provinces.length; i++) {
+                                                data.provinces.forEach(function(item, index) {
+                                                  if(data.shop.province == item.id) {
                                         %>
-                                                    <option value="<%=data.provinces[i].id%>"><%=data.provinces[i].area_name%></option>
-                                        <%            
-                                                }
-                                            }
+                                                    <option value="<%=item.id%>" selected=selected><%=item.area_name%></option>  
+                                        <%
+                                                  } else {
+                                        %>
+                                                    <option value="<%=item.id%>"><%=item.area_name%></option>
+                                        <%
+                                                  }
+                                                })
+                                              }
                                         %>
                                     </select>
                                 </div>
@@ -77,13 +83,28 @@
                                 <label for="city" class="col-sm-2 control-label">城市</label>
                                 <div class="col-sm-2">
                                     <select id="city" name="city" class="form-control">
+                                        <%
+                                            if(data.cities) {
+                                                data.cities.forEach(function(item, index) {
+                                                  if(data.shop.city == item.id) {
+                                        %>
+                                                    <option value="<%=item.id%>" selected=selected><%=item.area_name%></option>  
+                                        <%
+                                                  } else {
+                                        %>
+                                                    <option value="<%=item.id%>"><%=item.area_name%></option>
+                                        <%
+                                                  }
+                                                })
+                                              }
+                                        %>
                                     </select>
                                 </div>
                               </div>
                               <div class="form-group">
                                 <label for="address" class="col-sm-2 control-label">店铺地址</label>
                                 <div class="col-sm-7">
-                                  <input type="text" class="form-control" id="address" name="address" placeholder="请输入不超过100个字符店铺地址">
+                                  <input type="text" class="form-control" id="address" name="address" value="<%=data.shop.address%>" placeholder="请输入不超过100个字符店铺地址">
                                 </div>
                               </div>
                               <div class="form-group">
@@ -101,7 +122,7 @@
                               <div class="form-group">
                                 <label for="taobao_link" class="col-sm-2 control-label">淘宝地址</label>
                                 <div class="col-sm-7">
-                                  <input type="text" class="form-control" id="taobao_link" name="taobao_link" placeholder="请输入淘宝地址">
+                                  <input type="text" class="form-control" id="taobao_link" name="taobao_link" value="<%=data.shop.taobao_link%>" placeholder="请输入淘宝地址">
                                 </div>
                               </div>
 
