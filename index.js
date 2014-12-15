@@ -20,6 +20,9 @@ app.use(flash()); // error success message
 
 /* admin management */
 /* home controller */
+app.get('/admin/register/', route.redirect('admin/register'));
+app.get('/admin/forgetpassword/', route.redirect('index'));
+
 app.get('/admin/', route.adminexec('index'));
 app.post('/admin/home/', route.adminexec('home'));
 app.get('/admin/home/', filter.authorize, route.adminexec('home'));
@@ -39,7 +42,7 @@ app.post('/admin/shop/createshopcomplete/', filter.authorize, route.adminexec('s
 
 app.get('/admin/shop/:id/additem/', filter.authorize, route.adminexec('item').addItem);
 app.post('/admin/additemcomplete/', filter.authorize, route.adminexec('item').addItemComplete);
-
+app.get('/admin/user/checkusername/', route.adminexec('user').checkUserName);
 
 /* user display */
 app.get('/shop/:id/', route.exec('shop').detail);

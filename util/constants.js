@@ -1,7 +1,9 @@
 var Constants = {
     cryptoSplit : '|',
     ErrorCode: {
-        LOGIN_FAIL:'00001'
+        SUCCESS:10000,
+        LOGIN_FAIL:'00001',
+        REGISTER_DUPLICATE_USERNAME:10010
     }
 }
 

@@ -20,7 +20,13 @@
                 border: 1px solid #e5e5e5;
                 border-radius: 5px;
             }
-            
+            .rel-link {
+                position: absolute;left: 155;font-size: 12px; top:60;
+            }
+
+            .re {
+                position: relative;
+            }
         </style>
     </head>
     <body>
@@ -48,8 +54,11 @@
                 <%
                     }
                 %>
-                <div class="form-group">
+                <div class="form-group re">
                     <button type="submit" class="btn btn-lg btn-primary" style="background-color:#18bc9c">登录</button>
+                    <div class="rel-link">
+                        <span><a href="/admin/register/">没有账号？</a><a href="/admin/forgetpassword/">忘记密码？</a></span>
+                    </div>
                 </div>
             </form>
         </div>

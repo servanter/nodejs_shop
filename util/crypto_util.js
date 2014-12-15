@@ -21,3 +21,13 @@ exports.decryptAes = function(message, secret) {
     result += cipher.final('utf8');
     return result;
 }
+
+exports.md5 = function(message, secret) {
+    if(arguments.length == 1) {
+        secret = globalSecret;
+    }
+    var md5 = crypto.createHash('md5');
+    var content = content + '_' + secret;
+    md5.update(content);
+    return md5.digest('hex');
+}

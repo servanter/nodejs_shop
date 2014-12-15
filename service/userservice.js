@@ -11,6 +11,12 @@ exports.login = function(user, callback) {
     }
 }
 
+exports.findByUserName = function(userName, callback) {
+    User.findOne({where:{user_name:userName}}).success(function(result) {
+        callback(result);
+    })
+}
+
 function findByNameAndPass (userName, password, callback) {
     User.findOne({where:{user_name:userName, user_pass:password}}).success(function(result) {
         callback(result);

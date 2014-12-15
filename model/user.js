@@ -7,7 +7,7 @@ var User = sequelize.define('User', {
     user_pass: Sequelize.STRING,
     is_vertify:Sequelize.BOOLEAN
 }, {
-    tableName:'weshop_user',
+    tableName:'weshop_admin_user',
     createdAt:'create_time',
     updatedAt:'update_time'
 });

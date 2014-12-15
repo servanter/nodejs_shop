@@ -1,0 +1,152 @@
+<html>
+    <head>
+        <title>微信小店</title>
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+        <meta name="keywords" content="微信小店" />
+        <meta name="description" content="" />
+        <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+        <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+        <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+        <style type="text/css">
+            body {
+                background-color: #f5f5f5;
+                padding: 40px 0 40px;
+            }
+
+            .register-form {
+                max-width: 400px;
+                margin: 0 auto 0;
+                background-color: #FFFFFF;
+                padding: 19px 35px 29px;
+                border: 1px solid #e5e5e5;
+                border-radius: 5px;
+            }
+            .rel-link {
+                position: absolute;left: 155;font-size: 12px; top:60;
+            }
+
+            .re {
+                position: relative;
+            }
+        </style>
+        <script type="text/javascript">
+            $(function() {
+                $('.alert.alert-danger').hide();
+                $('input[name=user_name]').blur(function() {
+                    $.get('/admin/user/checkusername/?user_name=' + $('input[name=user_name]').val(), function(data) {
+                        if($('input[name=user_name]').parent().find('span')) {
+                            $($('input[name=user_name]').parent().find('span')).remove();
+                        }
+                        $('input[name=user_name]').parent().removeClass('has-error');
+                        $('input[name=user_name]').parent().removeClass('has-success');
+                        if(data.errorCode == 10000) {
+                            $('input[name=user_name]').parent().addClass('has-success');
+                            $('input[name=user_name]').parent().append('<span class="glyphicon glyphicon-ok form-control-feedback"></span>');
+                        } else {
+                            $('input[name=user_name]').parent().addClass('has-error');
+                            $('input[name=user_name]').parent().append('<span class="glyphicon glyphicon-remove form-control-feedback"></span>');
+                        }
+                    })
+                });
+                $('#user_pass').bind('blur', checkPassword);
+                $('#re_user_pass').bind('blur', checkPassword);
+            });
+
+            function checkPassword() {
+                var p1 = $('#user_pass').val();
+                var p2 = $('#re_user_pass').val();
+                if(p1.length != 0 && p2.length != 0) {
+                    if(p1 != p2) {
+                        $('.alert.alert-danger').show();
+                        $('.alert.alert-danger').text('两次输入的密码不一致, 请重新输入');
+                        $('.alert.alert-danger').fadeOut(4000);
+                        
+                        $('#user_pass').parent().removeClass('has-success');
+                        if($('#user_pass').parent().find('span')) {
+                            $($('#user_pass').parent().find('span')).remove();
+                        }
+
+                        $('#re_user_pass').parent().removeClass('has-success');
+                        if($('#re_user_pass').parent().find('span')) {
+                            $($('#re_user_pass').parent().find('span')).remove();
+                        }
+                        $('#re_user_pass').parent().addClass('has-error');
+                        $('#re_user_pass').parent().append('<span class="glyphicon glyphicon-remove form-control-feedback"></span>');
+
+                    } else {
+                        $('.alert.alert-danger').hide();
+                        $('#re_user_pass').parent().removeClass('has-error');
+                        if($('#re_user_pass').parent().find('span')) {
+                            $($('#re_user_pass').parent().find('span')).remove();
+                        }
+                        $('#re_user_pass').parent().addClass('has-success');
+                        $('#re_user_pass').parent().append('<span class="glyphicon glyphicon-ok form-control-feedback"></span>');
+                        $('#user_pass').parent().addClass('has-success');
+                        $('#user_pass').parent().append('<span class="glyphicon glyphicon-ok form-control-feedback"></span>');
+                        return true;
+                    }
+                } else {
+                    $('.alert.alert-danger').show();
+                    $('.alert.alert-danger').text('请输入密码.');
+                    $('.alert.alert-danger').fadeOut(4000);
+                    if($('#user_pass').val().length == 0 && $('#re_user_pass').val().length == 0) {
+                        $('#user_pass').parent().addClass('has-error');
+                        $('#user_pass').parent().append('<span class="glyphicon glyphicon-remove form-control-feedback"></span>');
+                        $('#re_user_pass').parent().addClass('has-error');
+                        $('#re_user_pass').parent().append('<span class="glyphicon glyphicon-remove form-control-feedback"></span>');
+                    } else if($('#user_pass').val().length == 0) {
+                        $('#user_pass').parent().addClass('has-error');
+                        $('#user_pass').parent().append('<span class="glyphicon glyphicon-remove form-control-feedback"></span>');
+                    } else {
+                        $('#user_pass').parent().removeClass('has-error');
+                        if($('#user_pass').parent().find('span')) {
+                            $($('#user_pass').parent().find('span')).remove();
+                        }
+
+                        $('#re_user_pass').parent().addClass('has-error');
+                        $('#re_user_pass').parent().append('<span class="glyphicon glyphicon-remove form-control-feedback"></span>');
+                    }
+                }
+                return false; 
+            }
+
+            function checkFields () {
+                var userName = $('input[name=user_name]').val();
+                if(userName && userName.length > 0) {
+                    return checkPassword();
+                } else {
+                    $('.alert.alert-danger').show();
+                    $('.alert.alert-danger').text('请输入用户名');
+                    $('.alert.alert-danger').fadeOut(4000);
+                    $('input[name=user_name]').parent().addClass('has-error');
+                    $('input[name=user_name]').parent().append('<span class="glyphicon glyphicon-remove form-control-feedback"></span>');
+
+                }
+                return false;
+            }
+        </script>
+    </head>
+    <body>
+       <div class="container text-center">
+            <form class="register-form" action="/admin/adduser/" method="post" onsubmit='return checkFields()'>
+                <h2>微店后台管理系统</h2>
+                <div class="form-group has-feedback">
+                    <input id="user_name" class="form-control" type="text" name="user_name" placeholder="用户名">
+                </div>
+                <div class="form-group has-feedback">
+                    <input id="user_pass" class="form-control" type="password" name="user_pass"  placeholder="密  码">
+
+                </div>
+                <div class="form-group has-feedback">
+                    <input id="re_user_pass" class="form-control" type="password" name="re_user_pass"  placeholder="确认密码">
+                </div>
+                
+                <div class="alert alert-danger" role="alert"></div>
+                
+                <div class="form-group re">
+                    <button type="submit" class="btn btn-lg btn-primary" style="background-color:#18bc9c">注册</button>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>
