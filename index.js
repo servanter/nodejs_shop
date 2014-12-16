@@ -24,6 +24,7 @@ app.get('/admin/register/', route.redirect('admin/register'));
 app.get('/admin/forgetpassword/', route.redirect('index'));
 
 app.get('/admin/', route.adminexec('index'));
+app.get('/logout', route.adminexec('user').logout);
 app.post('/admin/home/', route.adminexec('home'));
 app.get('/admin/home/', filter.authorize, route.adminexec('home'));
 app.get('/admin/shop/', filter.authorize, route.adminexec('shop').list);

@@ -4,11 +4,12 @@ var userService = require('../../service/userservice');
 var shopService = require('../../service/shopservice');
 var Paging = require('../../util/paging');
 var Constants = require('../../util/constants');
+var CryptoUtil = require('../../util/crypto_util');
 
 function home(req, res) {
     if(!req.session.userId) {
         var userName = req.body.user_name;
-        var userPass = req.body.user_pass;
+        var userPass = CryptoUtil.md5(req.body.user_pass);
         userService.login({userName:userName, userPass:userPass}, function(result) {
             if(result) {
                 req.session.userId = result.id;

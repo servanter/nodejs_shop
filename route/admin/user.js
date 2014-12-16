@@ -1,5 +1,6 @@
 var userService = require('../../service/userservice');
 var Constants = require('../../util/constants');
+var CryptoUtil = require('../../util/crypto_util');
 
 exports.checkUserName = function(req, res) {
     var userName = req.query.user_name;
@@ -18,15 +19,19 @@ exports.checkUserName = function(req, res) {
     }
 }
 
+exports.logout = function(req, res) {
+    req.session.userId = undefined;
+    res.redirect('/admin/');
+}
+
 exports.addUser = function(req, res) {
     var user = {
         user_name : req.body.user_name,
-        user_pass : req.body.user_pass
+        user_pass : CryptoUtil.md5(req.body.user_pass)
     }
     userService.save(user, function(result) {
         if(result > 0) {
             req.session.userId = result;
-            console.log(req.session.userId);
             res.redirect('/admin/home');
         } else {
             res.render('admin/register', {sign:false});
