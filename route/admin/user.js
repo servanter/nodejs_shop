@@ -17,3 +17,19 @@ exports.checkUserName = function(req, res) {
         })
     }
 }
+
+exports.addUser = function(req, res) {
+    var user = {
+        user_name : req.body.user_name,
+        user_pass : req.body.user_pass
+    }
+    userService.save(user, function(result) {
+        if(result > 0) {
+            req.session.userId = result;
+            console.log(req.session.userId);
+            res.redirect('/admin/home');
+        } else {
+            res.render('admin/register', {sign:false});
+        }
+    });
+}

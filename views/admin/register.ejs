@@ -45,6 +45,9 @@
                         } else {
                             $('input[name=user_name]').parent().addClass('has-error');
                             $('input[name=user_name]').parent().append('<span class="glyphicon glyphicon-remove form-control-feedback"></span>');
+                            $('.alert.alert-danger').show();
+                            $('.alert.alert-danger').text('用户名已被占用，请重新输入');
+                            $('.alert.alert-danger').fadeOut(4000);
                         }
                     })
                 });
@@ -61,14 +64,14 @@
                         $('.alert.alert-danger').text('两次输入的密码不一致, 请重新输入');
                         $('.alert.alert-danger').fadeOut(4000);
                         
-                        $('#user_pass').parent().removeClass('has-success');
-                        if($('#user_pass').parent().find('span')) {
-                            $($('#user_pass').parent().find('span')).remove();
+                        $('#user_pass').parent().removeClass('has-error');
+                        if($('#user_pass').parent().find('span.glyphicon-remove')) {
+                            $($('#user_pass').parent().find('span.glyphicon-remove')).remove();
                         }
 
                         $('#re_user_pass').parent().removeClass('has-success');
-                        if($('#re_user_pass').parent().find('span')) {
-                            $($('#re_user_pass').parent().find('span')).remove();
+                        if($('#re_user_pass').parent().find('span.glyphicon-ok')) {
+                            $($('#re_user_pass').parent().find('span.glyphicon-ok')).remove();
                         }
                         $('#re_user_pass').parent().addClass('has-error');
                         $('#re_user_pass').parent().append('<span class="glyphicon glyphicon-remove form-control-feedback"></span>');
@@ -76,8 +79,12 @@
                     } else {
                         $('.alert.alert-danger').hide();
                         $('#re_user_pass').parent().removeClass('has-error');
-                        if($('#re_user_pass').parent().find('span')) {
-                            $($('#re_user_pass').parent().find('span')).remove();
+                        if($('#re_user_pass').parent().find('span.glyphicon-remove')) {
+                            $($('#re_user_pass').parent().find('span.glyphicon-remove')).remove();
+                        }
+                        $('#user_pass').parent().removeClass('has-error');
+                        if($('#user_pass').parent().find('span.glyphicon-remove')) {
+                            $($('#user_pass').parent().find('span.glyphicon-remove')).remove();
                         }
                         $('#re_user_pass').parent().addClass('has-success');
                         $('#re_user_pass').parent().append('<span class="glyphicon glyphicon-ok form-control-feedback"></span>');
@@ -86,25 +93,35 @@
                         return true;
                     }
                 } else {
-                    $('.alert.alert-danger').show();
-                    $('.alert.alert-danger').text('请输入密码.');
-                    $('.alert.alert-danger').fadeOut(4000);
+                    
                     if($('#user_pass').val().length == 0 && $('#re_user_pass').val().length == 0) {
                         $('#user_pass').parent().addClass('has-error');
                         $('#user_pass').parent().append('<span class="glyphicon glyphicon-remove form-control-feedback"></span>');
                         $('#re_user_pass').parent().addClass('has-error');
                         $('#re_user_pass').parent().append('<span class="glyphicon glyphicon-remove form-control-feedback"></span>');
+
+                        $('.alert.alert-danger').show();
+                        $('.alert.alert-danger').text('请输入密码.');
+                        $('.alert.alert-danger').fadeOut(4000);
                     } else if($('#user_pass').val().length == 0) {
                         $('#user_pass').parent().addClass('has-error');
                         $('#user_pass').parent().append('<span class="glyphicon glyphicon-remove form-control-feedback"></span>');
+
+                        $('.alert.alert-danger').show();
+                        $('.alert.alert-danger').text('请输入密码.');
+                        $('.alert.alert-danger').fadeOut(4000);
                     } else {
                         $('#user_pass').parent().removeClass('has-error');
-                        if($('#user_pass').parent().find('span')) {
-                            $($('#user_pass').parent().find('span')).remove();
+                        if($('#user_pass').parent().find('span.glyphicon-remove')) {
+                            $($('#user_pass').parent().find('span.glyphicon-remove')).remove();
                         }
 
                         $('#re_user_pass').parent().addClass('has-error');
                         $('#re_user_pass').parent().append('<span class="glyphicon glyphicon-remove form-control-feedback"></span>');
+
+                        $('.alert.alert-danger').show();
+                        $('.alert.alert-danger').text('两次输入的密码不一致, 请重新输入');
+                        $('.alert.alert-danger').fadeOut(4000);
                     }
                 }
                 return false; 
@@ -113,7 +130,14 @@
             function checkFields () {
                 var userName = $('input[name=user_name]').val();
                 if(userName && userName.length > 0) {
-                    return checkPassword();
+                    if($('input[name=user_name]').parent().find('span.glyphicon-remove').length > 0) {
+                        $('.alert.alert-danger').show();
+                        $('.alert.alert-danger').text('用户名已被占用，请重新输入');
+                        $('.alert.alert-danger').fadeOut(4000);
+                        return false;
+                    } else {
+                        return checkPassword();
+                    }
                 } else {
                     $('.alert.alert-danger').show();
                     $('.alert.alert-danger').text('请输入用户名');
@@ -128,7 +152,7 @@
     </head>
     <body>
        <div class="container text-center">
-            <form class="register-form" action="/admin/adduser/" method="post" onsubmit='return checkFields()'>
+            <form class="register-form" action="/admin/user/adduser/" method="post" onsubmit='return checkFields()'>
                 <h2>微店后台管理系统</h2>
                 <div class="form-group has-feedback">
                     <input id="user_name" class="form-control" type="text" name="user_name" placeholder="用户名">

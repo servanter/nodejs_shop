@@ -106,3 +106,14 @@ body {
 .pagination li a:hover {
     color:#18bc9c;
 }
+.status-prefect-info {
+    font-size: 12px;
+    float: right;
+}
+.status-prefect-info a {
+    color:#FFFFFF;
+}
+.status-prefect-info a:hover {
+    color:#18bc9c;
+    text-decoration: none;
+}

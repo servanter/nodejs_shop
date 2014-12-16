@@ -23,4 +23,14 @@ function findByNameAndPass (userName, password, callback) {
     })
 }
 
+exports.save = function(user, callback) {
+    User.create(user, {isNewRecord:true}).complete(function(err, result) {
+        if(err) {
+            callback(0);
+        } else {
+            callback(result.null);
+        }
+    })
+}
+
 exports.findByNameAndPass = findByNameAndPass;
