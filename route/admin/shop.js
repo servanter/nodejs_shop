@@ -1,9 +1,14 @@
 var async = require('async');
+var formidable = require('formidable');
+var http = require('http');
+var util = require('util');
 var Shop = require('../../model/shop');
 var Area = require('../../model/area');
 var areaService = require('../../service/areaservice');
 var shopservice = require('../../service/shopservice');
 var Paging = require('../../util/paging');
+var Path = require('path');
+var fs = require('fs');
 
 exports.list = function(req, res) {
     var page = req.params.page;
@@ -67,21 +72,31 @@ exports.getCities = function(req, res) {
 }
 
 exports.addShopComplete = function(req, res) {
-    var shortName = req.body.short_name;
-    var description = req.body.description;
-    var province = req.body.province;
-    var city = req.body.city;
-    if(shortName && description && city && province) {
-        var shop = req.body;
-        shop.user_id = req.session.userId;
-        shopservice.add(shop, function(result) {
-            var sign = '操作失败';
-            if(result) {
-                sign = '操作成功';
-            }
-            req.flash('sign', sign);
-            return res.redirect('/admin/shop/');
-        })
 
-    }
+    var form = new formidable.IncomingForm();
+    form.uploadDir = 'public/';
+    form.parse(req, function(err, fields, files) {
+        fs.renameSync(files.logo.path, 'public/images/shop/shop_logo/' + files.logo.name);
+        fs.renameSync(files.publicity_photo.path, 'public/images/shop/shop_publicity/' + files.publicity_photo.name);
+        
+        var shortName = fields.short_name;
+        var description = fields.description;
+        var province = fields.province;
+        var city = fields.city;
+        if(shortName && description && city && province) {
+            var shop = req.body;
+            shop.user_id = req.session.userId;
+            shopservice.add(shop, function(result) {
+                var sign = '操作失败';
+                if(result) {
+                    sign = '操作成功';
+                }
+                req.flash('sign', sign);
+                return res.redirect('/admin/shop/');
+            })
+
+        }
+
+    })
+
 }

@@ -13,6 +13,13 @@ app.set('view engine', 'ejs');
 app.set('app_domain', 'localhost:8888');
 app.set('img_path', '/images');
 app.use(express.static('public'));
+// app.use(connect.multipart({ uploadDir: './public/'}));
+// app.use(express.bodyParser({
+//     uploadDir: 'xx/',
+//     keepExtension: true, //是否保持后缀
+//     limit: '50mb' //上传的最大量
+//     }
+// ));
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 app.use(session({secret: 'keyboard cat'}))

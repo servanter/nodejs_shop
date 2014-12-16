@@ -37,7 +37,7 @@
 
                 <div id="right-content" class="col-xs-7 col-sm-7 col-md-7 col-xs-offset-1 col-sm-offset-1 col-md-offset-1">
                     <div class="row">
-                        <form class="shop-add-form form-horizontal" role="form" method="post" action="/admin/shop/createshopcomplete/">
+                        <form class="shop-add-form form-horizontal" role="form" method="post" action="/admin/shop/createshopcomplete/" enctype="multipart/form-data">
                               <div class="form-group">
                                 <label for="short_name" class="col-sm-2 control-label">店铺名称</label>
                                 <div class="col-sm-7">
@@ -89,13 +89,13 @@
                               <div class="form-group">
                                 <label for="logo" class="col-sm-2 control-label">店铺LOGO</label>
                                 <div class="col-sm-7">
-                                  <input type="text" class="form-control" id="logo" name="logo" placeholder="店铺LOGO">
+                                  <input type="file" class="form-control" id="logo" name="logo" placeholder="店铺LOGO">
                                 </div>
                               </div>
                               <div class="form-group">
                                 <label for="publicity_photo" class="col-sm-2 control-label">店铺宣传图</label>
                                 <div class="col-sm-7">
-                                  <input type="text" class="form-control" id="publicity_photo" name="publicity_photo" placeholder="宣传图在宝贝详情中显示">
+                                  <input type="file" class="form-control" id="publicity_photo" name="publicity_photo" placeholder="宣传图在宝贝详情中显示">
                                 </div>
                               </div>
                               <div class="form-group">
