@@ -1,5 +1,9 @@
 function index(req, res) {
-    res.render('admin/index');
+    if(req.session.userId) {
+        res.redirect('/admin/home');
+    } else {
+        res.render('admin/index');
+    }
 }
 
 module.exports = index;

@@ -33,7 +33,7 @@ app.get('/admin/shop/pg:page.html', filter.authorize, route.adminexec('shop').li
 /* shop controller */
 app.get('/admin/shop/:shopId/addarticle/', filter.authorize, route.adminexec('article').addArticle);
 app.post('/admin/shop/:shopId/addarticlecomplete/', filter.authorize, route.adminexec('article').addArticleComplete);
-//app.get('/admin/shop/:id/', filter.authorize, route.adminexec('shop').detail);
+app.get('/admin/shop/:id(\\d+)/', filter.authorize, route.adminexec('shop').detail);
 app.get('/admin/shop/addshop/', filter.authorize, route.adminexec('shop').addShop);
 app.get('/admin/shop/entereditshop/:id/', filter.authorize, route.adminexec('shop').enterEditShop);
 app.post('/admin/shop/editshop/:id/', filter.authorize, route.adminexec('shop').editShop);

@@ -122,6 +122,27 @@ exports.findShopInfoAndAreas = function(shopId, callback) {
     })
 }
 
+exports.findShopInfoAndAreasName = function(shopId, callback) {
+    async.waterfall([
+        function(cb) {
+            findById(shopId, function(result) {
+                cb(null, result);
+            })
+        }, function(data,cb) {
+            var provinceId = data.province;
+            areaService.findById(provinceId, function(result) {
+                cb(null, {shop:data, province:result});
+            });
+        }, function(data, cb) {
+            var cityId = data.shop.city;
+            areaService.findById(cityId, function(result) {
+                cb(null, {shop:data.shop, province:data.province, city:result});
+            });
+        }], function(err, result) {
+            callback(result);
+    })
+}
+
 exports.update = function(id, params, callback) {
     Shop.update(params, {where:{id: id}}).complete(function(err, result) {
         console.log(result);

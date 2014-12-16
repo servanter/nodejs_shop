@@ -21,3 +21,9 @@ exports.findCitiesByProvinces = function(provinceId, callback) {
         callback(arr);
     })
 }
+
+exports.findById = function(id, callback) {
+    Area.findOne({where:{id : id}}).success(function(result) {
+        callback(result);
+    })
+}

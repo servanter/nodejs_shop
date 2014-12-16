@@ -117,3 +117,38 @@ body {
     color:#18bc9c;
     text-decoration: none;
 }
+.shop-detail {
+    padding: 15px 30px 15px;
+    position: relative;
+    border: 1px solid #18bc9c;
+}
+.shop-base-info {
+    margin-bottom: 20px;
+}
+.detail-logo img {
+    width: 300px;
+    height: 200px;
+    float: left;
+}
+.detail-title {
+    position: absolute;
+    color:#FFFFFF;
+    left:330px;
+    color: #333333;
+    max-width: 750px;
+}
+.detail-title label {
+    display: block;
+    padding-bottom: 5px;
+}
+.detail-title span {
+    color:#18bc9c;
+    padding-right: 10px
+}
+.space30 {
+    height: 30px;
+    clear: both;
+}
+.footnav a:hover {
+    color:#18bc9c;
+}

@@ -20,10 +20,11 @@ exports.list = function(req, res) {
 }
 
 exports.detail = function(req, res) {
-    shopservice.findById(req.params.id, function(result) {
+    shopservice.findShopInfoAndAreasName(req.params.id, function(result) {
         if(result) {
-            res.render('admin/shop', {data:result, sign:req.flash('sign')});
+            res.render('admin/shop_detail', {data:result});
         } else {
+            req.flash('sign', '没有查询到该店铺信息，请您稍后重试'); 
             return res.redirect('/admin/home/');
         }
     })
