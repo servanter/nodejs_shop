@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50519
 File Encoding         : 65001
 
-Date: 2014-12-15 17:55:04
+Date: 2014-12-16 14:58:21
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -27,12 +27,18 @@ CREATE TABLE `weshop_admin_user` (
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `is_vertify` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of weshop_admin_user
 -- ----------------------------
 INSERT INTO `weshop_admin_user` VALUES ('1', 'aaa', '123', '1990-01-01 00:00:00', '2014-11-17 10:59:10', '1');
+INSERT INTO `weshop_admin_user` VALUES ('2', 'bbb', '123', '2014-12-16 11:26:43', '2014-12-16 11:26:43', '1');
+INSERT INTO `weshop_admin_user` VALUES ('3', 'asdas', '123', '2014-12-16 11:32:48', '2014-12-16 11:32:48', '1');
+INSERT INTO `weshop_admin_user` VALUES ('10', 'asd', '123', '2014-12-16 11:50:38', '2014-12-16 11:50:38', '1');
+INSERT INTO `weshop_admin_user` VALUES ('11', 'ddd', '123', '2014-12-16 11:51:48', '2014-12-16 11:51:48', '1');
+INSERT INTO `weshop_admin_user` VALUES ('12', 'aas', '123', '2014-12-16 11:52:08', '2014-12-16 11:52:08', '1');
+INSERT INTO `weshop_admin_user` VALUES ('13', 'dfdf', '123', '2014-12-16 11:52:44', '2014-12-16 11:52:44', '1');
 
 -- ----------------------------
 -- Table structure for `weshop_area`
@@ -1047,12 +1053,12 @@ CREATE TABLE `weshop_shop` (
   `create_time` timestamp NOT NULL DEFAULT '1990-01-01 00:00:00',
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of weshop_shop
 -- ----------------------------
-INSERT INTO `weshop_shop` VALUES ('1', '1', '新品会', 'a阿斯顿大飒飒的按时按时', '', '0', '0', '北七家镇东三旗村村北北辰亚运村汽车交易市场北六区1号', '', '', '', '0', '2014-11-13 16:27:07', '2014-12-04 15:12:48');
+INSERT INTO `weshop_shop` VALUES ('1', '1', '新品会', 'a阿斯顿大飒飒的按aaaaaaa', 'qweqweqwewq', '-1', '0', '北七家镇东三旗村村北北辰亚运村汽车交易市场北六区1号', '', '', '', '0', '2014-11-13 16:27:07', '2014-12-16 13:46:07');
 INSERT INTO `weshop_shop` VALUES ('2', '1', '京东', '阿斯顿记录卡见识到了卡机顺路快递将阿里卡', '', '0', '0', '北七家镇东三旗村村北北辰亚运村汽车交易市场北六区1号', '', '', '', '0', '1990-01-01 00:00:00', '2014-12-04 15:12:48');
 INSERT INTO `weshop_shop` VALUES ('6', '1', 'ad按时打算', '请问我企鹅', 'asda23123', '1', '200', '北七家镇东三旗村村1北北辰亚运村汽车交易市场北六区1号', '123131', 'dqweq', 'eqwesdasdasdadsad', '0', '2014-11-17 16:13:28', '2014-12-15 15:07:48');
 INSERT INTO `weshop_shop` VALUES ('7', '1', 'asdasda3', '123123', '', '0', '0', '北七家镇东三旗村村北北辰亚运村汽车交易市场北六区1号', '', '', '', '0', '2014-11-17 16:17:16', '2014-12-04 15:12:48');
@@ -1062,7 +1068,7 @@ INSERT INTO `weshop_shop` VALUES ('10', '1', '阿斯达', '请问请问', '', '0
 INSERT INTO `weshop_shop` VALUES ('11', '1', '阿斯达', '爱上大声地', '', '0', '0', '北七家镇东三旗村村北北辰亚运村汽车交易市场北六区1号', '', '', '', '0', '2014-11-18 14:48:22', '2014-12-04 15:12:48');
 INSERT INTO `weshop_shop` VALUES ('12', '1', '阿斯达到权威', '企鹅王全文', '', '0', '0', '北七家镇东三旗村村北北辰亚运村汽车交易市场北六区1号', '', '', '', '0', '2014-11-18 14:48:26', '2014-12-04 15:12:48');
 INSERT INTO `weshop_shop` VALUES ('13', '1', '第三方的', '沃尔', '', '0', '0', '北七家镇东三旗村村北北辰亚运村汽车交易市场北六区1号', '', '', '', '0', '2014-11-18 14:54:10', '2014-12-04 15:12:48');
-INSERT INTO `weshop_shop` VALUES ('14', '1', '云天潮鞋专卖', '云天潮鞋专卖是一家专卖年轻人潮鞋...', '欢迎各位朋友来到本店，可以随便看看，不买也好，收藏一下，定有一款产品适合你O(∩_∩)O\r\n知道你为什么单身吗？为什么跟ta吵架吗？为什么分手吗？因为你没送ta充电宝！让ta需要的时候想到你。', '0', '0', '北七家镇东三旗村村北北辰亚运村汽车交易市场北六区1号', 'shop/shop_logo/9697132_100048418000.jpg', 'shop/shop_publicity/a123asdas31231.jpg', 'http://nike.tmall.com/', '0', '2014-11-18 14:56:25', '2014-12-09 13:59:10');
+INSERT INTO `weshop_shop` VALUES ('14', '1', '云天潮鞋专卖', '云天潮鞋专卖是一家专卖按时打算打算打按时打算打打阿打算阿打算奥迪打算打打阿打算阿打算奥打算打打阿打算阿打算奥打算打打阿打算阿打算奥阿斯达轻人潮', '欢迎各位朋友来到本店，可以随便看看，不买也好，收藏一下，定有一款产品适合你O(∩_∩)O\r\n知道你为什么单身吗？为什么跟ta吵架吗？为什么分手吗？因为你没送ta充电宝！让ta需要的时候想到你。', '0', '0', '北七家镇东三旗村村北北辰亚运村汽车交易市场北六区1号', 'shop/shop_logo/9697132_100048418000.jpg', 'shop/shop_publicity/a123asdas31231.jpg', 'http://nike.tmall.com/', '0', '2014-11-18 14:56:25', '2014-12-16 14:24:21');
 INSERT INTO `weshop_shop` VALUES ('15', '1', '下次V型规范', '按时打算', '', '0', '0', '北七家镇东三旗村村北北辰亚运村汽车交易市场北六区1号', '', '', '', '0', '2014-11-18 15:02:09', '2014-12-04 15:12:48');
 INSERT INTO `weshop_shop` VALUES ('16', '1', '死到改革', '沃尔我日', '', '0', '0', '北七家镇东三旗村村北北辰亚运村汽车交易市场北六区1号', '', '', '', '0', '2014-11-18 15:07:27', '2014-12-04 15:12:48');
 INSERT INTO `weshop_shop` VALUES ('17', '1', '胜多负少', '134124 ', '', '0', '0', '北七家镇东三旗村村北北辰亚运村汽车交易市场北六区1号', '', '', '', '0', '2014-11-18 15:27:34', '2014-12-04 15:12:48');
@@ -1082,6 +1088,7 @@ INSERT INTO `weshop_shop` VALUES ('30', '1', 'asd', 'qwe', '123123', '3', '194',
 INSERT INTO `weshop_shop` VALUES ('31', '1', 'asdasd', 'qweqeqw', 'eqweqweqwe', '3', '194', 'qe1312', 'qdqe', 'qwe', 'qdasdasd', '0', '2014-12-12 17:00:35', '2014-12-12 17:00:35');
 INSERT INTO `weshop_shop` VALUES ('32', '1', 'asdasdad', 'qweqw', 'e123123', '4', '233', 'qweq', 'asd', 'adqw', 'eqweqweqeqw', '0', '2014-12-12 17:03:50', '2014-12-12 17:03:50');
 INSERT INTO `weshop_shop` VALUES ('33', '1', 'dqweq1231', '12', '312312qw', '4', '233', 'sdadadq', 'weqe', 'qeqe', 'asdasdasdasd', '0', '2014-12-12 17:06:12', '2014-12-12 17:06:12');
+INSERT INTO `weshop_shop` VALUES ('34', '13', 'adsasd', 'qwe123123', '13123', '2', '185', 'dqwe', 'qweqe', 'qeqeqeqe', 'qweqeqweqee', '0', '2014-12-16 11:54:07', '2014-12-16 11:54:07');
 
 -- ----------------------------
 -- Table structure for `weshop_shop_advertsing`
