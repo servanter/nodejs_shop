@@ -28,7 +28,7 @@ exports.save = function(user, callback) {
         if(err) {
             callback(0);
         } else {
-            callback(result.null);
+            callback(result.id);
         }
     })
 }

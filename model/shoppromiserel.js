@@ -2,7 +2,6 @@ var Sequelize = require('sequelize');
 var sequelize = require('../lib/sequelize');
 
 var ShopPromiseRel = sequelize.define('ShopPromiseRel', {
-    id:Sequelize.BIGINT,
     shop_id:Sequelize.BIGINT,
     promise_id:Sequelize.BIGINT
 }, {

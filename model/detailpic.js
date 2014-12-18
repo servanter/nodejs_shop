@@ -2,7 +2,6 @@ var Sequelize = require('sequelize');
 var sequelize = require('../lib/sequelize');
 
 var Pic = sequelize.define('Pic', {
-    id:Sequelize.BIGINT,
     pic_url:Sequelize.STRING,
     create_time:Sequelize.DATE,
     is_major:Sequelize.BOOLEAN,

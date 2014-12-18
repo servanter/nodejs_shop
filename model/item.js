@@ -2,7 +2,6 @@ var Sequelize = require('sequelize');
 var sequelize = require('../lib/sequelize');
 
 var Item = sequelize.define('Item', {
-    id:Sequelize.BIGINT,
     detail_id:Sequelize.BIGINT,
     shop_id:Sequelize.BIGINT,
     create_user_id:Sequelize.BIGINT,

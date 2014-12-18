@@ -2,7 +2,6 @@ var Sequelize = require('sequelize');
 var sequelize = require('../lib/sequelize');
 
 var ShoeSize = sequelize.define('ShoeSize', {
-    id:Sequelize.BIGINT,
     size:Sequelize.FLOAT,
     description:Sequelize.STRING,
     create_time:Sequelize.DATE
