@@ -7,6 +7,7 @@ var Area = require('../../model/area');
 var areaService = require('../../service/areaservice');
 var shopservice = require('../../service/shopservice');
 var Paging = require('../../util/paging');
+var RandomUtil = require('../../util/random_util');
 var Path = require('path');
 var fs = require('fs');
 
@@ -72,30 +73,40 @@ exports.getCities = function(req, res) {
 }
 
 exports.addShopComplete = function(req, res) {
-
+    console.log(req.body);
     var form = new formidable.IncomingForm();
     form.uploadDir = 'public/';
     form.parse(req, function(err, fields, files) {
-        fs.renameSync(files.logo.path, 'public/images/shop/shop_logo/' + files.logo.name);
-        fs.renameSync(files.publicity_photo.path, 'public/images/shop/shop_publicity/' + files.publicity_photo.name);
-        
-        var shortName = fields.short_name;
-        var description = fields.description;
-        var province = fields.province;
-        var city = fields.city;
-        if(shortName && description && city && province) {
-            var shop = req.body;
-            shop.user_id = req.session.userId;
-            shopservice.add(shop, function(result) {
-                var sign = '操作失败';
-                if(result) {
-                    sign = '操作成功';
-                }
-                req.flash('sign', sign);
-                return res.redirect('/admin/shop/');
-            })
+        var logoPostName = files.logo.name.substring(files.logo.name.indexOf('.'));
+        var photoPostName = files.publicity_photo.name.substring(files.publicity_photo.name.indexOf('.'));
 
+        var logoFullName = new Date().getTime() + '' + RandomUtil.getRandom(10000) + logoPostName;
+        var photoFullName = new Date().getTime() + '' + RandomUtil.getRandom(10000) + photoPostName;
+
+        fs.renameSync(files.logo.path, 'public/images/shop/shop_logo/' + logoFullName);
+        fs.renameSync(files.publicity_photo.path, 'public/images/shop/shop_publicity/' + photoFullName);
+        
+        var shop = {
+            logo : 'shop/shop_logo/' + logoFullName,
+            publicity_photo : 'shop/shop_publicity/' + photoFullName,
+            user_id : req.session.userId,
+            short_name : fields.short_name,
+            description : fields.description,
+            tips : fields.tips,
+            province : fields.province,
+            city : fields.city,
+            address : fields.address,
+            taobao_link : fields.taobao_link
         }
+        shopservice.add(shop, function(result) {
+            var sign = '操作失败';
+            if(result) {
+                sign = '操作成功';
+            }
+            req.flash('sign', sign);
+            return res.redirect('/admin/shop/');
+        })
+
 
     })
 

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50519
 File Encoding         : 65001
 
-Date: 2014-12-16 14:58:21
+Date: 2014-12-18 15:58:19
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -22,23 +22,25 @@ DROP TABLE IF EXISTS `weshop_admin_user`;
 CREATE TABLE `weshop_admin_user` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `user_name` varchar(20) NOT NULL,
-  `user_pass` varchar(20) NOT NULL,
+  `user_pass` varchar(50) NOT NULL,
   `create_time` timestamp NOT NULL DEFAULT '1990-01-01 00:00:00',
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `is_vertify` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of weshop_admin_user
 -- ----------------------------
-INSERT INTO `weshop_admin_user` VALUES ('1', 'aaa', '123', '1990-01-01 00:00:00', '2014-11-17 10:59:10', '1');
+INSERT INTO `weshop_admin_user` VALUES ('1', 'aaa', 'da0464af6d89e21a06e365eaff468317', '1990-01-01 00:00:00', '2014-12-16 15:23:39', '1');
 INSERT INTO `weshop_admin_user` VALUES ('2', 'bbb', '123', '2014-12-16 11:26:43', '2014-12-16 11:26:43', '1');
 INSERT INTO `weshop_admin_user` VALUES ('3', 'asdas', '123', '2014-12-16 11:32:48', '2014-12-16 11:32:48', '1');
 INSERT INTO `weshop_admin_user` VALUES ('10', 'asd', '123', '2014-12-16 11:50:38', '2014-12-16 11:50:38', '1');
 INSERT INTO `weshop_admin_user` VALUES ('11', 'ddd', '123', '2014-12-16 11:51:48', '2014-12-16 11:51:48', '1');
 INSERT INTO `weshop_admin_user` VALUES ('12', 'aas', '123', '2014-12-16 11:52:08', '2014-12-16 11:52:08', '1');
 INSERT INTO `weshop_admin_user` VALUES ('13', 'dfdf', '123', '2014-12-16 11:52:44', '2014-12-16 11:52:44', '1');
+INSERT INTO `weshop_admin_user` VALUES ('14', 'asdqw', 'da0464af6d89e21a06e365eaff468317', '2014-12-16 15:20:08', '2014-12-16 15:20:08', '1');
+INSERT INTO `weshop_admin_user` VALUES ('15', 'asdqwe', 'da0464af6d89e21a06e365eaff468317', '2014-12-17 14:05:20', '2014-12-17 14:05:20', '1');
 
 -- ----------------------------
 -- Table structure for `weshop_area`
@@ -1053,7 +1055,7 @@ CREATE TABLE `weshop_shop` (
   `create_time` timestamp NOT NULL DEFAULT '1990-01-01 00:00:00',
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of weshop_shop
@@ -1089,6 +1091,7 @@ INSERT INTO `weshop_shop` VALUES ('31', '1', 'asdasd', 'qweqeqw', 'eqweqweqwe', 
 INSERT INTO `weshop_shop` VALUES ('32', '1', 'asdasdad', 'qweqw', 'e123123', '4', '233', 'qweq', 'asd', 'adqw', 'eqweqweqeqw', '0', '2014-12-12 17:03:50', '2014-12-12 17:03:50');
 INSERT INTO `weshop_shop` VALUES ('33', '1', 'dqweq1231', '12', '312312qw', '4', '233', 'sdadadq', 'weqe', 'qeqe', 'asdasdasdasd', '0', '2014-12-12 17:06:12', '2014-12-12 17:06:12');
 INSERT INTO `weshop_shop` VALUES ('34', '13', 'adsasd', 'qwe123123', '13123', '2', '185', 'dqwe', 'qweqe', 'qeqeqeqe', 'qweqeqweqee', '0', '2014-12-16 11:54:07', '2014-12-16 11:54:07');
+INSERT INTO `weshop_shop` VALUES ('35', '1', 'qwe123', 'qweqweqe', 'asdadasd13', '1', '186', 'qweqeasdasd', 'shop/shop_logo/14188892331129255.jpg', 'shop/shop_publicity/14188892331127144.jpg', 'ad12asdasda', '0', '2014-12-18 15:53:53', '2014-12-18 15:53:53');
 
 -- ----------------------------
 -- Table structure for `weshop_shop_advertsing`
