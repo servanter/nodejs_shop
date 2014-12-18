@@ -52,15 +52,40 @@ exports.enterEditShop = function(req, res) {
 }
 
 exports.editShop = function(req, res) {
-    var params = req.body;
-    shopservice.update(req.params.id, params, function(result) {
-        var sign = '更新失败';
-        if(result) {
-            sign = '更新成功';
+
+    var form = new formidable.IncomingForm();
+    form.uploadDir = 'public/';
+    form.parse(req, function(err, fields, files) {
+        var logoPostName = files.logo.name.substring(files.logo.name.indexOf('.'));
+        var photoPostName = files.publicity_photo.name.substring(files.publicity_photo.name.indexOf('.'));
+
+        var logoFullName = new Date().getTime() + '' + RandomUtil.getRandom(10000) + logoPostName;
+        var photoFullName = new Date().getTime() + '' + RandomUtil.getRandom(10000) + photoPostName;
+
+        fs.renameSync(files.logo.path, 'public/images/shop/shop_logo/' + logoFullName);
+        fs.renameSync(files.publicity_photo.path, 'public/images/shop/shop_publicity/' + photoFullName);
+        
+        var shop = {
+            logo : 'shop/shop_logo/' + logoFullName,
+            publicity_photo : 'shop/shop_publicity/' + photoFullName,
+            user_id : req.session.userId,
+            short_name : fields.short_name,
+            description : fields.description,
+            tips : fields.tips,
+            province : fields.province,
+            city : fields.city,
+            address : fields.address,
+            taobao_link : fields.taobao_link
         }
-        req.flash('sign', sign);
-        return res.redirect('/admin/shop/');
-    })
+        shopservice.update(req.params.id, shop, function(result) {
+            var sign = '更新失败';
+            if(result) {
+                sign = '更新成功';
+            }
+            req.flash('sign', sign);
+            return res.redirect('/admin/shop/');
+        })
+        })
 }
 
 
@@ -73,7 +98,6 @@ exports.getCities = function(req, res) {
 }
 
 exports.addShopComplete = function(req, res) {
-    console.log(req.body);
     var form = new formidable.IncomingForm();
     form.uploadDir = 'public/';
     form.parse(req, function(err, fields, files) {
