@@ -160,9 +160,9 @@ exports.editBanner = function(req, res) {
 
         fs.renameSync(files.banner_1.path, 'public/images/shop/ads/' + banner1FullName);
         fs.renameSync(files.banner_2.path, 'public/images/shop/ads/' + banner2FullName);
-        fs.renameSync(files.banner_1.path, 'public/images/shop/ads/' + banner3FullName);
-        fs.renameSync(files.banner_2.path, 'public/images/shop/ads/' + banner4FullName);
-        fs.renameSync(files.banner_1.path, 'public/images/shop/ads/' + banner5FullName);
+        fs.renameSync(files.banner_3.path, 'public/images/shop/ads/' + banner3FullName);
+        fs.renameSync(files.banner_4.path, 'public/images/shop/ads/' + banner4FullName);
+        fs.renameSync(files.banner_5.path, 'public/images/shop/ads/' + banner5FullName);
 
         shopservice.add(shop, function(result) {
             var sign = '操作失败';
