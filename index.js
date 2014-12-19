@@ -13,13 +13,6 @@ app.set('view engine', 'ejs');
 app.set('app_domain', 'localhost:8888');
 app.set('img_path', '/images');
 app.use(express.static('public'));
-// app.use(connect.multipart({ uploadDir: './public/'}));
-// app.use(express.bodyParser({
-//     uploadDir: 'xx/',
-//     keepExtension: true, //是否保持后缀
-//     limit: '50mb' //上传的最大量
-//     }
-// ));
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 app.use(session({secret: 'keyboard cat'}))
@@ -45,6 +38,8 @@ app.get('/admin/shop/:id(\\d+)/', filter.authorize, route.adminexec('shop').deta
 app.get('/admin/shop/addshop/', filter.authorize, route.adminexec('shop').addShop);
 app.get('/admin/shop/entereditshop/:id/', filter.authorize, route.adminexec('shop').enterEditShop);
 app.post('/admin/shop/editshop/:id/', filter.authorize, route.adminexec('shop').editShop);
+app.get('/admin/shop/entereditbanner/:id/', filter.authorize, route.adminexec('shop').enterEditBanner);
+app.post('/admin/shop/editbanner/:id/', filter.authorize, route.adminexec('shop').editBanner);
 app.get('/admin/cities/', filter.authorize, route.adminexec('shop').getCities);
 app.post('/admin/shop/createshopcomplete/', filter.authorize, route.adminexec('shop').addShopComplete);
 

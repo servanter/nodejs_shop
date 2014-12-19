@@ -135,3 +135,13 @@ exports.addShopComplete = function(req, res) {
     })
 
 }
+
+exports.enterEditBanner = function(req, res) {
+    shopservice.findShopAndAds(req.params.id, function(data) {
+        res.render('admin/edit_banner', {data:{shop:data}});
+    })
+}
+
+exports.editBanner = function(req, res) {
+    
+}

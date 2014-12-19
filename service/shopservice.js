@@ -1,5 +1,6 @@
 var Shop = require('../model/shop');
 var ShopPromise = require('../model/dictshoppromise');
+var ShopAd = require('../model/shopad');
 var async = require('async');
 var Paging = require('../util/paging');
 var Convert = require('../util/convert');
@@ -83,6 +84,14 @@ exports.findShopAndIndexItems = function(shopId, p, callback) {
     });
 }
 
+exports.findShopAndAds = function(shopId, callback) {
+    Shop.find({where:{id:shopId}, include:[{model:ShopAd, as:'ads', where:{is_valid:1, is_vertify:1}, required:false}]}).success(function(result) {
+        callback(result);
+    });
+}
+
+
+
 exports.findShopFullInfoById = function(shopId, callback) {
     Shop.findAll({
         include: [{
@@ -145,7 +154,6 @@ exports.findShopInfoAndAreasName = function(shopId, callback) {
 
 exports.update = function(id, params, callback) {
     Shop.update(params, {where:{id: id}}).complete(function(err, result) {
-        console.log(result);
         if(err) {
             callback(false);
         } else {
