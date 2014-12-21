@@ -164,6 +164,8 @@ exports.editBanner = function(req, res) {
         fs.renameSync(files.banner_4.path, 'public/images/shop/ads/' + banner4FullName);
         fs.renameSync(files.banner_5.path, 'public/images/shop/ads/' + banner5FullName);
 
+
+        
         shopservice.add(shop, function(result) {
             var sign = '操作失败';
             if(result) {
