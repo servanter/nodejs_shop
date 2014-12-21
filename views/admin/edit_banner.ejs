@@ -14,11 +14,12 @@
             var divIndex = 0;
             var nameIndex = 0;
             $(function() {
-                $('.btn-primary').click(function() {
+                $('.btn-plus').click(function() {
                     var text = '<div class="form-group">' + $('.shop-add-form').find('div').eq(0).html() + '</div>';
                     $('.shop-add-form').find('div').eq(divIndex).after(text);
                     divIndex = divIndex + 4;
                     nameIndex++;
+                    $('.shop-add-form').find('div').eq(divIndex).find('label').eq(0).text('');
                     $('.shop-add-form').find('div').eq(divIndex).find('input').eq(0).attr('name', 'banner_' + (nameIndex + 1));
                     $('.shop-add-form').find('div').eq(divIndex).find('input').eq(1).attr('name', 'description_' + (nameIndex + 1));
                     $('.shop-add-form').find('div').eq(divIndex).find('input').eq(2).attr('name', 'link_' + (nameIndex + 1));
@@ -57,7 +58,7 @@
                               </div>
                               <div class="form-group">
                                 <div class="col-sm-offset-2 col-sm-7 text-left">
-                                  <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span>增加</button>
+                                  <button type="button" class="btn btn-primary btn-plus"><span class="glyphicon glyphicon-plus"></span>增加</button>
                                   <button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-minus"></span>删除</button>
                                 </div>
                               </div>
@@ -78,7 +79,6 @@
                               <div class="form-group">
                                 <div class="col-sm-offset-2 col-sm-7 text-right">
                                   <button type="submit" class="btn btn-primary">修改</button>
-                                  <button type="reset" class="btn btn-default">重置</button>
                                 </div>
                               </div>
                         </form>
