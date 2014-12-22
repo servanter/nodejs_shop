@@ -14,7 +14,23 @@
             $(function() {
                  $('#item_class').change(function(){
                     $.get('/admin/item/getSubAttributes/?class_id=' + $('#item_class').val(), function(data){
-                        console.log(data);
+                        if(data && data.length > 0) {
+                            var html = '';
+                            $.each(data, function(index, item) {
+                                var msg = '<div class="form-group">';
+                                msg += '<label for="description" class="col-sm-2 control-label">' + item.name + '</label>';
+                                msg += '<div class="col-sm-7">';
+                                msg += '<select id="'+item.alias+'" name="'+item.alias+'" class="form-control">';
+                                $.each(item.data, function(index, every) {
+                                    msg += '<option value='+every.value+'>'+every.name+'</option>';
+                                });
+                                msg += '</select>'
+                                msg += '</div></div>';
+                                html += msg;
+                            });
+                            $('.form-group').eq(3).after(html);
+                        }
+
                     });
                 })
             })
