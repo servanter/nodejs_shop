@@ -22,13 +22,11 @@ exports.batchSave = function(ads, cb) {
 	if(ads && ads.length > 0) {
 		var data = new Array();
 		async.eachSeries(ads, function(item, callback) {
-			callback();
-			data.push(item);
 			save(item, function(result) {
 				data.push(result);
 				callback();
 			})
-		}, function(data) {
+		}, function(err) {
 			cb(data);
 		})
 	} else {

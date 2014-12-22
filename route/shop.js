@@ -24,7 +24,7 @@ exports.introduce = function(req, res) {
             if(res) {
                 res.render('shop_introduce', {data:result});
             } else {
-                res.redirect('/');
+                return res.redirect('/');
             }
         })
     }
