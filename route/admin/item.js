@@ -28,3 +28,19 @@ exports.addItemComplete = function(req, res) {
         
     }
 }
+
+exports.enteradditem = function(req, res) {
+    var shopId = req.params.id;
+    itemService.findClasses(function(result) {
+        res.render('admin/add_item', {data:{shop:{id:shopId}, classes:result}});
+    });
+
+}
+
+exports.getSubAttributes = function(req, res) {
+    var classId = req.query.class_id;
+    itemService.findAttributesByClassId(classId, function(result) {
+        res.status(200).json(result);
+        res.end();
+    });
+}

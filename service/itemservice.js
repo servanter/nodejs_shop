@@ -47,6 +47,8 @@ exports.search = function(shopId, params, paging, callback) {
             callback(result);
         });
     } else {
+
+        // default
         async.waterfall([
             function(cb) {
                 Item.findAll({where:whereConditions, offset:paging.sinceCount, limit:paging.pageSize}).success(function(data){
@@ -118,5 +120,12 @@ exports.findItemClassesByShopId = function (shopId, callback) {
             arr.push({name:result[i].category.alias, link:'a' + result[i].category.id + 'b0c0d0', total:result[i].dataValues.total});
         }
         callback(arr);
+    })
+}
+
+exports.findAttributesByClassId = function(classId, callback) {
+    var subFactory = new itemSubFactory.getService(parseInt(classId));
+    subFactory.findFullConditions(function(result) {
+        callback(result);    
     })
 }

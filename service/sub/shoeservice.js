@@ -145,3 +145,27 @@ exports.findList = function(shopId, params, paging, callback) {
         })
     
 }
+
+exports.findFullConditions = function(callback) {
+    async.waterfall([
+        function(cb) {
+            ShoeBrand.findAll({where:{is_valid:1}}).success(function(result) {
+                cb(null, {brands:result});
+            })        
+        }, function(data, cb) {
+            ShoeMaterial.findAll({where:{is_valid:1}}).success(function(result) {
+                cb(null, {brands:data.brands, materials:result});
+            })
+        }, function(data, cb) {
+            ShoeSize.findAll().success(function(result) {
+                cb(null, {brands:data.brands, materials:data.materials, sizes:result});
+            })
+        }, function(data, cb) {
+            Color.findAll({where:{is_valid:1}}).success(function(result) {
+                cb(null, {brands:data.brands, materials:data.materials, sizes:data.sizes, colors:result});
+            })
+        }], function(err, result) {
+            callback(result);
+        });
+    
+}
