@@ -23,11 +23,17 @@
                     $('.shop-add-form').find('div').eq(divIndex).find('input').eq(0).attr('name', 'banner_' + (nameIndex + 1));
                     $('.shop-add-form').find('div').eq(divIndex).find('input').eq(1).attr('name', 'description_' + (nameIndex + 1));
                     $('.shop-add-form').find('div').eq(divIndex).find('input').eq(2).attr('name', 'link_' + (nameIndex + 1));
+                    if($('.btn-danger').attr('disabled')) {
+                      $('.btn-danger').removeAttr('disabled');
+                    }
                 });
                 $('.btn-danger').click(function() {
                     if(divIndex > 0) {
                         $('.shop-add-form').find('div').eq(divIndex).remove();
                         divIndex = divIndex - 4;
+                        if(divIndex <= 0) {
+                            $(this).attr('disabled', 'disabled');
+                        }
                     }
                 });
             })
@@ -59,7 +65,7 @@
                               <div class="form-group">
                                 <div class="col-sm-offset-2 col-sm-7 text-left">
                                   <button type="button" class="btn btn-primary btn-plus"><span class="glyphicon glyphicon-plus"></span>增加</button>
-                                  <button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-minus"></span>删除</button>
+                                  <button type="button" class="btn btn-danger" disabled=disabled><span class="glyphicon glyphicon-minus"></span>删除</button>
                                 </div>
                               </div>
                               <%
