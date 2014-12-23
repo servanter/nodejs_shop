@@ -9,13 +9,14 @@ var ShoeMaterial = require('../../model/dictshoematerial');
 var Pic = require('../../model/detailpic');
 var Color = require('../../model/dictcolor');
 var Convert = require('../../util/convert');
+var Constants = require('../../util/constants');
 var Paging = require('../../util/paging');
 
 exports.findDetail = function(id, callback) {
-    Shoe.findAll({include:[{model:ShoeSize, as:'sizes', required:true, attributes:[['description', 'description']], order:[[ShoeSize, 'id', 'DESC']], include:[{model:RelShoeSize, where:{is_valid:1}, attributes:[['shoe_id', 'shoe_id'],['size_id', 'size_id']]}]}, {model:ShoeBrand, as:'brand', required:true, attributes:[['brand_name', 'brand_name']]}, {model:ShoeMaterial, as:'material', required:true, attributes:[['material_name', 'material_name']]}, {model:Pic, as : 'pics', required:true, attributes:[['pic_url', 'pic_url']]}],where:{id:id, is_vertify:1, on_sell:1}}, {subQuery:false}).success(function(result) {
-        var attr = packageAttr(result[0].dataValues);
-        result[0].dataValues.attr = attr;
-        callback(result[0].dataValues);
+    Shoe.find({include:[{model:ShoeSize, as:'sizes', required:true, attributes:[['description', 'description']], order:[[ShoeSize, 'id', 'DESC']], include:[{model:RelShoeSize, where:{is_valid:1}, attributes:[['shoe_id', 'shoe_id'],['size_id', 'size_id']]}]}, {model:ShoeBrand, as:'brand', required:true, attributes:[['brand_name', 'brand_name']]}, {model:ShoeMaterial, as:'material', required:true, attributes:[['material_name', 'material_name']]}, {model:Pic, as : 'pics', required:false, attributes:[['pic_url', 'pic_url']], where:{class_id:Constants.SubClasses.SHOE}}],where:{id:id, is_vertify:1, on_sell:1}}, {subQuery:false}).success(function(result) {
+        var attr = packageAttr(result);
+        result.attr = attr;
+        callback(result);
     })
 }
 
@@ -170,6 +171,12 @@ exports.findFullConditions = function(callback) {
             arr.push({name:'材料', alias:'material_id', desc:'所用材料' ,data:result.materials, type:'multiSelect'});
             arr.push({name:'尺码', alias:'size_id', desc:'适用尺码', data:result.sizes, type:'multiSelect'});
             arr.push({name:'颜色', alias:'color_id', desc:'适用颜色', data:result.colors, type:'multiSelect'});
+            arr.push({name:'原价', alias:'raw_price', desc:'宝贝原价格', type:'float'});
+            arr.push({name:'现价', alias:'price', desc:'宝贝现价', type:'float'});
+            arr.push({name:'备注', alias:'note', desc:'备注', type:'float'});
+            arr.push({name:'货号', alias:'serial_number', desc:'宝贝货号', type:'string'});
+            arr.push({name:'外部链接', alias:'rel_link', desc:'如果您在其他地方也有网店, 输入此链接可以跳转到该链接上', type:'string'});
+            arr.push({name:'宝贝图片', alias:'serial_number', desc:'宝贝货号', type:'string'});
             callback(arr);
         });
     

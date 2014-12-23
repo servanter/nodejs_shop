@@ -4,17 +4,55 @@
 %>
 <div class="form-group">
     <label for="<%=item.alias%>" class="col-sm-2 control-label"><%=item.name%></label>
-    <div class="col-sm-2">
-        <select id="<%=item.alias%>" name="<%=item.alias%>" class="form-control">
-            <%
-                item.data.forEach(function(every, index) {
-            %>
-                    <option value="<%=every.value%>"><%=every.name%></option>
-            <%
-                })
-            %>
-        </select>
-    </div>
+    <%
+        switch(item.type) {
+            case 'select':
+    %>
+                <div class="col-sm-2">
+                    <select id="<%=item.alias%>" name="<%=item.alias%>" class="form-control">
+                        <%
+                            item.data.forEach(function(every, index) {
+                        %>
+                                <option value="<%=every.value%>"><%=every.name%></option>
+                        <%
+                            })
+                        %>
+                    </select>
+                </div>
+    <%
+            break;
+            case 'multiSelect':
+    %>
+                <div class="col-sm-2">
+                    <select multiple id="<%=item.alias%>" name="<%=item.alias%>" class="form-control">
+                        <%
+                            item.data.forEach(function(every, index) {
+                        %>
+                                <option value="<%=every.value%>"><%=every.name%></option>
+                        <%
+                            })
+                        %>
+                    </select>
+                </div>
+    <%
+            break;
+            case 'string':
+    %>
+                <div class="col-sm-7">
+                    <input type="text" class="form-control" id="<%=item.alias%>" name="<%=item.alias%>" placeholder="<%=item.desc%>">
+                </div>
+    <%
+            break;
+            case 'integer': case 'float':
+    %>
+                <div class="col-sm-7">
+                    <input type="text" class="form-control" id="<%=item.alias%>" name="<%=item.alias%>" placeholder="<%=item.desc%>">
+                </div>
+    <%
+            default:
+            break;
+        }
+    %>
 </div>
 <%
         })
