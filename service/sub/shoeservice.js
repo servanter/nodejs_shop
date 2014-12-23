@@ -175,8 +175,10 @@ exports.findFullConditions = function(callback) {
             arr.push({name:'现价', alias:'price', desc:'宝贝现价', type:'float'});
             arr.push({name:'备注', alias:'note', desc:'备注', type:'float'});
             arr.push({name:'货号', alias:'serial_number', desc:'宝贝货号', type:'string'});
+            arr.push({name:'产地', alias:'come_from', desc:'宝贝产地', type:'string'});
             arr.push({name:'外部链接', alias:'rel_link', desc:'如果您在其他地方也有网店, 输入此链接可以跳转到该链接上', type:'string'});
-            arr.push({name:'宝贝图片', alias:'serial_number', desc:'宝贝货号', type:'string'});
+            arr.push({name:'宝贝图片', alias:'pics', desc:'宝贝图片', type:'file'});
+
             callback(arr);
         });
     

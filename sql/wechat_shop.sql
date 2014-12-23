@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50519
 File Encoding         : 65001
 
-Date: 2014-12-18 15:58:19
+Date: 2014-12-23 15:36:02
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -27,7 +27,7 @@ CREATE TABLE `weshop_admin_user` (
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `is_vertify` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of weshop_admin_user
@@ -41,6 +41,8 @@ INSERT INTO `weshop_admin_user` VALUES ('12', 'aas', '123', '2014-12-16 11:52:08
 INSERT INTO `weshop_admin_user` VALUES ('13', 'dfdf', '123', '2014-12-16 11:52:44', '2014-12-16 11:52:44', '1');
 INSERT INTO `weshop_admin_user` VALUES ('14', 'asdqw', 'da0464af6d89e21a06e365eaff468317', '2014-12-16 15:20:08', '2014-12-16 15:20:08', '1');
 INSERT INTO `weshop_admin_user` VALUES ('15', 'asdqwe', 'da0464af6d89e21a06e365eaff468317', '2014-12-17 14:05:20', '2014-12-17 14:05:20', '1');
+INSERT INTO `weshop_admin_user` VALUES ('16', 'ad123', 'da0464af6d89e21a06e365eaff468317', '2014-12-18 17:05:12', '2014-12-18 17:05:12', '1');
+INSERT INTO `weshop_admin_user` VALUES ('17', 'as123', 'da0464af6d89e21a06e365eaff468317', '2014-12-18 17:05:57', '2014-12-18 17:05:57', '1');
 
 -- ----------------------------
 -- Table structure for `weshop_area`
@@ -758,6 +760,7 @@ DROP TABLE IF EXISTS `weshop_detail_pic`;
 CREATE TABLE `weshop_detail_pic` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `detail_id` bigint(20) NOT NULL,
+  `class_id` bigint(20) NOT NULL,
   `pic_url` varchar(200) NOT NULL,
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `is_major` tinyint(1) NOT NULL DEFAULT '0',
@@ -768,12 +771,12 @@ CREATE TABLE `weshop_detail_pic` (
 -- ----------------------------
 -- Records of weshop_detail_pic
 -- ----------------------------
-INSERT INTO `weshop_detail_pic` VALUES ('1', '3', 'item/aaa.jpg', '2014-12-01 15:43:23', '1', '1');
-INSERT INTO `weshop_detail_pic` VALUES ('2', '3', 'item/bbb.jpg', '2014-12-01 15:47:12', '1', '1');
-INSERT INTO `weshop_detail_pic` VALUES ('3', '2', 'item/aaa.jpg', '2014-12-01 15:47:29', '1', '1');
-INSERT INTO `weshop_detail_pic` VALUES ('4', '4', 'item/aaa.jpg', '2014-12-01 15:47:29', '1', '1');
-INSERT INTO `weshop_detail_pic` VALUES ('5', '5', 'item/bbb.jpg', '2014-12-01 16:36:48', '1', '1');
-INSERT INTO `weshop_detail_pic` VALUES ('6', '6', 'item/bbb.jpg', '2014-12-02 17:33:01', '1', '1');
+INSERT INTO `weshop_detail_pic` VALUES ('1', '3', '3', 'item/aaa.jpg', '2014-12-23 15:14:25', '1', '1');
+INSERT INTO `weshop_detail_pic` VALUES ('2', '3', '3', 'item/bbb.jpg', '2014-12-23 15:14:26', '1', '1');
+INSERT INTO `weshop_detail_pic` VALUES ('3', '2', '0', 'item/aaa.jpg', '2014-12-01 15:47:29', '1', '1');
+INSERT INTO `weshop_detail_pic` VALUES ('4', '4', '0', 'item/aaa.jpg', '2014-12-01 15:47:29', '1', '1');
+INSERT INTO `weshop_detail_pic` VALUES ('5', '5', '0', 'item/bbb.jpg', '2014-12-01 16:36:48', '1', '1');
+INSERT INTO `weshop_detail_pic` VALUES ('6', '6', '0', 'item/bbb.jpg', '2014-12-02 17:33:01', '1', '1');
 
 -- ----------------------------
 -- Table structure for `weshop_dict_color`
@@ -794,6 +797,213 @@ INSERT INTO `weshop_dict_color` VALUES ('1', '红色', '2014-11-29 15:19:27', '1
 INSERT INTO `weshop_dict_color` VALUES ('2', '白色', '2014-11-29 15:19:40', '1');
 INSERT INTO `weshop_dict_color` VALUES ('3', '黑色', '2014-11-29 17:30:35', '1');
 INSERT INTO `weshop_dict_color` VALUES ('4', '蓝色', '2014-12-01 14:34:50', '1');
+
+-- ----------------------------
+-- Table structure for `weshop_dict_country`
+-- ----------------------------
+DROP TABLE IF EXISTS `weshop_dict_country`;
+CREATE TABLE `weshop_dict_country` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `country_name` varchar(10) NOT NULL,
+  `country_ename` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=193 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of weshop_dict_country
+-- ----------------------------
+INSERT INTO `weshop_dict_country` VALUES ('1', '安哥拉', 'Angola');
+INSERT INTO `weshop_dict_country` VALUES ('2', '阿富汗', 'Afghanistan');
+INSERT INTO `weshop_dict_country` VALUES ('3', '阿尔巴尼亚', 'Albania');
+INSERT INTO `weshop_dict_country` VALUES ('4', '阿尔及利亚', 'Algeria');
+INSERT INTO `weshop_dict_country` VALUES ('5', '安道尔共和国', 'Andorra');
+INSERT INTO `weshop_dict_country` VALUES ('6', '安圭拉岛', 'Anguilla');
+INSERT INTO `weshop_dict_country` VALUES ('7', '安提瓜和巴布达', 'Antigua and Barbuda');
+INSERT INTO `weshop_dict_country` VALUES ('8', '阿根廷', 'Argentina');
+INSERT INTO `weshop_dict_country` VALUES ('9', '亚美尼亚', 'Armenia');
+INSERT INTO `weshop_dict_country` VALUES ('10', '阿森松', 'Ascension');
+INSERT INTO `weshop_dict_country` VALUES ('11', '澳大利亚', 'Australia');
+INSERT INTO `weshop_dict_country` VALUES ('12', '奥地利', 'Austria');
+INSERT INTO `weshop_dict_country` VALUES ('13', '阿塞拜疆', 'Azerbaijan');
+INSERT INTO `weshop_dict_country` VALUES ('14', '巴哈马', 'Bahamas');
+INSERT INTO `weshop_dict_country` VALUES ('15', '巴林', 'Bahrain');
+INSERT INTO `weshop_dict_country` VALUES ('16', '孟加拉国', 'Bangladesh');
+INSERT INTO `weshop_dict_country` VALUES ('17', '巴巴多斯', 'Barbados');
+INSERT INTO `weshop_dict_country` VALUES ('18', '白俄罗斯', 'Belarus');
+INSERT INTO `weshop_dict_country` VALUES ('19', '比利时', 'Belgium');
+INSERT INTO `weshop_dict_country` VALUES ('20', '伯利兹', 'Belize');
+INSERT INTO `weshop_dict_country` VALUES ('21', '贝宁', 'Benin');
+INSERT INTO `weshop_dict_country` VALUES ('22', '百慕大群岛', 'Bermuda Is.');
+INSERT INTO `weshop_dict_country` VALUES ('23', '玻利维亚', 'Bolivia');
+INSERT INTO `weshop_dict_country` VALUES ('24', '博茨瓦纳', 'Botswana');
+INSERT INTO `weshop_dict_country` VALUES ('25', '巴西', 'Brazil');
+INSERT INTO `weshop_dict_country` VALUES ('26', '文莱', 'Brunei');
+INSERT INTO `weshop_dict_country` VALUES ('27', '保加利亚', 'Bulgaria');
+INSERT INTO `weshop_dict_country` VALUES ('28', '布基纳法索', 'Burkina-faso');
+INSERT INTO `weshop_dict_country` VALUES ('29', '缅甸', 'Burma');
+INSERT INTO `weshop_dict_country` VALUES ('30', '布隆迪', 'Burundi');
+INSERT INTO `weshop_dict_country` VALUES ('31', '喀麦隆', 'Cameroon');
+INSERT INTO `weshop_dict_country` VALUES ('32', '加拿大', 'Canada');
+INSERT INTO `weshop_dict_country` VALUES ('33', '开曼群岛', 'Cayman Is.');
+INSERT INTO `weshop_dict_country` VALUES ('34', '中非共和国', 'Central African Republic');
+INSERT INTO `weshop_dict_country` VALUES ('35', '乍得', 'Chad');
+INSERT INTO `weshop_dict_country` VALUES ('36', '智利', 'Chile');
+INSERT INTO `weshop_dict_country` VALUES ('37', '中国', 'China');
+INSERT INTO `weshop_dict_country` VALUES ('38', '哥伦比亚', 'Colombia');
+INSERT INTO `weshop_dict_country` VALUES ('39', '刚果', 'Congo');
+INSERT INTO `weshop_dict_country` VALUES ('40', '库克群岛', 'Cook Is.');
+INSERT INTO `weshop_dict_country` VALUES ('41', '哥斯达黎加', 'Costa Rica');
+INSERT INTO `weshop_dict_country` VALUES ('42', '古巴', 'Cuba');
+INSERT INTO `weshop_dict_country` VALUES ('43', '塞浦路斯', 'Cyprus');
+INSERT INTO `weshop_dict_country` VALUES ('44', '捷克', 'Czech Republic');
+INSERT INTO `weshop_dict_country` VALUES ('45', '丹麦', 'Denmark');
+INSERT INTO `weshop_dict_country` VALUES ('46', '吉布提', 'Djibouti');
+INSERT INTO `weshop_dict_country` VALUES ('47', '多米尼加共和国', 'Dominica Rep.');
+INSERT INTO `weshop_dict_country` VALUES ('48', '厄瓜多尔', 'Ecuador');
+INSERT INTO `weshop_dict_country` VALUES ('49', '埃及', 'Egypt');
+INSERT INTO `weshop_dict_country` VALUES ('50', '萨尔瓦多', 'EI Salvador');
+INSERT INTO `weshop_dict_country` VALUES ('51', '爱沙尼亚', 'Estonia');
+INSERT INTO `weshop_dict_country` VALUES ('52', '埃塞俄比亚', 'Ethiopia');
+INSERT INTO `weshop_dict_country` VALUES ('53', '斐济', 'Fiji');
+INSERT INTO `weshop_dict_country` VALUES ('54', '芬兰', 'Finland');
+INSERT INTO `weshop_dict_country` VALUES ('55', '法国', 'France');
+INSERT INTO `weshop_dict_country` VALUES ('56', '法属圭亚那', 'French Guiana');
+INSERT INTO `weshop_dict_country` VALUES ('57', '加蓬', 'Gabon');
+INSERT INTO `weshop_dict_country` VALUES ('58', '冈比亚', 'Gambia');
+INSERT INTO `weshop_dict_country` VALUES ('59', '格鲁吉亚', 'Georgia');
+INSERT INTO `weshop_dict_country` VALUES ('60', '德国', 'Germany');
+INSERT INTO `weshop_dict_country` VALUES ('61', '加纳', 'Ghana');
+INSERT INTO `weshop_dict_country` VALUES ('62', '直布罗陀', 'Gibraltar');
+INSERT INTO `weshop_dict_country` VALUES ('63', '希腊', 'Greece');
+INSERT INTO `weshop_dict_country` VALUES ('64', '格林纳达', 'Grenada');
+INSERT INTO `weshop_dict_country` VALUES ('65', '关岛', 'Guam');
+INSERT INTO `weshop_dict_country` VALUES ('66', '危地马拉', 'Guatemala');
+INSERT INTO `weshop_dict_country` VALUES ('67', '几内亚', 'Guinea');
+INSERT INTO `weshop_dict_country` VALUES ('68', '圭亚那', 'Guyana');
+INSERT INTO `weshop_dict_country` VALUES ('69', '海地', 'Haiti');
+INSERT INTO `weshop_dict_country` VALUES ('70', '洪都拉斯', 'Honduras');
+INSERT INTO `weshop_dict_country` VALUES ('71', '香港', 'Hongkong');
+INSERT INTO `weshop_dict_country` VALUES ('72', '匈牙利', 'Hungary');
+INSERT INTO `weshop_dict_country` VALUES ('73', '冰岛', 'Iceland');
+INSERT INTO `weshop_dict_country` VALUES ('74', '印度', 'India');
+INSERT INTO `weshop_dict_country` VALUES ('75', '印度尼西亚', 'Indonesia');
+INSERT INTO `weshop_dict_country` VALUES ('76', '伊朗', 'Iran');
+INSERT INTO `weshop_dict_country` VALUES ('77', '伊拉克', 'Iraq');
+INSERT INTO `weshop_dict_country` VALUES ('78', '爱尔兰', 'Ireland');
+INSERT INTO `weshop_dict_country` VALUES ('79', '以色列', 'Israel');
+INSERT INTO `weshop_dict_country` VALUES ('80', '意大利', 'Italy');
+INSERT INTO `weshop_dict_country` VALUES ('81', 'Coast', 'Ivory');
+INSERT INTO `weshop_dict_country` VALUES ('82', '牙买加', 'Jamaica');
+INSERT INTO `weshop_dict_country` VALUES ('83', '日本', 'Japan');
+INSERT INTO `weshop_dict_country` VALUES ('84', '约旦', 'Jordan');
+INSERT INTO `weshop_dict_country` VALUES ('85', '柬埔寨', 'Kampuchea (Cambodia )');
+INSERT INTO `weshop_dict_country` VALUES ('86', '哈萨克斯坦', 'Kazakstan');
+INSERT INTO `weshop_dict_country` VALUES ('87', '肯尼亚', 'Kenya');
+INSERT INTO `weshop_dict_country` VALUES ('88', '韩国', 'Korea');
+INSERT INTO `weshop_dict_country` VALUES ('89', '科威特', 'Kuwait');
+INSERT INTO `weshop_dict_country` VALUES ('90', '吉尔吉斯坦', 'Kyrgyzstan');
+INSERT INTO `weshop_dict_country` VALUES ('91', '老挝', 'Laos');
+INSERT INTO `weshop_dict_country` VALUES ('92', '拉脱维亚', 'Latvia');
+INSERT INTO `weshop_dict_country` VALUES ('93', '黎巴嫩', 'Lebanon');
+INSERT INTO `weshop_dict_country` VALUES ('94', '莱索托', 'Lesotho');
+INSERT INTO `weshop_dict_country` VALUES ('95', '利比里亚', 'Liberia');
+INSERT INTO `weshop_dict_country` VALUES ('96', '利比亚', 'Libya');
+INSERT INTO `weshop_dict_country` VALUES ('97', '列支敦士登', 'Liechtenstein');
+INSERT INTO `weshop_dict_country` VALUES ('98', '立陶宛', 'Lithuania');
+INSERT INTO `weshop_dict_country` VALUES ('99', '卢森堡', 'Luxembourg');
+INSERT INTO `weshop_dict_country` VALUES ('100', '澳门', 'Macao');
+INSERT INTO `weshop_dict_country` VALUES ('101', '马达加斯加', 'Madagascar');
+INSERT INTO `weshop_dict_country` VALUES ('102', '马拉维', 'Malawi');
+INSERT INTO `weshop_dict_country` VALUES ('103', '马来西亚', 'Malaysia');
+INSERT INTO `weshop_dict_country` VALUES ('104', '马尔代夫', 'Maldives');
+INSERT INTO `weshop_dict_country` VALUES ('105', '马里', 'Mali');
+INSERT INTO `weshop_dict_country` VALUES ('106', '马耳他', 'Malta');
+INSERT INTO `weshop_dict_country` VALUES ('107', '马里亚那群岛', 'Mariana Is');
+INSERT INTO `weshop_dict_country` VALUES ('108', '马提尼克', 'Martinique');
+INSERT INTO `weshop_dict_country` VALUES ('109', '毛里求斯', 'Mauritius');
+INSERT INTO `weshop_dict_country` VALUES ('110', '墨西哥', 'Mexico');
+INSERT INTO `weshop_dict_country` VALUES ('111', '摩尔多瓦', 'Moldova Republic of');
+INSERT INTO `weshop_dict_country` VALUES ('112', '摩纳哥', 'Monaco');
+INSERT INTO `weshop_dict_country` VALUES ('113', '蒙古', 'Mongolia');
+INSERT INTO `weshop_dict_country` VALUES ('114', '蒙特塞拉特岛', 'Montserrat Is');
+INSERT INTO `weshop_dict_country` VALUES ('115', '摩洛哥', 'Morocco');
+INSERT INTO `weshop_dict_country` VALUES ('116', '莫桑比克', 'Mozambique');
+INSERT INTO `weshop_dict_country` VALUES ('117', '纳米比亚', 'Namibia');
+INSERT INTO `weshop_dict_country` VALUES ('118', '瑙鲁', 'Nauru');
+INSERT INTO `weshop_dict_country` VALUES ('119', '尼泊尔', 'Nepal');
+INSERT INTO `weshop_dict_country` VALUES ('120', '荷属安的列斯', 'Netheriands Antilles');
+INSERT INTO `weshop_dict_country` VALUES ('121', '荷兰', 'Netherlands');
+INSERT INTO `weshop_dict_country` VALUES ('122', '新西兰', 'New Zealand');
+INSERT INTO `weshop_dict_country` VALUES ('123', '尼加拉瓜', 'Nicaragua');
+INSERT INTO `weshop_dict_country` VALUES ('124', '尼日尔', 'Niger');
+INSERT INTO `weshop_dict_country` VALUES ('125', '尼日利亚', 'Nigeria');
+INSERT INTO `weshop_dict_country` VALUES ('126', '朝鲜', 'North Korea');
+INSERT INTO `weshop_dict_country` VALUES ('127', '挪威', 'Norway');
+INSERT INTO `weshop_dict_country` VALUES ('128', '阿曼', 'Oman');
+INSERT INTO `weshop_dict_country` VALUES ('129', '巴基斯坦', 'Pakistan');
+INSERT INTO `weshop_dict_country` VALUES ('130', '巴拿马', 'Panama');
+INSERT INTO `weshop_dict_country` VALUES ('131', '巴布亚新几内亚', 'Papua New Cuinea');
+INSERT INTO `weshop_dict_country` VALUES ('132', '巴拉圭', 'Paraguay');
+INSERT INTO `weshop_dict_country` VALUES ('133', '秘鲁', 'Peru');
+INSERT INTO `weshop_dict_country` VALUES ('134', '菲律宾', 'Philippines');
+INSERT INTO `weshop_dict_country` VALUES ('135', '波兰', 'Poland');
+INSERT INTO `weshop_dict_country` VALUES ('136', '法属玻利尼西亚', 'French Polynesia');
+INSERT INTO `weshop_dict_country` VALUES ('137', '葡萄牙', 'Portugal');
+INSERT INTO `weshop_dict_country` VALUES ('138', 'Rico', 'Puerto');
+INSERT INTO `weshop_dict_country` VALUES ('139', '卡塔尔', 'Qatar');
+INSERT INTO `weshop_dict_country` VALUES ('140', '留尼旺', 'Reunion');
+INSERT INTO `weshop_dict_country` VALUES ('141', '罗马尼亚', 'Romania');
+INSERT INTO `weshop_dict_country` VALUES ('142', '俄罗斯', 'Russia');
+INSERT INTO `weshop_dict_country` VALUES ('143', '圣卢西亚', 'Saint Lueia');
+INSERT INTO `weshop_dict_country` VALUES ('144', '圣文森特岛', 'Saint Vincent');
+INSERT INTO `weshop_dict_country` VALUES ('145', '东萨摩亚(美)', 'Samoa Eastern');
+INSERT INTO `weshop_dict_country` VALUES ('146', '西萨摩亚', 'Samoa Western');
+INSERT INTO `weshop_dict_country` VALUES ('147', '圣马力诺', 'San Marino');
+INSERT INTO `weshop_dict_country` VALUES ('148', '圣多美和普林西比', 'Sao Tome and Principe');
+INSERT INTO `weshop_dict_country` VALUES ('149', '沙特阿拉伯', 'Saudi Arabia');
+INSERT INTO `weshop_dict_country` VALUES ('150', '塞内加尔', 'Senegal');
+INSERT INTO `weshop_dict_country` VALUES ('151', '塞舌尔', 'Seychelles');
+INSERT INTO `weshop_dict_country` VALUES ('152', 'Leone', 'Sierra');
+INSERT INTO `weshop_dict_country` VALUES ('153', '新加坡', 'Singapore');
+INSERT INTO `weshop_dict_country` VALUES ('154', '斯洛伐克', 'Slovakia');
+INSERT INTO `weshop_dict_country` VALUES ('155', '斯洛文尼亚', 'Slovenia');
+INSERT INTO `weshop_dict_country` VALUES ('156', '所罗门群岛', 'Solomon Is');
+INSERT INTO `weshop_dict_country` VALUES ('157', '索马里', 'Somali');
+INSERT INTO `weshop_dict_country` VALUES ('158', '南非', 'South Africa');
+INSERT INTO `weshop_dict_country` VALUES ('159', '西班牙', 'Spain');
+INSERT INTO `weshop_dict_country` VALUES ('160', '斯里兰卡', 'Sri Lanka');
+INSERT INTO `weshop_dict_country` VALUES ('161', '圣卢西亚', 'St.Lucia');
+INSERT INTO `weshop_dict_country` VALUES ('162', '圣文森特', 'St.Vincent');
+INSERT INTO `weshop_dict_country` VALUES ('163', '苏丹', 'Sudan');
+INSERT INTO `weshop_dict_country` VALUES ('164', '苏里南', 'Suriname');
+INSERT INTO `weshop_dict_country` VALUES ('165', '斯威士兰', 'Swaziland');
+INSERT INTO `weshop_dict_country` VALUES ('166', '瑞典', 'Sweden');
+INSERT INTO `weshop_dict_country` VALUES ('167', '瑞士', 'Switzerland');
+INSERT INTO `weshop_dict_country` VALUES ('168', '叙利亚', 'Syria');
+INSERT INTO `weshop_dict_country` VALUES ('169', '台湾省', 'Taiwan');
+INSERT INTO `weshop_dict_country` VALUES ('170', '塔吉克斯坦', 'Tajikstan');
+INSERT INTO `weshop_dict_country` VALUES ('171', '坦桑尼亚', 'Tanzania');
+INSERT INTO `weshop_dict_country` VALUES ('172', '泰国', 'Thailand');
+INSERT INTO `weshop_dict_country` VALUES ('173', '多哥', 'Togo');
+INSERT INTO `weshop_dict_country` VALUES ('174', '汤加', 'Tonga');
+INSERT INTO `weshop_dict_country` VALUES ('175', '特立尼达和多巴哥', 'Trinidad and Tobago');
+INSERT INTO `weshop_dict_country` VALUES ('176', '突尼斯', 'Tunisia');
+INSERT INTO `weshop_dict_country` VALUES ('177', '土耳其', 'Turkey');
+INSERT INTO `weshop_dict_country` VALUES ('178', '土库曼斯坦', 'Turkmenistan');
+INSERT INTO `weshop_dict_country` VALUES ('179', '乌干达', 'Uganda');
+INSERT INTO `weshop_dict_country` VALUES ('180', '乌克兰', 'Ukraine');
+INSERT INTO `weshop_dict_country` VALUES ('181', '阿拉伯联合酋长国', 'United Arab Emirates');
+INSERT INTO `weshop_dict_country` VALUES ('182', '英国', 'United Kiongdom');
+INSERT INTO `weshop_dict_country` VALUES ('183', '美国', 'United States of America');
+INSERT INTO `weshop_dict_country` VALUES ('184', '乌拉圭', 'Uruguay');
+INSERT INTO `weshop_dict_country` VALUES ('185', '乌兹别克斯坦', 'Uzbekistan');
+INSERT INTO `weshop_dict_country` VALUES ('186', '委内瑞拉', 'Venezuela');
+INSERT INTO `weshop_dict_country` VALUES ('187', '越南', 'Vietnam');
+INSERT INTO `weshop_dict_country` VALUES ('188', '也门', 'Yemen');
+INSERT INTO `weshop_dict_country` VALUES ('189', '南斯拉夫', 'Yugoslavia');
+INSERT INTO `weshop_dict_country` VALUES ('190', '津巴布韦', 'Zimbabwe');
+INSERT INTO `weshop_dict_country` VALUES ('191', '扎伊尔', 'Zaire');
+INSERT INTO `weshop_dict_country` VALUES ('192', '赞比亚', 'Zambia');
 
 -- ----------------------------
 -- Table structure for `weshop_dict_shoe_brand`
@@ -968,7 +1178,7 @@ CREATE TABLE `weshop_shoe` (
   `come_from` varchar(10) NOT NULL,
   `material_id` bigint(20) NOT NULL,
   `color_id` bigint(20) NOT NULL,
-  `note` varchar(50) NOT NULL,
+  `note` varchar(50) NOT NULL DEFAULT '',
   `serial_number` varchar(50) NOT NULL,
   `rel_link` text NOT NULL,
   `is_vertify` tinyint(1) NOT NULL DEFAULT '0',
@@ -1030,12 +1240,12 @@ CREATE TABLE `weshop_shop` (
   `create_time` timestamp NOT NULL DEFAULT '1990-01-01 00:00:00',
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of weshop_shop
 -- ----------------------------
-INSERT INTO `weshop_shop` VALUES ('1', '1', '新品会', 'a阿斯顿大飒飒的按aaaaaaa', 'qweqweqwewq', '-1', '0', '北七家镇东三旗村村北北辰亚运村汽车交易市场北六区1号', '', '', '', '0', '2014-11-13 16:27:07', '2014-12-16 13:46:07');
+INSERT INTO `weshop_shop` VALUES ('1', '1', '新品会', 'a阿斯顿大飒飒的按aaaaaaa', 'qweqweqwewq', '4', '233', '北七家镇东三旗村村北北辰亚运村汽车交易市场北六区1号', 'shop/shop_logo/14188940057375606.jpg', 'shop/shop_publicity/14188940057379007.jpg', 'asd123123', '0', '2014-11-13 16:27:07', '2014-12-18 17:13:25');
 INSERT INTO `weshop_shop` VALUES ('2', '1', '京东', '阿斯顿记录卡见识到了卡机顺路快递将阿里卡', '', '0', '0', '北七家镇东三旗村村北北辰亚运村汽车交易市场北六区1号', '', '', '', '0', '1990-01-01 00:00:00', '2014-12-04 15:12:48');
 INSERT INTO `weshop_shop` VALUES ('6', '1', 'ad按时打算', '请问我企鹅', 'asda23123', '1', '200', '北七家镇东三旗村村1北北辰亚运村汽车交易市场北六区1号', '123131', 'dqweq', 'eqwesdasdasdadsad', '0', '2014-11-17 16:13:28', '2014-12-15 15:07:48');
 INSERT INTO `weshop_shop` VALUES ('7', '1', 'asdasda3', '123123', '', '0', '0', '北七家镇东三旗村村北北辰亚运村汽车交易市场北六区1号', '', '', '', '0', '2014-11-17 16:17:16', '2014-12-04 15:12:48');
@@ -1067,6 +1277,7 @@ INSERT INTO `weshop_shop` VALUES ('32', '1', 'asdasdad', 'qweqw', 'e123123', '4'
 INSERT INTO `weshop_shop` VALUES ('33', '1', 'dqweq1231', '12', '312312qw', '4', '233', 'sdadadq', 'weqe', 'qeqe', 'asdasdasdasd', '0', '2014-12-12 17:06:12', '2014-12-12 17:06:12');
 INSERT INTO `weshop_shop` VALUES ('34', '13', 'adsasd', 'qwe123123', '13123', '2', '185', 'dqwe', 'qweqe', 'qeqeqeqe', 'qweqeqweqee', '0', '2014-12-16 11:54:07', '2014-12-16 11:54:07');
 INSERT INTO `weshop_shop` VALUES ('35', '1', 'qwe123', 'qweqweqe', 'asdadasd13', '1', '186', 'qweqeasdasd', 'shop/shop_logo/14188892331129255.jpg', 'shop/shop_publicity/14188892331127144.jpg', 'ad12asdasda', '0', '2014-12-18 15:53:53', '2014-12-18 15:53:53');
+INSERT INTO `weshop_shop` VALUES ('36', '1', 'dasd', '123asda', 'dqwe', '2', '185', 'qweqe123123', 'shop/shop_logo/14188939231351456.jpg', 'shop/shop_publicity/14188939231365955.jpg', 'ad123qwqweqweq', '0', '2014-12-18 17:12:03', '2014-12-18 17:12:03');
 
 -- ----------------------------
 -- Table structure for `weshop_shop_advertsing`
@@ -1080,10 +1291,10 @@ CREATE TABLE `weshop_shop_advertsing` (
   `link` varchar(200) NOT NULL,
   `create_time` timestamp NOT NULL DEFAULT '1990-01-01 00:00:00',
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `is_valid` tinyint(1) NOT NULL DEFAULT '0',
-  `is_vertify` tinyint(1) NOT NULL DEFAULT '0',
+  `is_valid` tinyint(1) NOT NULL DEFAULT '1',
+  `is_vertify` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of weshop_shop_advertsing
@@ -1091,6 +1302,25 @@ CREATE TABLE `weshop_shop_advertsing` (
 INSERT INTO `weshop_shop_advertsing` VALUES ('1', '14', 'shop/ads/ad_1.jpg', '1', 'http://www.baidu.com', '1990-01-01 00:00:00', '2014-12-04 11:05:31', '1', '1');
 INSERT INTO `weshop_shop_advertsing` VALUES ('2', '14', 'shop/ads/ad_2.jpg', '2', 'shop/ad_1.jpg', '1990-01-01 00:00:00', '2014-12-04 11:05:33', '1', '1');
 INSERT INTO `weshop_shop_advertsing` VALUES ('3', '14', 'shop/ads/ad_3.jpg', '3', 'shop/ad_1.jpg', '1990-01-01 00:00:00', '2014-12-04 11:05:34', '1', '1');
+INSERT INTO `weshop_shop_advertsing` VALUES ('4', '15', 'shop/ads/14192316491757550.jpg', 'asdadas', 'www.baidu.com', '2014-12-22 15:00:49', '2014-12-22 15:00:49', '0', '0');
+INSERT INTO `weshop_shop_advertsing` VALUES ('5', '15', 'shop/ads/14192316491904104.jpg', 'aweadadasd', 'www.sina.com', '2014-12-22 15:00:49', '2014-12-22 15:00:49', '0', '0');
+INSERT INTO `weshop_shop_advertsing` VALUES ('6', '2', 'shop/ads/14192317670971410.jpg', 'sdqqwe', 'http://www.baidu.com', '2014-12-22 15:02:47', '2014-12-22 15:02:47', '0', '0');
+INSERT INTO `weshop_shop_advertsing` VALUES ('7', '2', 'shop/ads/14192317670989089.jpg', 'asdq3123', 'http://www.sina.com', '2014-12-22 15:02:47', '2014-12-22 15:02:47', '0', '0');
+INSERT INTO `weshop_shop_advertsing` VALUES ('8', '6', 'shop/ads/14192319704801969.jpg', 'qweqw', 'eqweqwe', '2014-12-22 15:06:10', '2014-12-22 15:06:10', '0', '0');
+INSERT INTO `weshop_shop_advertsing` VALUES ('9', '6', 'shop/ads/14192319704818935.jpg', 'asd', '123123123', '2014-12-22 15:06:10', '2014-12-22 15:06:10', '0', '0');
+INSERT INTO `weshop_shop_advertsing` VALUES ('10', '8', 'shop/ads/14192320415543757.jpg', 'sdf', 'qweqweqe', '2014-12-22 15:07:21', '2014-12-22 15:07:21', '0', '0');
+INSERT INTO `weshop_shop_advertsing` VALUES ('11', '8', 'shop/ads/14192320415543892.jpg', 'asdasd', 'asdqeqwe', '2014-12-22 15:07:21', '2014-12-22 15:07:21', '0', '0');
+INSERT INTO `weshop_shop_advertsing` VALUES ('12', '10', 'shop/ads/14192321374297477.jpg', 'asd', 'qwe', '2014-12-22 15:08:57', '2014-12-22 15:08:57', '0', '0');
+INSERT INTO `weshop_shop_advertsing` VALUES ('13', '10', 'shop/ads/14192321374302561.jpg', 'asd', '32123123', '2014-12-22 15:08:57', '2014-12-22 15:08:57', '0', '0');
+INSERT INTO `weshop_shop_advertsing` VALUES ('14', '11', 'shop/ads/14192321872704774.jpg', 'qwe', 'qeqwe', '2014-12-22 15:09:47', '2014-12-22 15:09:47', '0', '0');
+INSERT INTO `weshop_shop_advertsing` VALUES ('15', '10', 'shop/ads/14192322969327729.jpg', 'asdq', 'weqweqeqw', '2014-12-22 15:11:36', '2014-12-22 15:11:36', '0', '0');
+INSERT INTO `weshop_shop_advertsing` VALUES ('16', '10', 'shop/ads/14192322969343713.jpg', 'asdqwe', 'qweqeqeqeq', '2014-12-22 15:11:36', '2014-12-22 15:11:36', '0', '0');
+INSERT INTO `weshop_shop_advertsing` VALUES ('17', '11', 'shop/ads/1419233949114729.jpg', 'asdas', '123weqwe', '2014-12-22 15:39:09', '2014-12-22 15:39:09', '0', '0');
+INSERT INTO `weshop_shop_advertsing` VALUES ('18', '11', 'shop/ads/14192339491153225.jpg', 'asda', '123131', '2014-12-22 15:39:09', '2014-12-22 15:39:09', '0', '0');
+INSERT INTO `weshop_shop_advertsing` VALUES ('19', '11', 'shop/ads/14192341306069329.jpg', 'asdas', 'aadasd', '2014-12-22 15:42:10', '2014-12-22 15:42:10', '0', '0');
+INSERT INTO `weshop_shop_advertsing` VALUES ('20', '11', 'shop/ads/14192341306073168.jpg', 'qweqwe', 'qweqweqwe', '2014-12-22 15:42:10', '2014-12-22 15:42:10', '0', '0');
+INSERT INTO `weshop_shop_advertsing` VALUES ('21', '11', 'shop/ads/14192342343171530.jpg', 'sdfs', 'http://www.baidu.com', '2014-12-22 15:43:54', '2014-12-22 15:43:54', '1', '1');
+INSERT INTO `weshop_shop_advertsing` VALUES ('22', '11', 'shop/ads/14192342343186406.jpg', 'asdasd', 'http://www.sohu.com', '2014-12-22 15:43:54', '2014-12-22 15:43:54', '1', '1');
 
 -- ----------------------------
 -- Table structure for `weshop_shop_promise_rel`
