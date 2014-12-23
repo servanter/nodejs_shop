@@ -170,6 +170,7 @@ exports.findFullConditions = function(callback) {
             arr.push({name:'材料', alias:'material_id', desc:'所用材料' ,data:result.materials});
             arr.push({name:'尺码', alias:'size_id', desc:'适用尺码', data:result.sizes});
             arr.push({name:'颜色', alias:'color_id', desc:'适用颜色', data:result.colors});
+            
             callback(arr);
         });
     
