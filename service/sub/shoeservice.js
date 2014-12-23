@@ -169,7 +169,7 @@ exports.findFullConditions = function(callback) {
         }], function(err, result) {
             var arr = new Array();
             arr.push({name:'品牌', alias:'brand_id', desc:'所选品牌', data:result.brands, type:'select'});
-            arr.push({name:'材料', alias:'material_id', desc:'所用材料' ,data:result.materials, type:'select', multi:true});
+            arr.push({name:'材料', alias:'material_id', desc:'所用材料' ,data:result.materials, type:'select'});
             arr.push({name:'尺码', alias:'size_id', desc:'适用尺码', data:result.sizes, type:'select', multi:true});
             arr.push({name:'颜色', alias:'color_id', desc:'适用颜色', data:result.colors, type:'select', multi:true});
             arr.push({name:'原价', alias:'raw_price', desc:'宝贝原价格', type:'float'});
@@ -193,9 +193,20 @@ exports.save = function (fields, files, callback) {
             price : fields.price,
             raw_price : fields.raw_price,
             short_name : fields.short_name,
-            description : fields.description
-
+            description : fields.description,
+            from_country_id : fields.from_country_id,
+            material_id : fields.material_id,
+            color_id : fields.color_id,
+            note : fields.note,
+            serial_number : fields.serial_number,
+            rel_link : fields.rel_link
         }
-        
+        Shoe.create(shoe).complete(function(err, result) {
+            var lastInsertId = result.id;
+            
+
+
+            
+        })
     }
 }
