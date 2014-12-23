@@ -1,0 +1,22 @@
+<%
+    if(data && data.length) {
+        data.forEach(function(item, index) {
+%>
+<div class="form-group">
+    <label for="<%=item.alias%>" class="col-sm-2 control-label"><%=item.name%></label>
+    <div class="col-sm-2">
+        <select id="<%=item.alias%>" name="<%=item.alias%>" class="form-control">
+            <%
+                item.data.forEach(function(every, index) {
+            %>
+                    <option value="<%=every.value%>"><%=every.name%></option>
+            <%
+                })
+            %>
+        </select>
+    </div>
+</div>
+<%
+        })
+    }
+%>

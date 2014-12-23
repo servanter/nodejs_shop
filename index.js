@@ -51,6 +51,8 @@ app.post('/admin/additemcomplete/', filter.authorize, route.adminexec('item').ad
 app.get('/admin/user/checkusername/', route.adminexec('user').checkUserName);
 app.post('/admin/user/adduser/', route.adminexec('user').addUser);
 
+app.get('/admin/inc/:template.ejs', route.adminRender());
+
 /* user display */
 app.get('/shop/:id/', route.exec('shop').detail);
 

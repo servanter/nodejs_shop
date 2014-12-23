@@ -166,10 +166,10 @@ exports.findFullConditions = function(callback) {
             })
         }], function(err, result) {
             var arr = new Array();
-            arr.push({name:'品牌', alias:'brand_id', desc:'所选品牌', data:result.brands});
-            arr.push({name:'材料', alias:'material_id', desc:'所用材料' ,data:result.materials});
-            arr.push({name:'尺码', alias:'size_id', desc:'适用尺码', data:result.sizes});
-            arr.push({name:'颜色', alias:'color_id', desc:'适用颜色', data:result.colors});
+            arr.push({name:'品牌', alias:'brand_id', desc:'所选品牌', data:result.brands, type:'select'});
+            arr.push({name:'材料', alias:'material_id', desc:'所用材料' ,data:result.materials, type:'multiSelect'});
+            arr.push({name:'尺码', alias:'size_id', desc:'适用尺码', data:result.sizes, type:'multiSelect'});
+            arr.push({name:'颜色', alias:'color_id', desc:'适用颜色', data:result.colors, type:'multiSelect'});
             callback(arr);
         });
     
