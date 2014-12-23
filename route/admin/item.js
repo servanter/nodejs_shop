@@ -6,29 +6,6 @@ exports.addItem = function(req, res) {
     })
 }
 
-exports.addItemComplete = function(req, res) {
-    if(req.body.shop_id && req.session.userId && req.body.short_name && req.body.description && req.body.pic_url && req.body.price) {
-        var item = {
-            shop_id:req.body.shop_id, 
-            create_user_id:req.session.userId, 
-            class_id:req.body.class_id,
-            short_name:req.body.short_name, 
-            description:req.body.description, 
-            pic_url:req.body.pic_url, 
-            price:req.body.price
-        }
-        itemService.addItem(item, function(result) {
-            var sign = '操作成功';
-            if(!result) {
-                sign = '操作失败';
-            }
-            req.flash('sign', sign);
-            return res.redirect('/admin/shop/'+req.body.shop_id+'/');
-        });
-        
-    }
-}
-
 exports.enteradditem = function(req, res) {
     var shopId = req.params.id;
     itemService.findClasses(function(result) {
@@ -43,4 +20,35 @@ exports.getSubAttributes = function(req, res) {
         res.status(200).json(result);
         res.end();
     });
+}
+
+exports.additem = function(req, res) {
+    var form = new formidable.IncomingForm();
+    form.uploadDir = 'public/';
+    var shopId = req.params.id;
+    form.parse(req, function(err, fields, files) {
+        var subFactory = new itemSubFactory.getService(parseInt(fields.class_id));
+        if(subFactory) {
+            var index = 1;
+            var data = new Array();
+            for(var index = 1; files.hasOwnProperty('pic' + index); index++) {
+                var pic = eval('files.' + ('pic_' + index));
+                var picName = pic.name.substring(pic.name.indexOf('.'));
+                var picFullName = new Date().getTime() + '' + RandomUtil.getRandom(10000) + picName;
+                fs.renameSync(pic.path, 'public/images/item/' + picFullName);
+                var picUrl = 'images/item/' + picFullName;
+                data.push(picUrl);
+            }
+            subFactory.save(fields, data, function(result) {
+                var sign = '添加商品成功';
+                if(!result) {
+                    sign = '操作失败';
+                }
+                req.flash('sign', sign);
+                return res.redirect('/admin/shop/');
+            });
+        }
+    })
+
+
 }

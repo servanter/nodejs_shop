@@ -182,3 +182,10 @@ exports.findFullConditions = function(callback) {
         });
     
 }
+
+exports.save = function (fields, files, callback) {
+    if(fields && files && files.length) {
+
+        
+    }
+}
