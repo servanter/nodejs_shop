@@ -11,6 +11,7 @@ var ShopPromise = require('./dictshoppromise');
 var ShoeMaterial = require('./dictshoematerial');
 var Color = require('./dictcolor');
 var ShopAd = require('./shopad');
+var Country = require('./dictcountry');
 
 Position.belongsTo(Item, {foreignKey:'id'});
 Item.hasMany(Position, {foreignKey:'item_id'});
@@ -43,7 +44,10 @@ Shoe.belongsTo(Color, {foreignKey:'color_id', as:'color'});
 Color.hasMany(Shoe, {foreignKey:'id'});
 
 Shoe.hasMany(Pic, {foreignKey:'detail_id', as:'pics'});
-Pic.belongsTo(Shoe, {foreignKey:'id'})
+Pic.belongsTo(Shoe, {foreignKey:'id'});
+
+Shoe.belongsTo(Country, {foreignKey:'from_country_id', as : 'country'});
+Country.hasMany(Shoe, {foreignKey:'id'});
 
 Shop.hasMany(ShopPromise, {foreignKey:'shop_id', as:'promises', through:'weshop_shop_promise_rel'});
 ShopPromise.hasMany(Shop, {foreignKey:'promise_id', through:'weshop_shop_promise_rel'});

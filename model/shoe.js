@@ -9,7 +9,7 @@ var Shoe = sequelize.define('Shoe', {
     description:Sequelize.STRING,
     price:Sequelize.FLOAT,
     raw_price:Sequelize.FLOAT,
-    come_from:Sequelize.STRING,
+    from_country_id:Sequelize.BIGINT,
     material_id:Sequelize.BIGINT,
     color_id:Sequelize.BIGINT,
     note:Sequelize.STRING,

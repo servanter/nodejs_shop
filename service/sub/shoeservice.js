@@ -6,6 +6,7 @@ var RelShoeSize = require('../../model/shoesizerel');
 var ShoeBrand = require('../../model/dictshoebrand');
 var ModelRelation = require('../../model/modelrelation');
 var ShoeMaterial = require('../../model/dictshoematerial');
+var Country = require('../../model/dictcountry');
 var Pic = require('../../model/detailpic');
 var Color = require('../../model/dictcolor');
 var Convert = require('../../util/convert');
@@ -13,7 +14,7 @@ var Constants = require('../../util/constants');
 var Paging = require('../../util/paging');
 
 exports.findDetail = function(id, callback) {
-    Shoe.find({include:[{model:ShoeSize, as:'sizes', required:true, attributes:[['description', 'description']], order:[[ShoeSize, 'id', 'DESC']], include:[{model:RelShoeSize, where:{is_valid:1}, attributes:[['shoe_id', 'shoe_id'],['size_id', 'size_id']]}]}, {model:ShoeBrand, as:'brand', required:true, attributes:[['brand_name', 'brand_name']]}, {model:ShoeMaterial, as:'material', required:true, attributes:[['material_name', 'material_name']]}, {model:Pic, as : 'pics', required:false, attributes:[['pic_url', 'pic_url']], where:{class_id:Constants.SubClasses.SHOE}}],where:{id:id, is_vertify:1, on_sell:1}}, {subQuery:false}).success(function(result) {
+    Shoe.find({include:[{model:ShoeSize, as:'sizes', required:true, attributes:[['description', 'description']], order:[[ShoeSize, 'id', 'DESC']], include:[{model:RelShoeSize, where:{is_valid:1}, attributes:[['shoe_id', 'shoe_id'],['size_id', 'size_id']]}]}, {model:ShoeBrand, as:'brand', required:true, attributes:[['brand_name', 'brand_name']]}, {model:ShoeMaterial, as:'material', required:true, attributes:[['material_name', 'material_name']]}, {model:Pic, as : 'pics', required:false, attributes:[['pic_url', 'pic_url']], where:{class_id:Constants.SubClasses.SHOE}}, {model:Country, as : 'country', required:true}],where:{id:id, is_vertify:1, on_sell:1}}, {subQuery:false}).success(function(result) {
         var attr = packageAttr(result);
         result.attr = attr;
         callback(result);
@@ -21,7 +22,7 @@ exports.findDetail = function(id, callback) {
 }
 
 function packageAttr(detail) {
-    return [{key:'品牌名称', value:detail.brand.brand_name}, {key:'商品名称', value:detail.short_name}, {key:'产 地', value:detail.come_from}, {key:'材 质', value:detail.material.material_name}, {key:'备 注', value:detail.note}, {key:'货品编号', value:detail.serial_number}];
+    return [{key:'品牌名称', value:detail.brand.brand_name}, {key:'商品名称', value:detail.short_name}, {key:'产 地', value:detail.country.country_name}, {key:'材 质', value:detail.material.material_name}, {key:'备 注', value:detail.note}, {key:'货品编号', value:detail.serial_number}];
 }
 
 exports.findSearchConditions = function(shopId, param, callback) {
@@ -185,7 +186,16 @@ exports.findFullConditions = function(callback) {
 
 exports.save = function (fields, files, callback) {
     if(fields && files && files.length) {
+        var shoe = {
+            shop_id : fields.shop_id,
+            user_id : fields.user_id,
+            brand_id : fields.brand_id,
+            price : fields.price,
+            raw_price : fields.raw_price,
+            short_name : fields.short_name,
+            description : fields.description
 
+        }
         
     }
 }
