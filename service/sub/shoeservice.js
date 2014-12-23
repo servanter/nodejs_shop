@@ -168,17 +168,16 @@ exports.findFullConditions = function(callback) {
         }], function(err, result) {
             var arr = new Array();
             arr.push({name:'品牌', alias:'brand_id', desc:'所选品牌', data:result.brands, type:'select'});
-            arr.push({name:'材料', alias:'material_id', desc:'所用材料' ,data:result.materials, type:'multiSelect'});
-            arr.push({name:'尺码', alias:'size_id', desc:'适用尺码', data:result.sizes, type:'multiSelect'});
-            arr.push({name:'颜色', alias:'color_id', desc:'适用颜色', data:result.colors, type:'multiSelect'});
+            arr.push({name:'材料', alias:'material_id', desc:'所用材料' ,data:result.materials, type:'select', multi:true});
+            arr.push({name:'尺码', alias:'size_id', desc:'适用尺码', data:result.sizes, type:'select', multi:true});
+            arr.push({name:'颜色', alias:'color_id', desc:'适用颜色', data:result.colors, type:'select', multi:true});
             arr.push({name:'原价', alias:'raw_price', desc:'宝贝原价格', type:'float'});
             arr.push({name:'现价', alias:'price', desc:'宝贝现价', type:'float'});
             arr.push({name:'备注', alias:'note', desc:'备注', type:'float'});
             arr.push({name:'货号', alias:'serial_number', desc:'宝贝货号', type:'string'});
             arr.push({name:'产地', alias:'come_from', desc:'宝贝产地', type:'string'});
             arr.push({name:'外部链接', alias:'rel_link', desc:'如果您在其他地方也有网店, 输入此链接可以跳转到该链接上', type:'string'});
-            arr.push({name:'宝贝图片', alias:'pics', desc:'宝贝图片', type:'file'});
-
+            arr.push({name:'宝贝图片', alias:'pic', desc:'宝贝图片', type:'file', multi:true});
             callback(arr);
         });
     

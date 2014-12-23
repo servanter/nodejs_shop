@@ -9,7 +9,18 @@
             case 'select':
     %>
                 <div class="col-sm-2">
-                    <select id="<%=item.alias%>" name="<%=item.alias%>" class="form-control">
+                    <%
+                        if(item.multi) {
+                    %>
+                            <select multiple id="<%=item.alias%>" name="<%=item.alias%>" class="form-control">
+                    <%
+                        } else {
+                    %>
+                            <select id="<%=item.alias%>" name="<%=item.alias%>" class="form-control">
+                    <%    
+                        }
+                    %>
+                    
                         <%
                             item.data.forEach(function(every, index) {
                         %>
@@ -19,21 +30,7 @@
                         %>
                     </select>
                 </div>
-    <%
-            break;
-            case 'multiSelect':
-    %>
-                <div class="col-sm-2">
-                    <select multiple id="<%=item.alias%>" name="<%=item.alias%>" class="form-control">
-                        <%
-                            item.data.forEach(function(every, index) {
-                        %>
-                                <option value="<%=every.value%>"><%=every.name%></option>
-                        <%
-                            })
-                        %>
-                    </select>
-                </div>
+    
     <%
             break;
             case 'string':
@@ -49,12 +46,30 @@
                     <input type="text" class="form-control" id="<%=item.alias%>" name="<%=item.alias%>" placeholder="<%=item.desc%>">
                 </div>
     <%
+            break;
+            case 'file':
+    %>
+                <div class="col-sm-7">
+                    <input type="file" class="form-control" id="<%=item.alias%>_1" name="<%=item.alias%>_1" placeholder="<%=item.desc%>">
+                </div>
+    <%
+            break;
             default:
             break;
         }
     %>
 </div>
 <%
+            if(item.type == 'file' && item.multi) {
+%>
+                <div class="inner-btn-group form-group">
+                    <div class="col-sm-offset-2 col-sm-7 text-left">
+                      <button type="button" class="btn btn-primary btn-plus"><span class="glyphicon glyphicon-plus"></span>增加</button>
+                      <button type="button" class="btn btn-danger" disabled="disabled"><span class="glyphicon glyphicon-minus"></span>删除</button>
+                    </div>
+                  </div>
+<%
+            }
         })
     }
 %>
