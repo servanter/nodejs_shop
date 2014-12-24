@@ -12,6 +12,7 @@ var ShoeMaterial = require('./dictshoematerial');
 var Color = require('./dictcolor');
 var ShopAd = require('./shopad');
 var Country = require('./dictcountry');
+var RelShoeColor = require('./shoecolorrel');
 
 Position.belongsTo(Item, {foreignKey:'id'});
 Item.hasMany(Position, {foreignKey:'item_id'});
@@ -24,6 +25,9 @@ ItemClass.hasMany(Item, {foreignKey:'id'});
 
 Shoe.hasMany(ShoeSize, {foreignKey:'shoe_id', as:'sizes', through:'weshop_shoe_size_rel'});
 ShoeSize.hasMany(Shoe, {foreignKey:'size_id', through:'weshop_shoe_size_rel'});
+
+Shoe.hasMany(Color, {foreignKey:'shoe_id', as : 'colors', through:'weshop_shoe_color_rel'});
+Color.hasMany(Shoe, {foreignKey:'color_id', as : 'shoes', through:'weshop_shoe_color_rel'});
 
 RelShoeSize.belongsTo(ShoeSize, {foreignKey:'id'});
 ShoeSize.hasMany(RelShoeSize, {foreignKey:'size_id'});
@@ -40,8 +44,8 @@ ShopPromise.hasMany(Shop, {foreignKey:'promise_id', through:'weshop_shop_promise
 Shoe.belongsTo(ShoeMaterial, {foreignKey:'material_id',as:'material'});
 ShoeMaterial.hasMany(Shoe, {foreignKey:'id'});
 
-Shoe.belongsTo(Color, {foreignKey:'color_id', as:'color'});
-Color.hasMany(Shoe, {foreignKey:'id'});
+// Shoe.belongsTo(Color, {foreignKey:'color_id', as:'color'});
+// Color.hasMany(Shoe, {foreignKey:'id'});
 
 Shoe.hasMany(Pic, {foreignKey:'detail_id', as:'pics'});
 Pic.belongsTo(Shoe, {foreignKey:'id'});

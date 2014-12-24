@@ -1,4 +1,5 @@
 var Sequelize = require('sequelize');
+var sequelize = require('../../lib/sequelize');
 var async = require('async');
 var Shoe = require('../../model/shoe');
 var ShoeSize = require('../../model/dictshoesize');
@@ -44,10 +45,11 @@ exports.findSearchConditions = function(shopId, param, callback) {
                     cb(null, {brands:data, materials:arr})
                  })
             }, function(data, cb) {
-                Shoe.findAll({attributes:[[Sequelize.fn('COUNT', 'color_id'), 'total']], include:[{model:Color, as:'color', required:true,attributes:[['color_name', 'color_name'], ['id', 'id']], where:{is_valid:1}}], where:{shop_id:shopId}, group:['color_id'], order:[[Sequelize.fn('COUNT', 'color_id'), 'DESC']]},{subQuery:false}).success(function(result) {
+                var sql = 'SELECT c.id AS id, c.color_name AS color_name, count(c.id) AS total FROM weshop_shoe s INNER JOIN weshop_shoe_color_rel r ON r.shoe_id = s.id INNER JOIN weshop_dict_color c ON r.color_id = c.id GROUP BY  c.id ';
+                sequelize.query(sql).success(function(result) {
                     var arr = [];
                     for (var i = 0; i < result.length; i++) {
-                        arr.push({name:result[i].color.color_name, id:result[i].color.id, total:result[i].dataValues.total});
+                        arr.push({name:result[i].color_name, id:result[i].id, total:result[i].total});
                     }
                     cb(null, [data.brands, data.materials, arr]);
                 })
@@ -100,7 +102,7 @@ exports.findSearchConditions = function(shopId, param, callback) {
 
 exports.findList = function(shopId, params, paging, callback) {
     var brand = {model:ShoeBrand, as:'brand', required:true, attributes:[['brand_name', 'brand_name']]};
-    var color = {model:Color, as:'color', required:true, attributes:[['color_name', 'color_name']]};
+    var color = {model:Color, as:'colors', required:true, attributes:[['color_name', 'color_name']]};
     var material = {model:ShoeMaterial, as:'material', required:true, attributes:[['material_name', 'material_name']]};
     var size = {model:RelShoeSize, as:'relShoeSizes', required:true, attributes:[]};
     var pic = {model:Pic, as:'pics', required:true, attributes:[['pic_url', 'pic_url']]}
@@ -204,6 +206,7 @@ exports.save = function (fields, files, callback) {
         Shoe.create(shoe).complete(function(err, result) {
             var lastInsertId = result.id;
             
+
 
 
             

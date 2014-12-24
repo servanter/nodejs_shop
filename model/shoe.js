@@ -11,7 +11,6 @@ var Shoe = sequelize.define('Shoe', {
     raw_price:Sequelize.FLOAT,
     from_country_id:Sequelize.BIGINT,
     material_id:Sequelize.BIGINT,
-    color_id:Sequelize.BIGINT,
     note:Sequelize.STRING,
     serial_number:Sequelize.STRING,
     rel_link:Sequelize.STRING,
