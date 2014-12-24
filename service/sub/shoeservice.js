@@ -168,17 +168,21 @@ exports.findFullConditions = function(callback) {
             Color.findAll({attributes:[['id', 'val'], ['color_name', 'name']], where:{is_valid:1}}).success(function(result) {
                 cb(null, {brands:data.brands, materials:data.materials, sizes:data.sizes, colors:result});
             })
+        }, function(data, cb) {
+            Country.findAll({attributes:[['id', 'val'], ['country_name', 'name']]}).success(function(result) {
+                cb(null, {brands:data.brands, materials:data.materials, sizes:data.sizes, colors:data.colors, countries:result});
+            })
         }], function(err, result) {
             var arr = new Array();
             arr.push({name:'品牌', alias:'brand_id', desc:'所选品牌', data:result.brands, type:'select'});
             arr.push({name:'材料', alias:'material_id', desc:'所用材料' ,data:result.materials, type:'select'});
             arr.push({name:'尺码', alias:'size_id', desc:'适用尺码', data:result.sizes, type:'select', multi:true});
             arr.push({name:'颜色', alias:'color_id', desc:'适用颜色', data:result.colors, type:'select', multi:true});
+            arr.push({name:'产地', alias:'come_from', desc:'宝贝产地', data:result.countries, type:'select'});
             arr.push({name:'原价', alias:'raw_price', desc:'宝贝原价格', type:'float'});
             arr.push({name:'现价', alias:'price', desc:'宝贝现价', type:'float'});
             arr.push({name:'备注', alias:'note', desc:'备注', type:'float'});
             arr.push({name:'货号', alias:'serial_number', desc:'宝贝货号', type:'string'});
-            arr.push({name:'产地', alias:'come_from', desc:'宝贝产地', type:'string'});
             arr.push({name:'外部链接', alias:'rel_link', desc:'如果您在其他地方也有网店, 输入此链接可以跳转到该链接上', type:'string'});
             arr.push({name:'宝贝图片', alias:'pic', desc:'宝贝图片', type:'file', multi:true});
             callback(arr);
@@ -198,18 +202,32 @@ exports.save = function (fields, files, callback) {
             description : fields.description,
             from_country_id : fields.from_country_id,
             material_id : fields.material_id,
-            color_id : fields.color_id,
             note : fields.note,
             serial_number : fields.serial_number,
             rel_link : fields.rel_link
         }
-        Shoe.create(shoe).complete(function(err, result) {
-            var lastInsertId = result.id;
-            
+        async.waterfall([
+            function(cb) {
+                Shoe.create(shoe).complete(function(err, result) {
+                    cb(result.id);
+                })
+            }, function(data, cb) {
+                var shoeId = data;
+                var colors = fields.color_id;
+                var colorArr = new Array();
+                if(typeof(colors) == 'Array') {
+                    colors.forEach(function(item, index) {
+                        var color = {shoe_id:shoeId, color_id:item};
+                        colorArr.push(color);
+                    })
+                }
+                
 
 
 
-            
+            }], function(err, result) {
+
         })
+        
     }
 }

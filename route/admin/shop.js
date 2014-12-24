@@ -1,7 +1,5 @@
 var async = require('async');
 var formidable = require('formidable');
-var http = require('http');
-var util = require('util');
 var Shop = require('../../model/shop');
 var Area = require('../../model/area');
 var areaService = require('../../service/areaservice');

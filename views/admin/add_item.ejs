@@ -33,7 +33,8 @@
                     $(cur).find('input').eq(0).attr('id', next);
                     $(cur).find('input').eq(0).attr('name', next);
                     $(this).parent().parent().prev().after(cur);
-                })
+                });
+
             })
 
             function clearDiv (obj) {
@@ -72,7 +73,7 @@
                               </div>
                               
                               <div class="form-group">
-                                <label for="city" class="col-sm-2 control-label">商品类别</label>
+                                <label for="item_class" class="col-sm-2 control-label">商品类别</label>
                                 <div class="col-sm-2">
                                     <select id="item_class" name="item_class" class="form-control">
                                         <option value="-1">--请选择--</option>
@@ -91,7 +92,7 @@
 
                               <div id="btn-group" class="form-group">
                                 <div class="col-sm-offset-2 col-sm-7 text-right">
-                                  <button type="submit" class="btn btn-primary">添加</button>
+                                  <button id="form-btn" type="button" class="btn btn-primary">添加</button>
                                   <button type="reset" class="btn btn-default">重置</button>
                                 </div>
                               </div>
