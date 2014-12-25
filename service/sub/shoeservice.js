@@ -13,6 +13,9 @@ var Color = require('../../model/dictcolor');
 var Convert = require('../../util/convert');
 var Constants = require('../../util/constants');
 var Paging = require('../../util/paging');
+var colorService = require('../colorservice');
+var sizeService = require('../sizeservice');
+var picService = require('../picservice');
 
 exports.findDetail = function(id, callback) {
     Shoe.find({include:[{model:ShoeSize, as:'sizes', required:true, attributes:[['description', 'description']], order:[[ShoeSize, 'id', 'DESC']], include:[{model:RelShoeSize, where:{is_valid:1}, attributes:[['shoe_id', 'shoe_id'],['size_id', 'size_id']]}]}, {model:ShoeBrand, as:'brand', required:true, attributes:[['brand_name', 'brand_name']]}, {model:ShoeMaterial, as:'material', required:true, attributes:[['material_name', 'material_name']]}, {model:Pic, as : 'pics', required:false, attributes:[['pic_url', 'pic_url']], where:{class_id:Constants.SubClasses.SHOE}}, {model:Country, as : 'country', required:true}],where:{id:id, is_vertify:1, on_sell:1}}, {subQuery:false}).success(function(result) {
@@ -34,7 +37,7 @@ exports.findSearchConditions = function(shopId, param, callback) {
                     for (var i = 0; i < result.length; i++) {
                         arr.push({name:result[i].brand.brand_name, id:result[i].brand.id, total:result[i].dataValues.total});
                     }
-                    cb(null, arr)
+                    cb(null, arr);
                  })
             }, function(data, cb) {
                 Shoe.findAll({attributes:[[Sequelize.fn('COUNT', 'material_id'), 'total']], include:[{model:ShoeMaterial, as:'material', required:true,attributes:[['material_name', 'material_name'],['id', 'id']], where:{is_valid:1}}], where:{shop_id:shopId}, group:['material_id'], order:[[Sequelize.fn('COUNT', 'material_id'), 'DESC']]},{subQuery:false}).success(function(result) {
@@ -178,7 +181,7 @@ exports.findFullConditions = function(callback) {
             arr.push({name:'材料', alias:'material_id', desc:'所用材料' ,data:result.materials, type:'select'});
             arr.push({name:'尺码', alias:'size_id', desc:'适用尺码', data:result.sizes, type:'select', multi:true});
             arr.push({name:'颜色', alias:'color_id', desc:'适用颜色', data:result.colors, type:'select', multi:true});
-            arr.push({name:'产地', alias:'come_from', desc:'宝贝产地', data:result.countries, type:'select'});
+            arr.push({name:'产地', alias:'from_country_id', desc:'宝贝产地', data:result.countries, type:'select'});
             arr.push({name:'原价', alias:'raw_price', desc:'宝贝原价格', type:'float'});
             arr.push({name:'现价', alias:'price', desc:'宝贝现价', type:'float'});
             arr.push({name:'备注', alias:'note', desc:'备注', type:'float'});
@@ -209,25 +212,65 @@ exports.save = function (fields, files, callback) {
         async.waterfall([
             function(cb) {
                 Shoe.create(shoe).complete(function(err, result) {
-                    cb(result.id);
+                    cb(null,result.id);
                 })
             }, function(data, cb) {
                 var shoeId = data;
                 var colors = fields.color_id;
                 var colorArr = new Array();
-                if(typeof(colors) == 'Array') {
+                if(typeof(colors) == 'object' && colors.constructor == Array) {
                     colors.forEach(function(item, index) {
                         var color = {shoe_id:shoeId, color_id:item};
                         colorArr.push(color);
                     })
+                } else {
+                    colorArr.push({shoe_id:shoeId, color_id:colors});
                 }
-                
-
-
-
+                colorService.batchRelSave(Constants.SubClasses.SHOE, colorArr, function(result) {
+                    if(result.length) {
+                        cb(null, data);
+                    }
+                });
+            }, function(data, cb) {
+                var shoeId = data;
+                var sizes = fields.size_id;
+                var sizeArr = new Array();
+                if(typeof(sizes) == 'object' && sizes.constructor == Array) {
+                    sizes.forEach(function(item, index) {
+                        var size = {shoe_id:shoeId, size_id:item};
+                        sizeArr.push(size);
+                    })
+                } else {
+                    sizeArr.push({shoe_id:shoeId, size_id:sizes});
+                }
+                sizeService.batchRelSave(Constants.SubClasses.SHOE, sizeArr, function(result) {
+                    if(result.length) {
+                        cb(null, data);
+                    }
+                })
             }], function(err, result) {
-
-        })
+                    if(err) {
+                        callback(false);
+                    } else {
+                        var shoeId = result;
+                        var arr = new Array();
+                        files.forEach(function(item, index) {
+                            var model = {
+                                detail_id : shoeId,
+                                class_id : Constants.SubClasses.SHOE,
+                                pic_url : item
+                            }
+                            arr.push(model);
+                        })
+                        picService.batchSave(arr, function(result) {
+                            if(result.length) {
+                                callback(true);
+                            } else {
+                                callback(false);
+                            }
+                        })
+                    }
+            })
         
     }
 }

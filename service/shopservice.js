@@ -97,7 +97,7 @@ exports.findShopFullInfoById = function(shopId, callback) {
         include: [{
             model: ShopPromise,
             as: 'promises',
-            required: true,
+            required: false,
             where: {
                 is_valid: 1
             }

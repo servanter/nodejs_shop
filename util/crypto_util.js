@@ -27,7 +27,7 @@ exports.md5 = function(message, secret) {
         secret = globalSecret;
     }
     var md5 = crypto.createHash('md5');
-    var content = content + '_' + secret;
+    var content = message + '_' + secret;
     md5.update(content);
     return md5.digest('hex');
 }

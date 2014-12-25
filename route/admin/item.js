@@ -1,6 +1,9 @@
 var async = require('async');
+var fs = require('fs');
 var itemService = require('../../service/itemservice');
 var formidable = require('formidable');
+var itemSubFactory = require('../../service/itemsubfactory');
+var RandomUtil = require('../../util/random_util');
 
 exports.addItem = function(req, res) {
     itemService.findClasses(function(result) {
@@ -35,9 +38,9 @@ exports.additem = function(req, res) {
             form.on('field', function(name, value) {
                 if(eval('obj.' + name)) {
                     var lastValue = eval('obj.' + name);
-                    if(typeof(lastValue) == 'Array') {
+                    if(typeof(lastValue) == 'object' && lastValue.constructor == Array) {
                         lastValue.push(value);
-                        eval('obj.' + name + '=lastValue');    
+                        eval('obj.' + name + '=lastValue');   
                     } else {
                         var arr = new Array(lastValue, value);
                         eval('obj.' + name + '=arr');    
@@ -47,33 +50,33 @@ exports.additem = function(req, res) {
                 }
                 
             });
-
+            obj.shop_id = shopId;
+            obj.user_id = req.session.userId;
             cb(null, obj);
         }], function(err, result) {
            form.parse(req, function(err, fields, files) {
-            console.log(obj);
-                // var subFactory = new itemSubFactory.getService(parseInt(fields.class_id));
-                // if(subFactory) {
-                //     var index = 1;
-                //     var data = new Array();
-                //     for(var index = 1; files.hasOwnProperty('pic' + index); index++) {
-                //         var pic = eval('files.' + ('pic_' + index));
-                //         var picName = pic.name.substring(pic.name.indexOf('.'));
-                //         var picFullName = new Date().getTime() + '' + RandomUtil.getRandom(10000) + picName;
-                //         fs.renameSync(pic.path, 'public/images/item/' + picFullName);
-                //         var picUrl = 'images/item/' + picFullName;
-                //         data.push(picUrl);
-                //     }
-                //     subFactory.save(fields, data, function(result) {
-                //         var sign = '添加商品成功';
-                //         if(!result) {
-                //             sign = '操作失败';
-                //         }
-                //         req.flash('sign', sign);
-                //         return res.redirect('/admin/shop/');
-                //     });
-                // }
-            })
+            var subFactory = new itemSubFactory.getService(parseInt(obj.item_class));
+            if(subFactory) {
+                var index = 1;
+                var data = new Array();
+                for(var index = 1; files.hasOwnProperty('pic_' + index); index++) {
+                    var pic = eval('files.' + ('pic_' + index));
+                    var picName = pic.name.substring(pic.name.indexOf('.'));
+                    var picFullName = new Date().getTime() + '' + RandomUtil.getRandom(10000) + picName;
+                    fs.renameSync(pic.path, 'public/images/item/' + picFullName);
+                    var picUrl = 'images/item/' + picFullName;
+                    data.push(picUrl);
+                }
+                subFactory.save(obj, data, function(result) {
+                    var sign = '添加商品成功';
+                    if(!result) {
+                        sign = '操作失败';
+                    }
+                    req.flash('sign', sign);
+                    return res.redirect('/admin/shop/');
+                });
+            }
+        })
     })
 
 
