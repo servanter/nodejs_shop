@@ -83,7 +83,7 @@ exports.findClasses = function(callback) {
 }
 
 
-exports.addItem = function(item, callback) {
+exports.save = function(item, callback) {
     Item.create(item).complete(function(err, data) {
         if(err) {
             callback(false);

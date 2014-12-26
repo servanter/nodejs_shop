@@ -68,22 +68,22 @@ exports.additem = function(req, res) {
                     data.push(picUrl);
                 }
                 subFactory.save(obj, data, function(result) {
-                    var sign = '添加商品成功';
-                    if(!result) {
-                        sign = '操作失败';
+                    var sign = '操作失败';
+                    if(result.flag) {
+                        itemService.save(result.data, function(result) {
+                            if(result) {
+                                sign = '添加商品成功';
+                            }
+                            req.flash('sign', sign);
+                            return res.redirect('/admin/shop/');
+                        });
+                    } else {
+                        req.flash('sign', sign);
+                        return res.redirect('/admin/shop/');
                     }
-                    req.flash('sign', sign);
-                    return res.redirect('/admin/shop/');
                 });
             }
         })
     })
-
-
-
-
-
-
-    
 
 }

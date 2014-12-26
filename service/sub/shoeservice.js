@@ -256,17 +256,33 @@ exports.save = function (fields, files, callback) {
                         var arr = new Array();
                         files.forEach(function(item, index) {
                             var model = {
-                                detail_id : shoeId,
-                                class_id : Constants.SubClasses.SHOE,
-                                pic_url : item
+                                    detail_id : shoeId,
+                                    class_id : Constants.SubClasses.SHOE,
+                                    pic_url : item
+                                }
+
+                            if(index == 0) {
+                                model.is_major = 1;
+                            } else {
+                                model.is_major = 1;
                             }
                             arr.push(model);
                         })
                         picService.batchSave(arr, function(result) {
                             if(result.length) {
-                                callback(true);
+                                var item = {
+                                    detail_id : shoeId,
+                                    shop_id : fields.shop_id,
+                                    short_name : fields.short_name,
+                                    create_user_id : fields.user_id,
+                                    class_id : Constants.SubClasses.SHOE,
+                                    description : fields.description,
+                                    pic_url : files[0],
+                                    price : fields.price
+                                }
+                                callback({flag:true, data:item});
                             } else {
-                                callback(false);
+                                callback({flag:false});
                             }
                         })
                     }
