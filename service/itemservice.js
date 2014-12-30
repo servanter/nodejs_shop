@@ -10,7 +10,7 @@ var Crypto = require('../util/crypto_util');
 var Constants = require('../util/constants');
 var itemSubFactory = require('./itemsubfactory');
 var relationModel = require('../model/modelrelation');
-exports.findItemsByShopId = function(shopId, paging, callback) {
+exports.findItemsIndexPositionsByShopId = function(shopId, paging, callback) {
     async.waterfall([
         function(cb) {
             findPositions(shopId, 1, paging, function(data) {
@@ -137,3 +137,21 @@ function findPositions (shopId, position, paging, callback)  {
     });
 }
 exports.findPositions = findPositions;
+
+exports.findCurrentPositionsAndAvaliableItemNames = function (shopId, position, paging, callback) {
+    async.waterfall([
+        function(cb) {
+            findPositions(shopId, position, paging, function(data) {
+                cb(null, data);
+            })
+        }, function (data, cb) {
+            Item.findAll({attributes:[['short_name', 'short_name'], ['pic_url', 'pic_url'], ['detail_id', 'detail_id'], ['class_id', 'class_id']], where:{shop_id:shopId}}).success(function(result){
+                result.forEach(function(item, index) {
+                    item.encrypt = Crypto.encryptAes(item.detail_id + Constants.cryptoSplit + item.class_id);
+                })
+                cb(null, {current:data, items:result});
+            });
+        }], function(err, result) {
+            callback(result);
+        })
+}

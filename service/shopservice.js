@@ -72,7 +72,7 @@ exports.findShopAndIndexItems = function(shopId, p, callback) {
             })
         },
         function(data, cb) {
-            itemService.findItemsByShopId(data.id, p, function(result) {
+            itemService.findItemsIndexPositionsByShopId(data.id, p, function(result) {
                 cb(null, {
                     shop: data,
                     items: result

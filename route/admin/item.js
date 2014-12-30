@@ -4,6 +4,7 @@ var itemService = require('../../service/itemservice');
 var formidable = require('formidable');
 var itemSubFactory = require('../../service/itemsubfactory');
 var RandomUtil = require('../../util/random_util');
+var Paging = require('../../util/paging');
 
 exports.addItem = function(req, res) {
     itemService.findClasses(function(result) {
@@ -91,5 +92,8 @@ exports.additem = function(req, res) {
 exports.enterEditPosition = function(req, res) {
     var shopId = req.params.id;
     var index = 1;
-    
+    var p = new Paging(1, 6);
+    itemService.findCurrentPositionsAndAvaliableItemNames(shopId, index, p, function(result) {
+        res.render('admin/edit_position_index', {data:{item:result, shop:{id:shopId}}});
+    });
 }
