@@ -35,7 +35,12 @@
             <div class="row">
                 <%- include common/user_status %>
 
+                
                 <div id="right-content" class="col-xs-7 col-sm-7 col-md-7 col-xs-offset-1 col-sm-offset-1 col-md-offset-1">
+                    <ol class="breadcrumb">
+                      <li><a href="/admin/shop/">我的店铺</a></li>
+                      <li class="active">添加店铺</li>
+                    </ol>
                     <div class="row">
                         <form class="shop-add-form form-horizontal" role="form" method="post" action="/admin/shop/createshopcomplete/" enctype="multipart/form-data">
                               <div class="form-group">
