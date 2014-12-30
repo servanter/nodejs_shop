@@ -13,14 +13,11 @@ var relationModel = require('../model/modelrelation');
 exports.findItemsByShopId = function(shopId, paging, callback) {
     async.waterfall([
         function(cb) {
-            Item.findAll({include:[{model:Position, required:true, where:{position:1, is_del:0}}], where:{shop_id:shopId}, offset:paging.sinceCount, limit:paging.pageSize, order:[[Position, 'update_time', 'DESC']]}, {subQuery:false}).success(function(data){
-                data.forEach(function(item, index) {
-                    item.encrypt = Crypto.encryptAes(item.detail_id + Constants.cryptoSplit + item.class_id);
-                })
+            findPositions(shopId, 1, paging, function(data) {
                 cb(null, data);
-            });
+            })
         }, function(data, cb) {
-            Item.count({include:[{model:Position, required:true}], where:{shop_id:shopId}}).success(function(count) {
+            Item.count({include:[{model:Position, required:true, where:{position:1, is_del:0}}], where:{shop_id:shopId}}).success(function(count) {
                 var pag = new Paging(count, paging.page, paging.pageSize, data);
                 cb(null, pag);
             })
@@ -129,3 +126,14 @@ exports.findAttributesByClassId = function(classId, callback) {
         callback(result);    
     })
 }
+
+
+function findPositions (shopId, position, paging, callback)  {
+    Item.findAll({include:[{model:Position, required:true, where:{position:position, is_del:0}}], where:{shop_id:shopId}, offset:paging.sinceCount, limit:paging.pageSize, order:[[Position, 'update_time', 'DESC']]}, {subQuery:false}).success(function(data){
+        data.forEach(function(item, index) {
+            item.encrypt = Crypto.encryptAes(item.detail_id + Constants.cryptoSplit + item.class_id);
+        })
+        callback(data);
+    });
+}
+exports.findPositions = findPositions;

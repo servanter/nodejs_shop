@@ -87,3 +87,9 @@ exports.additem = function(req, res) {
     })
 
 }
+
+exports.enterEditPosition = function(req, res) {
+    var shopId = req.params.id;
+    var index = 1;
+    
+}

@@ -36,14 +36,15 @@ app.get('/admin/shop/:shopId/addarticle/', filter.authorize, route.adminexec('ar
 app.post('/admin/shop/:shopId/addarticlecomplete/', filter.authorize, route.adminexec('article').addArticleComplete);
 app.get('/admin/shop/:id(\\d+)/', filter.authorize, route.adminexec('shop').detail);
 app.get('/admin/shop/addshop/', filter.authorize, route.adminexec('shop').addShop);
-app.get('/admin/shop/entereditshop/:id/', filter.authorize, route.adminexec('shop').enterEditShop);
+app.get('/admin/shop/:id/entereditshop/', filter.authorize, route.adminexec('shop').enterEditShop);
 app.post('/admin/shop/editshop/:id/', filter.authorize, route.adminexec('shop').editShop);
-app.get('/admin/shop/entereditbanner/:id/', filter.authorize, route.adminexec('shop').enterEditBanner);
+app.get('/admin/shop/:id/entereditbanner/', filter.authorize, route.adminexec('shop').enterEditBanner);
 app.post('/admin/shop/editbanner/:id/', filter.authorize, route.adminexec('shop').editBanner);
 app.get('/admin/cities/', filter.authorize, route.adminexec('shop').getCities);
 app.post('/admin/shop/createshopcomplete/', filter.authorize, route.adminexec('shop').addShopComplete);
 app.get('/admin/:id/item/enteradditem/', filter.authorize, route.adminexec('item').enteradditem);
 app.post('/admin/:id/item/additem/', filter.authorize, route.adminexec('item').additem);
+app.get('/admin/shop/:id/entereditindexposition/', filter.authorize, route.adminexec('item').enterEditPosition);
 app.get('/admin/item/getSubAttributes', filter.authorize, route.adminexec('item').getSubAttributes);
 
 
