@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50519
 File Encoding         : 65001
 
-Date: 2014-12-26 17:26:54
+Date: 2014-12-31 11:52:26
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -1174,11 +1174,11 @@ CREATE TABLE `weshop_item_position` (
 -- ----------------------------
 -- Records of weshop_item_position
 -- ----------------------------
-INSERT INTO `weshop_item_position` VALUES ('2', '2', '14', '1', '1', '0', '1990-01-01 00:00:00', '2014-12-08 14:08:33');
+INSERT INTO `weshop_item_position` VALUES ('2', '2', '14', '1', '1', '1', '1990-01-01 00:00:00', '2014-12-31 11:49:15');
 INSERT INTO `weshop_item_position` VALUES ('3', '3', '14', '1', '1', '0', '1990-01-01 00:00:00', '2014-12-08 14:08:41');
 INSERT INTO `weshop_item_position` VALUES ('4', '4', '14', '1', '1', '0', '1990-01-01 00:00:00', '2014-12-08 14:08:45');
 INSERT INTO `weshop_item_position` VALUES ('5', '5', '14', '1', '1', '0', '1990-01-01 00:00:00', '2014-12-08 14:08:49');
-INSERT INTO `weshop_item_position` VALUES ('10', '10', '14', '1', '1', '0', '1990-01-01 00:00:00', '2014-12-08 14:08:50');
+INSERT INTO `weshop_item_position` VALUES ('10', '10', '14', '1', '1', '1', '1990-01-01 00:00:00', '2014-12-31 11:45:25');
 
 -- ----------------------------
 -- Table structure for `weshop_shoe`
@@ -1414,7 +1414,7 @@ CREATE TABLE `weshop_shop` (
 -- ----------------------------
 -- Records of weshop_shop
 -- ----------------------------
-INSERT INTO `weshop_shop` VALUES ('1', '1', '新品会', 'a阿斯顿大飒飒的按aaaaaaa', 'qweqweqwewq', '4', '233', '北七家镇东三旗村村北北辰亚运村汽车交易市场北六区1号', 'shop/shop_logo/14194965223261193.jpg', 'shop/shop_publicity/14194965223269001.jpg', 'asd123123', '0', '2014-11-13 16:27:07', '2014-12-25 16:35:22');
+INSERT INTO `weshop_shop` VALUES ('1', '1', '新品会', 'a阿斯顿大飒飒的按aaaaaaa', 'qweqweqwewq', '4', '233', '北七家镇东三旗村村北北辰亚运村汽车交易市场北六区1号', 'shop/shop_logo/14199119171366494', 'shop/shop_publicity/1419911917136314', 'asd123123', '0', '2014-11-13 16:27:07', '2014-12-30 11:58:37');
 INSERT INTO `weshop_shop` VALUES ('2', '1', '京东', '阿斯顿记录卡见识到了卡机顺路快递将阿里卡', '', '0', '0', '北七家镇东三旗村村北北辰亚运村汽车交易市场北六区1号', '', '', '', '0', '1990-01-01 00:00:00', '2014-12-04 15:12:48');
 INSERT INTO `weshop_shop` VALUES ('6', '1', 'ad按时打算', '请问我企鹅', 'asda23123', '1', '200', '北七家镇东三旗村村1北北辰亚运村汽车交易市场北六区1号', '123131', 'dqweq', 'eqwesdasdasdadsad', '0', '2014-11-17 16:13:28', '2014-12-15 15:07:48');
 INSERT INTO `weshop_shop` VALUES ('7', '1', 'asdasda3', '123123', '', '0', '0', '北七家镇东三旗村村北北辰亚运村汽车交易市场北六区1号', '', '', '', '0', '2014-11-17 16:17:16', '2014-12-04 15:12:48');
