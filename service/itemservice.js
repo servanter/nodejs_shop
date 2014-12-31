@@ -129,9 +129,9 @@ exports.findAttributesByClassId = function(classId, callback) {
 
 
 function findPositions (shopId, position, paging, callback)  {
-    Item.findAll({include:[{model:Position, required:true, where:{position:position, is_del:0}}], where:{shop_id:shopId}, offset:paging.sinceCount, limit:paging.pageSize, order:[[Position, 'update_time', 'DESC']]}, {subQuery:false}).success(function(data){
+    Item.findAll({include:[{model:Position, as : 'position', required:true, where:{position:position, is_del:0}}], where:{shop_id:shopId}, offset:paging.sinceCount, limit:paging.pageSize}, {subQuery:false}).success(function(data){
         data.forEach(function(item, index) {
-            item.encrypt = Crypto.encryptAes(item.detail_id + Constants.cryptoSplit + item.class_id);
+            item.encrypt = Crypto.encryptAes(item.detail_id + Constants.cryptoSplit + item.class_id + Constants.cryptoSplit + item.position.item_id);
         })
         callback(data);
     });
@@ -145,13 +145,31 @@ exports.findCurrentPositionsAndAvaliableItemNames = function (shopId, position, 
                 cb(null, data);
             })
         }, function (data, cb) {
-            Item.findAll({attributes:[['short_name', 'short_name'], ['pic_url', 'pic_url'], ['detail_id', 'detail_id'], ['class_id', 'class_id']], where:{shop_id:shopId}}).success(function(result){
+            Item.findAll({attributes:[['id', 'id'],['short_name', 'short_name'], ['pic_url', 'pic_url'], ['detail_id', 'detail_id'], ['class_id', 'class_id']], where:{shop_id:shopId}}).success(function(result){
                 result.forEach(function(item, index) {
-                    item.encrypt = Crypto.encryptAes(item.detail_id + Constants.cryptoSplit + item.class_id);
+                    item.encrypt = Crypto.encryptAes(item.id + '');
+                    
                 })
                 cb(null, {current:data, items:result});
             });
         }], function(err, result) {
             callback(result);
         })
+}
+
+exports.removePositions = function(shopId, position, ids, callback) {
+    var idArr = new Array();
+    var arr = ids.split(',');
+    arr.forEach(function(item, index) {
+        var message = Crypto.decryptAes(item + '')
+        idArr.push(message.split(Constants.cryptoSplit)[2]);
+    })
+    Position.update({is_del : 1}, {where:{shop_id : shopId, position : position, item_id : { in :idArr}}}).complete(function(err, result) {
+        if(result > 0) {
+            callback(result);
+        } else {
+            callback(result);
+        }
+
+    })
 }

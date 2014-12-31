@@ -14,8 +14,8 @@ var ShopAd = require('./shopad');
 var Country = require('./dictcountry');
 var RelShoeColor = require('./shoecolorrel');
 
-Position.belongsTo(Item, {foreignKey:'id'});
-Item.hasMany(Position, {foreignKey:'item_id'});
+Position.belongsTo(Item, {foreignKey:'item_id'});
+Item.hasOne(Position, {foreignKey:'id', as : 'position'});
 
 Item.belongsTo(ItemClass, {foreignKey:'class_id', as:'category'});
 ItemClass.hasMany(Item, {foreignKey:'id'});

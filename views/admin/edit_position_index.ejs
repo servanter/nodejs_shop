@@ -21,9 +21,10 @@
             }
             .cur-pos-img {
               margin-bottom: 5px;
-              max-width: 87px;
+              width: 87px;
+              height: 87px;
               padding:10px;
-              border: 1px solid #18bc9c
+              border: 2px solid #18bc9c
             }
             .cur-pos-remove{
               position: absolute;
@@ -32,6 +33,15 @@
             }
             .cur-pos-div a {
               text-decoration:none;
+              font-size: 14px;
+              font-weight: 700;
+              color: #000;
+              text-shadow: 0 1px 0 #fff;
+              font-family: inherit;
+              opacity: .5;
+            }
+            .cur-pos-div a:hover {
+              color:red;
             }
             .model-button-group {
               display: inline-block;
@@ -39,11 +49,38 @@
               right: 10px;
               top:8px;
             }
+            .sel-left {
+              width:50%;
+              display:inline-block;
+              max-width:200px;
+              margin:auto;
+              vertical-align: bottom;
+            }
         </style>
         <script type="text/javascript">
             $(function() {
+                var data;
                 $('.btn-close').bind('click', function() {
                     $(this).parent().parent().parent().find('span').eq(0).trigger('click');
+                });
+                $('#btn-del').bind('click', function() {
+                    if(data.length) {
+                        $.get('/admin/item/removePositions/?position=1&shop_id=<%=data.shop.id%>&items=' + data, function(result) {
+                          if(result) {
+                            $.each($('.cur-pos-div a'), function(index, item) {
+                                if($(item).attr('data') == data) {
+                                    $(this).parent().fadeOut(1000);
+                                    $('#btn-del').parent().parent().parent().find('span').eq(0).trigger('click');
+                                }
+                            })
+                          }
+                        })
+                        
+                        
+                    }
+                });
+                $('.cur-pos-div a').click(function() {
+                    data = $(this).attr('data');
                 })
             })
         </script>
@@ -65,7 +102,7 @@
                               <div class="form-group">
                                 <label for="ava_items" class="col-sm-2 control-label">所有商品</label>
                                 <div class="col-sm-6">
-                                    <select id="ava_items" name="ava_items" class="form-control" style="width:50%;display:inline-block;max-width:200px;margin:auto;vertical-align: bottom;">
+                                    <select id="ava_items" name="ava_items" class="form-control sel-left">
                                         <option value="-1" selected=selected>----</option>
                                         <%
                                             if(data.item && data.item.items && data.item.items.length) {
@@ -89,34 +126,13 @@
                                             data.item.current.forEach(function(item, index) {
                                     %>
                                                   <div class="cur-pos-div">
-                                                    <img class="cur-pos-img" src="<%=locals.img_path%>/<%=item.pic_url%>">
-                                                    <a href="#" data-toggle="modal" data-target=".bs-example-modal-sm" class="cur-pos-remove">X</a>
+                                                    <img class="cur-pos-img" src="<%=settings.img_path%>/<%=item.pic_url%>">
+                                                    <a href="#" data-toggle="modal" data-target=".bs-example-modal-sm" data="<%=item.encrypt%>" class="cur-pos-remove">X</a>
                                                   </div>
                                     <%
                                               })
                                         }
                                     %>
-                                    
-                                    <!-- <div class="cur-pos-div" style="display:inline-block">
-                                      <img class="cur-pos-img" src="http://localhost:8888/images/item/14194958137225784.jpg">
-                                      <a href="#" class="cur-pos-remove">X</a>
-                                    </div>
-                                    <div class="cur-pos-div" style="display:inline-block">
-                                      <img class="cur-pos-img" src="http://localhost:8888/images/item/14194958137225784.jpg">
-                                      <a href="#" class="cur-pos-remove">X</a>
-                                    </div>
-                                    <div class="cur-pos-div" style="display:inline-block">
-                                      <img class="cur-pos-img" src="http://localhost:8888/images/item/14194958137225784.jpg">
-                                      <a href="#" class="cur-pos-remove">X</a>
-                                    </div>
-                                    <div class="cur-pos-div" style="display:inline-block">
-                                      <img class="cur-pos-img" src="http://localhost:8888/images/item/14194958137225784.jpg">
-                                      <a href="#" class="cur-pos-remove">X</a>
-                                    </div>
-                                    <div class="cur-pos-div" style="display:inline-block">
-                                      <img class="cur-pos-img" src="http://localhost:8888/images/item/14194958137225784.jpg">
-                                      <a href="#" class="cur-pos-remove">X</a>
-                                    </div> -->
                                 </div>
                               </div>
                               <div class="form-group">
@@ -142,8 +158,8 @@
               <div class="modal-body">
                   <div style="max-width:56%">删除该宝贝后, 将不会在首页展示该宝贝</div>
                   <div class="model-button-group">
-                    <button type="button" class="btn btn-primary">确认</button>
-                    <button type="button" class="btn btn-default btn-close" aria-hidden="true">取消</button>
+                    <button id="btn-del" type="button" class="btn btn-primary">确认</button>
+                    <button type="button" class="btn btn-default btn-close">取消</button>
                   </div>
               </div>
           </div>

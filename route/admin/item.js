@@ -97,3 +97,23 @@ exports.enterEditPosition = function(req, res) {
         res.render('admin/edit_position_index', {data:{item:result, shop:{id:shopId}}});
     });
 }
+
+exports.removePositions = function(req, res) {
+    var shopId = req.query.shop_id;
+    var position = req.query.position;
+    var ids = req.query.items;
+    if(ids) {
+        itemService.removePositions(shopId, position, ids, function(data) {
+            if(data) {
+                res.status(200).json({result:data});
+                res.end();
+            } else {
+                res.status(200).json({result:data, msg:'操作失败'});
+                res.end();
+            }
+        })
+    } else {
+        res.status(200).json({result:false, msg:'操作失败'});
+        res.end();
+    }
+}
