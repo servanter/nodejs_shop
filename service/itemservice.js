@@ -9,7 +9,7 @@ var Convert = require('../util/convert');
 var Crypto = require('../util/crypto_util');
 var Constants = require('../util/constants');
 var itemSubFactory = require('./itemsubfactory');
-var relationModel = require('../model/modelrelation');
+var model = require('../model/modelrelation');
 exports.findItemsIndexPositionsByShopId = function(shopId, paging, callback) {
     async.waterfall([
         function(cb) {
@@ -17,7 +17,7 @@ exports.findItemsIndexPositionsByShopId = function(shopId, paging, callback) {
                 cb(null, data);
             })
         }, function(data, cb) {
-            Item.count({include:[{model:Position, required:true, where:{position:1, is_del:0}}], where:{shop_id:shopId}}).success(function(count) {
+            Item.count({include:[{model:Position, required:true, as : 'position', where:{position:1, is_del:0}}], where:{shop_id:shopId}}).success(function(count) {
                 var pag = new Paging(count, paging.page, paging.pageSize, data);
                 cb(null, pag);
             })
@@ -128,8 +128,8 @@ exports.findAttributesByClassId = function(classId, callback) {
 }
 
 
-function findPositions (shopId, position, paging, callback)  {
-    Item.findAll({include:[{model:Position, as : 'position', required:true, where:{position:position, is_del:0}}], where:{shop_id:shopId}, offset:paging.sinceCount, limit:paging.pageSize}, {subQuery:false}).success(function(data){
+function findPositions (shopId, p, paging, callback)  {
+    Item.findAll({include:[{model:Position, as : 'position', required:true, where:{position:p, is_del:0}}], where:{shop_id:shopId}, offset:paging.sinceCount, limit:paging.pageSize}, {subQuery:false}).success(function(data){
         data.forEach(function(item, index) {
             item.encrypt = Crypto.encryptAes(item.detail_id + Constants.cryptoSplit + item.class_id + Constants.cryptoSplit + item.position.item_id);
         })
@@ -172,4 +172,30 @@ exports.removePositions = function(shopId, position, ids, callback) {
         }
 
     })
+}
+
+exports.findBaseInfoById = function(encrypt, callback) {
+    var id = Crypto.decryptAes(encrypt + '');
+    Item.findOne({where:{id:id}}).success(function(result) {
+        callback(result)
+    })
+}
+
+exports.addIndexPosition = function(shopId, encrypt, userId, index, callback) {
+    var id = Crypto.decryptAes(encrypt + '');
+    if(id) {
+        model.Position.create({
+            shop_id : shopId,
+            item_id : id,
+            user_id : userId,
+            position: index
+
+        }).complete(function(err, result) {
+            if(err) {
+                callback(false);
+            } else {
+                callback(result.id);    
+            }
+        })
+    }
 }

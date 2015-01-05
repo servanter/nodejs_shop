@@ -14,8 +14,10 @@ var ShopAd = require('./shopad');
 var Country = require('./dictcountry');
 var RelShoeColor = require('./shoecolorrel');
 
-Position.belongsTo(Item, {foreignKey:'item_id'});
-Item.hasOne(Position, {foreignKey:'id', as : 'position'});
+
+
+Position.belongsTo(Item, {foreignKey:'id'});
+Item.hasOne(Position, {foreignKey:'item_id', as : 'position'});
 
 Item.belongsTo(ItemClass, {foreignKey:'class_id', as:'category'});
 ItemClass.hasMany(Item, {foreignKey:'id'});
@@ -58,3 +60,24 @@ ShopPromise.hasMany(Shop, {foreignKey:'promise_id', through:'weshop_shop_promise
 
 Shop.hasMany(ShopAd, {foreignKey : 'shop_id', as : 'ads'});
 ShopAd.belongsTo(Shop, {foreignKey : 'id'})
+
+var model = {
+    Item:Item,
+    ItemClass:ItemClass,
+    Pic:Pic,
+    Position:Position,
+    ShoeSize:ShoeSize,
+    Shoe:Shoe,
+    RelShoeSize:RelShoeSize,
+    ShoeBrand:ShoeBrand,
+    Shop:Shop,
+    ShopPromise:ShopPromise,
+    ShoeMaterial:ShoeMaterial,
+    Color:Color,
+    ShopAd:ShopAd,
+    Item:Item,
+    Country:Country,
+    RelShoeColor:RelShoeColor
+}
+
+module.exports = model

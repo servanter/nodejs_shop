@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="zh-CN">
     <head>
         <title>微信小店</title>
@@ -14,6 +14,7 @@
         </script>
         <script src="/javascript/admin/nav.js" type="text/javascript"></script>
         <script src="/javascript/admin/tools.js" type="text/javascript"></script>
+        <script src="/javascript/ejs.js" type="text/javascript"></script>
         <style type="text/css">
             .cur-pos-div {
               display: inline-block;
@@ -40,9 +41,6 @@
               font-family: inherit;
               opacity: .5;
             }
-            .cur-pos-div a:hover {
-              color:red;
-            }
             .model-button-group {
               display: inline-block;
               position: absolute;
@@ -56,6 +54,13 @@
               margin:auto;
               vertical-align: bottom;
             }
+            .thumbnail {
+              display: inline-block;
+              margin-left: 10px;
+            }
+            .thumbnail img {
+              max-height: 180px;
+            }
         </style>
         <script type="text/javascript">
             $(function() {
@@ -67,9 +72,9 @@
                     if(data.length) {
                         $.get('/admin/item/removePositions/?position=1&shop_id=<%=data.shop.id%>&items=' + data, function(result) {
                           if(result) {
-                            $.each($('.cur-pos-div a'), function(index, item) {
+                            $.each($('.caption a'), function(index, item) {
                                 if($(item).attr('data') == data) {
-                                    $(this).parent().fadeOut(1000);
+                                    $(this).parent().parent().parent().fadeOut(1000);
                                     $('#btn-del').parent().parent().parent().find('span').eq(0).trigger('click');
                                 }
                             })
@@ -79,9 +84,49 @@
                         
                     }
                 });
-                $('.cur-pos-div a').click(function() {
+                $('.caption a').click(function() {
                     data = $(this).attr('data');
+                });
+
+                $('#ava_items').change(function() {
+                    var val = $(this).val();
+                    if(val.length >= 0 && val != '-1') {
+                        $.getJSON('/admin/ajax/item/' + val + "/", function(result) {
+                            if(result.result) {
+                              var html = new EJS({url:'/inc/admin/edit_position_index_loaditem.ejs'}).render({data:result.data, img_path:'<%=settings.img_path%>', hasDel:false});
+                              if($('.shop-add-form>.form-group').length == 3) {
+                                  $('.shop-add-form>.form-group').eq(0).after(html);
+                              } else if($('.shop-add-form>.form-group').length > 3){
+                                  $('.shop-add-form>.form-group').eq(1).remove();
+                                  $('.shop-add-form>.form-group').eq(0).after(html);
+                              }
+                            }
+                        })
+                    }
                 })
+                $('#btn-add').click(function() {
+                    var val = $('#ava_items').val();
+                    if(val.length >= 0 && val != '-1') {
+                        $.post('/admin/ajax/item/add/' + val + '/', {shop_id:<%=data.shop.id%>, index : 1}, function(result) {
+                            if(result && result.result) {
+                                var html = new EJS({url:'/inc/admin/edit_position_index_loaditem.ejs'}).render({data:result.data.current, img_path:'<%=settings.img_path%>', hasDel:true});
+                                $('.thumbnail:last').after($(html).find('.thumbnail'));
+                                $.each($('#ava_items').find('option'), function(index, item) {
+                                    if($('#ava_items').val() == $(this).val()) {
+                                        $(this).remove();
+                                    }
+                                });
+                                $('.shop-add-form>.form-group').eq(1).fadeOut(500);
+                                $('#ava_items').find('option').eq(0).attr('selected','selected');
+                            } else {
+                                alert(result.msg);
+                            }
+                        }, 'json')
+                    }
+                });
+
+
+
             })
         </script>
     </head>
@@ -114,21 +159,27 @@
                                               }
                                         %>
                                     </select>
-                                    <button type="button" class="btn btn-primary" >添加</button>
+                                    <button id="btn-add" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span>添加</button>
                                 </div>
                               </div>
+                              
 
                               <div class="form-group">
                                 <label class="col-sm-2 control-label">当前首页位置</label>
-                                <div class="col-sm-7" style="max-width:300px;">
+                                <div class="col-sm-7">
                                     <%
                                         if(data.item.current && data.item.current.length) {
                                             data.item.current.forEach(function(item, index) {
                                     %>
-                                                  <div class="cur-pos-div">
-                                                    <img class="cur-pos-img" src="<%=settings.img_path%>/<%=item.pic_url%>">
-                                                    <a href="#" data-toggle="modal" data-target=".bs-example-modal-sm" data="<%=item.encrypt%>" class="cur-pos-remove">X</a>
+                                            
+                                                <div class="thumbnail col-sm-3">
+                                                  <img src="<%=settings.img_path%>/<%=item.pic_url%>" alt="<%=item.short_name%>">
+                                                  <div class="caption">
+                                                    <h4 class="text-center"><%=item.short_name%></h4>
+                                                    <p class="text-right"><a href="#" class="btn btn-danger" role="button" data-toggle="modal" data-target=".bs-example-modal-sm" data="<%=item.encrypt%>">删除</a></p>
                                                   </div>
+                                                </div>
+
                                     <%
                                               })
                                         }
@@ -137,8 +188,7 @@
                               </div>
                               <div class="form-group">
                                 <div class="col-sm-offset-2 col-sm-7 text-right">
-                                  <button type="submit" class="btn btn-primary">修改</button>
-                                  <button type="button" class="btn btn-default btn-back">返回</button>
+                                  <button type="button" class="btn btn-default btn-back"><span class="glyphicon glyphicon-arrow-left"></span>返回</button>
                                 </div>
                               </div>
                         </form>

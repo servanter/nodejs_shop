@@ -1,0 +1,23 @@
+<%
+    if(data) {
+%>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-7">
+                <div class="thumbnail col-sm-3">
+                  <img src="<%=img_path%>/<%=data.pic_url%>" alt="<%=data.short_name%>">
+                  <div class="caption">
+                    <h4 class="text-center"><%=data.short_name%></h4>
+                    <%
+                        if(hasDel) {
+                    %>
+                            <p class="text-right"><a href="#" class="btn btn-danger" role="button" data-toggle="modal" data-target=".bs-example-modal-sm" data="<%=data.encrypt%>">删除</a></p>
+                    <%
+                        }
+                    %>
+                  </div>
+                </div>
+            </div>
+        </div>
+<%
+    }
+%>

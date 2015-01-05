@@ -117,3 +117,37 @@ exports.removePositions = function(req, res) {
         res.end();
     }
 }
+
+exports.getById = function(req, res) {
+    var message = req.params.id;
+    if(message && message.length) {
+        itemService.findBaseInfoById(message, function(result) {
+            if(result) {
+                res.status(200).json({result:true, data:result});
+                res.end();
+            } else {
+                res.status(200).json({result:false, msg:'系统错误'});
+                res.end();
+            }
+        })
+    }
+}
+
+exports.addIndexPosition = function(req, res) {
+    var message = req.params.id;
+    var shopId = req.body.shop_id;
+    var index = req.body.index;
+    if(message && message.length && shopId && shopId.length) {
+        itemService.addIndexPosition(shopId, message, index, req.session.userId, function(result) {
+            if(result) {
+                itemService.findBaseInfoById(message, function(current) {
+                    res.status(200).json({result:true, data:{current:current}});
+                    res.end();
+                })
+            } else {
+                res.status(200).json({result:false, msg:'系统错误'});
+                res.end();
+            }
+        });
+    }
+}
