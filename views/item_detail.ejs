@@ -32,7 +32,7 @@
         if(data.detail.pics.length > 0) {
           for(var i = 0; i < data.detail.pics.length; i++) {
       %>
-          <li><span><img src="/images/loading.gif" data-original="/<%=data.detail.pics[i].pic_url%>" alt="<%=data.detail.short_name%>" class="smallImg" mars_sead="product_big_pic" /></span></li> 
+          <li><span><img src="/images/loading.gif" data-original="<%=settings.img_path%>/<%=data.detail.pics[i].pic_url%>" alt="<%=data.detail.short_name%>" class="smallImg" mars_sead="product_big_pic" /></span></li> 
       <%
           }
         }
@@ -171,7 +171,7 @@
         <%
             for(var i = 0; i < data.detail.pics.length; i++) {
         %>
-            <img src="/<%=data.detail.pics[i].pic_url%>" alt="<%=data.detail.short_name%>" width="320" /> 
+            <img src="<%=settings.img_path%>/<%=data.detail.pics[i].pic_url%>" alt="<%=data.detail.short_name%>" width="320" /> 
         <%
             }
         %>
@@ -217,7 +217,7 @@
   <%
           for(var i = 0; i < data.detail.pics.length; i++) {
   %>
-            <li><img src="/images/loading.gif" data-original="/<%=data.detail.pics[i].pic_url%>" alt="<%=data.detail.short_name%>" class="Touch_mer_biglImg" /></li> 
+            <li><img src="/images/loading.gif" data-original="<%=settings.img_path%>/<%=data.detail.pics[i].pic_url%>" alt="<%=data.detail.short_name%>" class="Touch_mer_biglImg" /></li> 
   <%
           }
   %>
