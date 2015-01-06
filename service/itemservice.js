@@ -177,7 +177,8 @@ exports.removePositions = function(shopId, position, ids, callback) {
 exports.findBaseInfoById = function(encrypt, callback) {
     var id = Crypto.decryptAes(encrypt + '');
     Item.findOne({where:{id:id}}).success(function(result) {
-        callback(result)
+        result.setDataValue('encrypt',Crypto.encryptAes(result.detail_id + Constants.cryptoSplit + result.class_id + Constants.cryptoSplit + result.id));
+        callback(result);
     })
 }
 
