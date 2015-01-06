@@ -4,7 +4,9 @@ var itemService = require('../../service/itemservice');
 var formidable = require('formidable');
 var itemSubFactory = require('../../service/itemsubfactory');
 var RandomUtil = require('../../util/random_util');
+var Crypto = require('../../util/crypto_util');
 var Paging = require('../../util/paging');
+var Constants = require('../../util/constants');
 
 exports.addItem = function(req, res) {
     itemService.findClasses(function(result) {
@@ -141,7 +143,10 @@ exports.addIndexPosition = function(req, res) {
         itemService.addIndexPosition(shopId, message, index, req.session.userId, function(result) {
             if(result) {
                 itemService.findBaseInfoById(message, function(current) {
-                    res.status(200).json({result:true, data:{current:current}});
+                    var cur = current.toJSON();
+                    cur.encrypt = Crypto.encryptAes(current.detail_id + Constants.cryptoSplit + current.class_id + Constants.cryptoSplit + current.id);
+                    var re = {result:true, data:{current:cur}};
+                    res.status(200).json(re);
                     res.end();
                 })
             } else {

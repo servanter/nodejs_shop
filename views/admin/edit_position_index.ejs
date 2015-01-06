@@ -81,13 +81,14 @@
                           }
                         })
                         
-                        
                     }
                 });
-                $('.caption a').click(function() {
-                    data = $(this).attr('data');
-                });
 
+
+
+                $('body').delegate('.caption a','click', function() {
+                    data = $(this).attr('data');
+                })
                 $('#ava_items').change(function() {
                     var val = $(this).val();
                     if(val.length >= 0 && val != '-1') {
