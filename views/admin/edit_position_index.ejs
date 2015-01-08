@@ -86,7 +86,7 @@
 
 
 
-                $('body').delegate('.caption a','click', function() {
+                $('body').on('click','.caption a', function() {
                     data = $(this).attr('data');
                 })
                 $('#ava_items').change(function() {
