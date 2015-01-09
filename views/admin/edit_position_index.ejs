@@ -64,70 +64,80 @@
         </style>
         <script type="text/javascript">
             $(function() {
-                var data;
-                $('.btn-close').bind('click', function() {
-                    $(this).parent().parent().parent().find('span').eq(0).trigger('click');
-                });
-                $('#btn-del').bind('click', function() {
-                    if(data.length) {
-                        $.get('/admin/item/removePositions/?position=1&shop_id=<%=data.shop.id%>&items=' + data, function(result) {
-                          if(result) {
-                            $.each($('.caption a'), function(index, item) {
-                                if($(item).attr('data') == data) {
-                                    $(this).parent().parent().parent().fadeOut(1000);
-                                    $('#btn-del').parent().parent().parent().find('span').eq(0).trigger('click');
-                                }
-                            })
-                          }
-                        })
-                        
+              var data;
+              $('.btn-close').bind('click', function() {
+                $(this).parent().parent().parent().find('span').eq(0).trigger('click');
+              });
+              $('#btn-del').bind('click', function() {
+                if (data.length) {
+                  $.get('/admin/item/removePositions/?position=1&shop_id=<%=data.shop.id%>&items=' + data, function(result) {
+                    if (result) {
+                      $.each($('.caption a'), function(index, item) {
+                        if ($(item).attr('data') == data) {
+                          $(this).parent().parent().parent().fadeOut(1000);
+                          $('#btn-del').parent().parent().parent().find('span').eq(0).trigger('click');
+                        }
+                      })
                     }
-                });
+                  })
 
+                }
+              });
 
-
-                $('body').on('click','.caption a', function() {
-                    data = $(this).attr('data');
-                })
-                $('#ava_items').change(function() {
-                    var val = $(this).val();
-                    if(val.length >= 0 && val != '-1') {
-                        $.getJSON('/admin/ajax/item/' + val + "/", function(result) {
-                            if(result.result) {
-                              var html = new EJS({url:'/inc/admin/edit_position_index_loaditem.ejs'}).render({data:result.data, img_path:'<%=settings.img_path%>', hasDel:false});
-                              if($('.shop-add-form>.form-group').length == 3) {
-                                  $('.shop-add-form>.form-group').eq(0).after(html);
-                              } else if($('.shop-add-form>.form-group').length > 3){
-                                  $('.shop-add-form>.form-group').eq(1).remove();
-                                  $('.shop-add-form>.form-group').eq(0).after(html);
-                              }
-                            }
-                        })
+              $('body').on('click', '.caption a', function() {
+                data = $(this).attr('data');
+              })
+              $('#ava_items').change(function() {
+                var val = $(this).val();
+                if (val.length >= 0 && val != '-1') {
+                  $.getJSON('/admin/ajax/item/' + val + "/", function(result) {
+                    if (result.result) {
+                      var html = new EJS({
+                        url: '/inc/admin/edit_position_index_loaditem.ejs'
+                      }).render({
+                        data: result.data,
+                        img_path: '<%=settings.img_path%>',
+                        hasDel: false
+                      });
+                      if ($('.shop-add-form>.form-group').length == 3) {
+                        $('.shop-add-form>.form-group').eq(0).after(html);
+                      } else if ($('.shop-add-form>.form-group').length > 3) {
+                        $('.shop-add-form>.form-group').eq(1).remove();
+                        $('.shop-add-form>.form-group').eq(0).after(html);
+                      }
                     }
-                })
-                $('#btn-add').click(function() {
-                    var val = $('#ava_items').val();
-                    if(val.length >= 0 && val != '-1') {
-                        $.post('/admin/ajax/item/add/' + val + '/', {shop_id:<%=data.shop.id%>, index : 1}, function(result) {
-                            if(result && result.result) {
-                                var html = new EJS({url:'/inc/admin/edit_position_index_loaditem.ejs'}).render({data:result.data.current, img_path:'<%=settings.img_path%>', hasDel:true});
-                                $('.thumbnail:last').after($(html).find('.thumbnail'));
-                                $.each($('#ava_items').find('option'), function(index, item) {
-                                    if($('#ava_items').val() == $(this).val()) {
-                                        $(this).remove();
-                                    }
-                                });
-                                $('.shop-add-form>.form-group').eq(1).fadeOut(500);
-                                $('#ava_items').find('option').eq(0).attr('selected','selected');
-                            } else {
-                                alert(result.msg);
-                            }
-                        }, 'json')
+                  })
+                }
+              })
+              $('#btn-add').click(function() {
+                var val = $('#ava_items').val();
+                if (val.length >= 0 && val != '-1') {
+                  $.post('/admin/ajax/item/add/' + val + '/', {
+                    shop_id: <%= data.shop.id %> ,
+                    index: 1
+                  }, function(result) {
+                    if (result && result.result) {
+                      var html = new EJS({
+                        url: '/inc/admin/edit_position_index_loaditem.ejs'
+                      }).render({
+                        data: result.data.current,
+                        img_path: '<%=settings.img_path%>',
+                        hasDel: true
+                      });
+                      $('.thumbnail:last').after($(html).find('.thumbnail'));
+                      $.each($('#ava_items').find('option'), function(index, item) {
+                        if ($('#ava_items').val() == $(this).val()) {
+                          $(this).remove();
+                        }
+                      });
+                      $('.shop-add-form>.form-group').eq(1).fadeOut(500);
+                      $('#ava_items').find('option').eq(0).attr('selected', 'selected');
+                    } else {
+                      alert(result.msg);
                     }
-                });
-
-
-
+                  }, 'json')
+                }
+              });
             })
         </script>
     </head>
