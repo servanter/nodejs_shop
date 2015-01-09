@@ -19,9 +19,13 @@ function findById(shopId, callback) {
 }
 
 exports.findShopsByUserId = function(userId, paging, shortName, callback) {
-    var conditions = {user_id:userId};
-    if(shortName) {
-        conditions.short_name = {like: '%' + shortName + '%'};
+    var conditions = {
+        user_id: userId
+    };
+    if (shortName) {
+        conditions.short_name = {
+            like: '%' + shortName + '%'
+        };
     }
     async.waterfall([
         function(cb) {
@@ -45,6 +49,14 @@ exports.findShopsByUserId = function(userId, paging, shortName, callback) {
         callback(result);
     });
 
+}
+
+exports.findAllShopsByUserId = function(userId, callback) {
+    Shop.findAll({
+        where: {user_id: userId}
+    }).success(function(data) {
+        callback(data);
+    });
 }
 
 exports.add = function(shop, callback) {
@@ -85,7 +97,20 @@ exports.findShopAndIndexItems = function(shopId, p, callback) {
 }
 
 exports.findShopAndAds = function(shopId, callback) {
-    Shop.find({where:{id:shopId}, include:[{model:ShopAd, as:'ads', where:{is_valid:1, is_vertify:1}, required:false}]}).success(function(result) {
+    Shop.find({
+        where: {
+            id: shopId
+        },
+        include: [{
+            model: ShopAd,
+            as: 'ads',
+            where: {
+                is_valid: 1,
+                is_vertify: 1
+            },
+            required: false
+        }]
+    }).success(function(result) {
         callback(result);
     });
 }
@@ -118,16 +143,26 @@ exports.findShopInfoAndAreas = function(shopId, callback) {
             findById(shopId, function(result) {
                 cb(null, result);
             })
-        }, function(data,cb) {
+        },
+        function(data, cb) {
             areaService.findProvinces(function(result) {
-                cb(null, {shop:data, provinces:result});
+                cb(null, {
+                    shop: data,
+                    provinces: result
+                });
             })
-        }, function(data, cb) {
+        },
+        function(data, cb) {
             areaService.findCitiesByProvinces(data.shop.province, function(result) {
-                cb(null, {shop:data.shop, provinces:data.provinces, cities:result});
-            }) 
-        }], function(err, result) {
-            callback(result);
+                cb(null, {
+                    shop: data.shop,
+                    provinces: data.provinces,
+                    cities: result
+                });
+            })
+        }
+    ], function(err, result) {
+        callback(result);
     })
 }
 
@@ -137,24 +172,38 @@ exports.findShopInfoAndAreasName = function(shopId, callback) {
             findById(shopId, function(result) {
                 cb(null, result);
             })
-        }, function(data,cb) {
+        },
+        function(data, cb) {
             var provinceId = data.province;
             areaService.findById(provinceId, function(result) {
-                cb(null, {shop:data, province:result});
+                cb(null, {
+                    shop: data,
+                    province: result
+                });
             });
-        }, function(data, cb) {
+        },
+        function(data, cb) {
             var cityId = data.shop.city;
             areaService.findById(cityId, function(result) {
-                cb(null, {shop:data.shop, province:data.province, city:result});
+                cb(null, {
+                    shop: data.shop,
+                    province: data.province,
+                    city: result
+                });
             });
-        }], function(err, result) {
-            callback(result);
+        }
+    ], function(err, result) {
+        callback(result);
     })
 }
 
 exports.update = function(id, params, callback) {
-    Shop.update(params, {where:{id: id}}).complete(function(err, result) {
-        if(err) {
+    Shop.update(params, {
+        where: {
+            id: id
+        }
+    }).complete(function(err, result) {
+        if (err) {
             callback(false);
         } else {
             callback(true);

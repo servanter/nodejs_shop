@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <title>微信小店</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="keywords" content="" /> 
+        <meta name="description" content="" /> 
+        <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/style/admin/main.css">
+        <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+        <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+        <script src="/javascript/ejs.js"></script>
+        <script type="text/javascript">
+            var navIndex=1;
+        </script>
+        <script src="/javascript/admin/nav.js" type="text/javascript"></script>
+        <script src="/javascript/admin/tools.js" type="text/javascript"></script>
+    </head>
+    <body>
+        <%- include common/header %>
+        <div class="all-container container-fluid">
+            <div class="row">
+                <%- include common/user_status %>
+  
+                <div id="right-content" class="col-xs-7 col-sm-7 col-md-7 col-xs-offset-1 col-sm-offset-1 col-md-offset-1">
+                    <div class="row mb20">
+                        <%
+                            if(locals.sign && locals.sign.length) {
+                        %>
+                                <div class="alert alert-success alert-disappear" role="alert"><%=sign%></div>
+                        <%
+                            }
+                        %>
+                        <%
+                            if(data.items.result.length > 0){
+                        %>
+                        <div class="pull-left">
+                            <form class="form-inline" role="form" method="get" action="/admin/shop/">
+                                <div class="form-group">
+                                    <%
+                                        var searchVal = '';
+                                        if(locals.search_value) {
+                                            searchVal = locals.search_value;
+                                        }
+                                    %>
+                                    <input name="short_name" class="form-control" type="text" value="<%=searchVal%>" placeholder="店铺名称">
+                                </div>
+                                <div class="form-group">
+                                    <button id="search_btn" type="submit" class="btn btn-default">搜索</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="table-tools text-right">
+                          <a title="添加宝贝" href="/admin/shop/addshop/"><span class="glyphicon glyphicon-plus"></span>添加宝贝</a>
+                        </div>
+                        <%
+                            }
+                        %>
+                    </div>
+                    <%
+                        if(data.items.result.length > 0){
+                    %>
+                    <div class="row table-responsive">
+                        <table class="default-ttable table table-bordered table-hover">
+                          <colgroup>
+                              <col class="col-xs-2"></col>
+                              <col class="col-xs-4"></col>
+                              <col class="col-xs-4"></col>
+                          </colgroup>
+                          <thead>
+                            <tr>
+                              <th>店铺名称</th>
+                              <th>欢迎语</th>
+                              <th>操作</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <%
+                                data.items.result.forEach(function(item, index) {
+                            %>
+                                    <tr>
+                                        <td><a href="/admin/shop/<%=item.id%>/"><%=item.short_name%></a></td>
+                                        <td><%=item.tips%></td>
+                                        <td>
+                                            <a title="编辑" href="/admin/shop/<%=item.id%>/entereditshop/"><span class="glyphicon glyphicon-pencil"></span>编辑</a>
+                                            <a title="轮播图更换" href="/admin/shop/<%=item.id%>/entereditbanner/"><span class="glyphicon glyphicon-pencil"></span>轮播图更换</a>
+                                            <a title="首页位置推广" href="/admin/shop/<%=item.id%>/entereditindexposition/"><span class="glyphicon glyphicon-pencil"></span>首页位置推广</a>
+                                            <a title="添加商品" href="/admin/<%=item.id%>/item/enteradditem/"><span class="glyphicon glyphicon-plus"></span>添加商品</a>
+                                        </td>
+                                    </tr>
+                            <%
+                                })
+                            %>
+                          </tbody>
+                        </table>
+                    </div>
+                    <nav class="text-right">
+                      <ul class="pagination">
+                        <%
+                            var pageQuery = '';
+                            if(searchVal.length > 0) {
+                                pageQuery = '?short_name=' + searchVal;
+                            }
+                        %>
+                        <%
+                          if(data.items.page == 1) {
+                        %>
+                            <li class="disabled"><a href="javascript:void(0)">上一页</a></li>
+                        <%
+                          } else {
+                        %>
+                            <li><a class="page" href="./pg<%=data.items.page - 1%>.html<%=pageQuery%>">上一页</a></li>
+                        <%
+                          }
+                        %>
+
+                        <%
+                            if(data.items.startPage > 1) {
+                        %>
+                                <li><a class="page" href="pg1.html">1</a></li>
+                        <%
+                            }
+                        %>
+                        <%
+                            if(data.items.startPage > 2) {
+                        %>
+                                <li><a class="page" href="./pg<%=data.items.page - 4%>.html<%=pageQuery%>">...</a></li>
+                        <%
+                            }
+                        %>
+
+                        <%
+                            for(var i = data.items.startPage; i <= data.items.endPage; i++) {
+                                if(data.items.page == i) {
+                        %>
+                                    <li class="active"><a href="./pg<%=i%>.html<%=pageQuery%>"><%=i%></a></li>
+                        <%
+                                } else {
+                        %>
+                                    <li><a class="page" href="./pg<%=i%>.html<%=pageQuery%>"><%=i%></a></li>
+                        <%
+                                }
+                            }
+                        %>
+
+                        <%
+                            if(data.items.totalPage - data.items.startPage > 3 && data.items.endPage < data.items.totalPage && (data.items.endPage + 1) != data.items.totalPage) {
+                        %>
+                                <li><a class="page" href="./pg<%=parseInt(data.items.page) + 4%>.html<%=pageQuery%>">...</a></li>
+                        <%
+                            }
+                        %>
+
+                        <%
+                            if(data.items.endPage < data.items.totalPage) {
+                        %>
+                                <li><a class="page" href="./pg<%=data.items.totalPage%>.html<%=pageQuery%>"><%=data.items.totalPage%></a></li>
+                        <%
+                            }
+                        %>
+                        <%
+                            if(data.items.page == data.items.totalPage) {
+                        %>
+                                <li class="disabled"><a class="page" href="javascript:void(0)">下一页</a></li>
+                        <%
+                            } else {
+                        %>
+                                <li><a class="page" href="./pg<%=parseInt(data.items.page) + 1%>.html<%=pageQuery%>">下一页</a></li>
+                        <%
+                            }
+                        %>
+                      </ul>
+                    </nav>
+
+                    <%
+                        } else {
+                    %>
+                            <div class="alert alert-warning" role="alert">
+                                  您还没有创建店铺，<a href="/admin/shop/addshop/" class="alert-link">点击</a>&nbsp;创建一个店铺
+                            </div>
+                    <%
+                        }
+                    %>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
