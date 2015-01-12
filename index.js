@@ -47,6 +47,7 @@ app.post('/admin/:id/item/additem/', filter.authorize, route.adminexec('item').a
 app.get('/admin/shop/:id/entereditindexposition/', filter.authorize, route.adminexec('item').enterEditPosition);
 
 app.get('/admin/item/', filter.authorize, route.adminexec('item').list);
+app.get('/admin/shop/:id/item/', filter.authorize, route.adminexec('item').list);
 app.get('/admin/item/getSubAttributes', filter.authorize, route.adminexec('item').getSubAttributes);
 app.get('/admin/item/removePositions/', filter.authorize, route.adminexec('item').removePositions);
 app.get('/admin/ajax/item/:id/', filter.authorize, route.adminexec('item').getById);

@@ -2,6 +2,7 @@ var async = require('async');
 var fs = require('fs');
 var itemService = require('../../service/itemservice');
 var shopService = require('../../service/shopservice');
+var adminService = require('../../service/adminservice');
 var formidable = require('formidable');
 var itemSubFactory = require('../../service/itemsubfactory');
 var RandomUtil = require('../../util/random_util');
@@ -155,7 +156,15 @@ exports.addIndexPosition = function(req, res) {
 }
 
 exports.list = function(req, res) {
-    shopService.findAllShopsByUserId(req.session.userId, function(result) {
-        res.render('admin/item', {data:{shops:result, sign:req.flash('sign')}});
+    var shopId = req.params.shopId;
+    var page = req.params.page;
+    var p;
+    if(page) {
+        p = new Paging(page, 10);
+    } else {
+        p = new Paging(1, 10);
+    }
+    adminService.findAllShopsByUserIdAndGetItems(req.session.userId, shopId, req.params, page, function(result) {
+        res.render("admin/item", result);
     })
 }

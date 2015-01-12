@@ -33,6 +33,8 @@ exports.getItemDetail = function(digest, callback) {
 exports.itemList = function(shopId, param, page, callback) {
     async.waterfall([
         function(cb) {
+
+            // list data
             itemService.search(shopId, param, page, function(result) {
                 cb(null, result);
             });
@@ -41,6 +43,8 @@ exports.itemList = function(shopId, param, page, callback) {
                 cb(null, {shop:result, items:data});
             });
         }, function(data, cb) {
+
+            // can selected conditions
             var category = parseInt(param.a);
             var subFactory = new itemSubFactory.getService(category);
             subFactory.findSearchConditions(shopId, param, function(result) {
