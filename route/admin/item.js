@@ -156,15 +156,36 @@ exports.addIndexPosition = function(req, res) {
 }
 
 exports.list = function(req, res) {
-    var shopId = req.params.shopId;
+    var shopId = req.query.shop_id;
     var page = req.params.page;
+    var itemName = req.query.short_name;
     var p;
     if(page) {
         p = new Paging(page, 10);
     } else {
         p = new Paging(1, 10);
     }
-    adminService.findAllShopsByUserIdAndGetItems(req.session.userId, shopId, req.params, page, function(result) {
-        res.render("admin/item", result);
+    if(shopId) {
+        res.redirect('/admin/shop/' + shopId + '/item/?short_name=' + itemName);
+    } else {
+        adminService.findAllShopsByUserIdAndGetItems(req.session.userId, shopId, req.params, page, function(result) {
+            res.render("admin/item", result);
+        })
+    }
+}
+
+
+exports.shopItems = function(req, res) {
+    var shopId = req.params.id;
+    var page = req.params.page;
+    var itemName = req.query.short_name;
+    var p;
+    if(page) {
+        p = new Paging(page, 2);
+    } else {
+        p = new Paging(1, 2);
+    }
+    adminService.findAllShopsByUserIdAndGetItems(req.session.userId, shopId, req.params, p, function(result) {
+        res.render("admin/shop_item", result);
     })
 }

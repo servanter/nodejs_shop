@@ -4,6 +4,7 @@ var Paging = require('../util/paging');
 exports.list = function (req, res) {
     var shopId = req.params.id;
     var page = req.params.page;
+    console.log('------------------',req.params);
     if(shopId) {
     	var p;
     	if(page) {
