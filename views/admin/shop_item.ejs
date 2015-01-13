@@ -15,12 +15,13 @@
         </script>
         <script type="text/javascript">
             $(function() {
-                $('#shop_id').bind('click', function() {
+                $('#shop_id').bind('change', function() {
+                    $('input[name=short_name]').val('');
                     $(this).parent().parent().submit();
                 })
 
                 $('#search_btn').click(function() {
-                    $('#shop_id').trigger('click');
+                    $(this).parent().parent().submit();  
                 })
             })
         </script>

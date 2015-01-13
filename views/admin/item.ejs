@@ -15,7 +15,8 @@
         </script>
         <script type="text/javascript">
             $(function() {
-                $('#shop_id').bind('click', function() {
+                $('#shop_id').bind('change', function() {
+                    $('input[name=short_name]').val('');
                     $(this).parent().parent().submit();
                 })
 
@@ -81,9 +82,6 @@
                                     <button id="search_btn" type="button" class="btn btn-default">搜索</button>
                                 </div>
                             </form>
-                        </div>
-                        <div class="table-tools text-right">
-                          <a title="添加宝贝" href="/admin/shop/addshop/"><span class="glyphicon glyphicon-plus"></span>添加宝贝</a>
                         </div>
                         <%
                             }
