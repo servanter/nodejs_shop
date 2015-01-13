@@ -63,12 +63,6 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <%
-                                        var searchVal = '';
-                                        if(locals.data.searchValue) {
-                                            searchVal = locals.data.searchValue;
-                                        }
-                                    %>
                                     <input name="short_name" class="form-control" type="text" value="<%=locals.data.searchValue?locals.data.searchValue : ''%>" placeholder="宝贝名称">
                                 </div>
                                 <div class="form-group">
@@ -128,8 +122,8 @@
                       <ul class="pagination">
                         <%
                             var pageQuery = '';
-                            if(searchVal.length > 0) {
-                                pageQuery = '?short_name=' + searchVal;
+                            if(locals.data.searchValue) {
+                                pageQuery = '?short_name=' + locals.data.searchValue;
                             }
                         %>
                         <%
@@ -202,12 +196,23 @@
                       </ul>
                     </nav>
 
-                            <%
+                           <%
                                 } else {
+                                    if(locals.data.searchValue) {
+                                        // can not find the items
                             %>
-                                    <div class="alert alert-warning" role="alert">
-                                          您还没有宝贝，<a href="/admin/shop/addshop/" class="alert-link">点击</a>&nbsp;新建一个宝贝
-                                    </div>
+                                            <div class="alert alert-warning" role="alert">
+                                                  抱歉没有搜索到商品，您可以放宽条件重新搜索。
+                                            </div>
+                            <%
+                                    } else {
+                            %>
+                                            <div class="alert alert-warning" role="alert">
+                                                  您还没有宝贝，<a href="/admin/shop/addshop/" class="alert-link">点击</a>&nbsp;新建一个宝贝
+                                            </div>
+                            <%
+                                    }
+                            %>
                         <%
                                 }
                             }

@@ -10,10 +10,24 @@ Target Server Type    : MYSQL
 Target Server Version : 50519
 File Encoding         : 65001
 
-Date: 2015-01-06 17:07:16
+Date: 2015-01-13 15:10:22
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for `sc`
+-- ----------------------------
+DROP TABLE IF EXISTS `sc`;
+CREATE TABLE `sc` (
+  `Sno` char(10) DEFAULT NULL,
+  `Cno` char(10) DEFAULT NULL,
+  `Grade` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of sc
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for `weshop_admin_user`
@@ -1169,12 +1183,12 @@ CREATE TABLE `weshop_item_position` (
   `create_time` timestamp NOT NULL DEFAULT '1990-01-01 00:00:00',
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of weshop_item_position
 -- ----------------------------
-INSERT INTO `weshop_item_position` VALUES ('2', '2', '14', '1', '1', '1', '1990-01-01 00:00:00', '2015-01-06 16:59:57');
+INSERT INTO `weshop_item_position` VALUES ('2', '2', '14', '1', '1', '1', '1990-01-01 00:00:00', '2015-01-06 17:30:56');
 INSERT INTO `weshop_item_position` VALUES ('3', '3', '14', '1', '1', '1', '1990-01-01 00:00:00', '2015-01-06 16:52:49');
 INSERT INTO `weshop_item_position` VALUES ('4', '4', '14', '1', '1', '1', '1990-01-01 00:00:00', '2015-01-06 16:53:12');
 INSERT INTO `weshop_item_position` VALUES ('5', '5', '14', '1', '1', '1', '1990-01-01 00:00:00', '2015-01-06 16:58:47');
@@ -1187,10 +1201,10 @@ INSERT INTO `weshop_item_position` VALUES ('15', '7', '14', '1', '1', '1', '2015
 INSERT INTO `weshop_item_position` VALUES ('16', '7', '14', '1', '1', '1', '2015-01-05 16:02:22', '2015-01-06 16:59:55');
 INSERT INTO `weshop_item_position` VALUES ('17', '9', '14', '1', '1', '1', '2015-01-05 17:11:19', '2015-01-05 17:20:58');
 INSERT INTO `weshop_item_position` VALUES ('18', '10', '14', '1', '1', '1', '2015-01-05 17:11:24', '2015-01-06 17:05:45');
-INSERT INTO `weshop_item_position` VALUES ('19', '2', '14', '1', '1', '1', '2015-01-05 17:12:21', '2015-01-06 16:59:57');
+INSERT INTO `weshop_item_position` VALUES ('19', '2', '14', '1', '1', '1', '2015-01-05 17:12:21', '2015-01-06 17:30:56');
 INSERT INTO `weshop_item_position` VALUES ('20', '4', '14', '1', '1', '1', '2015-01-05 17:13:01', '2015-01-06 16:53:12');
-INSERT INTO `weshop_item_position` VALUES ('21', '2', '14', '1', '1', '1', '2015-01-05 17:14:50', '2015-01-06 16:59:57');
-INSERT INTO `weshop_item_position` VALUES ('22', '2', '14', '1', '1', '1', '2015-01-05 17:16:20', '2015-01-06 16:59:57');
+INSERT INTO `weshop_item_position` VALUES ('21', '2', '14', '1', '1', '1', '2015-01-05 17:14:50', '2015-01-06 17:30:56');
+INSERT INTO `weshop_item_position` VALUES ('22', '2', '14', '1', '1', '1', '2015-01-05 17:16:20', '2015-01-06 17:30:56');
 INSERT INTO `weshop_item_position` VALUES ('23', '7', '14', '1', '1', '1', '2015-01-05 17:16:47', '2015-01-06 16:59:55');
 INSERT INTO `weshop_item_position` VALUES ('24', '8', '14', '1', '1', '0', '2015-01-05 17:20:06', '2015-01-05 17:20:06');
 INSERT INTO `weshop_item_position` VALUES ('25', '3', '14', '1', '1', '1', '2015-01-05 17:20:38', '2015-01-06 16:52:49');
@@ -1203,18 +1217,18 @@ INSERT INTO `weshop_item_position` VALUES ('31', '1', '14', '1', '1', '1', '2015
 INSERT INTO `weshop_item_position` VALUES ('32', '1', '14', '1', '1', '1', '2015-01-06 16:31:48', '2015-01-06 17:06:41');
 INSERT INTO `weshop_item_position` VALUES ('33', '3', '14', '1', '1', '1', '2015-01-06 16:32:43', '2015-01-06 16:52:49');
 INSERT INTO `weshop_item_position` VALUES ('34', '3', '14', '1', '1', '1', '2015-01-06 16:34:00', '2015-01-06 16:52:49');
-INSERT INTO `weshop_item_position` VALUES ('35', '2', '14', '1', '1', '1', '2015-01-06 16:35:10', '2015-01-06 16:59:57');
-INSERT INTO `weshop_item_position` VALUES ('36', '2', '14', '1', '1', '1', '2015-01-06 16:36:53', '2015-01-06 16:59:57');
-INSERT INTO `weshop_item_position` VALUES ('37', '2', '14', '1', '1', '1', '2015-01-06 16:38:31', '2015-01-06 16:59:57');
-INSERT INTO `weshop_item_position` VALUES ('38', '2', '14', '1', '1', '1', '2015-01-06 16:39:10', '2015-01-06 16:59:57');
+INSERT INTO `weshop_item_position` VALUES ('35', '2', '14', '1', '1', '1', '2015-01-06 16:35:10', '2015-01-06 17:30:56');
+INSERT INTO `weshop_item_position` VALUES ('36', '2', '14', '1', '1', '1', '2015-01-06 16:36:53', '2015-01-06 17:30:56');
+INSERT INTO `weshop_item_position` VALUES ('37', '2', '14', '1', '1', '1', '2015-01-06 16:38:31', '2015-01-06 17:30:56');
+INSERT INTO `weshop_item_position` VALUES ('38', '2', '14', '1', '1', '1', '2015-01-06 16:39:10', '2015-01-06 17:30:56');
 INSERT INTO `weshop_item_position` VALUES ('39', '4', '14', '1', '1', '1', '2015-01-06 16:41:05', '2015-01-06 16:53:12');
 INSERT INTO `weshop_item_position` VALUES ('40', '3', '14', '1', '1', '1', '2015-01-06 16:46:58', '2015-01-06 16:52:49');
-INSERT INTO `weshop_item_position` VALUES ('41', '2', '14', '1', '1', '1', '2015-01-06 16:51:54', '2015-01-06 16:59:57');
+INSERT INTO `weshop_item_position` VALUES ('41', '2', '14', '1', '1', '1', '2015-01-06 16:51:54', '2015-01-06 17:30:56');
 INSERT INTO `weshop_item_position` VALUES ('42', '4', '14', '1', '1', '1', '2015-01-06 16:53:01', '2015-01-06 16:53:12');
 INSERT INTO `weshop_item_position` VALUES ('43', '1', '14', '1', '1', '1', '2015-01-06 16:53:46', '2015-01-06 17:06:41');
 INSERT INTO `weshop_item_position` VALUES ('44', '1', '14', '1', '1', '1', '2015-01-06 16:54:48', '2015-01-06 17:06:41');
 INSERT INTO `weshop_item_position` VALUES ('45', '3', '14', '1', '1', '0', '2015-01-06 16:55:03', '2015-01-06 16:55:03');
-INSERT INTO `weshop_item_position` VALUES ('46', '2', '14', '1', '1', '1', '2015-01-06 16:58:10', '2015-01-06 16:59:57');
+INSERT INTO `weshop_item_position` VALUES ('46', '2', '14', '1', '1', '1', '2015-01-06 16:58:10', '2015-01-06 17:30:56');
 INSERT INTO `weshop_item_position` VALUES ('47', '1', '14', '1', '1', '1', '2015-01-06 16:58:50', '2015-01-06 17:06:41');
 INSERT INTO `weshop_item_position` VALUES ('48', '7', '14', '1', '1', '1', '2015-01-06 16:59:05', '2015-01-06 16:59:55');
 INSERT INTO `weshop_item_position` VALUES ('49', '1', '14', '1', '1', '1', '2015-01-06 17:00:00', '2015-01-06 17:06:41');
@@ -1223,6 +1237,10 @@ INSERT INTO `weshop_item_position` VALUES ('51', '1', '14', '1', '1', '1', '2015
 INSERT INTO `weshop_item_position` VALUES ('52', '1', '14', '1', '1', '1', '2015-01-06 17:06:28', '2015-01-06 17:06:41');
 INSERT INTO `weshop_item_position` VALUES ('53', '1', '14', '1', '1', '1', '2015-01-06 17:06:40', '2015-01-06 17:06:41');
 INSERT INTO `weshop_item_position` VALUES ('54', '6', '14', '1', '1', '1', '2015-01-06 17:06:43', '2015-01-06 17:06:45');
+INSERT INTO `weshop_item_position` VALUES ('55', '1', '14', '1', '1', '0', '2015-01-06 17:16:12', '2015-01-06 17:16:12');
+INSERT INTO `weshop_item_position` VALUES ('56', '2', '14', '1', '1', '1', '2015-01-06 17:16:40', '2015-01-06 17:30:56');
+INSERT INTO `weshop_item_position` VALUES ('57', '4', '14', '1', '1', '0', '2015-01-06 17:17:18', '2015-01-06 17:17:18');
+INSERT INTO `weshop_item_position` VALUES ('58', '2', '14', '1', '1', '1', '2015-01-06 17:30:52', '2015-01-06 17:30:56');
 
 -- ----------------------------
 -- Table structure for `weshop_shoe`
