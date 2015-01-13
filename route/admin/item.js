@@ -168,7 +168,7 @@ exports.list = function(req, res) {
     if(shopId) {
         res.redirect('/admin/shop/' + shopId + '/item/?short_name=' + itemName);
     } else {
-        adminService.findAllShopsByUserIdAndGetItems(req.session.userId, shopId, req.params, page, function(result) {
+        adminService.findAllShopsByUserIdAndGetItems(req.session.userId, shopId, req.params, itemName, page, function(result) {
             res.render("admin/item", result);
         })
     }
@@ -181,11 +181,11 @@ exports.shopItems = function(req, res) {
     var itemName = req.query.short_name;
     var p;
     if(page) {
-        p = new Paging(page, 2);
+        p = new Paging(page,2);
     } else {
         p = new Paging(1, 2);
     }
-    adminService.findAllShopsByUserIdAndGetItems(req.session.userId, shopId, req.params, p, function(result) {
+    adminService.findAllShopsByUserIdAndGetItems(req.session.userId, shopId, req.params, itemName, p, function(result) {
         res.render("admin/shop_item", result);
     })
 }

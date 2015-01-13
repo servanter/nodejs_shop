@@ -15,8 +15,12 @@
         </script>
         <script type="text/javascript">
             $(function() {
-                $('#shop_id').change(function() {
+                $('#shop_id').bind('click', function() {
                     $(this).parent().parent().submit();
+                })
+
+                $('#search_btn').click(function() {
+                    $('#shop_id').trigger('click');
                 })
             })
         </script>
@@ -46,13 +50,19 @@
                                 <div class="form-group">
                                     <select id="shop_id" name="shop_id" class="form-control">
                                         <option>----</option>
-                                        <%
+                                        <%      
                                             if(locals.data.shops && locals.data.shops.length) {
                                                 locals.data.shops.forEach(function(item, index) {
+                                                    if(locals.data.shop && item.id == locals.data.shop.id) {
+                                        %>
+                                                        <option value="<%=item.id%>" selected=selected><%=item.short_name%></option>                 
+                                        <%
+                                                    } else {
                                         %>
                                                     <option value="<%=item.id%>"><%=item.short_name%></option>
                                         <%
-                                                    })
+                                                    }
+                                                })
                                             }
                                         %>
                                     </select>
@@ -61,14 +71,14 @@
                                 <div class="form-group">
                                     <%
                                         var searchVal = '';
-                                        if(locals.search_value) {
-                                            searchVal = locals.search_value;
+                                        if(locals.data.searchValue) {
+                                            searchVal = locals.data.searchValue;
                                         }
                                     %>
-                                    <input name="short_name" class="form-control" type="text" value="<%=searchVal%>" placeholder="宝贝名称">
+                                    <input name="short_name" class="form-control" type="text" value="<%=locals.data.searchValue?locals.data.searchValue : ''%>" placeholder="宝贝名称">
                                 </div>
                                 <div class="form-group">
-                                    <button id="search_btn" type="submit" class="btn btn-default">搜索</button>
+                                    <button id="search_btn" type="button" class="btn btn-default">搜索</button>
                                 </div>
                             </form>
                         </div>

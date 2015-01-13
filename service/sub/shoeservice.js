@@ -104,7 +104,7 @@ exports.findSearchConditions = function(shopId, param, callback) {
      
 }
 
-exports.findList = function(shopId, params, paging, callback) {
+exports.findList = function(shopId, params, searchValue, paging, callback) {
     var brand = {model:ShoeBrand, as:'brand', required:true, attributes:[['brand_name', 'brand_name']]};
     var color = {model:Color, as:'colors', required:true, attributes:[['color_name', 'color_name']]};
     var material = {model:ShoeMaterial, as:'material', required:true, attributes:[['material_name', 'material_name']]};
@@ -137,14 +137,19 @@ exports.findList = function(shopId, params, paging, callback) {
             queryArr.push(size);
         }
     }
+    var whereConditions = {shop_id:shopId, is_vertify:1, on_sell:1};
+    if(searchValue) {
+        whereConditions.short_name = {};
+        whereConditions.short_name.like = '%' + searchValue + '%';
+    }
     async.waterfall([
         function(cb) {
-            Shoe.findAll({attributes:[['short_name', 'short_name'], ['id', 'id'], ['update_time', 'opt_time'], ['price', 'price']], include:queryArr, where:{shop_id:shopId, is_vertify:1, on_sell:1}, offset:paging.sinceCount, limit:paging.pageSize, group:'id', order:[['opt_time']]}, {subQuery:false}).success(function(result) {
+            Shoe.findAll({attributes:[['short_name', 'short_name'], ['id', 'id'], ['update_time', 'opt_time'], ['price', 'price']], include:queryArr, where:whereConditions, offset:paging.sinceCount, limit:paging.pageSize, group:'id', order:[['opt_time']]}, {subQuery:false}).success(function(result) {
                 var arr = Convert.values2Arr(result);
                 cb(null, arr);
             })
         }, function(data, cb) {
-            Shoe.count({distinct:true, include:queryArr, where:{shop_id:shopId, is_vertify:1, on_sell:1}}).success(function(count) {
+            Shoe.count({distinct:true, include:queryArr, where:whereConditions}).success(function(count) {
                 var pag = new Paging(count, paging.page, paging.pageSize, data);
                 cb(null, pag);
             })

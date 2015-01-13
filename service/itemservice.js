@@ -45,21 +45,25 @@ exports.findItemsIndexPositionsByShopId = function(shopId, paging, callback) {
     })
 }
 
-exports.search = function(shopId, params, paging, callback) {
-    var whereConditions = {
-        shop_id: shopId
-    };
+exports.search = function(shopId, params, searchValue, paging, callback) {
+    
     if (params.a && params.a != '0') {
         var category = parseInt(params.a);
         var subService = new itemSubFactory.getService(category);
-        subService.findList(shopId, params, paging, function(result) {
+        subService.findList(shopId, params, searchValue, paging, function(result) {
             result.result.forEach(function(item, index) {
                 item.encrypt = Crypto.encryptAes(item.id + Constants.cryptoSplit + category);
             })
             callback(result);
         });
     } else {
-
+        var whereConditions = {
+            shop_id: shopId
+        };
+        if(searchValue) {
+            whereConditions.short_name = {};
+            whereConditions.short_name.like = '%' + searchValue + '%';
+        }
         // default
         async.waterfall([
             function(cb) {

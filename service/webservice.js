@@ -30,12 +30,12 @@ exports.getItemDetail = function(digest, callback) {
     )
 }
 
-exports.itemList = function(shopId, param, page, callback) {
+exports.itemList = function(shopId, param, searchValue, page, callback) {
     async.waterfall([
         function(cb) {
 
             // list data
-            itemService.search(shopId, param, page, function(result) {
+            itemService.search(shopId, param, searchValue, page, function(result) {
                 cb(null, result);
             });
         }, function(data, cb) {

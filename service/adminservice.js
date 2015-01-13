@@ -3,12 +3,12 @@ var shopService = require('./shopservice');
 var itemService = require('./itemservice');
 var webService = require('./webservice');
 
-exports.findAllShopsByUserIdAndGetItems = function(userId, shopId, param, page, callback) {
+exports.findAllShopsByUserIdAndGetItems = function(userId, shopId, param, searchValue, page, callback) {
     if (shopId) {
         async.waterfall([
             function(cb) {
                 // select shop items
-                webService.itemList(shopId, param, page, function(result) {
+                webService.itemList(shopId, param, searchValue, page, function(result) {
                     cb(null, {
                         data: result
                     }); // return shop:shop, items:items
@@ -18,6 +18,7 @@ exports.findAllShopsByUserIdAndGetItems = function(userId, shopId, param, page, 
                 // get userid can manage shops
                 shopService.findAllShopsByUserId(userId, function(result) {
                     data.data.shops = result;
+                    data.data.searchValue = searchValue;
                     cb(null, data);
                 });
             }
