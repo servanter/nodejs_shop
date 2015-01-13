@@ -1,5 +1,6 @@
 var async = require('async');
 var fs = require('fs');
+var iconv = require('iconv-lite');
 var itemService = require('../../service/itemservice');
 var shopService = require('../../service/shopservice');
 var adminService = require('../../service/adminservice');
@@ -165,8 +166,9 @@ exports.list = function(req, res) {
     } else {
         p = new Paging(1, 10);
     }
+    console.log(itemName);
     if(shopId) {
-        res.redirect('/admin/shop/' + shopId + '/item/?short_name=' + itemName);
+        res.redirect('/admin/shop/' + shopId + '/item/?short_name=' + encodeURIComponent(itemName));
     } else {
         adminService.findAllShopsByUserIdAndGetItems(req.session.userId, shopId, req.params, itemName, page, function(result) {
             res.render("admin/item", result);

@@ -4,7 +4,8 @@
         <title>微信小店</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="keywords" content="" /> 
-        <meta name="description" content="" /> 
+        <meta name="description" content="" />
+        <meta content="text/plain; charset=gb2312" />  
         <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="/style/admin/main.css">
         <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
@@ -40,7 +41,7 @@
                             if(locals.data.shops && locals.data.shops.length > 0){
                         %>
                         <div class="pull-left">
-                            <form class="form-inline" role="form" method="get" action="/admin/item/">
+                            <form class="form-inline" role="form" method="get" action="/admin/shop/<%=data.shop.id%>/item/">
                                 <div class="form-group">
                                     <select id="shop_id" name="shop_id" class="form-control">
                                         <option>----</option>
