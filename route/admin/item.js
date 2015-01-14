@@ -166,7 +166,6 @@ exports.list = function(req, res) {
     } else {
         p = new Paging(1, 10);
     }
-    console.log(itemName);
     if(shopId) {
         res.redirect('/admin/shop/' + shopId + '/item/?short_name=' + encodeURIComponent(itemName));
     } else {

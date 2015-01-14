@@ -17,12 +17,20 @@
         <script type="text/javascript">
             $(function() {
                 $('#shop_id').bind('change', function() {
-                    $('input[name=short_name]').val('');
-                    $(this).parent().parent().submit();
+                    if($(this).val()) {
+                        $('input[name=short_name]').val('');
+                        $(this).parent().parent().attr('action', '/admin/shop/'+ $(this).val() +'/item/')
+                        $(this).parent().parent().submit();
+                    }
                 })
 
                 $('#search_btn').click(function() {
-                    $(this).parent().parent().submit();  
+                    if($('#shop_id').val()) {
+                        $('#shop_id').parent().parent().attr('action', '/admin/shop/'+ $('#shop_id').val() +'/item/')
+                    } else {
+                        $('#shop_id').parent().parent().attr('action', '/admin/item/');
+                    }
+                    $(this).parent().parent().submit();
                 })
             })
         </script>
@@ -41,10 +49,10 @@
                             if(locals.data.shops && locals.data.shops.length > 0){
                         %>
                         <div class="pull-left">
-                            <form class="form-inline" role="form" method="get" action="/admin/shop/<%=data.shop.id%>/item/">
+                            <form class="form-inline" role="form" method="get" action="">
                                 <div class="form-group">
-                                    <select id="shop_id" name="shop_id" class="form-control">
-                                        <option>----</option>
+                                    <select id="shop_id" class="form-control">
+                                        <option value='0'>----</option>
                                         <%      
                                             if(locals.data.shops && locals.data.shops.length) {
                                                 locals.data.shops.forEach(function(item, index) {
