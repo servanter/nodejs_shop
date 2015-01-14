@@ -172,6 +172,7 @@ exports.list = function(req, res) {
         adminService.findAllShopsByUserIdAndGetItems(req.session.userId, shopId, req.params, itemName, page, function(result) {
             res.render("admin/item", result);
         })
+        
     }
 }
 

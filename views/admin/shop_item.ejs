@@ -17,16 +17,16 @@
         <script type="text/javascript">
             $(function() {
                 $('#shop_id').bind('change', function() {
-                    if($(this).val()) {
+                    if ($(this).val()) {
                         $('input[name=short_name]').val('');
-                        $(this).parent().parent().attr('action', '/admin/shop/'+ $(this).val() +'/item/')
+                        $(this).parent().parent().attr('action', '/admin/shop/' + $(this).val() + '/item/')
                         $(this).parent().parent().submit();
                     }
                 })
 
                 $('#search_btn').click(function() {
-                    if($('#shop_id').val()) {
-                        $('#shop_id').parent().parent().attr('action', '/admin/shop/'+ $('#shop_id').val() +'/item/')
+                    if ($('#shop_id').val()) {
+                        $('#shop_id').parent().parent().attr('action', '/admin/shop/' + $('#shop_id').val() + '/item/')
                     } else {
                         $('#shop_id').parent().parent().attr('action', '/admin/item/');
                     }
