@@ -9,12 +9,6 @@ var itemSubFactory = require('../../service/itemsubfactory');
 var RandomUtil = require('../../util/random_util');
 var Paging = require('../../util/paging');
 
-exports.addItem = function(req, res) {
-    itemService.findClasses(function(result) {
-        res.render('admin/add_item', {data:{classes:result, shop_id:req.params.id}});
-    })
-}
-
 exports.enteradditem = function(req, res) {
     var shopId = req.params.id;
     itemService.findClasses(function(result) {
@@ -31,7 +25,7 @@ exports.getSubAttributes = function(req, res) {
     });
 }
 
-exports.additem = function(req, res) {
+exports.addItem = function(req, res) {
     var form = new formidable.IncomingForm();
     form.uploadDir = 'public/';
     var shopId = req.params.id;
@@ -68,7 +62,7 @@ exports.additem = function(req, res) {
                     var picName = pic.name.substring(pic.name.indexOf('.'));
                     var picFullName = new Date().getTime() + '' + RandomUtil.getRandom(10000) + picName;
                     fs.renameSync(pic.path, 'public/images/item/' + picFullName);
-                    var picUrl = 'images/item/' + picFullName;
+                    var picUrl = 'item/' + picFullName;
                     data.push(picUrl);
                 }
                 subFactory.save(obj, data, function(result) {

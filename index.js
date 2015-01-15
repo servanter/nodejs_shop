@@ -42,8 +42,8 @@ app.get('/admin/shop/:id/entereditbanner/', filter.authorize, route.adminexec('s
 app.post('/admin/shop/editbanner/:id/', filter.authorize, route.adminexec('shop').editBanner);
 app.get('/admin/cities/', filter.authorize, route.adminexec('shop').getCities);
 app.post('/admin/shop/createshopcomplete/', filter.authorize, route.adminexec('shop').addShopComplete);
-app.get('/admin/:id/item/enteradditem/', filter.authorize, route.adminexec('item').enteradditem);
-app.post('/admin/:id/item/additem/', filter.authorize, route.adminexec('item').additem);
+app.get('/admin/shop/:id/item/enteradditem/', filter.authorize, route.adminexec('item').enteradditem);
+app.post('/admin/shop/:id/item/additem/', filter.authorize, route.adminexec('item').addItem);
 app.get('/admin/shop/:id/entereditindexposition/', filter.authorize, route.adminexec('item').enterEditPosition);
 
 app.get('/admin/item/', filter.authorize, route.adminexec('item').list);
