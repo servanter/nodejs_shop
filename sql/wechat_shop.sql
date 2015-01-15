@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50519
 File Encoding         : 65001
 
-Date: 2015-01-13 15:10:22
+Date: 2015-01-15 10:21:46
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -780,7 +780,7 @@ CREATE TABLE `weshop_detail_pic` (
   `is_major` tinyint(1) NOT NULL DEFAULT '0',
   `is_valid` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of weshop_detail_pic
@@ -803,10 +803,11 @@ INSERT INTO `weshop_detail_pic` VALUES ('15', '38', '3', 'images/item/1419566058
 INSERT INTO `weshop_detail_pic` VALUES ('16', '38', '3', 'images/item/14195660587341496.jpg', '2014-12-26 11:54:18', '1', '1');
 INSERT INTO `weshop_detail_pic` VALUES ('17', '39', '3', 'images/item/14195661762842791.jpg', '2014-12-26 11:56:16', '1', '1');
 INSERT INTO `weshop_detail_pic` VALUES ('18', '39', '3', 'images/item/14195661762857644.jpg', '2014-12-26 11:56:16', '1', '1');
-INSERT INTO `weshop_detail_pic` VALUES ('19', '40', '3', 'images/item/14195663312478694.jpg', '2014-12-26 11:58:51', '1', '1');
+INSERT INTO `weshop_detail_pic` VALUES ('19', '40', '3', 'item/14195663312478694.jpg', '2015-01-15 10:18:53', '1', '1');
 INSERT INTO `weshop_detail_pic` VALUES ('20', '40', '3', 'images/item/14195663312487926.jpg', '2014-12-26 11:58:51', '1', '1');
 INSERT INTO `weshop_detail_pic` VALUES ('21', '41', '3', 'images/item/14195667941678618.jpg', '2014-12-26 12:06:34', '1', '1');
 INSERT INTO `weshop_detail_pic` VALUES ('22', '41', '3', 'images/item/14195667941672709.jpg', '2014-12-26 12:06:34', '1', '1');
+INSERT INTO `weshop_detail_pic` VALUES ('23', '42', '3', 'item/14212880308172358.jpg', '2015-01-15 10:19:04', '1', '1');
 
 -- ----------------------------
 -- Table structure for `weshop_dict_color`
@@ -1130,7 +1131,7 @@ CREATE TABLE `weshop_item` (
   `create_time` timestamp NOT NULL DEFAULT '1990-01-01 00:00:00',
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of weshop_item
@@ -1150,6 +1151,7 @@ INSERT INTO `weshop_item` VALUES ('12', '34', '鬼冢虎休闲运动鞋', '1', '
 INSERT INTO `weshop_item` VALUES ('13', '38', 'sssssss', '1', '1', '3', 'eqweqeqqw', 'images/item/14195660587335692.jpg', '555.00', '2014-12-26 11:54:18', '2014-12-26 11:54:18');
 INSERT INTO `weshop_item` VALUES ('14', '40', 'Nike AIR MAX 90', '1', '1', '3', 'Nike AIR MAX 90Nike AIR MAX 90', 'images/item/14195663312478694.jpg', '1299.00', '2014-12-26 11:58:51', '2014-12-26 11:58:51');
 INSERT INTO `weshop_item` VALUES ('15', '41', 'adidas Originals FORUM MID RS XL经典鞋', '2', '1', '3', 'adidas Originals FORUM MID RS XL经典鞋aaaa', 'images/item/14195667941678618.jpg', '888.00', '2014-12-26 12:06:34', '2014-12-26 12:06:34');
+INSERT INTO `weshop_item` VALUES ('16', '42', 'IVYBOI×INTREPID联名款 黑色波浪纹登山靴 超轻', '6', '1', '3', 'IVYBOI×INTREPID联名款 黑色波浪纹登山靴 超轻Final sale 最高直减600元 Ivyboi', 'item/14212880308172358.jpg', '100.00', '2015-01-15 10:13:51', '2015-01-15 10:18:19');
 
 -- ----------------------------
 -- Table structure for `weshop_item_class`
@@ -1183,7 +1185,7 @@ CREATE TABLE `weshop_item_position` (
   `create_time` timestamp NOT NULL DEFAULT '1990-01-01 00:00:00',
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of weshop_item_position
@@ -1241,6 +1243,8 @@ INSERT INTO `weshop_item_position` VALUES ('55', '1', '14', '1', '1', '0', '2015
 INSERT INTO `weshop_item_position` VALUES ('56', '2', '14', '1', '1', '1', '2015-01-06 17:16:40', '2015-01-06 17:30:56');
 INSERT INTO `weshop_item_position` VALUES ('57', '4', '14', '1', '1', '0', '2015-01-06 17:17:18', '2015-01-06 17:17:18');
 INSERT INTO `weshop_item_position` VALUES ('58', '2', '14', '1', '1', '1', '2015-01-06 17:30:52', '2015-01-06 17:30:56');
+INSERT INTO `weshop_item_position` VALUES ('59', '16', '6', '1', '1', '1', '2015-01-15 10:20:01', '2015-01-15 10:20:34');
+INSERT INTO `weshop_item_position` VALUES ('60', '16', '6', '1', '1', '1', '2015-01-15 10:20:24', '2015-01-15 10:20:34');
 
 -- ----------------------------
 -- Table structure for `weshop_shoe`
@@ -1265,7 +1269,7 @@ CREATE TABLE `weshop_shoe` (
   `is_vertify` tinyint(1) NOT NULL DEFAULT '1',
   `on_sell` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of weshop_shoe
@@ -1307,6 +1311,7 @@ INSERT INTO `weshop_shoe` VALUES ('38', '1', '1', '1', '555.00', '666.00', '2014
 INSERT INTO `weshop_shoe` VALUES ('39', '1', '1', '1', '1000.00', '1299.00', '2014-12-26 11:56:16', '2014-12-26 11:56:16', 'Nike AIR MAX 90 SNEAKERBOOT WNTR', 'WNTRWNTRWNTR', '1', '1', '1111111', '22222222222', 'http://www.baidu.com', '0', '0');
 INSERT INTO `weshop_shoe` VALUES ('40', '1', '1', '1', '1299.00', '1999.00', '2014-12-26 11:58:51', '2014-12-26 12:00:17', 'Nike AIR MAX 90', 'Nike AIR MAX 90Nike AIR MAX 90', '1', '1', '卑职', '1111111111111111', 'http://item.yohobuy.com/product/pro_74253_111371/NIKEAIRMAX90SNEAKERBOOTWNTR684714001.html', '1', '1');
 INSERT INTO `weshop_shoe` VALUES ('41', '2', '1', '2', '888.00', '999.00', '2014-12-26 12:06:34', '2014-12-26 12:06:34', 'adidas Originals FORUM MID RS XL经典鞋', 'adidas Originals FORUM MID RS XL经典鞋aaaa', '1', '1', '以上尺寸为实物人工测量，因测量方式不同会有1-2CM误差，相关数据仅作参考，以收到实物为准。  单位：厘米', '222222222', 'http://item.yohobuy.com/product/pro_95699_139533/ADIDASORIGINALSJingDianXieB26152.html', '1', '1');
+INSERT INTO `weshop_shoe` VALUES ('42', '6', '1', '1', '100.00', '666.00', '2015-01-15 10:13:50', '2015-01-15 10:13:50', 'IVYBOI×INTREPID联名款 黑色波浪纹登山靴 超轻', 'IVYBOI×INTREPID联名款 黑色波浪纹登山靴 超轻Final sale 最高直减600元 Ivyboi', '4', '1', '阿达大声道', 'aasdqewasd', 'http://item.yohobuy.com/product/pro_117281_165589/IVYBOIIBSH14Q473BKX.html', '1', '1');
 
 -- ----------------------------
 -- Table structure for `weshop_shoe_color_rel`
@@ -1320,7 +1325,7 @@ CREATE TABLE `weshop_shoe_color_rel` (
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `is_valid` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=81 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of weshop_shoe_color_rel
@@ -1401,6 +1406,10 @@ INSERT INTO `weshop_shoe_color_rel` VALUES ('73', '40', '3', '2014-12-26 11:58:5
 INSERT INTO `weshop_shoe_color_rel` VALUES ('74', '41', '1', '2014-12-26 12:06:34', '2014-12-26 12:06:34', '1');
 INSERT INTO `weshop_shoe_color_rel` VALUES ('75', '41', '2', '2014-12-26 12:06:34', '2014-12-26 12:06:34', '1');
 INSERT INTO `weshop_shoe_color_rel` VALUES ('76', '41', '3', '2014-12-26 12:06:34', '2014-12-26 12:06:34', '1');
+INSERT INTO `weshop_shoe_color_rel` VALUES ('77', '42', '1', '2015-01-15 10:13:50', '2015-01-15 10:13:50', '1');
+INSERT INTO `weshop_shoe_color_rel` VALUES ('78', '42', '2', '2015-01-15 10:13:50', '2015-01-15 10:13:50', '1');
+INSERT INTO `weshop_shoe_color_rel` VALUES ('79', '42', '3', '2015-01-15 10:13:50', '2015-01-15 10:13:50', '1');
+INSERT INTO `weshop_shoe_color_rel` VALUES ('80', '42', '4', '2015-01-15 10:13:50', '2015-01-15 10:13:50', '1');
 
 -- ----------------------------
 -- Table structure for `weshop_shoe_size_rel`
@@ -1414,7 +1423,7 @@ CREATE TABLE `weshop_shoe_size_rel` (
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `is_valid` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of weshop_shoe_size_rel
@@ -1450,6 +1459,8 @@ INSERT INTO `weshop_shoe_size_rel` VALUES ('28', '38', '1', '2014-12-26 11:54:18
 INSERT INTO `weshop_shoe_size_rel` VALUES ('29', '39', '1', '2014-12-26 11:56:16', '2014-12-26 11:56:16', '1');
 INSERT INTO `weshop_shoe_size_rel` VALUES ('30', '40', '1', '2014-12-26 11:58:51', '2014-12-26 11:58:51', '1');
 INSERT INTO `weshop_shoe_size_rel` VALUES ('31', '41', '1', '2014-12-26 12:06:34', '2014-12-26 12:06:34', '1');
+INSERT INTO `weshop_shoe_size_rel` VALUES ('32', '42', '1', '2015-01-15 10:13:50', '2015-01-15 10:13:50', '1');
+INSERT INTO `weshop_shoe_size_rel` VALUES ('33', '42', '2', '2015-01-15 10:13:50', '2015-01-15 10:13:50', '1');
 
 -- ----------------------------
 -- Table structure for `weshop_shop`
