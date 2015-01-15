@@ -72,10 +72,13 @@
                 if (data.length) {
                   $.get('/admin/item/removePositions/?position=1&shop_id=<%=data.shop.id%>&items=' + data, function(result) {
                     if (result) {
+
                       $.each($('.caption a'), function(index, item) {
                         if ($(item).attr('data') == data) {
-                          $(this).parent().parent().parent().fadeOut(1000);
                           $('#btn-del').parent().parent().parent().find('span').eq(0).trigger('click');
+                          $(this).parent().parent().parent().fadeOut(1000, function() {
+                              window.location.reload();
+                          });
                         }
                       })
                     }
@@ -124,7 +127,11 @@
                         img_path: '<%=settings.img_path%>',
                         hasDel: true
                       });
-                      $('.thumbnail:last').after($(html).find('.thumbnail'));
+                      if($('#show-index-position .thumbnail:last').length) {
+                          $('#show-index-position .thumbnail:last').after($(html).find('.thumbnail'));
+                      } else {
+                          $('#show-index-position>div').html($(html).find('.thumbnail'));
+                      }
                       $.each($('#ava_items').find('option'), function(index, item) {
                         if ($('#ava_items').val() == $(this).val()) {
                           $(this).remove();
@@ -175,7 +182,7 @@
                               </div>
                               
 
-                              <div class="form-group">
+                              <div id="show-index-position" class="form-group">
                                 <label class="col-sm-2 control-label">当前首页位置</label>
                                 <div class="col-sm-7">
                                     <%

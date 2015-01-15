@@ -225,6 +225,17 @@ exports.findCurrentPositionsAndAvaliableItemNames = function(shopId, position, p
             })
         },
         function(data, cb) {
+            var whereConditions = {shop_id : shopId};
+            var arr = new Array();
+            if(data && data.length) {
+                data.forEach(function(item, index) {
+                    arr.push(item.id);
+                })
+            }
+            if(arr.length) {
+                whereConditions.id = {};
+                whereConditions.id.ne = arr;
+            }
             Item.findAll({
                 attributes: [
                     ['id', 'id'],
@@ -233,9 +244,7 @@ exports.findCurrentPositionsAndAvaliableItemNames = function(shopId, position, p
                     ['detail_id', 'detail_id'],
                     ['class_id', 'class_id']
                 ],
-                where: {
-                    shop_id: shopId
-                }
+                where: whereConditions
             }).success(function(result) {
                 result.forEach(function(item, index) {
                     item.encrypt = Crypto.encryptAes(item.id + '');
