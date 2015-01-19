@@ -16,9 +16,9 @@
                     if($(this).val() > 0) {
                         $.get('/admin/item/getSubAttributes/?class_id=' + $('#item_class').val(), function(result){
                             if(result && result.length > 0) {
-                                clearDiv($('.form-group').eq(3));
+                                clearDiv($('.form-group').eq(5));
                                 var html = new EJS({url:'/inc/admin/dynamic_generate_input.ejs'}).render({data:result});
-                                $('.form-group').eq(3).after(html);
+                                $('.form-group').eq(5).after(html);
                             }
                         });
                     }

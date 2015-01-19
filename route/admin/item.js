@@ -35,58 +35,54 @@ exports.addItem = function(req, res) {
     var shopId = req.params.id;
     var obj = {};
 
-    async.waterfall([
-        function(cb) {
-            form.on('field', function(name, value) {
-                if (eval('obj.' + name)) {
-                    var lastValue = eval('obj.' + name);
-                    if (typeof(lastValue) == 'object' && lastValue.constructor == Array) {
-                        lastValue.push(value);
-                        eval('obj.' + name + '=lastValue');
-                    } else {
-                        var arr = new Array(lastValue, value);
-                        eval('obj.' + name + '=arr');
-                    }
-                } else {
-                    eval("obj." + name + "='" + value + "'");
-                }
 
-            });
-            obj.shop_id = shopId;
-            obj.user_id = req.session.userId;
-            cb(null, obj);
+    form.on('field', function(name, value) {
+        if (eval('obj.' + name)) {
+            var lastValue = eval('obj.' + name);
+            if (typeof(lastValue) == 'object' && lastValue.constructor == Array) {
+                lastValue.push(value);
+                eval('obj.' + name + '=lastValue');
+            } else {
+                var arr = new Array(lastValue, value);
+                eval('obj.' + name + '=arr');
+            }
+        } else {
+            eval("obj." + name + "='" + value + "'");
         }
-    ], function(err, result) {
-        form.parse(req, function(err, fields, files) {
-            var subFactory = new itemSubFactory.getService(parseInt(obj.item_class));
-            if (subFactory) {
-                var index = 1;
-                var data = new Array();
-                for (var index = 1; files.hasOwnProperty('pic_' + index); index++) {
-                    var pic = eval('files.' + ('pic_' + index));
-                    var picName = pic.name.substring(pic.name.indexOf('.'));
-                    var picFullName = new Date().getTime() + '' + RandomUtil.getRandom(10000) + picName;
-                    fs.renameSync(pic.path, 'public/images/item/' + picFullName);
-                    var picUrl = 'item/' + picFullName;
-                    data.push(picUrl);
-                }
-                subFactory.save(obj, data, function(result) {
-                    var sign = '操作失败';
-                    if (result.flag) {
-                        itemService.save(result.data, function(result) {
-                            if (result) {
-                                sign = '添加商品成功';
-                            }
-                            req.flash('sign', sign);
-                            return res.redirect('/admin/shop/');
-                        });
-                    } else {
+
+    });
+
+    form.parse(req, function(err, fields, files) {
+        obj.shop_id = shopId;
+        obj.user_id = req.session.userId;
+        var subFactory = new itemSubFactory.getService(parseInt(obj.item_class));
+        if (subFactory) {
+            var index = 1;
+            var data = new Array();
+            for (var index = 1; files.hasOwnProperty('pic_' + index); index++) {
+                var pic = eval('files.' + ('pic_' + index));
+                var picName = pic.name.substring(pic.name.indexOf('.'));
+                var picFullName = new Date().getTime() + '' + RandomUtil.getRandom(10000) + picName;
+                fs.renameSync(pic.path, 'public/images/item/' + picFullName);
+                var picUrl = 'item/' + picFullName;
+                data.push(picUrl);
+            }
+            subFactory.save(obj, data, function(result) {
+                var sign = '操作失败';
+                if (result.flag) {
+                    itemService.save(result.data, function(result) {
+                        if (result) {
+                            sign = '添加商品成功';
+                        }
                         req.flash('sign', sign);
                         return res.redirect('/admin/shop/');
-                    }
-                });
-            }
-        })
+                    });
+                } else {
+                    req.flash('sign', sign);
+                    return res.redirect('/admin/shop/');
+                }
+            });
+        }
     })
 
 }
