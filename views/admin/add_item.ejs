@@ -35,6 +35,25 @@
                     $(this).parent().parent().prev().after(cur);
                 });
 
+                $('#user-shops').hide();
+
+                $('input[name=use_one_publish]').bind('click', function() {
+                    var val = $(this).val();
+                    if(val) {
+
+                    } else {
+
+                    }
+                });
+
+                $('#use_one_publish').click(function() {
+                    if($(this).prop('checked')) {
+                        $('#user-shops').show();
+                        $(this).attr('selected', 'selected');
+                    } else {
+                        $('#user-shops').hide();
+                    }
+                })
             })
 
             function clearDiv (obj) {
@@ -63,6 +82,31 @@
                     </ol>
                     <div class="row">
                         <form class="shop-add-form form-horizontal" role="form" method="post" action="/admin/shop/<%=data.shop.id%>/item/additem" enctype="multipart/form-data">
+                              <div class="form-group">
+                                <label for="use_one_publish" class="col-sm-2 control-label">是否一键发布</label>
+                                <div class="col-sm-7">
+                                    <input type="checkbox" style="vertical-align: -webkit-baseline-middle;" id="use_one_publish" name="use_one_publish" value="1">
+                                </div>
+                              </div>
+
+                              <%
+                                    if(data.shops && data.shops.length) {
+                              %>
+                              <div id="user-shops" class="form-group">
+                                <div class="col-sm-offset-2 col-sm-7">
+                                    <%
+                                            data.shops.forEach(function(item, index) {
+                                    %>
+                                                <input type="checkbox" style="vertical-align:text-bottom" name="select_shops" value="<%=item.id%>"><label for="select_shops"><%=item.short_name%></label>
+                                    <%
+                                            })
+                                    %>
+                                </div>
+                              </div>
+                              <%
+                                    }
+                              %>
+
                               <div class="form-group">
                                 <label for="short_name" class="col-sm-2 control-label">商品名称</label>
                                 <div class="col-sm-7">

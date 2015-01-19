@@ -15,6 +15,7 @@ exports.findAllShopsByUserIdAndGetItems = function(userId, shopId, param, search
                 })
             },
             function(data, cb) {
+
                 // get userid can manage shops
                 shopService.findAllShopsByUserId(userId, function(result) {
                     data.data.shops = result;
@@ -36,4 +37,27 @@ exports.findAllShopsByUserIdAndGetItems = function(userId, shopId, param, search
             });
         });
     }
+}
+
+exports.findItemClassesAndGetUserAllShops = function(userId, shopId, callback) {
+    async.waterfall([
+        function(cb) {
+            itemService.findClasses(function(result) {
+                cb(null, result);
+            })
+        },
+        function(data, cb) {
+            shopService.findAllShopsByUserId(userId, function(result) {
+                cb(null, {
+                    shop: {
+                        id: shopId
+                    },
+                    classes: data,
+                    shops: result
+                });
+            })
+        }
+    ], function(err, result) {
+        callback(result);
+    })
 }
