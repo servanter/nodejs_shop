@@ -70,6 +70,9 @@ exports.addItem = function(req, res) {
             subFactory.save(obj, data, function(result) {
                 var sign = '操作失败';
                 if (result.flag) {
+
+
+                    
                     itemService.save(result.data, function(result) {
                         if (result) {
                             sign = '添加商品成功';
