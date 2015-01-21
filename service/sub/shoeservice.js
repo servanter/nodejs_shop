@@ -201,25 +201,36 @@ exports.findFullConditions = function(callback) {
 
 exports.save = function (fields, files, callback) {
     if(fields && files && files.length) {
-        var shoe = {
-            shop_id : fields.shop_id,
-            user_id : fields.user_id,
-            brand_id : fields.brand_id,
-            price : fields.price,
-            raw_price : fields.raw_price,
-            short_name : fields.short_name,
-            description : fields.description,
-            from_country_id : fields.from_country_id,
-            material_id : fields.material_id,
-            note : fields.note,
-            serial_number : fields.serial_number,
-            rel_link : fields.rel_link
+        var shoeArr = new Array();
+        if(fields.shop_ids && fields.shop_ids.length) {
+            fields.shop_ids.forEach(function(item, index) {
+                var shoe = {
+                    shop_id : fields.shop_id,
+                    user_id : fields.user_id,
+                    brand_id : fields.brand_id,
+                    price : fields.price,
+                    raw_price : fields.raw_price,
+                    short_name : fields.short_name,
+                    description : fields.description,
+                    from_country_id : fields.from_country_id,
+                    material_id : fields.material_id,
+                    note : fields.note,
+                    serial_number : fields.serial_number,
+                    rel_link : fields.rel_link
+                }
+                shoeArr.push(shoe);
+            })
         }
+        
+
         async.waterfall([
             function(cb) {
-                Shoe.create(shoe).complete(function(err, result) {
-                    cb(null,result.id);
+                batchSave(shoeArr, function(result) {
+
                 })
+                // Shoe.create(shoe).complete(function(err, result) {
+                //     cb(null,result.id);
+                // })
             }, function(data, cb) {
                 var shoeId = data;
                 var colors = fields.color_id;
@@ -295,4 +306,11 @@ exports.save = function (fields, files, callback) {
             })
         
     }
+}
+
+function batchSave(arr, callback) {
+    Shoe.bulkCreate(arr, {fields:['shop_id', 'user_id', 'brand_id', 'price', 'raw_price', 'short_name', 'description', 'from_country_id', 'material_id', 'note', 'serial_number', 'rel_link']}).complete(function(err, result) {
+        console.log(result);
+        callback(result);
+    })
 }
