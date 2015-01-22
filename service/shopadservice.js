@@ -2,7 +2,7 @@ var ShopAd = require('../model/shopad');
 var async = require('async');
 
 exports.findByShopId = function(shopId, callback) {
-    ShopAd.findAll({where:{shop_id:shopId}}).success(function(result) {
+    ShopAd.findAll({where:{shop_id:shopId, is_valid:1, is_vertify:1}}).success(function(result) {
         callback(result);
     })
 }
