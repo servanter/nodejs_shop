@@ -36,16 +36,6 @@
                 });
 
                 $('#user-shops').hide();
-
-                $('input[name=use_one_publish]').bind('click', function() {
-                    var val = $(this).val();
-                    if(val) {
-
-                    } else {
-
-                    }
-                });
-
                 $('#use_one_publish').click(function() {
                     if($(this).prop('checked')) {
                         $('#user-shops').show();
@@ -53,6 +43,18 @@
                     } else {
                         $('#user-shops').hide();
                     }
+                });
+
+                $('#btn-add').click(function() {
+                    $.each($('input[name=shop_ids]'), function(index, item) {
+                        if($(this).prop('checked')) {
+                            this.checked='checked';
+                            if($(this).hasClass('default-checkbox')) {
+                                $(this).removeAttr('disabled');
+                            }
+                        }
+                    });
+                    $('form').eq(1).submit();
                 })
             })
 
@@ -81,7 +83,7 @@
                       <li class="active">添加商品</li>
                     </ol>
                     <div class="row">
-                        <form class="shop-add-form form-horizontal" role="form" method="post" action="/admin/shop/<%=data.shop.id%>/item/additem" enctype="multipart/form-data">
+                        <form class="shop-add-form form-horizontal" role="form" method="post" action="/admin/shop/item/additem" enctype="multipart/form-data">
                               <div class="form-group">
                                 <label for="use_one_publish" class="col-sm-2 control-label">是否一键发布</label>
                                 <div class="col-sm-7">
@@ -96,10 +98,16 @@
                                 <div class="col-sm-offset-2 col-sm-7">
                                     <%
                                             data.shops.forEach(function(item, index) {
+                                                if(data.shop && data.shop.id == item.id) {
                                     %>
-                                                <input type="checkbox" style="vertical-align:text-bottom" name="shop_ids" value="<%=item.id%>"><label for="shop_ids"><%=item.short_name%></label>
+                                                    <input type="checkbox" class="default-checkbox" disabled checked="checked" style="vertical-align:text-bottom" name="shop_ids" value="<%=item.id%>"><label for="shop_ids" ><%=item.short_name%></label>
                                     <%
-                                            })
+                                                } else {
+                                    %>
+                                                    <input type="checkbox" style="vertical-align:text-bottom" name="shop_ids" value="<%=item.id%>"><label for="shop_ids"><%=item.short_name%></label>
+                                    <%
+                                                }
+                                            });
                                     %>
                                 </div>
                               </div>
@@ -140,7 +148,7 @@
 
                               <div id="btn-group" class="form-group">
                                 <div class="col-sm-offset-2 col-sm-7 text-right">
-                                  <button type="submit" class="btn btn-primary">添加</button>
+                                  <button id="btn-add" type="button" class="btn btn-primary">添加</button>
                                   <button type="reset" class="btn btn-default">重置</button>
                                 </div>
                               </div>

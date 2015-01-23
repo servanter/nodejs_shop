@@ -539,7 +539,7 @@ exports.findFullConditions = function(callback) {
 exports.save = function(fields, files, callback) {
     if (fields && files && files.length) {
         var shoeArr = new Array();
-        if (fields.shop_ids && fields.shop_ids.length) {
+        if (fields.shop_ids && fields.shop_ids.constructor == Array) {
             fields.shop_ids.forEach(function(item, index) {
                 var shoe = {
                     shop_id: item,
@@ -557,122 +557,141 @@ exports.save = function(fields, files, callback) {
                 }
                 shoeArr.push(shoe);
             })
+        } else {
+            var shoe = {
+                shop_id: fields.shop_ids,
+                user_id: fields.user_id,
+                brand_id: fields.brand_id,
+                price: fields.price,
+                raw_price: fields.raw_price,
+                short_name: fields.short_name,
+                description: fields.description,
+                from_country_id: fields.from_country_id,
+                material_id: fields.material_id,
+                note: fields.note,
+                serial_number: fields.serial_number,
+                rel_link: fields.rel_link
+            }
+            shoeArr.push(shoe);
         }
-        async.waterfall([
-            function(cb) {
-                async.map(shoeArr, function(item, ccb) {
-                    save(item, function(id) {
-                        ccb(null, id)
+        if (shoeArr.length) {
+            async.waterfall([
+                function(cb) {
+                    async.map(shoeArr, function(item, ccb) {
+                        save(item, function(id) {
+                            ccb(null, id)
+                        })
+                    }, function(err, result) {
+                        cb(null, result);
                     })
-                }, function(err, result) {
-                    cb(null, result);
-                })
-            },
-            function(data, cb) {
-                var colors = fields.color_id;
-                var colorArr = new Array();
-                if (typeof(colors) == 'object' && colors.constructor == Array) {
-                    data.forEach(function(every, i) {
-                        colors.forEach(function(item, index) {
+                },
+                function(data, cb) {
+                    var colors = fields.color_id;
+                    var colorArr = new Array();
+                    if (typeof(colors) == 'object' && colors.constructor == Array) {
+                        data.forEach(function(every, i) {
+                            colors.forEach(function(item, index) {
+                                var color = {
+                                    shoe_id: every.id,
+                                    color_id: item
+                                };
+                                colorArr.push(color);
+                            })
+                        })
+                    } else {
+                        data.forEach(function(every, i) {
                             var color = {
                                 shoe_id: every.id,
-                                color_id: item
+                                color_id: colors
                             };
                             colorArr.push(color);
                         })
-                    })
-                } else {
-                    data.forEach(function(every, i) {
-                        var color = {
-                            shoe_id: every.id,
-                            color_id: colors
-                        };
-                        colorArr.push(color);
-                    })
-                }
-                colorService.batchRelSave(Constants.SubClasses.SHOE, colorArr, function(result) {
-                    if (result.length) {
-                        cb(null, data);
                     }
-                });
-            },
-            function(data, cb) {
-                var sizes = fields.size_id;
-                var sizeArr = new Array();
-                if (typeof(sizes) == 'object' && sizes.constructor == Array) {
-                    data.forEach(function(every, i) {
-                        sizes.forEach(function(item, index) {
+                    colorService.batchRelSave(Constants.SubClasses.SHOE, colorArr, function(result) {
+                        if (result.length) {
+                            cb(null, data);
+                        }
+                    });
+                },
+                function(data, cb) {
+                    var sizes = fields.size_id;
+                    var sizeArr = new Array();
+                    if (typeof(sizes) == 'object' && sizes.constructor == Array) {
+                        data.forEach(function(every, i) {
+                            sizes.forEach(function(item, index) {
+                                var size = {
+                                    shoe_id: every.id,
+                                    size_id: item
+                                };
+                                sizeArr.push(size);
+                            })
+
+                        })
+                    } else {
+                        data.forEach(function(every, i) {
                             var size = {
                                 shoe_id: every.id,
-                                size_id: item
+                                size_id: sizes
                             };
                             sizeArr.push(size);
                         })
-
-                    })
-                } else {
-                    data.forEach(function(every, i) {
-                        var size = {
-                            shoe_id: every.id,
-                            size_id: sizes
-                        };
-                        sizeArr.push(size);
+                    }
+                    sizeService.batchRelSave(Constants.SubClasses.SHOE, sizeArr, function(result) {
+                        if (result.length) {
+                            cb(null, data);
+                        }
                     })
                 }
-                sizeService.batchRelSave(Constants.SubClasses.SHOE, sizeArr, function(result) {
-                    if (result.length) {
-                        cb(null, data);
-                    }
-                })
-            }
-        ], function(err, result) {
-            if (err) {
-                callback(false);
-            } else {
-                var arr = new Array();
-                result.forEach(function(every, i) {
-                    files.forEach(function(item, index) {
-                        var model = {
-                            detail_id: every.id,
-                            class_id: Constants.SubClasses.SHOE,
-                            pic_url: item
-                        }
-
-                        if (index == 0) {
-                            model.is_major = 1;
-                        } else {
-                            model.is_major = 1;
-                        }
-                        arr.push(model);
-                    })
-                })
-                picService.batchSave(arr, function(result1) {
-                    if (result1.length) {
-                        var itemArr = new Array();
-                        result.forEach(function(every, i) {
-                            itemArr.push({
+            ], function(err, result) {
+                if (err) {
+                    callback(false);
+                } else {
+                    var arr = new Array();
+                    result.forEach(function(every, i) {
+                        files.forEach(function(item, index) {
+                            var model = {
                                 detail_id: every.id,
-                                shop_id: every.shop_id,
-                                short_name: fields.short_name,
-                                create_user_id: fields.user_id,
                                 class_id: Constants.SubClasses.SHOE,
-                                description: fields.description,
-                                pic_url: files[0],
-                                price: fields.price
-                            })
-                        });
-                        callback({
-                            flag: true,
-                            data: itemArr
-                        });
-                    } else {
-                        callback({
-                            flag: false
-                        });
-                    }
-                })
-            }
-        })
+                                pic_url: item
+                            }
+
+                            if (index == 0) {
+                                model.is_major = 1;
+                            } else {
+                                model.is_major = 1;
+                            }
+                            arr.push(model);
+                        })
+                    })
+                    picService.batchSave(arr, function(result1) {
+                        if (result1.length) {
+                            var itemArr = new Array();
+                            result.forEach(function(every, i) {
+                                itemArr.push({
+                                    detail_id: every.id,
+                                    shop_id: every.shop_id,
+                                    short_name: fields.short_name,
+                                    create_user_id: fields.user_id,
+                                    class_id: Constants.SubClasses.SHOE,
+                                    description: fields.description,
+                                    pic_url: files[0],
+                                    price: fields.price
+                                })
+                            });
+                            callback({
+                                flag: true,
+                                data: itemArr
+                            });
+                        } else {
+                            callback({
+                                flag: false
+                            });
+                        }
+                    })
+                }
+            })
+        }
+
 
     }
 }
@@ -690,7 +709,10 @@ function save(shop, callback) {
         if (err) {
             callback(0);
         } else {
-            callback({id:result.id, shop_id:result.shop_id});
+            callback({
+                id: result.id,
+                shop_id: result.shop_id
+            });
         }
     })
 }

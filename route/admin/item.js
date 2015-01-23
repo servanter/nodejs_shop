@@ -11,13 +11,11 @@ var Paging = require('../../util/paging');
 
 exports.enteradditem = function(req, res) {
     var shopId = req.params.id;
-    if (shopId) {
-        adminService.findItemClassesAndGetUserAllShops(req.session.userId, shopId, function(result) {
-            res.render('admin/add_item', {
-                data: result
-            });
-        })
-    }
+    adminService.findItemClassesAndGetUserAllShops(req.session.userId, shopId, function(result) {
+        res.render('admin/add_item', {
+            data: result
+        });
+    })
 
 }
 

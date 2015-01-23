@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50519
 File Encoding         : 65001
 
-Date: 2015-01-22 16:20:11
+Date: 2015-01-23 15:30:08
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -780,7 +780,7 @@ CREATE TABLE `weshop_detail_pic` (
   `is_major` tinyint(1) NOT NULL DEFAULT '0',
   `is_valid` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=90 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of weshop_detail_pic
@@ -838,6 +838,42 @@ INSERT INTO `weshop_detail_pic` VALUES ('50', '104', '3', 'item/1421914062458529
 INSERT INTO `weshop_detail_pic` VALUES ('51', '104', '3', 'item/14219140624594756.jpg', '2015-01-22 16:07:42', '1', '1');
 INSERT INTO `weshop_detail_pic` VALUES ('52', '105', '3', 'item/14219140624585299.png', '2015-01-22 16:07:42', '1', '1');
 INSERT INTO `weshop_detail_pic` VALUES ('53', '105', '3', 'item/14219140624594756.jpg', '2015-01-22 16:07:42', '1', '1');
+INSERT INTO `weshop_detail_pic` VALUES ('54', '108', '3', 'item/14219953285007822.jpg', '2015-01-23 14:42:08', '1', '1');
+INSERT INTO `weshop_detail_pic` VALUES ('55', '106', '3', 'item/14219953285007822.jpg', '2015-01-23 14:42:08', '1', '1');
+INSERT INTO `weshop_detail_pic` VALUES ('56', '107', '3', 'item/14219953285007822.jpg', '2015-01-23 14:42:08', '1', '1');
+INSERT INTO `weshop_detail_pic` VALUES ('57', '109', '3', 'item/14219957211948312.png', '2015-01-23 14:48:41', '1', '1');
+INSERT INTO `weshop_detail_pic` VALUES ('58', '110', '3', 'item/14219957211948312.png', '2015-01-23 14:48:41', '1', '1');
+INSERT INTO `weshop_detail_pic` VALUES ('59', '111', '3', 'item/14219959406466120.jpg', '2015-01-23 14:52:20', '1', '1');
+INSERT INTO `weshop_detail_pic` VALUES ('60', '111', '3', 'item/142199594064753.png', '2015-01-23 14:52:20', '1', '1');
+INSERT INTO `weshop_detail_pic` VALUES ('61', '112', '3', 'item/14219959406466120.jpg', '2015-01-23 14:52:20', '1', '1');
+INSERT INTO `weshop_detail_pic` VALUES ('62', '112', '3', 'item/142199594064753.png', '2015-01-23 14:52:20', '1', '1');
+INSERT INTO `weshop_detail_pic` VALUES ('63', '113', '3', 'item/14219960831363710.png', '2015-01-23 14:54:43', '1', '1');
+INSERT INTO `weshop_detail_pic` VALUES ('64', '113', '3', 'item/14219960831365162.png', '2015-01-23 14:54:43', '1', '1');
+INSERT INTO `weshop_detail_pic` VALUES ('65', '113', '3', 'item/14219960831386568.png', '2015-01-23 14:54:43', '1', '1');
+INSERT INTO `weshop_detail_pic` VALUES ('66', '114', '3', 'item/14219960831363710.png', '2015-01-23 14:54:43', '1', '1');
+INSERT INTO `weshop_detail_pic` VALUES ('67', '114', '3', 'item/14219960831365162.png', '2015-01-23 14:54:43', '1', '1');
+INSERT INTO `weshop_detail_pic` VALUES ('68', '114', '3', 'item/14219960831386568.png', '2015-01-23 14:54:43', '1', '1');
+INSERT INTO `weshop_detail_pic` VALUES ('69', '115', '3', 'item/14219970488518623.jpg', '2015-01-23 15:10:48', '1', '1');
+INSERT INTO `weshop_detail_pic` VALUES ('70', '116', '3', 'item/14219970488518623.jpg', '2015-01-23 15:10:48', '1', '1');
+INSERT INTO `weshop_detail_pic` VALUES ('71', '117', '3', 'item/14219970488518623.jpg', '2015-01-23 15:10:48', '1', '1');
+INSERT INTO `weshop_detail_pic` VALUES ('72', '118', '3', 'item/1421997280907392.jpg', '2015-01-23 15:14:40', '1', '1');
+INSERT INTO `weshop_detail_pic` VALUES ('73', '119', '3', 'item/1421997280907392.jpg', '2015-01-23 15:14:40', '1', '1');
+INSERT INTO `weshop_detail_pic` VALUES ('74', '120', '3', 'item/1421997280907392.jpg', '2015-01-23 15:14:40', '1', '1');
+INSERT INTO `weshop_detail_pic` VALUES ('75', '121', '3', 'item/14219973775989407.jpg', '2015-01-23 15:16:17', '1', '1');
+INSERT INTO `weshop_detail_pic` VALUES ('76', '122', '3', 'item/14219973775989407.jpg', '2015-01-23 15:16:17', '1', '1');
+INSERT INTO `weshop_detail_pic` VALUES ('77', '123', '3', 'item/14219975088131611.jpg', '2015-01-23 15:18:28', '1', '1');
+INSERT INTO `weshop_detail_pic` VALUES ('78', '124', '3', 'item/14219976571296326.jpg', '2015-01-23 15:20:57', '1', '1');
+INSERT INTO `weshop_detail_pic` VALUES ('79', '124', '3', 'item/14219976571299037.png', '2015-01-23 15:20:57', '1', '1');
+INSERT INTO `weshop_detail_pic` VALUES ('80', '124', '3', 'item/14219976571358173.png', '2015-01-23 15:20:57', '1', '1');
+INSERT INTO `weshop_detail_pic` VALUES ('81', '124', '3', 'item/14219976571351681.png', '2015-01-23 15:20:57', '1', '1');
+INSERT INTO `weshop_detail_pic` VALUES ('82', '125', '3', 'item/14219976571296326.jpg', '2015-01-23 15:20:57', '1', '1');
+INSERT INTO `weshop_detail_pic` VALUES ('83', '125', '3', 'item/14219976571299037.png', '2015-01-23 15:20:57', '1', '1');
+INSERT INTO `weshop_detail_pic` VALUES ('84', '125', '3', 'item/14219976571358173.png', '2015-01-23 15:20:57', '1', '1');
+INSERT INTO `weshop_detail_pic` VALUES ('85', '125', '3', 'item/14219976571351681.png', '2015-01-23 15:20:57', '1', '1');
+INSERT INTO `weshop_detail_pic` VALUES ('86', '126', '3', 'item/14219976571296326.jpg', '2015-01-23 15:20:57', '1', '1');
+INSERT INTO `weshop_detail_pic` VALUES ('87', '126', '3', 'item/14219976571299037.png', '2015-01-23 15:20:57', '1', '1');
+INSERT INTO `weshop_detail_pic` VALUES ('88', '126', '3', 'item/14219976571358173.png', '2015-01-23 15:20:57', '1', '1');
+INSERT INTO `weshop_detail_pic` VALUES ('89', '126', '3', 'item/14219976571351681.png', '2015-01-23 15:20:57', '1', '1');
 
 -- ----------------------------
 -- Table structure for `weshop_dict_color`
@@ -1161,7 +1197,7 @@ CREATE TABLE `weshop_item` (
   `create_time` timestamp NOT NULL DEFAULT '1990-01-01 00:00:00',
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of weshop_item
@@ -1195,6 +1231,27 @@ INSERT INTO `weshop_item` VALUES ('26', '102', '阿斯达打算', '8', '1', '3',
 INSERT INTO `weshop_item` VALUES ('27', '103', '阿斯达打算', '8', '1', '3', '全额', 'item/14219138275858147.jpg', '13.00', '2015-01-22 16:03:47', '2015-01-22 16:03:47');
 INSERT INTO `weshop_item` VALUES ('28', '104', 'nike乔9', '10', '1', '3', 'nike乔9nike乔9', 'item/14219140624585299.png', '898.00', '2015-01-22 16:07:42', '2015-01-22 16:07:42');
 INSERT INTO `weshop_item` VALUES ('29', '105', 'nike乔9', '13', '1', '3', 'nike乔9nike乔9', 'item/14219140624585299.png', '898.00', '2015-01-22 16:07:42', '2015-01-22 16:07:42');
+INSERT INTO `weshop_item` VALUES ('30', '107', 'asda', '16', '1', '3', 'asdasdads', 'item/14219953285007822.jpg', '1231.00', '2015-01-23 14:42:08', '2015-01-23 14:42:08');
+INSERT INTO `weshop_item` VALUES ('31', '108', 'asda', '9', '1', '3', 'asdasdads', 'item/14219953285007822.jpg', '1231.00', '2015-01-23 14:42:08', '2015-01-23 14:42:08');
+INSERT INTO `weshop_item` VALUES ('32', '106', 'asda', '15', '1', '3', 'asdasdads', 'item/14219953285007822.jpg', '1231.00', '2015-01-23 14:42:08', '2015-01-23 14:42:08');
+INSERT INTO `weshop_item` VALUES ('33', '109', 'sdfsdad', '2', '1', '3', 'asdasdasdasdad', 'item/14219957211948312.png', '3123.00', '2015-01-23 14:48:41', '2015-01-23 14:48:41');
+INSERT INTO `weshop_item` VALUES ('34', '110', 'sdfsdad', '6', '1', '3', 'asdasdasdasdad', 'item/14219957211948312.png', '3123.00', '2015-01-23 14:48:41', '2015-01-23 14:48:41');
+INSERT INTO `weshop_item` VALUES ('35', '111', 'asd', '2', '1', '3', 'asdasd', 'item/14219959406466120.jpg', '1.00', '2015-01-23 14:52:20', '2015-01-23 14:52:20');
+INSERT INTO `weshop_item` VALUES ('36', '112', 'asd', '13', '1', '3', 'asdasd', 'item/14219959406466120.jpg', '1.00', '2015-01-23 14:52:20', '2015-01-23 14:52:20');
+INSERT INTO `weshop_item` VALUES ('37', '113', 'adidas篮球鞋', '30', '1', '3', 'adidas篮球鞋 外场鞋 加内特', 'item/14219960831363710.png', '200.00', '2015-01-23 14:54:43', '2015-01-23 14:54:43');
+INSERT INTO `weshop_item` VALUES ('38', '114', 'adidas篮球鞋', '31', '1', '3', 'adidas篮球鞋 外场鞋 加内特', 'item/14219960831363710.png', '200.00', '2015-01-23 14:54:43', '2015-01-23 14:54:43');
+INSERT INTO `weshop_item` VALUES ('39', '115', 'asda', '8', '1', '3', 'dasd', 'item/14219970488518623.jpg', '1.00', '2015-01-23 15:10:48', '2015-01-23 15:10:48');
+INSERT INTO `weshop_item` VALUES ('40', '116', 'asda', '23', '1', '3', 'dasd', 'item/14219970488518623.jpg', '1.00', '2015-01-23 15:10:48', '2015-01-23 15:10:48');
+INSERT INTO `weshop_item` VALUES ('41', '117', 'asda', '32', '1', '3', 'dasd', 'item/14219970488518623.jpg', '1.00', '2015-01-23 15:10:48', '2015-01-23 15:10:48');
+INSERT INTO `weshop_item` VALUES ('42', '118', 'dfs', '2', '1', '3', 'sdfsd', 'item/1421997280907392.jpg', '234.00', '2015-01-23 15:14:40', '2015-01-23 15:14:40');
+INSERT INTO `weshop_item` VALUES ('43', '119', 'dfs', '6', '1', '3', 'sdfsd', 'item/1421997280907392.jpg', '234.00', '2015-01-23 15:14:40', '2015-01-23 15:14:40');
+INSERT INTO `weshop_item` VALUES ('44', '120', 'dfs', '7', '1', '3', 'sdfsd', 'item/1421997280907392.jpg', '234.00', '2015-01-23 15:14:40', '2015-01-23 15:14:40');
+INSERT INTO `weshop_item` VALUES ('45', '121', '', '6', '1', '3', '', 'item/14219973775989407.jpg', '23.00', '2015-01-23 15:16:17', '2015-01-23 15:16:17');
+INSERT INTO `weshop_item` VALUES ('46', '122', '', '7', '1', '3', '', 'item/14219973775989407.jpg', '23.00', '2015-01-23 15:16:17', '2015-01-23 15:16:17');
+INSERT INTO `weshop_item` VALUES ('47', '123', 'dfg', '13', '1', '3', 'dfgdfgd', 'item/14219975088131611.jpg', '2343.00', '2015-01-23 15:18:28', '2015-01-23 15:18:28');
+INSERT INTO `weshop_item` VALUES ('48', '124', 'adidas加内特3', '14', '1', '3', '加内特实战外场鞋', 'item/14219976571296326.jpg', '555.00', '2015-01-23 15:20:57', '2015-01-23 15:20:57');
+INSERT INTO `weshop_item` VALUES ('49', '125', 'adidas加内特3', '15', '1', '3', '加内特实战外场鞋', 'item/14219976571296326.jpg', '555.00', '2015-01-23 15:20:57', '2015-01-23 15:20:57');
+INSERT INTO `weshop_item` VALUES ('50', '126', 'adidas加内特3', '16', '1', '3', '加内特实战外场鞋', 'item/14219976571296326.jpg', '555.00', '2015-01-23 15:20:57', '2015-01-23 15:20:57');
 
 -- ----------------------------
 -- Table structure for `weshop_item_class`
@@ -1228,7 +1285,7 @@ CREATE TABLE `weshop_item_position` (
   `create_time` timestamp NOT NULL DEFAULT '1990-01-01 00:00:00',
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=80 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=81 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of weshop_item_position
@@ -1307,6 +1364,7 @@ INSERT INTO `weshop_item_position` VALUES ('76', '10', '14', '1', '1', '1', '201
 INSERT INTO `weshop_item_position` VALUES ('77', '6', '14', '1', '1', '0', '2015-01-15 11:20:22', '2015-01-15 11:20:22');
 INSERT INTO `weshop_item_position` VALUES ('78', '28', '10', '1', '1', '0', '2015-01-22 16:14:35', '2015-01-22 16:14:35');
 INSERT INTO `weshop_item_position` VALUES ('79', '22', '10', '1', '1', '0', '2015-01-22 16:14:39', '2015-01-22 16:14:39');
+INSERT INTO `weshop_item_position` VALUES ('80', '49', '15', '1', '1', '0', '2015-01-23 15:24:29', '2015-01-23 15:24:29');
 
 -- ----------------------------
 -- Table structure for `weshop_shoe`
@@ -1331,7 +1389,7 @@ CREATE TABLE `weshop_shoe` (
   `is_vertify` tinyint(1) NOT NULL DEFAULT '1',
   `on_sell` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=106 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=127 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of weshop_shoe
@@ -1437,6 +1495,27 @@ INSERT INTO `weshop_shoe` VALUES ('102', '21', '1', '1', '13.00', '123123.00', '
 INSERT INTO `weshop_shoe` VALUES ('103', '29', '1', '1', '13.00', '123123.00', '2015-01-22 16:03:47', '2015-01-22 16:03:47', '阿斯达打算', '全额', '1', '1', '阿斯达', 'asdqweqsada', 'asdasdasd', '1', '1');
 INSERT INTO `weshop_shoe` VALUES ('104', '10', '1', '1', '898.00', '16989.00', '2015-01-22 16:07:42', '2015-01-22 16:07:42', 'nike乔9', 'nike乔9nike乔9', '1', '1', '按时打算', 'asdqasrsdfsad', '阿斯达大大阿达', '1', '1');
 INSERT INTO `weshop_shoe` VALUES ('105', '13', '1', '1', '898.00', '16989.00', '2015-01-22 16:07:42', '2015-01-22 16:07:42', 'nike乔9', 'nike乔9nike乔9', '1', '1', '按时打算', 'asdqasrsdfsad', '阿斯达大大阿达', '1', '1');
+INSERT INTO `weshop_shoe` VALUES ('106', '15', '1', '1', '1231.00', '123123.00', '2015-01-23 14:42:08', '2015-01-23 14:42:08', 'asda', 'asdasdads', '1', '1', 'asd', 'asdasdas', 'asdasdad', '1', '1');
+INSERT INTO `weshop_shoe` VALUES ('107', '16', '1', '1', '1231.00', '123123.00', '2015-01-23 14:42:08', '2015-01-23 14:42:08', 'asda', 'asdasdads', '1', '1', 'asd', 'asdasdas', 'asdasdad', '1', '1');
+INSERT INTO `weshop_shoe` VALUES ('108', '9', '1', '1', '1231.00', '123123.00', '2015-01-23 14:42:08', '2015-01-23 14:42:08', 'asda', 'asdasdads', '1', '1', 'asd', 'asdasdas', 'asdasdad', '1', '1');
+INSERT INTO `weshop_shoe` VALUES ('109', '2', '1', '1', '3123.00', '12312.00', '2015-01-23 14:48:41', '2015-01-23 14:48:41', 'sdfsdad', 'asdasdasdasdad', '1', '1', 'asd', 'asdsadad', 'adadasdasd', '1', '1');
+INSERT INTO `weshop_shoe` VALUES ('110', '6', '1', '1', '3123.00', '12312.00', '2015-01-23 14:48:41', '2015-01-23 14:48:41', 'sdfsdad', 'asdasdasdasdad', '1', '1', 'asd', 'asdsadad', 'adadasdasd', '1', '1');
+INSERT INTO `weshop_shoe` VALUES ('111', '2', '1', '1', '1.00', '123.00', '2015-01-23 14:52:20', '2015-01-23 14:52:20', 'asd', 'asdasd', '1', '1', 'asd', 'asdaasda', 'asdasd', '1', '1');
+INSERT INTO `weshop_shoe` VALUES ('112', '13', '1', '1', '1.00', '123.00', '2015-01-23 14:52:20', '2015-01-23 14:52:20', 'asd', 'asdasd', '1', '1', 'asd', 'asdaasda', 'asdasd', '1', '1');
+INSERT INTO `weshop_shoe` VALUES ('113', '30', '1', '2', '200.00', '1055.00', '2015-01-23 14:54:43', '2015-01-23 14:54:43', 'adidas篮球鞋', 'adidas篮球鞋 外场鞋 加内特', '1', '1', '喜欢阿迪达斯的朋友来吧!', '555-132-9895', 'http://www.baidu.com', '1', '1');
+INSERT INTO `weshop_shoe` VALUES ('114', '31', '1', '2', '200.00', '1055.00', '2015-01-23 14:54:43', '2015-01-23 14:54:43', 'adidas篮球鞋', 'adidas篮球鞋 外场鞋 加内特', '1', '1', '喜欢阿迪达斯的朋友来吧!', '555-132-9895', 'http://www.baidu.com', '1', '1');
+INSERT INTO `weshop_shoe` VALUES ('115', '8', '1', '1', '1.00', '123.00', '2015-01-23 15:10:48', '2015-01-23 15:10:48', 'asda', 'dasd', '1', '1', 'asd', 'asd', 'adasd', '1', '1');
+INSERT INTO `weshop_shoe` VALUES ('116', '23', '1', '1', '1.00', '123.00', '2015-01-23 15:10:48', '2015-01-23 15:10:48', 'asda', 'dasd', '1', '1', 'asd', 'asd', 'adasd', '1', '1');
+INSERT INTO `weshop_shoe` VALUES ('117', '32', '1', '1', '1.00', '123.00', '2015-01-23 15:10:48', '2015-01-23 15:10:48', 'asda', 'dasd', '1', '1', 'asd', 'asd', 'adasd', '1', '1');
+INSERT INTO `weshop_shoe` VALUES ('118', '2', '1', '1', '234.00', '2234.00', '2015-01-23 15:14:40', '2015-01-23 15:14:40', 'dfs', 'sdfsd', '1', '1', 'sdfsdf', 'sdfsfdsdf', 'sfsdf', '1', '1');
+INSERT INTO `weshop_shoe` VALUES ('119', '6', '1', '1', '234.00', '2234.00', '2015-01-23 15:14:40', '2015-01-23 15:14:40', 'dfs', 'sdfsd', '1', '1', 'sdfsdf', 'sdfsfdsdf', 'sfsdf', '1', '1');
+INSERT INTO `weshop_shoe` VALUES ('120', '7', '1', '1', '234.00', '2234.00', '2015-01-23 15:14:40', '2015-01-23 15:14:40', 'dfs', 'sdfsd', '1', '1', 'sdfsdf', 'sdfsfdsdf', 'sfsdf', '1', '1');
+INSERT INTO `weshop_shoe` VALUES ('121', '6', '1', '1', '23.00', '2343.00', '2015-01-23 15:16:17', '2015-01-23 15:16:17', '', '', '1', '1', 'df', 'sf', '243', '1', '1');
+INSERT INTO `weshop_shoe` VALUES ('122', '7', '1', '1', '23.00', '2343.00', '2015-01-23 15:16:17', '2015-01-23 15:16:17', '', '', '1', '1', 'df', 'sf', '243', '1', '1');
+INSERT INTO `weshop_shoe` VALUES ('123', '13', '1', '1', '2343.00', '234.00', '2015-01-23 15:18:28', '2015-01-23 15:18:28', 'dfg', 'dfgdfgd', '1', '1', '234', 'asdf', 'asd', '1', '1');
+INSERT INTO `weshop_shoe` VALUES ('124', '14', '1', '2', '555.00', '1055.00', '2015-01-23 15:20:57', '2015-01-23 15:20:57', 'adidas加内特3', '加内特实战外场鞋', '1', '1', '喜欢阿迪的朋友赶紧买吧！', '4555-94-154', 'http://www.baidu.com', '1', '1');
+INSERT INTO `weshop_shoe` VALUES ('125', '15', '1', '2', '555.00', '1055.00', '2015-01-23 15:20:57', '2015-01-23 15:20:57', 'adidas加内特3', '加内特实战外场鞋', '1', '1', '喜欢阿迪的朋友赶紧买吧！', '4555-94-154', 'http://www.baidu.com', '1', '1');
+INSERT INTO `weshop_shoe` VALUES ('126', '16', '1', '2', '555.00', '1055.00', '2015-01-23 15:20:57', '2015-01-23 15:20:57', 'adidas加内特3', '加内特实战外场鞋', '1', '1', '喜欢阿迪的朋友赶紧买吧！', '4555-94-154', 'http://www.baidu.com', '1', '1');
 
 -- ----------------------------
 -- Table structure for `weshop_shoe_color_rel`
@@ -1450,7 +1529,7 @@ CREATE TABLE `weshop_shoe_color_rel` (
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `is_valid` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=189 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=249 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of weshop_shoe_color_rel
@@ -1643,6 +1722,66 @@ INSERT INTO `weshop_shoe_color_rel` VALUES ('185', '105', '1', '2015-01-22 16:07
 INSERT INTO `weshop_shoe_color_rel` VALUES ('186', '105', '2', '2015-01-22 16:07:42', '2015-01-22 16:07:42', '1');
 INSERT INTO `weshop_shoe_color_rel` VALUES ('187', '105', '3', '2015-01-22 16:07:42', '2015-01-22 16:07:42', '1');
 INSERT INTO `weshop_shoe_color_rel` VALUES ('188', '105', '4', '2015-01-22 16:07:42', '2015-01-22 16:07:42', '1');
+INSERT INTO `weshop_shoe_color_rel` VALUES ('189', '108', '2', '2015-01-23 14:42:08', '2015-01-23 14:42:08', '1');
+INSERT INTO `weshop_shoe_color_rel` VALUES ('190', '108', '3', '2015-01-23 14:42:08', '2015-01-23 14:42:08', '1');
+INSERT INTO `weshop_shoe_color_rel` VALUES ('191', '108', '4', '2015-01-23 14:42:08', '2015-01-23 14:42:08', '1');
+INSERT INTO `weshop_shoe_color_rel` VALUES ('192', '106', '2', '2015-01-23 14:42:08', '2015-01-23 14:42:08', '1');
+INSERT INTO `weshop_shoe_color_rel` VALUES ('193', '106', '3', '2015-01-23 14:42:08', '2015-01-23 14:42:08', '1');
+INSERT INTO `weshop_shoe_color_rel` VALUES ('194', '106', '4', '2015-01-23 14:42:08', '2015-01-23 14:42:08', '1');
+INSERT INTO `weshop_shoe_color_rel` VALUES ('195', '107', '2', '2015-01-23 14:42:08', '2015-01-23 14:42:08', '1');
+INSERT INTO `weshop_shoe_color_rel` VALUES ('196', '107', '3', '2015-01-23 14:42:08', '2015-01-23 14:42:08', '1');
+INSERT INTO `weshop_shoe_color_rel` VALUES ('197', '107', '4', '2015-01-23 14:42:08', '2015-01-23 14:42:08', '1');
+INSERT INTO `weshop_shoe_color_rel` VALUES ('198', '109', '1', '2015-01-23 14:48:41', '2015-01-23 14:48:41', '1');
+INSERT INTO `weshop_shoe_color_rel` VALUES ('199', '109', '2', '2015-01-23 14:48:41', '2015-01-23 14:48:41', '1');
+INSERT INTO `weshop_shoe_color_rel` VALUES ('200', '109', '3', '2015-01-23 14:48:41', '2015-01-23 14:48:41', '1');
+INSERT INTO `weshop_shoe_color_rel` VALUES ('201', '110', '1', '2015-01-23 14:48:41', '2015-01-23 14:48:41', '1');
+INSERT INTO `weshop_shoe_color_rel` VALUES ('202', '110', '2', '2015-01-23 14:48:41', '2015-01-23 14:48:41', '1');
+INSERT INTO `weshop_shoe_color_rel` VALUES ('203', '110', '3', '2015-01-23 14:48:41', '2015-01-23 14:48:41', '1');
+INSERT INTO `weshop_shoe_color_rel` VALUES ('204', '111', '2', '2015-01-23 14:52:20', '2015-01-23 14:52:20', '1');
+INSERT INTO `weshop_shoe_color_rel` VALUES ('205', '111', '3', '2015-01-23 14:52:20', '2015-01-23 14:52:20', '1');
+INSERT INTO `weshop_shoe_color_rel` VALUES ('206', '111', '4', '2015-01-23 14:52:20', '2015-01-23 14:52:20', '1');
+INSERT INTO `weshop_shoe_color_rel` VALUES ('207', '112', '2', '2015-01-23 14:52:20', '2015-01-23 14:52:20', '1');
+INSERT INTO `weshop_shoe_color_rel` VALUES ('208', '112', '3', '2015-01-23 14:52:20', '2015-01-23 14:52:20', '1');
+INSERT INTO `weshop_shoe_color_rel` VALUES ('209', '112', '4', '2015-01-23 14:52:20', '2015-01-23 14:52:20', '1');
+INSERT INTO `weshop_shoe_color_rel` VALUES ('210', '113', '1', '2015-01-23 14:54:43', '2015-01-23 14:54:43', '1');
+INSERT INTO `weshop_shoe_color_rel` VALUES ('211', '113', '2', '2015-01-23 14:54:43', '2015-01-23 14:54:43', '1');
+INSERT INTO `weshop_shoe_color_rel` VALUES ('212', '113', '3', '2015-01-23 14:54:43', '2015-01-23 14:54:43', '1');
+INSERT INTO `weshop_shoe_color_rel` VALUES ('213', '114', '1', '2015-01-23 14:54:43', '2015-01-23 14:54:43', '1');
+INSERT INTO `weshop_shoe_color_rel` VALUES ('214', '114', '2', '2015-01-23 14:54:43', '2015-01-23 14:54:43', '1');
+INSERT INTO `weshop_shoe_color_rel` VALUES ('215', '114', '3', '2015-01-23 14:54:43', '2015-01-23 14:54:43', '1');
+INSERT INTO `weshop_shoe_color_rel` VALUES ('216', '115', '2', '2015-01-23 15:10:48', '2015-01-23 15:10:48', '1');
+INSERT INTO `weshop_shoe_color_rel` VALUES ('217', '115', '3', '2015-01-23 15:10:48', '2015-01-23 15:10:48', '1');
+INSERT INTO `weshop_shoe_color_rel` VALUES ('218', '116', '2', '2015-01-23 15:10:48', '2015-01-23 15:10:48', '1');
+INSERT INTO `weshop_shoe_color_rel` VALUES ('219', '116', '3', '2015-01-23 15:10:48', '2015-01-23 15:10:48', '1');
+INSERT INTO `weshop_shoe_color_rel` VALUES ('220', '117', '2', '2015-01-23 15:10:48', '2015-01-23 15:10:48', '1');
+INSERT INTO `weshop_shoe_color_rel` VALUES ('221', '117', '3', '2015-01-23 15:10:48', '2015-01-23 15:10:48', '1');
+INSERT INTO `weshop_shoe_color_rel` VALUES ('222', '118', '2', '2015-01-23 15:14:40', '2015-01-23 15:14:40', '1');
+INSERT INTO `weshop_shoe_color_rel` VALUES ('223', '118', '3', '2015-01-23 15:14:40', '2015-01-23 15:14:40', '1');
+INSERT INTO `weshop_shoe_color_rel` VALUES ('224', '119', '2', '2015-01-23 15:14:40', '2015-01-23 15:14:40', '1');
+INSERT INTO `weshop_shoe_color_rel` VALUES ('225', '119', '3', '2015-01-23 15:14:40', '2015-01-23 15:14:40', '1');
+INSERT INTO `weshop_shoe_color_rel` VALUES ('226', '120', '2', '2015-01-23 15:14:40', '2015-01-23 15:14:40', '1');
+INSERT INTO `weshop_shoe_color_rel` VALUES ('227', '120', '3', '2015-01-23 15:14:40', '2015-01-23 15:14:40', '1');
+INSERT INTO `weshop_shoe_color_rel` VALUES ('228', '121', '2', '2015-01-23 15:16:17', '2015-01-23 15:16:17', '1');
+INSERT INTO `weshop_shoe_color_rel` VALUES ('229', '121', '3', '2015-01-23 15:16:17', '2015-01-23 15:16:17', '1');
+INSERT INTO `weshop_shoe_color_rel` VALUES ('230', '121', '4', '2015-01-23 15:16:17', '2015-01-23 15:16:17', '1');
+INSERT INTO `weshop_shoe_color_rel` VALUES ('231', '122', '2', '2015-01-23 15:16:17', '2015-01-23 15:16:17', '1');
+INSERT INTO `weshop_shoe_color_rel` VALUES ('232', '122', '3', '2015-01-23 15:16:17', '2015-01-23 15:16:17', '1');
+INSERT INTO `weshop_shoe_color_rel` VALUES ('233', '122', '4', '2015-01-23 15:16:17', '2015-01-23 15:16:17', '1');
+INSERT INTO `weshop_shoe_color_rel` VALUES ('234', '123', '1', '2015-01-23 15:18:28', '2015-01-23 15:18:28', '1');
+INSERT INTO `weshop_shoe_color_rel` VALUES ('235', '123', '2', '2015-01-23 15:18:28', '2015-01-23 15:18:28', '1');
+INSERT INTO `weshop_shoe_color_rel` VALUES ('236', '123', '3', '2015-01-23 15:18:28', '2015-01-23 15:18:28', '1');
+INSERT INTO `weshop_shoe_color_rel` VALUES ('237', '124', '1', '2015-01-23 15:20:57', '2015-01-23 15:20:57', '1');
+INSERT INTO `weshop_shoe_color_rel` VALUES ('238', '124', '2', '2015-01-23 15:20:57', '2015-01-23 15:20:57', '1');
+INSERT INTO `weshop_shoe_color_rel` VALUES ('239', '124', '3', '2015-01-23 15:20:57', '2015-01-23 15:20:57', '1');
+INSERT INTO `weshop_shoe_color_rel` VALUES ('240', '124', '4', '2015-01-23 15:20:57', '2015-01-23 15:20:57', '1');
+INSERT INTO `weshop_shoe_color_rel` VALUES ('241', '125', '1', '2015-01-23 15:20:57', '2015-01-23 15:20:57', '1');
+INSERT INTO `weshop_shoe_color_rel` VALUES ('242', '125', '2', '2015-01-23 15:20:57', '2015-01-23 15:20:57', '1');
+INSERT INTO `weshop_shoe_color_rel` VALUES ('243', '125', '3', '2015-01-23 15:20:57', '2015-01-23 15:20:57', '1');
+INSERT INTO `weshop_shoe_color_rel` VALUES ('244', '125', '4', '2015-01-23 15:20:57', '2015-01-23 15:20:57', '1');
+INSERT INTO `weshop_shoe_color_rel` VALUES ('245', '126', '1', '2015-01-23 15:20:57', '2015-01-23 15:20:57', '1');
+INSERT INTO `weshop_shoe_color_rel` VALUES ('246', '126', '2', '2015-01-23 15:20:57', '2015-01-23 15:20:57', '1');
+INSERT INTO `weshop_shoe_color_rel` VALUES ('247', '126', '3', '2015-01-23 15:20:57', '2015-01-23 15:20:57', '1');
+INSERT INTO `weshop_shoe_color_rel` VALUES ('248', '126', '4', '2015-01-23 15:20:57', '2015-01-23 15:20:57', '1');
 
 -- ----------------------------
 -- Table structure for `weshop_shoe_size_rel`
@@ -1656,7 +1795,7 @@ CREATE TABLE `weshop_shoe_size_rel` (
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `is_valid` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=87 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of weshop_shoe_size_rel
@@ -1723,6 +1862,30 @@ INSERT INTO `weshop_shoe_size_rel` VALUES ('59', '102', '1', '2015-01-22 16:03:4
 INSERT INTO `weshop_shoe_size_rel` VALUES ('60', '103', '1', '2015-01-22 16:03:47', '2015-01-22 16:03:47', '1');
 INSERT INTO `weshop_shoe_size_rel` VALUES ('61', '104', '1', '2015-01-22 16:07:42', '2015-01-22 16:07:42', '1');
 INSERT INTO `weshop_shoe_size_rel` VALUES ('62', '105', '1', '2015-01-22 16:07:42', '2015-01-22 16:07:42', '1');
+INSERT INTO `weshop_shoe_size_rel` VALUES ('63', '108', '2', '2015-01-23 14:42:08', '2015-01-23 14:42:08', '1');
+INSERT INTO `weshop_shoe_size_rel` VALUES ('64', '106', '2', '2015-01-23 14:42:08', '2015-01-23 14:42:08', '1');
+INSERT INTO `weshop_shoe_size_rel` VALUES ('65', '107', '2', '2015-01-23 14:42:08', '2015-01-23 14:42:08', '1');
+INSERT INTO `weshop_shoe_size_rel` VALUES ('66', '109', '1', '2015-01-23 14:48:41', '2015-01-23 14:48:41', '1');
+INSERT INTO `weshop_shoe_size_rel` VALUES ('67', '110', '1', '2015-01-23 14:48:41', '2015-01-23 14:48:41', '1');
+INSERT INTO `weshop_shoe_size_rel` VALUES ('68', '111', '2', '2015-01-23 14:52:20', '2015-01-23 14:52:20', '1');
+INSERT INTO `weshop_shoe_size_rel` VALUES ('69', '112', '2', '2015-01-23 14:52:20', '2015-01-23 14:52:20', '1');
+INSERT INTO `weshop_shoe_size_rel` VALUES ('70', '113', '2', '2015-01-23 14:54:43', '2015-01-23 14:54:43', '1');
+INSERT INTO `weshop_shoe_size_rel` VALUES ('71', '114', '2', '2015-01-23 14:54:43', '2015-01-23 14:54:43', '1');
+INSERT INTO `weshop_shoe_size_rel` VALUES ('72', '115', '1', '2015-01-23 15:10:48', '2015-01-23 15:10:48', '1');
+INSERT INTO `weshop_shoe_size_rel` VALUES ('73', '116', '1', '2015-01-23 15:10:48', '2015-01-23 15:10:48', '1');
+INSERT INTO `weshop_shoe_size_rel` VALUES ('74', '117', '1', '2015-01-23 15:10:48', '2015-01-23 15:10:48', '1');
+INSERT INTO `weshop_shoe_size_rel` VALUES ('75', '118', '2', '2015-01-23 15:14:40', '2015-01-23 15:14:40', '1');
+INSERT INTO `weshop_shoe_size_rel` VALUES ('76', '119', '2', '2015-01-23 15:14:40', '2015-01-23 15:14:40', '1');
+INSERT INTO `weshop_shoe_size_rel` VALUES ('77', '120', '2', '2015-01-23 15:14:40', '2015-01-23 15:14:40', '1');
+INSERT INTO `weshop_shoe_size_rel` VALUES ('78', '121', '2', '2015-01-23 15:16:17', '2015-01-23 15:16:17', '1');
+INSERT INTO `weshop_shoe_size_rel` VALUES ('79', '122', '2', '2015-01-23 15:16:17', '2015-01-23 15:16:17', '1');
+INSERT INTO `weshop_shoe_size_rel` VALUES ('80', '123', '1', '2015-01-23 15:18:28', '2015-01-23 15:18:28', '1');
+INSERT INTO `weshop_shoe_size_rel` VALUES ('81', '124', '1', '2015-01-23 15:20:57', '2015-01-23 15:20:57', '1');
+INSERT INTO `weshop_shoe_size_rel` VALUES ('82', '124', '2', '2015-01-23 15:20:57', '2015-01-23 15:20:57', '1');
+INSERT INTO `weshop_shoe_size_rel` VALUES ('83', '125', '1', '2015-01-23 15:20:57', '2015-01-23 15:20:57', '1');
+INSERT INTO `weshop_shoe_size_rel` VALUES ('84', '125', '2', '2015-01-23 15:20:57', '2015-01-23 15:20:57', '1');
+INSERT INTO `weshop_shoe_size_rel` VALUES ('85', '126', '1', '2015-01-23 15:20:57', '2015-01-23 15:20:57', '1');
+INSERT INTO `weshop_shoe_size_rel` VALUES ('86', '126', '2', '2015-01-23 15:20:57', '2015-01-23 15:20:57', '1');
 
 -- ----------------------------
 -- Table structure for `weshop_shop`
