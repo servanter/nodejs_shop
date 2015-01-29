@@ -35,23 +35,8 @@
                             <label><span>淘宝地址：</span><a href="<%=data.shop.taobao_link%>"><%=data.shop.taobao_link%></a></label>
                         </div>
                       </div>
-                        
-                        
+                      
                       <div class="row">
-                          <label class="minor-titie">首页轮播图：</label>
-                          <%
-                                if(data.shop.ads && data.shop.ads.length) {
-                                    data.shop.ads.forEach(function(item, index) {
-                          %>
-                                            <img src="<%=settings.img_path%>/<%=item.pic_url%>">
-                          <%
-                                    })
-                                }
-                          %>
-                          
-                      </div>
-                      <div class="row">
-                          <label class="minor-titie">宣传图：</label>
                           <img src="<%=settings.img_path%>/<%=data.shop.publicity_photo%>">
                       </div>
 

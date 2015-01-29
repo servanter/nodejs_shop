@@ -191,6 +191,15 @@ exports.findShopInfoAndAreasName = function(shopId, callback) {
                     city: result
                 });
             });
+        },function(data, cb) {
+            shopAdService.findByShopId(data.shop.id, function(result) {
+                data.shop.ads=result;
+                cb(null, {
+                    shop: data.shop,
+                    province: data.province,
+                    city: data.city
+                })
+            })
         }
     ], function(err, result) {
         callback(result);

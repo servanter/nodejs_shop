@@ -215,3 +215,12 @@ exports.shopItems = function(req, res) {
         res.render("admin/shop_item", result);
     })
 }
+
+exports.detail = function(req, res) {
+    var itemId = req.params.id;
+    if(itemId) {
+        adminService.getItemDetail(itemId, function(result) {
+            res.render('admin/item_detail', {data:result});
+        }); 
+    }
+}

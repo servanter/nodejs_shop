@@ -2,6 +2,7 @@ var async = require('async');
 var shopService = require('./shopservice');
 var itemService = require('./itemservice');
 var webService = require('./webservice');
+var itemSubFactory = require('./itemsubfactory');
 
 exports.findAllShopsByUserIdAndGetItems = function(userId, shopId, param, searchValue, page, callback) {
     if (shopId) {
@@ -60,4 +61,27 @@ exports.findItemClassesAndGetUserAllShops = function(userId, shopId, callback) {
     ], function(err, result) {
         callback(result);
     })
+}
+
+exports.getItemDetail = function(digest, callback) {
+    var message = Crypto.decryptAes(digest);
+    var arr = message.split(Constants.cryptoSplit);
+    async.waterfall([
+        function(cb) {
+            var subFactory = itemSubFactory.getService(parseInt(arr[1]));
+            if(subFactory) {
+                subFactory.findDetail(arr[0], function(result) {
+                    cb(null, {detail:result});
+                });
+            }
+        }, function(data, cb) {
+            if(data && data.detail) {
+                shopService.findShopFullInfoById(data.detail.shop_id, function(result) {
+                    cb(null, {shop:result, detail:data.detail});
+                });
+            }
+        }], function(err, data) {
+            callback(data);
+        }
+    )
 }
