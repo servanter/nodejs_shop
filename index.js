@@ -48,9 +48,16 @@ app.post('/admin/shop/item/additem/', filter.authorize, route.adminexec('item').
 app.get('/admin/shop/:id/entereditindexposition/', filter.authorize, route.adminexec('item').enterEditPosition);
 
 app.get('/admin/item/', filter.authorize, route.adminexec('item').list);
-app.get('/admin/shop/:id/item/:itemId(\\w+)/', filter.authorize, route.adminexec('item').detail);
+app.get('/admin/shop/:id/item/detail/:itemId(\\w+)/', filter.authorize, route.adminexec('item').detail);
 app.get('/admin/shop/:id/item/', filter.authorize, route.adminexec('item').shopItems);
 app.get('/admin/shop/:id/item/pg:page.html', filter.authorize, route.adminexec('item').shopItems);
+app.get('/admin/shop/:id/item/a:a?b:b?c:c?d:d?/',filter.authorize,  route.adminexec('item').shopItems);
+app.get('/admin/shop/:id/item/a:a?b:b?c:c?d:d/pg:page.html',filter.authorize,  route.adminexec('item').shopItems);
+app.get('/admin/shop/:id/item/a:a?b:b?c:c?d:d?e:e/', filter.authorize, route.adminexec('item').shopItems);
+app.get('/admin/shop/:id/item/a:a?b:b?c:c?d:d?e:e/pg:page.html',filter.authorize,  route.adminexec('item').shopItems);
+
+
+
 app.get('/admin/item/getSubAttributes', filter.authorize, route.adminexec('item').getSubAttributes);
 app.get('/admin/item/removePositions/', filter.authorize, route.adminexec('item').removePositions);
 app.get('/admin/ajax/item/:id/', filter.authorize, route.adminexec('item').getById);

@@ -94,6 +94,43 @@
                             if(locals.data.shop) {
                                 if(locals.data.items && locals.data.items.result.length > 0){
                     %>
+                    <div class="row">
+                        <%
+                          if(data.searchConditions && data.searchConditions.length > 0) {
+                        %>
+                              <ul id="selectList">
+                        <%
+                              for(var i = 0; i < data.searchConditions.length; i++) {
+                        %>
+                                <li>
+                                <div class="selectHead">
+                                    <div class="mainHead">
+                                      <%
+                                        for(var j = 0; j < data.searchConditions[i].length; j++) {
+                                          if(j == 3) {
+                                            break;
+                                          }
+                                          var defaultClass = "mainItem";
+                                          if(data.searchConditions[i][j].highlight) {
+                                              defaultClass = "mainItem active";
+                                          }
+                                      %>
+                                          <a href="/admin/shop/<%=data.shop.id%>/item/<%=data.searchConditions[i][j].link%>/" class="<%=defaultClass%>" name="search-brand"><%=data.searchConditions[i][j].name%>&nbsp;(<%=data.searchConditions[i][j].total%>)</a>
+                                      <%
+                                        }
+                                      %>
+                                      </div>
+                                 </div>
+                        <%  
+                                }
+                        %>
+                                </li>
+                        <%
+                          }
+                        %>
+                
+              </ul>
+                    </div>
                     <div class="row table-responsive">
                         <table class="default-ttable table table-bordered table-hover">
                           <colgroup>
@@ -207,11 +244,11 @@
 
                            <%
                                 } else {
-                                    if(locals.data.searchValue) {
-                                        // can not find the items
+                                    if(locals.data.searchValue || locals.data.searchConditions) {
+                                        // can not find the items or selected some conditions
                             %>
                                             <div class="alert alert-warning" role="alert">
-                                                  抱歉没有搜索到商品，您可以放宽条件重新搜索。
+                                                  抱歉没有搜索到商品，您可以放宽条件重新搜索。点击重新<a href="/admin/shop/<%=data.shop.id%>/item/" class="alert-link">查询</a>
                                             </div>
                             <%
                                     } else {

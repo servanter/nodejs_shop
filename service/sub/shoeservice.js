@@ -86,10 +86,10 @@ function packageAttr(detail) {
     return [{
         key: '商品名称',
         value: detail.short_name
-    },  {
+    }, {
         key: '品牌名称',
         value: detail.brand.brand_name
-    },  {
+    }, {
         key: '产 地',
         value: detail.country.country_name
     }, {
@@ -187,7 +187,7 @@ exports.findSearchConditions = function(shopId, param, callback) {
             })
         },
         function(data, cb) {
-            var sql = 'SELECT c.id AS id, c.color_name AS color_name, count(c.id) AS total FROM weshop_shoe s INNER JOIN weshop_shoe_color_rel r ON r.shoe_id = s.id INNER JOIN weshop_dict_color c ON r.color_id = c.id GROUP BY  c.id ';
+            var sql = 'SELECT c.id AS id, c.color_name AS color_name, count(c.id) AS total FROM weshop_shoe s INNER JOIN weshop_shoe_color_rel r ON r.shoe_id = s.id INNER JOIN weshop_dict_color c ON r.color_id = c.id WHERE s.shop_id = ' + shopId + ' GROUP BY c.id ';
             sequelize.query(sql).success(function(result) {
                 var arr = [];
                 for (var i = 0; i < result.length; i++) {
@@ -293,7 +293,7 @@ exports.findList = function(shopId, params, searchValue, paging, callback) {
     var pic = {
         model: Pic,
         as: 'pics',
-        required: true,
+        required: false,
         attributes: [
             ['pic_url', 'pic_url']
         ]
@@ -326,9 +326,9 @@ exports.findList = function(shopId, params, searchValue, paging, callback) {
         }
     }
     var whereConditions = {
-        shop_id: shopId,
-        is_vertify: 1,
-        on_sell: 1
+        shop_id: shopId
+        // is_vertify: 1,
+        // on_sell: 1
     };
     if (searchValue) {
         whereConditions.short_name = {};
@@ -339,6 +339,7 @@ exports.findList = function(shopId, params, searchValue, paging, callback) {
             Shoe.findAll({
                 attributes: [
                     ['short_name', 'short_name'],
+                    ['description', 'description'],
                     ['id', 'id'],
                     ['update_time', 'opt_time'],
                     ['price', 'price']
