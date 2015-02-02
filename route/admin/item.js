@@ -217,7 +217,7 @@ exports.shopItems = function(req, res) {
 }
 
 exports.detail = function(req, res) {
-    var itemId = req.params.id;
+    var itemId = req.params.itemId;
     if(itemId) {
         adminService.getItemDetail(itemId, function(result) {
             res.render('admin/item_detail', {data:result});

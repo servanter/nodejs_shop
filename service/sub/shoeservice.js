@@ -84,12 +84,12 @@ exports.findDetail = function(id, callback) {
 
 function packageAttr(detail) {
     return [{
-        key: '品牌名称',
-        value: detail.brand.brand_name
-    }, {
         key: '商品名称',
         value: detail.short_name
-    }, {
+    },  {
+        key: '品牌名称',
+        value: detail.brand.brand_name
+    },  {
         key: '产 地',
         value: detail.country.country_name
     }, {

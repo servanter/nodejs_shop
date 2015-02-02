@@ -113,7 +113,7 @@
                                 data.items.result.forEach(function(item, index) {
                             %>
                                     <tr>
-                                        <td><a href="/admin/shop/<%=data.shop.id%>/item/<%=item.id%>/"><%=item.short_name%></a></td>
+                                        <td><a href="/admin/shop/<%=data.shop.id%>/item/<%=item.encrypt%>/"><%=item.short_name%></a></td>
                                         <td><%=item.description%></td>
                                         <td>
                                             <a title="编辑" href="/admin/shop/<%=data.shop.id%>/item/<%=item.id%>/enteredititem/"><span class="glyphicon glyphicon-pencil"></span>编辑</a>

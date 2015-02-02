@@ -1,4 +1,6 @@
 var async = require('async');
+var Crypto = require('../util/crypto_util');
+var Constants = require('../util/constants');
 var shopService = require('./shopservice');
 var itemService = require('./itemservice');
 var webService = require('./webservice');

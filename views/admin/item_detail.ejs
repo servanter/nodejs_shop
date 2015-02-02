@@ -12,6 +12,7 @@
         <script type="text/javascript">
             var navIndex=1;
         </script>
+        <script src="/javascript/scroll.js" type="text/javascript"></script>
         <script src="/javascript/admin/nav.js" type="text/javascript"></script>
     </head>
     <body>
@@ -22,24 +23,78 @@
 
                 <div id="right-content" class="col-xs-7 col-sm-7 col-md-7 col-xs-offset-1 col-sm-offset-1 col-md-offset-1">
                     <div class="row shop-detail">
-                      <div class="row shop-base-info">
-                        <div class="detail-logo">
-                            <img src="<%=settings.img_path%>/<%=data.shop.logo%>">
-                        </div>
-                        <div class="detail-title">
-                            <label><span>描述：</span><%=data.shop.short_name%></label>
-                            <label><span>首页提示语：</span><%=data.shop.description%></label>
-                            <label><span>省份：</span><%=data.province.area_name%></label>
-                            <label><span>城市：</span><%=data.city.area_name%></label>
-                            <label><span>店铺地址：</span><%=data.shop.address%></label>
-                            <label><span>淘宝地址：</span><a href="<%=data.shop.taobao_link%>"><%=data.shop.taobao_link%></a></label>
-                        </div>
-                      </div>
-                      
-                      <div class="row">
-                          <img src="<%=settings.img_path%>/<%=data.shop.publicity_photo%>">
-                      </div>
+                        <%
+                            if(data.detail.pics && data.detail.pics.length > 0) {
+                        %>
+                            <div id="myCarousel" class="carousel slide" style="width:300px;float:left">
+                             <ol class="carousel-indicators">
+                                <%
+                                    data.detail.pics.forEach(function(item, index) {
+                                        if(index == 0) {
+                                %>
+                                            <li data-target="#myCarousel" data-slide-to="<%=index%>" class="active"></li>
+                                <%
+                                        } else {
+                                %>
+                                            <li data-target="#myCarousel" data-slide-to="<%=index%>"></li>
+                                <%
+                                        }
+                                    })
+                                %>
+                             </ol>   
+                             <div class="carousel-inner">
+                                <%
+                                    data.detail.pics.forEach(function(item, index) {
+                                        if(index == 0) {
+                                %>
+                                            <div class="item active">
+                                               <img src="<%=locals.settings.img_path%>/<%=item.pic_url%>" alt="<%=item.description%>" style="height:200px">
+                                            </div>
+                                <%
+                                        } else {
+                                %>
+                                            <div class="item">
+                                               <img src="<%=locals.settings.img_path%>/<%=item.pic_url%>" alt="<%=item.description%>" style="height:200px">
+                                            </div>   
+                                <%
+                                        }
+                                    })
+                                %>
+                             </div>
+                            </div> 
+                        <%
+                            }
+                        %>
 
+                      <div class="row shop-base-info">
+                        <div class="detail-title">
+                            <%
+                                if(data.detail.attr && data.detail.attr.length) {
+                                    data.detail.attr.forEach(function(item, index) {
+                            %>
+                                    <label><span><%=item.key%>：</span><%=item.value%></label>        
+                            <%
+                                    })
+                                }
+                            %>
+                            
+                            <%
+                            if(data.detail.sizes.length > 0) {
+                            %>
+                                <label><span>支持尺码：</span>
+                            <%
+                              for(var i = 0; i < data.detail.sizes.length; i++) {
+                            %>
+                                <%=data.detail.sizes[i].description%>
+                            <%
+                                }
+                            %>
+                                </label>
+                            <%
+                              }
+                            %>
+                        </div>
+                      </div>
                     </div>
                 </div>
             </div>
