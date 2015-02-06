@@ -104,7 +104,14 @@ function packageAttr(detail) {
     }];
 }
 
-exports.findSearchConditions = function(shopId, param, callback) {
+exports.findSearchConditions = function(shopId, param, shortName, callback) {
+    var globalWhere = {shop_id:shopId};
+    var globalSearchCondition = '';
+    if(shortName && shortName.length) {
+        globalWhere.short_name = {};
+        globalWhere.short_name.like = '%' + shortName + '%';
+        globalSearchCondition = " AND s.short_name like '%" + shortName + "%'";
+    }
     async.waterfall([
         function(cb) {
             Shoe.findAll({
@@ -123,9 +130,7 @@ exports.findSearchConditions = function(shopId, param, callback) {
                         is_valid: 1
                     }
                 }],
-                where: {
-                    shop_id: shopId
-                },
+                where: globalWhere,
                 group: ['brand_id'],
                 order: [
                     [Sequelize.fn('COUNT', 'brand_id'), 'DESC']
@@ -162,9 +167,7 @@ exports.findSearchConditions = function(shopId, param, callback) {
                         is_valid: 1
                     }
                 }],
-                where: {
-                    shop_id: shopId
-                },
+                where: globalWhere,
                 group: ['material_id'],
                 order: [
                     [Sequelize.fn('COUNT', 'material_id'), 'DESC']
@@ -187,7 +190,7 @@ exports.findSearchConditions = function(shopId, param, callback) {
             })
         },
         function(data, cb) {
-            var sql = 'SELECT c.id AS id, c.color_name AS color_name, count(c.id) AS total FROM weshop_shoe s INNER JOIN weshop_shoe_color_rel r ON r.shoe_id = s.id INNER JOIN weshop_dict_color c ON r.color_id = c.id WHERE s.shop_id = ' + shopId + ' GROUP BY c.id ';
+            var sql = 'SELECT c.id AS id, c.color_name AS color_name, count(c.id) AS total FROM weshop_shoe s INNER JOIN weshop_shoe_color_rel r ON r.shoe_id = s.id INNER JOIN weshop_dict_color c ON r.color_id = c.id WHERE s.shop_id = ' + shopId + globalSearchCondition + ' GROUP BY c.id ';
             sequelize.query(sql).success(function(result) {
                 var arr = [];
                 for (var i = 0; i < result.length; i++) {

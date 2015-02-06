@@ -5,7 +5,7 @@ exports.findDetail = function(id, callback) {
     callback(undefined);
 }
 
-exports.findSearchConditions = function(shopId, param, callback) {
+exports.findSearchConditions = function(shopId, param, searchVal, callback) {
 	async.waterfall([
 		function(cb) {
 			itemService.findItemClassesByShopId(shopId, function(result) {

@@ -103,7 +103,7 @@
                               <%
                                       data.currentSelected.forEach(function(item, index) {
                               %>
-                                          <span><%=item.name%><a href="javascript:window.location.href='/admin/shop/<%=data.shop.id%>/item/<%=item.link%>/'"><i class="">X</i></a></span>
+                                          <span><%=item.name%><a href="javascript:window.location.href='/admin/shop/<%=data.shop.id%>/item/<%=item.link%>/?short_name=<%=locals.data.searchValue%>'"><i class="">X</i></a></span>
                           <%
                                   })
                           %>
@@ -133,7 +133,7 @@
                                               defaultClass = "mainItem active";
                                           }
                                       %>
-                                          <a href="/admin/shop/<%=data.shop.id%>/item/<%=data.searchConditions[i][j].link%>/" class="<%=defaultClass%>" name="search-brand"><%=data.searchConditions[i][j].name%>&nbsp;(<%=data.searchConditions[i][j].total%>)</a>
+                                          <a href="/admin/shop/<%=data.shop.id%>/item/<%=data.searchConditions[i][j].link%>/?short_name=<%=locals.data.searchValue%>" class="<%=defaultClass%>" name="search-brand"><%=data.searchConditions[i][j].name%>&nbsp;(<%=data.searchConditions[i][j].total%>)</a>
                                       <%
                                         }
                                       %>
@@ -274,7 +274,7 @@
                               <%
                                       data.currentSelected.forEach(function(item, index) {
                               %>
-                                          <span><%=item.name%><a href="javascript:window.location.href='/admin/shop/<%=data.shop.id%>/item/<%=item.link%>/'"><i class="">X</i></a></span>
+                                          <span><%=item.name%><a href="javascript:window.location.href='/admin/shop/<%=data.shop.id%>/item/<%=item.link%>/?short_name=<%=locals.data.searchValue%>'"><i class="">X</i></a></span>
                           <%
                                   })
                           %>

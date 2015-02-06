@@ -47,7 +47,7 @@ exports.itemList = function(shopId, param, searchValue, page, callback) {
             // can selected conditions
             var category = parseInt(param.a);
             var subFactory = new itemSubFactory.getService(category);
-            subFactory.findSearchConditions(shopId, param, function(result) {
+            subFactory.findSearchConditions(shopId, param, searchValue, function(result) {
                 cb(null, {shop:data.shop, items:data.items, searchConditions:result.searchConditions, currentSelected:result.currentSelected});
             })
         }], function(err, result) {
