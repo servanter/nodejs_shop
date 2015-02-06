@@ -45,7 +45,7 @@
 
                 <div id="right-content" class="col-xs-7 col-sm-7 col-md-7 col-xs-offset-1 col-sm-offset-1 col-md-offset-1">
                     <div class="row mb20">
-                        <%
+                        <%  
                             if(locals.data.shops && locals.data.shops.length > 0){
                         %>
                         <div class="pull-left">
@@ -95,6 +95,24 @@
                                 if(locals.data.items && locals.data.items.result.length > 0){
                     %>
                     <div class="row">
+                         <%
+                              if(data.currentSelected && data.currentSelected.length > 0) { 
+                          %>
+                              <div id="filter_params" class="filtrate-seleced clear">
+                                <strong>您正在筛选:</strong>
+                              <%
+                                      data.currentSelected.forEach(function(item, index) {
+                              %>
+                                          <span><%=item.name%><a href="javascript:window.location.href='/admin/shop/<%=data.shop.id%>/item/<%=item.link%>/'"><i class="">X</i></a></span>
+                          <%
+                                  })
+                          %>
+                               <a class="btn" href="/admin/shop/<%=data.shop.id%>/item/a<%=data.category%>b0c0d0/">重置</a>
+                              </div>
+                          <%
+                              }
+                          %>
+
                         <%
                           if(data.searchConditions && data.searchConditions.length > 0) {
                         %>
@@ -244,12 +262,33 @@
 
                            <%
                                 } else {
-                                    if(locals.data.searchValue || locals.data.searchConditions) {
+                                    if(locals.data.searchValue || (locals.data.searchConditions && locals.data.searchConditions.length && locals.data.searchConditions[0].length)) {
                                         // can not find the items or selected some conditions
                             %>
-                                            <div class="alert alert-warning" role="alert">
-                                                  抱歉没有搜索到商品，您可以放宽条件重新搜索。点击重新<a href="/admin/shop/<%=data.shop.id%>/item/" class="alert-link">查询</a>
-                                            </div>
+                            <%
+                              if(data.currentSelected && data.currentSelected.length > 0) { 
+                          %>
+                            <div class="row">
+                              <div id="filter_params" class="filtrate-seleced clear">
+                                <strong>您正在筛选:</strong>
+                              <%
+                                      data.currentSelected.forEach(function(item, index) {
+                              %>
+                                          <span><%=item.name%><a href="javascript:window.location.href='/admin/shop/<%=data.shop.id%>/item/<%=item.link%>/'"><i class="">X</i></a></span>
+                          <%
+                                  })
+                          %>
+                               <a class="btn" href="/admin/shop/<%=data.shop.id%>/item/a<%=data.category%>b0c0d0/">重置</a>
+                              </div>
+                          <%
+                              }
+                          %>
+                          <div class="alert alert-warning" role="alert">
+                                  抱歉没有搜索到商品，您可以放宽条件重新搜索。点击重新<a href="/admin/shop/<%=data.shop.id%>/item/a<%=data.category%>b0c0d0/" class="alert-link">查询</a>
+                            </div>
+                      </div>
+
+                                            
                             <%
                                     } else {
                             %>
