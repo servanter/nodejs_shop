@@ -159,9 +159,11 @@ body {
      border-bottom: 1px dashed #333;
      margin-top: 4px;
 }
+#selectList .mainHead {
+    line-height: 30px;
+ } 
  #selectList .mainHead a{
     font-size: 16px;
-    line-height: 20px;
     margin-right: 5px;
  } 
  .filtrate-seleced {
@@ -186,7 +188,7 @@ body {
      float: left;
      margin: 1px;
      padding: 0 3px;
-     background-color: #fff2ed;
+     background-color: #FFF;
      color: #18bc9c;
      border: 1px solid #18bc9c;
      line-height: 24px;
@@ -214,4 +216,5 @@ body {
 .mainHead a.active {
     background-color: #18bc9c;
     color: white;
+    padding: 5px;
 }

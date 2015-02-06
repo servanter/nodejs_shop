@@ -7,6 +7,7 @@ var Convert = require('../util/convert');
 var itemService = require('./itemService');
 var shopAdService = require('./shopadservice');
 var areaService = require('./areaservice');
+var sequelize = require('../lib/sequelize');
 
 function findById(shopId, callback) {
     Shop.findOne({
